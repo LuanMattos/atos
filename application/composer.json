@@ -1,0 +1,16 @@
+{
+  "description": "Sistema de dados",
+  "name": "System/App",
+  "require": {
+    "php": ">=5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Service\\": "services",
+      "UnicoService\\": "services/modules",
+      "ServiceSms\\": "services",
+      "ServiceZenvia\\": "services",
+      "Modules\\Account\\RestoreAccount\\": "services/modules/account"
+    }
+  }
+}

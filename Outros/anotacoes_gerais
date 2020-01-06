@@ -1,0 +1,33 @@
+Instalação servidor:
+sudo apt install php-pgsql
+
+sudo apt install argon2 libargon2-0 libargon2-0-dev
+
+
+se PHP nao for compilado
+sudo apt-get -y purge php.*
+sudo apt-get install php libapache2-mod-php
+
+$ cd /etc/apache2/mods-available
+a2enmod rewrite
+
+/etc/apache2/apache2.conf
+
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride All # <---- ATENÇÂO
+        Require all granted
+</Directory>
+
+reiniciar apache
+
+instalar curl para php:
+
+sudo apt-get install curl
+sudo apt-get install php-curl
+patrick.mattos@acad.ftec.com.br
+
+
+---configurar postgres(basico)
+sudo -u postgres psql postgres
+\password postgres --- inserir senha do database.php
