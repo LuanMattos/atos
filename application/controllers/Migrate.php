@@ -92,6 +92,10 @@ class Migrate extends CI_Controller{
                         );");
         $this->db->query("ALTER TABLE location_user DROP constraint if exists usuarios_pkey;");
         $this->db->query("ALTER TABLE location_user ADD COLUMN IF NOT EXISTS codusuario bigint constraint usuarios_pkey references usuarios;");
+        $this->db->query("ALTER TABLE  usuarios ADD COLUMN  IF NOT EXISTS create_folder_img boolean");
+
+        $this->storage();
+        $this->storage_img();
 
         $transaction = $this->db->trans_complete();
 
@@ -101,6 +105,29 @@ class Migrate extends CI_Controller{
         $this->response("success",["msg"=>"Base Atualizada com sucesso!"]);
 
     }
+    private function storage(){
+        $this->db->query("CREATE TABLE IF NOT EXISTS us_storage(
+                                        codigo              serial not null,
+                                        name_folder_user    varchar(1000),
+                                        created_at          timestamp default now(),
+                                        updated_at          timestamptz default now(),
+                                        primary key (codigo)
+                                    );");
+        $this->db->query("ALTER TABLE us_storage DROP constraint if exists usuarios_pkey;");
+        $this->db->query("ALTER TABLE us_storage ADD COLUMN IF NOT EXISTS codusuario bigint constraint usuarios_pkey references usuarios");
+
+    }
+    private function storage_img(){
+        $this->db->query("CREATE TABLE IF NOT EXISTS us_storage_img(
+                        codigo serial not null,
+                        path_file varchar(1000),
+                        created_at   timestamp default now(),
+                        updated_at   timestamptz default now()
+                    );");
+        $this->db->query("ALTER TABLE us_storage_img DROP constraint if exists us_storage_pkey;");
+        $this->db->query("ALTER TABLE us_storage_img ADD COLUMN IF NOT EXISTS codstorage bigint constraint us_storage_pkey references us_storage;");
+    }
+
 
 
 }

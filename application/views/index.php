@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <meta name="description" content="Gambolthemes">
-    <meta name="author" content="Gambolthemes">
+    <meta name="socialnetwork" content="SocialNetWork">
+
     <title> &nbsp</title>
 
     <!-- Favicon Icon -->
@@ -33,7 +33,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6" style="background-color: #3a3e3e; ">
                                 <div class="text-white">
-                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/home.svg" style="width:120%">
+                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/home.svg" style="width:100%">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -80,11 +80,7 @@
         </div>
     </div>
 </main>
-<!-- Body End -->
-<!-- Footer Start -->
-<?= $this->load->view("footer/footer"); ?>
-<!-- Footer End -->
-<!-- Scripts js -->
+
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.nice-select.js"></script>

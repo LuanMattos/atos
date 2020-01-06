@@ -93,12 +93,10 @@ endif;
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-7 mt-20">
-                    <div class="center-section">
-                        <div class="main-search-bar" style="background-color: #515555">
-                                <?= $this->load->view("publicar/index"); ?>
-                        </div>
-                    </div>
+                <div class="col-lg-6 col-md-7 mt-20" id="div-geral-time-line">
+
+                    <?= $this->load->view("publicar/index"); ?>
+
                     <?= $this->load->view("timeline_home/index"); ?>
                 </div>
 
@@ -283,6 +281,7 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
 
 <!---->

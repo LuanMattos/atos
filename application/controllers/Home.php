@@ -180,11 +180,13 @@ class Home extends SI_Controller
         $this->load->view("register");
     }
     public function acao_cadastro(){
+
         $data           = (object)$this->input->post("data",TRUE);
         $sms            = new \ServiceSms\ServiceSms();
         $RestoreAccount = new RestoreAccount();
 
         $error  = [];
+
 
         $data->datanasc = date_to_us($data->datanasc);
 
@@ -282,9 +284,13 @@ class Home extends SI_Controller
             "destinatario"  => "$numero_validado",
             "date_to_send"  => date("Y-m-d H:i:s")
         ];
-//        $sms->processesDirect($dataSms);
+        $sms->processesDirect($dataSms);
 
-        $save = $this->Usuarios_model->save($data,["codigo","email_hash"]);
+        $save = $this->Usuarios_model->save($data,["codigo","email_hash","login"]);
+
+        $create_folder  = new Modules\Storage\Create_folder_user\Create_folder_user();
+        $create_folder->index($save);
+
         if($save){
             $data_account = [
               "code_verification" => $codigo_verificacao,
@@ -340,6 +346,53 @@ class Home extends SI_Controller
         }
 
 
+    }
+    public function add_time_line(){
+     $data_file    = $_FILES['fileimagem'];
+     $this->load->model("storage/Us_storage_model");
+     $this->load->model("storage/img/Us_storage_img_model");
+     $hash         = uniqid(rand()).date("Y-m-d H:i:s");
+     $search       = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
+     $name_replace = str_replace($search, "", $hash);
+     $data_user    = $this->session->get_userdata();
+     $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
+     $path         = reset($this->Us_storage_model->getWhere(['codusuario'=>$get_usuario['codigo']]));
+
+     $configuracao = array(
+         'upload_path'   => PATH_IMG_LINUX()."/".$path['name_folder_user'] . "/img",
+         'allowed_types' => "jpeg|gif|jpg|png|bmp",
+         'file_name'     => $name_replace. "." . "jpeg",
+         'max_size'      => '50000'
+     );
+     $this->load->library('upload');
+     $this->upload->initialize($configuracao);
+     if ($this->upload->do_upload('fileimagem')):
+         $data = [
+             "path_file"    => $path['name_folder_user'] . "/img/" . $name_replace. "." . "jpeg",
+             "codstorage"   => $path['codigo']
+         ];
+          $save = $this->Us_storage_img_model->save($data,["path_file"]);
+          $path = "file://" . PATH_IMG_LINUX() .$save["path_file"];
+          $this->response('success',compact('path'));
+     else:
+         echo $this->upload->display_errors();
+     endif;
+
+    }
+    public function get_storage_img(){
+        $this->load->model("storage/Us_storage_model");
+
+        $data_user          = $this->session->get_userdata();
+
+        if(set_val($data_user['login'])):
+            if(!empty($data_user['login'])){
+
+                $data = $this->Us_storage_model->get_img_usr("us.login = '{$data_user['login']}'");
+               $this->response("success",compact("data"));
+               exit();
+            }
+         endif;
+        $this->response("success");
     }
 
 }

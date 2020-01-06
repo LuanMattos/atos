@@ -9,22 +9,21 @@
                             <i class="fas fa-bars " style="font-size:25px"></i>
                         </button>
 
-                        <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-start bg-dark1 p-3 p-lg-0 mt1-5 mt-lg-0 mobileMenu"
-                             id="navbarSupportedContent">
-                            <a class="text-white " href="<?= site_url('Home/Logged') ?>">
-                                <b style="font-size: 25px">atos</b>
-                            </a>
-                        </div>
+
                         <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-start bg-dark1 p-3 p-lg-0 mt1-5 mt-lg-0 mobileMenu">
-                            <div class="col-lg-12 col-md-12">
+                            <div class="open"
+                                 id="navbarSupportedContent">
+                                <a class="text-white " href="<?= site_url('Home/Logged') ?>">
+                                    <b style="font-size: 25px">atos</b>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-4"></div>
+                            <div class="col-lg-8 col-md-8">
                                     <input class="appearance-none  bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-1 px-4"
                                            type="text"
                                            placeholder="Buscar"
-                                           style="width: 100%"
+                                           style="width: 90%"
                                     >
-<!--                                    <button class="search-btn" type="submit" style="width: 3em">-->
-<!--                                        <i class="fas fa-search"></i>-->
-<!--                                    </button>-->
                             </div>
                         </div>
 

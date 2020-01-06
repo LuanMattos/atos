@@ -27,7 +27,7 @@
 <!-- Body Start -->
 <main class="register-mp">
     <div class="main-section">
-        <div class="container">
+        <div class="container" >
             <div class="row justify-content-md-center">
                 <div class="col-md-10">
                     <div class="login-register-bg">
@@ -42,34 +42,34 @@
                                         <p>Aqui você inspira, aqui você descobre.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div id="register-index">
                             <div class="col-lg-6" >
-                                <div class="lr-right">
+                                <div class="lr-right " id="login-register-index-container" >
                                     <h4>Primeiros passos</h4>
                                     <div class="login-register-form">
                                         <form action="<?= site_url('Home/acao_cadastro') ?>" method="POST">
                                             <div class="form-group">
                                                 <input class="title-discussion-input" type="text" placeholder="Nome" name="nome"  autocomplete="off" v-model="form.nome">
                                             </div>
-                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;">
-                                                {{error.sobrenome}}
+                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
+                                                {{error.nome}}
                                             </div>
                                             <div class="form-group">
                                                 <input class="title-discussion-input" type="text" placeholder="Sobrenome" name="sobrenome"  autocomplete="off" v-model="form.sobrenome">
                                             </div>
-                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;">
+                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.sobrenome}}
                                             </div>
                                             <div class="form-group">
                                                 <input class="title-discussion-input" type="email" placeholder="E-mail" name="email"  autocomplete="off" v-model="form.email">
                                             </div>
-                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;">
+                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.email}}
                                             </div>
                                             <div class="form-group">
-                                                <input class="title-discussion-input  datepicker-here" type="text" placeholder="Data de nascimento"  data-language="pt-BR" name="datanasc" autocomplete="off" v-model="form.datanasc">
+                                                <input class="date title-discussion-input  datepicker-here " type="text" placeholder="Data de nascimento"  data-language="pt-BR" name="datanasc" autocomplete="off" >
                                             </div>
-                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;">
+                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.datanasc}}
                                             </div>
                                             <div class="form-group" >
@@ -78,19 +78,19 @@
                                                 </select>
                                                 <input class="title-discussion-input phone_br"  type="text" placeholder="Tel. Cel" name="telcel" autocomplete="off" >
                                             </div>
-                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;">
+                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.telcel}}
                                             </div>
                                             <div class="form-group">
                                                 <input class="title-discussion-input" type="password" placeholder="Senha" name="senhacadastro" autocomplete="off" v-model="form.senhacadastro">
                                             </div>
-                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;">
+                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.senhacadastro}}
                                             </div>
                                             <div class="form-group">
                                                 <input class="title-discussion-input" type="password" placeholder="Rep. Senha" name="repsenha" autocomplete="off" v-model="form.repsenha">
                                             </div>
-                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;">
+                                            <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.repsenha}}
                                             </div>
                                             <div class="rgstr-dt-txt">
@@ -107,15 +107,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </main>
-<!-- Body End -->
-<!-- Footer Start -->
-<?= $this->load->view("footer/footer"); ?>
-<!-- Footer End -->
-<!-- Scripts js -->
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
@@ -125,10 +119,11 @@
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/jquery.mask.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/mascaras.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/index.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/jquery.mask.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/mascaras.js"></script>
+
 
 </body>
 

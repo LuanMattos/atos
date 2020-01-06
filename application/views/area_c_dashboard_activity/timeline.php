@@ -1,6 +1,5 @@
 <div class="col-lg-6 col-md-7">
     <div class="main-posts">
-
         <div class="activity-posts">
             <div class="activity-group1">
                 <div class="main-user-dts1">

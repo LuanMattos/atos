@@ -10,7 +10,8 @@
       "UnicoService\\": "services/modules",
       "ServiceSms\\": "services",
       "ServiceZenvia\\": "services",
-      "Modules\\Account\\RestoreAccount\\": "services/modules/account"
+      "Modules\\Account\\RestoreAccount\\": "services/modules/account",
+      "Modules\\Storage\\Create_folder_user\\": "services/modules/storage"
     }
   }
 }

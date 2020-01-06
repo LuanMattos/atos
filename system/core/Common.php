@@ -38,7 +38,20 @@ if ( ! function_exists('URL_RAIZ')) {
     }
 }
 // ------------------------------------------------------------------------
+if ( ! function_exists('PATH_IMG_LINUX')) {
+    /**
+     * PATH default para servidor de imagem linux (DOCUMENT ROOT PADRAO APACHE)
+     *
+     */
+    function PATH_IMG_LINUX(){
 
+        $document_r = $_SERVER['DOCUMENT_ROOT'];
+        $replace    = str_replace("master","",$document_r);
+        return $replace . "imagens/";
+
+    }
+}
+// ------------------------------------------------------------------------
 if ( ! function_exists('is_php'))
 {
 	/**

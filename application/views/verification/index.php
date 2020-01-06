@@ -13,6 +13,9 @@
     .bg {
         background-color: #3e3e3f;
     }
+    [v-cloak] {
+        display: none;
+    }
 
 </style>
 
@@ -48,7 +51,7 @@
                     Enviar
                 </button>
                 <br>
-                <span class=' font-mono text-red-600 text-xs'>{{form.error.codigov}}</span>
+                <span class=' font-mono text-red-600 text-xs' v-cloak>{{form.error.codigov}}</span>
             </div>
         </div>
     </div>
@@ -66,5 +69,4 @@
 <script type="text/javascript" src="<?= site_url("application/assets/js.js") ?>"></script>
 <script type="text/javascript" src="<?= site_url("application/assets/mascaras.js") ?> "></script>
 <script type="text/javascript" src="<?= site_url("application/assets/js/libs/jquery.mask.js") ?> "></script>
-<script type="text/javascript"
-        src="<?= site_url("application/assets/js/libs/icons/fontawesome-free-5.10.2-web/js/all.js") ?> "></script>
+<script type="text/javascript" src="<?= site_url("application/assets/js/libs/icons/fontawesome-free-5.10.2-web/js/all.js") ?> "></script>
