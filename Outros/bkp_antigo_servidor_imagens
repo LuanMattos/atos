@@ -1,0 +1,30 @@
+//        Antigo servidor de arquivos
+//     $data_file    = $_FILES['fileimagem'];
+//     $this->load->model("storage/Us_storage_model");
+//     $this->load->model("storage/img/Us_storage_img_model");
+//     $hash         = uniqid(rand()).date("Y-m-d H:i:s");
+//     $search       = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
+//     $name_replace = str_replace($search, "", $hash);
+//     $data_user    = $this->session->get_userdata();
+//     $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
+//     $path         = reset($this->Us_storage_model->getWhere(['codusuario'=>$get_usuario['codigo']]));
+//
+//     $configuracao = array(
+//         'upload_path'   => PATH_IMG_LINUX()."/".$path['name_folder_user'] . "/img",
+//         'allowed_types' => "jpeg|gif|jpg|png|bmp",
+//         'file_name'     => $name_replace. "." . "jpeg",
+//         'max_size'      => '50000'
+//     );
+//     $this->load->library('upload');
+//     $this->upload->initialize($configuracao);
+//     if ($this->upload->do_upload('fileimagem')):
+//         $data = [
+//             "path_file"    => $path['name_folder_user'] . "/img/" . $name_replace. "." . "jpeg",
+//             "codstorage"   => $path['codigo']
+//         ];
+//          $save = $this->Us_storage_img_model->save($data,["path_file"]);
+//          $path = "file://" . PATH_IMG_LINUX() .$save["path_file"];
+//          $this->response('success',compact('path'));
+//     else:
+//         echo $this->upload->display_errors();
+//     endif;

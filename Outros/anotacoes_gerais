@@ -31,3 +31,8 @@ patrick.mattos@acad.ftec.com.br
 ---configurar postgres(basico)
 sudo -u postgres psql postgres
 \password postgres --- inserir senha do database.php
+
+
+sudo apt-get install php-xml
+extension=php_xmlrpc.dll
+
