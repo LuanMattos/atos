@@ -351,19 +351,22 @@ class Home extends SI_Controller
      * Adiciona as imagens ao bucket da Amazon
     **/
     public function add_time_line(){
-        $this->load->library('amazon/S3');
-        $data_file    = $_FILES['fileimagem'];
+        $client = new MongoDB\Client("mongodb://localhost:27017");
+        debug($client);
 
-        $bucket_name  = 'atos.click';  //Bucket name
-        $s3           = new S3();
-        $s3->putBucket($bucket_name);
-
-        if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, 'usuarioteste'.'/'.$data_file['name'], S3::ACL_PUBLIC_READ)) {
-
-            return '1'; //return 1 it will success
-        }else{
-            return '7';
-        }
+//        $this->load->library('amazon/S3');
+//        $data_file    = $_FILES['fileimagem'];
+//
+//        $bucket_name  = 'atos.click';  //Bucket name
+//        $s3           = new S3();
+//        $s3->putBucket($bucket_name);
+//
+//        if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, 'usuarioteste'.'/'.$data_file['name'], S3::ACL_PUBLIC_READ)) {
+//
+//            return '1'; //return 1 it will success
+//        }else{
+//            return '7';
+//        }
     }
     public function get_storage_img(){
         $this->load->model("storage/Us_storage_model");
