@@ -1,5 +1,5 @@
 <div class="col-lg-12 col-md-12 ">
-    <div>
+    <div v-show="posts.length" v-cloak>
         <div class="col-sm-12" v-for="(post, index) in posts" style="margin-bottom: 30px">
                     <div class="main-tabs ">
                         <div class="tab-content">
@@ -10,7 +10,7 @@
                                             <div class="event-top-left">
                                                 <a href="#">
                                                     <h4>Nome de quem postou</h4>
-                                                    <div>{{post.frase}}</div>
+                                                    <div v-cloak>{{post.text}}</div>
                                                 </a>
                                             </div>
                                             <div class="event-top-right">

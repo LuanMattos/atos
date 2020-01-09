@@ -350,8 +350,7 @@ class Home extends SI_Controller
     /**
      * Adiciona as imagens ao bucket da Amazon
     **/
-    public function add_time_line($data = null){
-
+    public function add_time_line(){
         $this->load->library('amazon/S3');
         $data_file    = $_FILES['fileimagem'];
         $text         = $this->input->post('text',TRUE);
@@ -413,6 +412,33 @@ class Home extends SI_Controller
         }
     }
     public function get_storage_img(){
+        $data_user    = $this->session->get_userdata();
+        $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
+
+        if(empty($get_usuario)){
+            redirect();
+            exit();
+        }
+
+        $us_storage_img = $this->mongodb->atos->us_storage_img;
+
+        $data_time_line = $us_storage_img->find(['codusuario'=>$get_usuario['codigo']]);
+        $data = [];
+
+        foreach($data_time_line as $row){
+            $url    =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+            $text   = $row['text_timeline'];
+
+            $data_row = [
+                'path' => $url,
+                'text' => $text
+            ];
+            array_push($data,$data_row);
+
+        }
+
+        $this->response('success',compact('data'));
+
 
     }
 

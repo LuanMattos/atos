@@ -60,7 +60,7 @@ var vm = new Vue({
                     var text_area = $('#text-area-postagem').val();
                     if(response){
                                 var data = {
-                                    'frase' : text_area,
+                                    'text' : text_area,
                                     'path' : response.path
                                 };
                                 vm.posts.push(data);
@@ -77,7 +77,5 @@ $.post(
     home.Url("get_storage_img"),
     {},
     function(json){
-
             vm.$data.posts = json.data
-
     },'json')
