@@ -1,0 +1,16 @@
+//exibe as bases
+show databases;
+//deleta a base selecionada com use
+db.dropDatabase();
+//seleciona a base
+use teste;
+//criar uma coleção(tabela) de acordo com base selecionada
+db.createCollection('teste')
+//exibe as coleções (tabelas da base selecionada com use)
+show collections;
+//selecionar registros {} seria a condição
+db.nomecolecao.find({},{});
+//inserir novo registro
+db.nomecolecao.insert({nome:"luiz",idade:29})
+//deleta as row e as entidades da tabela
+db.us_storage.deleteMany({})

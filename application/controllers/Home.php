@@ -351,8 +351,16 @@ class Home extends SI_Controller
      * Adiciona as imagens ao bucket da Amazon
     **/
     public function add_time_line(){
-        $client = new MongoDB\Client("mongodb://localhost:27017");
-        debug($client);
+        $collection     = $this->client->atos->us_storage;
+
+        $collection->insertOne(['name_folder_user'=>'teste']);
+//        $result         = $collection->find();
+
+//        foreach($result as $row){
+//            echo $row['_id'] . ' - ' . $row['nome']  . ' - ' . $row['idade'] ;
+//        }
+
+
 
 //        $this->load->library('amazon/S3');
 //        $data_file    = $_FILES['fileimagem'];
@@ -369,19 +377,7 @@ class Home extends SI_Controller
 //        }
     }
     public function get_storage_img(){
-        $this->load->model("storage/Us_storage_model");
 
-        $data_user          = $this->session->get_userdata();
-
-        if(set_val($data_user['login'])):
-            if(!empty($data_user['login'])){
-
-                $data = $this->Us_storage_model->get_img_usr("us.login = '{$data_user['login']}'");
-               $this->response("success",compact("data"));
-               exit();
-            }
-         endif;
-        $this->response("success");
     }
 
 }
