@@ -12,7 +12,6 @@ class Shell extends CI_Controller{
     }
     public function php(){
         shell_exec('sudo apt-get -y purge php.*');
-
         shell_exec('sudo apt install php-pgsql');
         shell_exec('sudo apt install argon2 libargon2-0 libargon2-0-dev');
         shell_exec('sudo apt-get install php-xml');
@@ -22,6 +21,8 @@ class Shell extends CI_Controller{
         shell_exec('cd');
         shell_exec('sudo apt-get install curl');
         shell_exec('sudo apt-get install php-curl');
+        shell_exec('sudo apt install php-mongodb');
+
     }
     public function install_mongo_ubuntu(){
         shell_exec('sudo apt-get install php7.0-mbstring');
