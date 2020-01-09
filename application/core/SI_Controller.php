@@ -3,13 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class SI_Controller extends CI_Controller{
-    public $cliente;
+    public $mongodb;
 
     public function __construct(){
         parent::__construct();
         $this->load_helpers();
-        $this->client         = new MongoDB\Client("mongodb://localhost:27017");
+        $this->conect_mongodb();
 
+    }
+    protected function conect_mongodb(){
+        $this->config->load('database');
+        $configmongo      = (object)$this->config->item('mongodb');
+        $this->mongodb    = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port);
 
     }
     /**

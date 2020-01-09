@@ -73,6 +73,7 @@ die('This file is used for development purposes only.');
  * @property Location_user_model       $Location_user_model                 Model referente a localização do usuario
  * @property Us_storage_model          $Us_storage_model                    Model com nome da pasta do usuario
  * @property Us_storage_img_model      $Us_storage_img_model                Imagens do usuario (vinculada com Us_storage)
+ * @property mongodb                   $mongodb                             Driver conexão mongo
  *
  */
 class CI_Controller {

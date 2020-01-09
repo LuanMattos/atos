@@ -350,31 +350,67 @@ class Home extends SI_Controller
     /**
      * Adiciona as imagens ao bucket da Amazon
     **/
-    public function add_time_line(){
-        $collection     = $this->client->atos->us_storage;
+    public function add_time_line($data = null){
 
-        $collection->insertOne(['name_folder_user'=>'teste']);
-//        $result         = $collection->find();
+        $this->load->library('amazon/S3');
+        $data_file    = $_FILES['fileimagem'];
+        $text         = $this->input->post('text',TRUE);
 
-//        foreach($result as $row){
-//            echo $row['_id'] . ' - ' . $row['nome']  . ' - ' . $row['idade'] ;
-//        }
+        if(!empty($text)){
+            $text_timeline      = $text;
+        }else{
+            $text_timeline = NULL;
+        }
 
+        if(empty($data_file)) {
+            $this->response(['error',['msg'=>'Selecione um a imagem!']]);
+        }else{
+            if ($data_file->size > 5242880) {
+                $this->response('error', ['msg' => 'Tamanho de arquivo deve ser de no máximo 5MB']);
+                exit();
+            }
+            $bucket_name  = 'atos.click';
+            $s3           = new S3();
+            $hash         = uniqid(rand()).date("Y-m-d H:i:so");
+            $data_user    = $this->session->get_userdata();
+            $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
 
+            if(empty($get_usuario)){
+                redirect();
+                exit();
+            }
 
-//        $this->load->library('amazon/S3');
-//        $data_file    = $_FILES['fileimagem'];
-//
-//        $bucket_name  = 'atos.click';  //Bucket name
-//        $s3           = new S3();
-//        $s3->putBucket($bucket_name);
-//
-//        if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, 'usuarioteste'.'/'.$data_file['name'], S3::ACL_PUBLIC_READ)) {
-//
-//            return '1'; //return 1 it will success
-//        }else{
-//            return '7';
-//        }
+            $search             = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
+            $name_replace       = str_replace($search, "", $hash);
+            $name_file          = $name_replace . md5($get_usuario['login']);
+
+            $data_file['name']  = $name_file;
+
+            $s3->putBucket($bucket_name);
+            $name_folder_user = $get_usuario['nome'] . md5($get_usuario['login']);
+
+            if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user .'/'.$name_file, S3::ACL_PUBLIC_READ)) {
+
+//                        $us_storage     = $this->mongodb->atos->us_storage;
+                        $us_storage_img = $this->mongodb->atos->us_storage_img;
+                        $us_storage_img->insertOne([
+                            'server_name'   => 'https://s3.amazonaws.com/',
+                            'text_timeline' => $text_timeline,
+                            'bucket'        => $bucket_name,
+                            'folder_user'   => $name_folder_user,
+                            'name_file'     => $name_file,
+                            'codusuario'    => $get_usuario['codigo'],
+                            'created_at'    => date('Y-m-d H:i:s'),
+                            'updated_at'    => date('Y-m-d H:i:s'),
+
+                        ]);
+                 $path = 'https://s3.amazonaws.com/' . $bucket_name . '/' . $name_folder_user . '/' . $name_file;
+                $this->response('success',compact('path'));
+
+            }else{
+                $this->response('error',['msg'=>'Erro ao baixar a imagem para o servidor!']);
+            }
+        }
     }
     public function get_storage_img(){
 

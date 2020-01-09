@@ -30,10 +30,12 @@ var vm = new Vue({
             $("#input-file-postagem").click();
         },
         postar:function(){
-            var url = home.Url("add_time_line");
 
             var data = new FormData();
             data.append('fileimagem', $('#input-file-postagem')[0].files[0]);
+            data.append('text', $('#text-area-postagem').val());
+            var url = home.Url("add_time_line");
+
 
             if($('#input-file-postagem').val() == ""){
                 vm.error_input_file = true;
@@ -47,8 +49,6 @@ var vm = new Vue({
             }else{
                 vm.error_text_area = false;
             }
-
-
             $.ajax({
                 url: url,
                 data: data,
@@ -59,20 +59,19 @@ var vm = new Vue({
                 success: function(response) {
                     var text_area = $('#text-area-postagem').val();
                     if(response){
-                        var data = {
-                            'frase' : text_area,
-                            'path' : response.path
-                        };
-                        console.log(response.path);
-                        vm.posts.push(data);
-
+                                var data = {
+                                    'frase' : text_area,
+                                    'path' : response.path
+                                };
+                                vm.posts.push(data);
+                            }
+                        }
                     }
-                }
-            });
-
+                ); $('#input-file-postagem').val("");
+            }
         }
     }
-});
+);
 
 $.post(
     home.Url("get_storage_img"),
