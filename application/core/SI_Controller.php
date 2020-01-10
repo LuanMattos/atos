@@ -14,7 +14,7 @@ class SI_Controller extends CI_Controller{
     protected function conect_mongodb(){
         $this->config->load('database');
         $configmongo      = (object)$this->config->item('mongodb');
-        $this->mongodb    = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port);
+        $this->mongodb    = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
 
     }
     /**
