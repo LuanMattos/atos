@@ -22,13 +22,16 @@ class Shell extends CI_Controller{
         shell_exec('sudo apt-get install curl');
         shell_exec('sudo apt-get install php-curl');
         shell_exec('sudo apt install php-mongodb');
+        shell_exec('sudo apt install php-dev');
+        shell_exec('sudo apt-get install php-pear');
+        shell_exec('sudo pecl install mongodb');
 
     }
+    //Podem ocorreu problemas de versao
     public function install_mongo_ubuntu(){
         shell_exec('sudo apt-get install php7.0-mbstring');
         shell_exec('wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -');
         shell_exec('sudo apt-get install gnupg');
-        shell_exec('wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -');
         shell_exec('echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list');
         shell_exec('sudo apt-get update');
         shell_exec('sudo apt-get install -y mongodb-org');

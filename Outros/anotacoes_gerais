@@ -36,3 +36,6 @@ sudo -u postgres psql postgres
 sudo apt-get install php-xml
 extension=php_xmlrpc.dll
 
+
+Problemas de versão mongodb(parametros nao passados a classe de driver)
+ echo "extension=mongo.so" >> /etc/php5/cli/php.ini
