@@ -11,7 +11,7 @@ var home = {
 var vm = new Vue({
     el: '#div-geral-time-line',
     data: {
-        posts            : [],
+        posts            : [0],
         loading          : false,
         error_input_file : false,
         error_text_area  : false
