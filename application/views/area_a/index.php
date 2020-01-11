@@ -6,7 +6,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="my-profile-dash">
                         <div class="my-dp-dash ">
-                            <img class="cursor-pointer"
+                            <img class="crop-img-home cursor-pointer"
                                  :src="img_profile.length?img_profile:path_img_profile_default"
                                  alt=""
                                  @click="openfile"
