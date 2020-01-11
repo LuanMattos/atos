@@ -52,7 +52,7 @@ endif;
                 <div class="container" >
                     <div class="row" >
                             <div class="col-lg-3 col-md-6"  v-for="row in data_users">
-                                    <div class="user-data full-width"  v-if="row[0]">
+                                    <div class="user-data full-width" >
                                                 <div class="user-profile">
                                                     <div class="userbg-dt dpbg-1">
                                                         <div class="usr-pic">
@@ -62,14 +62,25 @@ endif;
                                                     <div class="user-main-details">
                                                         <div class="row ml-3">
                                                             <div class="col-10 text-truncate" v-cloak >
-                                                                {{row[0].nome}}
+                                                                <template v-if="row[0].nome">
+                                                                    {{row[0].nome}}
+                                                                </template>
                                                             </div>
                                                         </div>
                                                         <span v-cloak="">
-                                                            <i class="fas fa-map-marker-alt"></i>{{row[0].endereco}}
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                             <div class="row ml-3">
+                                                                <div class="col-10 text-truncate" v-cloak >
+                                                                    <template v-if="row[0].endereco">
+                                                                        {{row[0].endereco}}
+                                                                    </template>
+                                                                </div>
+                                                            </div>
                                                             <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
-                                                                    {{row[0].sobrenome}}
+                                                                    <template v-if="row[0].sobrenome">
+                                                                        {{row[0].sobrenome}}
+                                                                    </template>
                                                                 </div>
                                                             </div>
                                                         </span>
