@@ -27,8 +27,9 @@ var vue_instance_pessoas = new Vue({
 
                         if(json.data.all_users.length === 0){
                             vue_self.loading = false;
+                        }else{
+                            vue_self.data_users.push(json.data.all_users);
                         }
-                        vue_self.data_users.push(json.data.all_users);
                     },'json')
 
         },
