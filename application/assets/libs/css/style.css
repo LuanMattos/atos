@@ -57,9 +57,18 @@ footer, header, hgroup, menu, nav, section {
     color: white;
     background: #4284cf;
 }
+/*-------------------------------------------------------ADICIONAIS--------------------------------------------------*/
 [v-cloak] {
     display: none;
 }
+.crop-img-center{
+    object-fit: cover;
+    object-position: 50% 50px;
+}
+.object-fit-cover{
+    object-fit: cover;
+}
+
 .danger-input-file{
     color:red;
 }
@@ -80,6 +89,8 @@ footer, header, hgroup, menu, nav, section {
     -moz-transition: 1s;
     -webkit-transition: 1s;
 }
+/*----------------------------------------------------FIM-ADICIONAIS--------------------------------------------------*/
+
 body {
     line-height: 1;
     font-family: "Roboto" !important;

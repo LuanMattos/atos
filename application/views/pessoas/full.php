@@ -56,13 +56,13 @@ endif;
                                                 <div class="user-profile">
                                                     <div class="userbg-dt dpbg-1">
                                                         <div class="usr-pic">
-                                                            <img src="<?= URL_RAIZ() ?>application/assets/libs/images/find-peoples/user-1.jpg" alt="">
+                                                            <img  src="<?= URL_RAIZ() ?>application/assets/libs/images/find-peoples/user-1.jpg" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="user-main-details">
                                                         <div class="row ml-3">
                                                             <div class="col-10 text-truncate" v-cloak >
-                                                                    {{row[0].nome}}
+                                                                    {{row[0].nome}}{{row[0].codigo}}
                                                             </div>
                                                         </div>
                                                         <span v-cloak="">
