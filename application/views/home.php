@@ -32,6 +32,47 @@ else:
 endif;
 ?>
 <?= $this->load->view("menu/menu",compact("data")); ?>
+<style>
+    .container-hover-profile {
+    position: relative;
+    width: 50%;
+    }
+
+    .image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    }
+
+    .middle-alterar {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    }
+
+    .container-hover-profile:hover .image {
+    opacity: 0.3;
+    }
+
+    .container-hover-profile:hover .middle {
+    opacity: 1;
+    }
+
+    .text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+    }
+</style>
 <main class="dashboard-mp " style="margin-top: 80px" id="div-geral-time-line">
     <div class="main-section">
         <div class="container">
@@ -43,6 +84,11 @@ endif;
                                 <div class="username-dt dpbg-1">
                                     <div class="my-dp-dash  cursor-pointer">
                                         <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_profile_default" alt="">
+                                        <div class="container-hover-profile">
+                                            <div class="middle-alterar">
+                                                <div class="text">Alterar</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="user-main-details">
