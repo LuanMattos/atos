@@ -50,7 +50,7 @@ endif;
             </div >
             <div class="all-search-events" >
                 <div class="container" >
-                    <div class="row" >
+                    <div class="row" v-if="data_users.length > 0">
                             <div class="col-lg-3 col-md-6"  v-for="row in data_users">
                                     <div class="user-data full-width" >
                                                 <div class="user-profile">
