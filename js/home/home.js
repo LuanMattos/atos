@@ -21,10 +21,10 @@ var vm = new Vue({
     },
     methods: {
         getPosts() {
-            for (var i = 0; i < 5; i++) {
-                var count = this.posts.length + i
-                this.posts.push({count})
-            }
+            // for (var i = 0; i < 5; i++) {
+            //     var count = this.posts.length + i
+            //     this.posts.push({count})
+            // }
         },
         openfile:function(){
             $("#input-file-postagem").click();
@@ -79,5 +79,6 @@ $.post(
     home.Url("get_storage_img"),
     {},
     function(json){
+
             vm.$data.posts = json.data
     },'json')
