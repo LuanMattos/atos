@@ -79,6 +79,5 @@ $.post(
     home.Url("get_storage_img"),
     {},
     function(json){
-
             vm.$data.posts = json.data
-    },'json')
+},'json')
