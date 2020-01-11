@@ -62,7 +62,7 @@ endif;
                                                     <div class="user-main-details">
                                                         <div class="row ml-3">
                                                             <div class="col-10 text-truncate" v-cloak >
-                                                                <template v-if="row[0].nome">
+                                                                <template v-if="row[0]">
                                                                     {{row[0].nome}}
                                                                 </template>
                                                             </div>
@@ -71,14 +71,14 @@ endif;
                                                             <i class="fas fa-map-marker-alt"></i>
                                                              <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
-                                                                    <template v-if="row[0].endereco">
+                                                                    <template v-if="row[0]">
                                                                         {{row[0].endereco}}
                                                                     </template>
                                                                 </div>
                                                             </div>
                                                             <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
-                                                                    <template v-if="row[0].sobrenome">
+                                                                    <template v-if="row[0]">
                                                                         {{row[0].sobrenome}}
                                                                     </template>
                                                                 </div>
