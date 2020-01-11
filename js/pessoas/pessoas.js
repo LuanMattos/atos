@@ -24,6 +24,9 @@ var vue_instance_pessoas = new Vue({
                     },
                     function(json){
                         vue_self.data_users.push(json.data.all_users);
+                        if(json.data.all_users === ""){
+                            console.log("vazio");
+                        }
                     },'json')
 
         },
