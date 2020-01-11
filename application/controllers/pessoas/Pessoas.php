@@ -45,7 +45,6 @@ class Pessoas extends SI_Controller
             $offset     = $datapost->offset,
             $result     = "array"
         );
-
         $this->response("success",compact("data"));
 
     }
