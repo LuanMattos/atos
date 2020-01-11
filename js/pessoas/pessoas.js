@@ -24,7 +24,8 @@ var vue_instance_pessoas = new Vue({
                         offset:offset
                     },
                     function(json){
-                        if(!json.data.all_users.length){
+                        console.log(json.data.all_users.length)
+                        if(json.data.all_users.length > 0){
                             vue_self.loading = false;
                         }
                         vue_self.data_users.push(json.data.all_users);
