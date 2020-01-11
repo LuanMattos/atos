@@ -16,7 +16,6 @@ var vue_instance_pessoas = new Vue({
                 var offset      = this.data_users.length;
                 var limit       = 10;
                 var vue_self    = this;
-            vue_self.loading = false;
 
             $.post(
                     pessoas.Url("data_full_user"),
@@ -25,11 +24,10 @@ var vue_instance_pessoas = new Vue({
                         offset:offset
                     },
                     function(json){
-                        vue_self.data_users.push(json.data.all_users);
-
                         if(!json.data.all_users.length){
-                            console.log(json.data.all_users.length);
+                            vue_self.loading = false;
                         }
+                        vue_self.data_users.push(json.data.all_users);
                     },'json')
 
         },
