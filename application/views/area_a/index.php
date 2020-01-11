@@ -5,8 +5,15 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="my-profile-dash">
-                        <div class="my-dp-dash">
-                            <img src="<?= URL_RAIZ() ?>application/assets/libs/images/my-dashboard/my-dp.jpg" alt="">
+                        <div class="my-dp-dash ">
+                            <img class="cursor-pointer"
+                                 :src="img_profile.length?img_profile:path_img_profile_default"
+                                 alt=""
+                                 @click="openfile"
+                            >
+                            <input type="file" id="input-file-img-profile" name="fileimagemprofile" style="display:none" @change="update_img_profile">
+                            <span class="cursor-pointer input-file-photo" style="font-size:25px">
+                        </span>
                         </div>
                     </div>
                 </div>

@@ -440,7 +440,27 @@ class Home extends SI_Controller
 
         $this->response('success',compact('data'));
 
+    }
+    public function get_img_profile(){
+        $data_user    = $this->session->get_userdata();
+        $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
 
+        if(empty($get_usuario)){
+            redirect();
+            exit();
+        }
+
+        $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
+
+        $options            = ["sort" => ["created_at" => 1]];
+        $path_profile_img   = $us_storage_img_profile->find(['codusuario'=>$get_usuario['codigo']],$options);
+        $path               = [];
+
+        foreach($path_profile_img as $row){
+            $path    =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+
+        }
+        $this->response('success',compact('path'));
     }
 
 }

@@ -11,6 +11,8 @@ var home = {
 var vm = new Vue({
     el: '#div-geral-time-line',
     data: {
+        img_profile:'',
+        path_img_profile_default:location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
         posts            : [0],
         loading          : false,
         error_input_file : false,
@@ -18,6 +20,16 @@ var vm = new Vue({
     },
     created() {
         this.getPosts()
+    },
+    mounted:function(){
+        var url       = home.Url("get_img_profile");
+        var self_vue  = this;
+        $.post(
+            url,
+            {},
+            function(response){
+                self_vue.$data.img_profile = response.path;
+            },'json');
     },
     methods: {
         getPosts() {

@@ -31,7 +31,7 @@ else:
 endif;
 ?>
 <?= $this->load->view("menu/menu",compact("data")); ?>
-<main class="dashboard-mp">
+<main class="dashboard-mp" id="div-geral-dashboard_activity">
     <?= $this->load->view("area_a/index"); ?>
     <?= $this->load->view("area_b/index"); ?>
     <?= $this->load->view("area_c_dashboard_activity/index"); ?>
@@ -49,6 +49,10 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
+<script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity.js"></script>
 
 </body>
 

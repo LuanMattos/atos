@@ -12,7 +12,9 @@
                     <div class="addpic">
                         <input type="file" id="input-file-postagem" name="file">
                         <span class="cursor-pointer input-file-photo" style="font-size:25px">
-                            <i @click="openfile()" class=" fas fa-camera-retro " :class="error_input_file?'danger-input-file':''"></i>
+                            <i @click="openfile()"
+                               class="fas fa-camera-retro"
+                               :class="error_input_file?'danger-input-file':''"></i>
                         </span>
                     </div>
                 </div>
@@ -20,8 +22,6 @@
                     <button class="act-btn-post cursor-pointer" type="submit" @click.prevent="postar">Postar</button>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>

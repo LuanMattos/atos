@@ -129,7 +129,6 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/pessoas/pessoas.js"></script>
-<!--<script>pessoas.Init()</script>-->
 </body>
 
 </html>

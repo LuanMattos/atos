@@ -32,7 +32,7 @@ else:
 endif;
 ?>
 <?= $this->load->view("menu/menu",compact("data")); ?>
-<main class="dashboard-mp " style="margin-top: 80px">
+<main class="dashboard-mp " style="margin-top: 80px" id="div-geral-time-line">
     <div class="main-section">
         <div class="container">
             <div class="row">
@@ -41,8 +41,8 @@ endif;
                         <div class="user-data full-width">
                             <div class="user-profile">
                                 <div class="username-dt dpbg-1">
-                                    <div class="usr-pic cursor-pointer">
-                                        <img src="<?= URL_RAIZ() ?>application/assets/libs/images/homepage/left-side/profile-dp.jpg" alt="">
+                                    <div class="my-dp-dash  cursor-pointer">
+                                        <img  :src="img_profile.length?img_profile:path_img_profile_default" alt="">
                                     </div>
                                 </div>
                                 <div class="user-main-details">
@@ -93,7 +93,7 @@ endif;
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-7 mt-20" id="div-geral-time-line">
+                <div class="col-lg-6 col-md-7 mt-20">
 
                     <?= $this->load->view("publicar/index"); ?>
 
