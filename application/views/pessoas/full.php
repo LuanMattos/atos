@@ -52,7 +52,7 @@ endif;
                 <div class="container" >
                     <div class="row" >
                             <div class="col-lg-3 col-md-6"  v-for="row in data_users">
-                                    <div class="user-data full-width"  v-if="data_users">
+                                    <div class="user-data full-width"  v-if="row[0]">
                                                 <div class="user-profile">
                                                     <div class="userbg-dt dpbg-1">
                                                         <div class="usr-pic">
