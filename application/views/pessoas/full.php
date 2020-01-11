@@ -97,8 +97,8 @@ endif;
                                                 </div>
                                     </div>
                         </div>
-                        <div class="col-md-12" >
-                            <mugen-scroll :handler="getPosts" :should-handle="data_users.length > 0">
+                        <div class="col-md-12" v-if="data_users.length > 0">
+                            <mugen-scroll :handler="getPosts" :should-handle="!loading">
                                 <div class="spinner">
                                     <div class="bounce1"></div>
                                     <div class="bounce2"></div>
