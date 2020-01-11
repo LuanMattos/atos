@@ -13,6 +13,7 @@ var vue_instance_pessoas = new Vue({
     },
     methods:{
         getPosts() {
+            console.log(this.loading);
                 var offset      = this.data_users.length;
                 var limit       = 10;
                 var vue_self    = this;
