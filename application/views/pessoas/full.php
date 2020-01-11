@@ -50,7 +50,7 @@ endif;
             </div >
             <div class="all-search-events" >
                 <div class="container" >
-                    <div class="row" >
+                    <div class="row" v-if="data_users.length">
                             <div class="col-lg-3 col-md-6"  v-for="row in data_users">
                                     <div class="user-data full-width" >
                                                 <div class="user-profile">
@@ -62,25 +62,19 @@ endif;
                                                     <div class="user-main-details">
                                                         <div class="row ml-3">
                                                             <div class="col-10 text-truncate" v-cloak >
-                                                                <template v-if="row[0]">
                                                                     {{row[0].nome}}
-                                                                </template>
                                                             </div>
                                                         </div>
                                                         <span v-cloak="">
                                                             <i class="fas fa-map-marker-alt"></i>
                                                              <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
-                                                                    <template v-if="row[0]">
                                                                         {{row[0].endereco}}
-                                                                    </template>
                                                                 </div>
                                                             </div>
                                                             <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
-                                                                    <template v-if="row[0]">
                                                                         {{row[0].sobrenome}}
-                                                                    </template>
                                                                 </div>
                                                             </div>
                                                         </span>
