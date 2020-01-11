@@ -33,6 +33,7 @@ endif;
 ?>
 <?= $this->load->view("menu/menu", compact("data")); ?>
 <main class="dashboard-mp" id="div-geral-pessoas-full">
+
     <?= $this->load->view("area_a/index",compact("data")); ?>
     <?= $this->load->view("area_b/index"); ?>
     <main class="Search-results">
@@ -46,51 +47,59 @@ endif;
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="all-search-events">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="user-data full-width">
-
-                                        <div class="user-profile">
-                                            <div class="userbg-dt dpbg-1">
-                                                <div class="usr-pic">
-                                                    <img src="images/find-peoples/user-1.jpg" alt="">
+            </div >
+            <div class="all-search-events" >
+                <div class="container" >
+                    <div class="row" >
+                            <div class="col-lg-3 col-md-6"  v-for="row in data_users">
+                                    <div class="user-data full-width"  >
+                                                <div class="user-profile">
+                                                    <div class="userbg-dt dpbg-1">
+                                                        <div class="usr-pic">
+                                                            <img src="<?= URL_RAIZ() ?>application/assets/libs/images/find-peoples/user-1.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-main-details">
+                                                        <div class="row ml-3">
+                                                            <div class="col-10 text-truncate" v-cloak >
+                                                                {{row[0].nome}}
+                                                            </div>
+                                                        </div>
+                                                        <span v-cloak="">
+                                                            <i class="fas fa-map-marker-alt"></i>{{row[0].endereco}}
+                                                            <div class="row ml-3">
+                                                                <div class="col-10 text-truncate" v-cloak >
+                                                                    {{row[0].sobrenome}}
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <ul class="follow-msg-dt">
+                                                        <li>
+                                                            <div class="msg-dt-sm">
+                                                                <button class="msg-btn1">Adicionar</button>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="follow-dt-sm">
+                                                                <button class="follow-btn1">Seguir</button>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="profile-link">
+                                                        <a href="user_dashboard_activity.html">Perfil</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="user-main-details">
-                                                <h4>Nome</h4>
-                                                <span><i class="fas fa-map-marker-alt"></i>India</span>
-                                            </div>
-                                            <ul class="follow-msg-dt">
-                                                <li>
-                                                    <div class="msg-dt-sm">
-                                                        <button class="msg-btn1">Adicionar</button>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="follow-dt-sm">
-                                                        <button class="follow-btn1">Seguir</button>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="profile-link">
-                                                <a href="user_dashboard_activity.html">Perfil</a>
-                                            </div>
-                                        </div>
-
-
-                            </div>
+                                    </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="main-loader search-loader">
+                            <mugen-scroll :handler="getPosts" :should-handle="!loading">
                                 <div class="spinner">
                                     <div class="bounce1"></div>
                                     <div class="bounce2"></div>
                                     <div class="bounce3"></div>
                                 </div>
-                            </div>
+                            </mugen-scroll>
                         </div>
                     </div>
                 </div>
@@ -111,9 +120,11 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/pessoas/pessoas.js"></script>
-<script>pessoas.Init()</script>
+<!--<script>pessoas.Init()</script>-->
 </body>
 
 </html>

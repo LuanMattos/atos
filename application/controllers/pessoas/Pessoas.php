@@ -26,19 +26,27 @@ class Pessoas extends SI_Controller
                 }
                 $location            = reset($this->Location_user_model->getWhere(['codusuario'=>$dados['codigo']]));
                 $pais_cidade['nome'] = explode(',',$location['formatted_address_google_maps']);
-                $all_users = $this->Usuarios_model->all();
 
+                $data['all_users'] = $this->Usuarios_model->getWhere([1=>1],$orderby=NULL,$direction = NULL,$limit = 100,$offset = NULL,$result = "array");
 
-
-                $this->load->view("pessoas/full",compact("dados","pais_cidade","all_users"));
+                $this->load->view("pessoas/full",compact("dados","pais_cidade","data"));
 
             }
         }
     }
     public function data_full_user(){
+        $datapost   = (object)$this->input->post(NULL,TRUE);
 
-        $all_users = $this->Usuarios_model->all();
-        $this->response("success",compact("all_users"));
+        $data['all_users'] = $this->Usuarios_model->all_user(
+            NULL,
+            $orderby    = 'us.updated_at',
+            $direction  = 'DESC',
+            $limit      = 10,
+            $offset     = $datapost->offset,
+            $result     = "array"
+        );
+
+        $this->response("success",compact("data"));
 
     }
 

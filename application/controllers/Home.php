@@ -422,8 +422,9 @@ class Home extends SI_Controller
 
         $us_storage_img = $this->mongodb->atos->us_storage_img;
 
-        $data_time_line = $us_storage_img->find(['codusuario'=>$get_usuario['codigo']]);
-        $data = [];
+        $options        = ["sort" => ["created_at" => -1]];
+        $data_time_line = $us_storage_img->find(['codusuario'=>$get_usuario['codigo']],$options);
+        $data           = [];
 
         foreach($data_time_line as $row){
             $url    =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];

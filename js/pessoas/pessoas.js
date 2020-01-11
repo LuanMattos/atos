@@ -1,21 +1,43 @@
 var pessoas = {
     Url: function (metodo, params) {
         return App.url("pessoas", "Pessoas", metodo, params);
-    },
-    Init:function(){
-
-        $.post(
-            pessoas.Url("data_full_user"),
-            {},
-            function(json){
-                console.log(json);
-
-                new Vue({
-                    el:"#div-geral-pessoas-full",
-                    data:{
-
-                    }
-                })
-            },'json')
     }
+
 }
+
+var vue_instance_pessoas = new Vue({
+    el:"#div-geral-pessoas-full",
+    data:{
+        data_users:[],
+        loading: false,
+    },
+    methods:{
+        getPosts() {
+                var offset      = this.data_users.length + 10;
+                var limit       = 10;
+                var vue_self    = this;
+                $.post(
+                    pessoas.Url("data_full_user"),
+                    {
+                        limit:limit,
+                        offset:offset
+                    },
+                    function(json){
+                        vue_self.data_users.push(json.data.all_users);
+                    },'json')
+
+        },
+    }
+});
+
+
+$.post(
+    pessoas.Url("data_full_user"),
+    {
+        offset:0
+    },
+    function(json){
+            vue_instance_pessoas.$data.data_users.push(json.data.all_users);
+
+    },'json')
+

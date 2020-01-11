@@ -10,7 +10,7 @@
                                             <div class="event-top-left">
                                                 <a href="#">
                                                     <h4>Nome de quem postou</h4>
-                                                    <div v-cloak>{{post.text}}</div>
+                                                    <div >{{post.text}}</div>
                                                 </a>
                                             </div>
                                             <div class="event-top-right">

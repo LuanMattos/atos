@@ -11,20 +11,20 @@ var home = {
 var vm = new Vue({
     el: '#div-geral-time-line',
     data: {
-        posts: [],
-        loading: false,
-        error_input_file:false,
-        error_text_area:false
+        posts            : [],
+        loading          : false,
+        error_input_file : false,
+        error_text_area  : false
     },
     created() {
         this.getPosts()
     },
     methods: {
         getPosts() {
-            // for (var i = 0; i < 5; i++) {
-            //     var count = this.posts.length + i
-            //     this.posts.push({count})
-            // }
+            for (var i = 0; i < 5; i++) {
+                var count = this.posts.length + i
+                this.posts.push({count})
+            }
         },
         openfile:function(){
             $("#input-file-postagem").click();
@@ -36,38 +36,40 @@ var vm = new Vue({
             data.append('text', $('#text-area-postagem').val());
             var url = home.Url("add_time_line");
 
-
             if($('#input-file-postagem').val() == ""){
                 vm.error_input_file = true;
                 return false;
             }else{
                 vm.error_input_file = false;
             }
-            if($('#text-area-postagem').val() == ""){
+            if($('#text-area-postagem').val() === ""){
                 vm.error_text_area = true;
                 return false;
             }else{
                 vm.error_text_area = false;
             }
             $.ajax({
-                url: url,
-                data: data,
-                processData: false,
-                contentType: false,
-                type: 'POST',
-                dataType:'json',
-                success: function(response) {
+                url         : url,
+                data        : data,
+                processData : false,
+                contentType : false,
+                type        : 'POST',
+                dataType    :'json',
+                success     : function(response) {
                     var text_area = $('#text-area-postagem').val();
                     if(response){
                                 var data = {
                                     'text' : text_area,
                                     'path' : response.path
                                 };
-                                vm.posts.push(data);
+                                vm.posts.unshift(data);
                             }
                         }
                     }
-                ); $('#input-file-postagem').val("");
+                );
+
+            $('#input-file-postagem').val("");
+            $('#text-area-postagem').val("");
             }
         }
     }
