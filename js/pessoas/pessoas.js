@@ -9,7 +9,7 @@ var vue_instance_pessoas = new Vue({
     el:"#div-geral-pessoas-full",
     data:{
         data_users:[],
-        loading: false,
+        loading: true,
     },
     methods:{
         getPosts() {
