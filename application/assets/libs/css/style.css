@@ -65,6 +65,10 @@ footer, header, hgroup, menu, nav, section {
     object-fit: cover;
     object-position: 50% 50px;
 }
+.crop-img-home{
+    object-fit: cover;
+    object-position: 20% 0px;
+}
 .object-fit-cover{
     object-fit: cover;
 }

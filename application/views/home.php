@@ -42,7 +42,7 @@ endif;
                             <div class="user-profile">
                                 <div class="username-dt dpbg-1">
                                     <div class="my-dp-dash  cursor-pointer">
-                                        <img class="crop-img-center" :src="img_profile.length?img_profile:path_img_profile_default" alt="">
+                                        <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_profile_default" alt="">
                                     </div>
                                 </div>
                                 <div class="user-main-details">
