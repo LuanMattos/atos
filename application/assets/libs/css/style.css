@@ -93,6 +93,60 @@ footer, header, hgroup, menu, nav, section {
     -moz-transition: 1s;
     -webkit-transition: 1s;
 }
+.container-avatar {
+    position: relative;
+    height: 135px;
+    width: 135px;
+
+}
+
+.image_avatar {
+    display: block;
+    height: 135px;
+    width: 135px;
+    border-radius: 100%;
+}
+
+.overlay-avatar-home {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3px;
+    right: 0;
+    height: 70px;
+    width: 141px;
+    opacity: 0;
+    transition: .3s ;
+    background-color: black;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+
+}
+
+.container-avatar:hover .overlay-avatar-home {
+    opacity: 0.5;
+    left: 4px;
+    top:1px;
+    height: 70px;
+    width: 141px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+}
+
+.icon-home-profile {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.fa-user:hover {
+    color: #4d99e6;
+}
 /*----------------------------------------------------FIM-ADICIONAIS--------------------------------------------------*/
 
 body {

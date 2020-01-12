@@ -38,15 +38,6 @@ endif;
     width: 50%;
     }
 
-    .image {
-    opacity: 1;
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
-    }
-
     .middle-alterar {
     transition: .5s ease;
     opacity: 0;
@@ -58,11 +49,8 @@ endif;
     text-align: center;
     }
 
-    .container-hover-profile:hover .image {
-    opacity: 0.3;
-    }
 
-    .container-hover-profile:hover .middle {
+    .profile-home:hover .middle-alterar {
     opacity: 1;
     }
 
@@ -84,11 +72,7 @@ endif;
                                 <div class="username-dt dpbg-1">
                                     <div class="my-dp-dash  cursor-pointer">
                                         <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_profile_default" alt="">
-                                        <div class="container-hover-profile">
-                                            <div class="middle-alterar">
-                                                <div class="text">Alterar</div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="user-main-details">
