@@ -74,6 +74,7 @@ die('This file is used for development purposes only.');
  * @property Us_storage_model          $Us_storage_model                    Model com nome da pasta do usuario
  * @property Us_storage_img_model      $Us_storage_img_model                Imagens do usuario (vinculada com Us_storage)
  * @property mongodb                   $mongodb                             Driver conexão mongo
+ * @property Us_storage_img_profile_model                   $Us_storage_img_profile_model                             Model das imagens do perfil do usuario (mongo)
  *
  */
 class CI_Controller {

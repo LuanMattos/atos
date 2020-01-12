@@ -62,7 +62,7 @@ endif;
                                                     <div class="user-main-details">
                                                         <div class="row ml-3">
                                                             <div class="col-10 text-truncate" v-cloak >
-                                                                    {{row[0].nome}}{{row[0].codigo}}
+                                                                    {{row[0].nome}}
                                                             </div>
                                                         </div>
                                                         <span v-cloak="">

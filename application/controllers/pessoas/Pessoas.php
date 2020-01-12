@@ -7,11 +7,13 @@ class Pessoas extends SI_Controller
     public function __construct(){
         parent::__construct();
         $this->output->enable_profiler(FALSE);
+        $this->load->model('storage/img/Us_storage_img_profile_model');
         $this->load->model("account/home/Account_home_model");
         $this->load->model("location/Location_user_model");
         $this->load->model("Usuarios_model");
     }
     public function index(){
+
         $data_s = $this->session->get_userdata();
 
         if(!isset($data_s['logado'])){
@@ -34,6 +36,7 @@ class Pessoas extends SI_Controller
             }
         }
     }
+
     public function data_full_user(){
         $datapost   = (object)$this->input->post(NULL,TRUE);
 
@@ -45,7 +48,16 @@ class Pessoas extends SI_Controller
             $offset     = $datapost->offset,
             $result     = "array"
         );
-        $this->response("success",compact("data"));
+
+        $data_user    = $this->session->get_userdata();
+        $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
+
+        if(empty($get_usuario)){
+            redirect();
+            exit();
+        }
+        $path              = $this->Us_storage_img_profile_model->get_img_profile($get_usuario);
+        $this->response("success",compact("data","path"));
 
     }
 

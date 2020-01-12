@@ -9,7 +9,7 @@
                     <div class="my-profile-dash">
                         <div class="my-dp-dash">
                         <div class=" container-avatar" >
-                            <img :src="img_profile.length?img_profile:path_img_profile_default" alt="Avatar" class="image_avatar crop-img-home" >
+                            <img :src="img_profile.length?img_profile:path_img_profile_default"  class="image_avatar crop-img-home" >
                             <div class="overlay-avatar-home" @click="openfile">
                                 <div class="icon-home-profile cursor-pointer">
                                     <i class="fa fa-user"></i>
