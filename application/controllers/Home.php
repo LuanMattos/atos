@@ -325,28 +325,7 @@ class Home extends SI_Controller
         $this->session->sess_destroy();
         redirect();
     }
-    public function dashboard_activity(){
-        $data_s = $this->session->get_userdata();
 
-        if(!isset($data_s['logado'])){
-            $this->session->sess_destroy();
-            redirect();
-        }else{
-            if(!empty($data_s)){
-                $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
-                if(count($data)){
-                    $dados = reset($data);
-
-                }
-                $location            = reset($this->Location_user_model->getWhere(['codusuario'=>$dados['codigo']]));
-                $pais_cidade['nome'] = explode(',',$location['formatted_address_google_maps']);
-                $this->load->view("home/index",compact("dados","pais_cidade"));
-
-            }
-        }
-
-
-    }
     /**
      * Adiciona as imagens ao bucket da Amazon
     **/

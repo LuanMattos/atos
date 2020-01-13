@@ -33,7 +33,7 @@ endif;
 ?>
 <?= $this->load->view("menu/menu",compact("data")) ?>
 <main class="dashboard-mp">
-    <?= $this->load->view("area_a/index"); ?>
+
     <?= $this->load->view("area_b/index"); ?>
     <?= $this->load->view("area_c_dashboard_msg/index"); ?>
 </main>
@@ -55,7 +55,8 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.mCustomScrollbar.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/Scrollbar.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
-
+<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
+<script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 </body>
 
 </html>

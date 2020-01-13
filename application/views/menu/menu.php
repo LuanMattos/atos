@@ -193,7 +193,7 @@
                                 <i class="fas fa-angle-down"></i>
                             </a>
                             <div class="dropdown-menu account-dropdown dropdown-menu-right">
-                                <a class="link-item" href="<?= site_url('Home/dashboard_activity') ?>">Perfil</a>
+                                <a class="link-item" href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Perfil</a>
                                 <a class="link-item" href="<?= site_url('account_settings/Account_settings/index') ?>">Configurações
                                     da conta</a>
                                 <a class="link-item" href="<?= site_url('invite/Invite/index') ?>">Convite</a>

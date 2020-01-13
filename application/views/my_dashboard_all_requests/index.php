@@ -33,7 +33,6 @@ endif;
 ?>
 <?= $this->load->view("menu/menu",compact("data")) ?>
 <main class="dashboard-mp">
-    <?= $this->load->view("area_a/index",compact("data")); ?>
     <?= $this->load->view("area_b/index"); ?>
     <?= $this->load->view("area_c_dashboard_all_requests/index"); ?>
 </main>
@@ -50,6 +49,9 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
+<script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 
 
 </body>

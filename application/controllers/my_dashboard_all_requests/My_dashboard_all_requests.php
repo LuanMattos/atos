@@ -20,6 +20,7 @@ class My_dashboard_all_requests extends SI_Controller{
             $this->session->sess_destroy();
             redirect();
         }else{
+            $this->load->view("area_a/index");
             if(!empty($data_s)){
                 $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
                 if(count($data)){
@@ -27,7 +28,6 @@ class My_dashboard_all_requests extends SI_Controller{
                 }
                 $location            = reset($this->Location_user_model->getWhere(['codusuario'=>$dados['codigo']]));
                 $pais_cidade['nome'] = explode(',',$location['formatted_address_google_maps']);
-//                debug($pais_cidade['nome']);
                 $this->load->view("my_dashboard_all_requests/index",compact("dados","pais_cidade"));
 
             }

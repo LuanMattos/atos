@@ -33,8 +33,6 @@ endif;
 ?>
 <?= $this->load->view("menu/menu", compact("data")); ?>
 <main class="dashboard-mp" id="div-geral-pessoas-full">
-
-    <?= $this->load->view("area_a/index",compact("data")); ?>
     <?= $this->load->view("area_b/index"); ?>
     <main class="Search-results">
         <div class="main-section">
@@ -128,6 +126,7 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
+<script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 <script src="<?= URL_RAIZ() ?>js/pessoas/pessoas.js"></script>
 </body>
 

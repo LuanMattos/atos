@@ -4,7 +4,7 @@
             <div class="col-lg-3 col-md-5">
                 <div class="user-data full-width">
                     <div class="categories-left-heading">
-                        <h3>Social Accounts</h3>
+                        <h3>Contas</h3>
                     </div>
                     <div class="categories-items">
                         <a class="category-social-item" href="#">

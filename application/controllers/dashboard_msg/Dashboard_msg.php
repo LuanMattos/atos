@@ -23,6 +23,7 @@ class Dashboard_msg extends SI_Controller
             redirect();
         }else{
             if(!empty($data_s)){
+                $this->load->view("area_a/index");
                 $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
                 if(count($data)){
                     $dados = reset($data);

@@ -20,6 +20,7 @@ class My_dashboard_all_notifications extends SI_Controller{
             $this->session->sess_destroy();
             redirect();
         }else{
+            $this->load->view("area_a/index");
             if(!empty($data_s)){
                 $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
                 if(count($data)){

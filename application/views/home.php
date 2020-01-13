@@ -99,7 +99,7 @@ endif;
                                     </li>
                                 </ul>
                                 <div class="profile-link">
-                                    <a href="<?= site_url('Home/dashboard_activity') ?>">Visualizar perfil</a>
+                                    <a href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Visualizar perfil</a>
                                 </div>
                             </div>
                         </div>

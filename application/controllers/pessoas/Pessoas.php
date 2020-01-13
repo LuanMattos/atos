@@ -20,6 +20,7 @@ class Pessoas extends SI_Controller
             $this->session->sess_destroy();
             redirect();
         }else{
+            $this->load->view("area_a/index");
             if(!empty($data_s)){
                 $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
                 if(count($data)){
@@ -51,12 +52,26 @@ class Pessoas extends SI_Controller
         $data_user    = $this->session->get_userdata();
         $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
 
+        $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
+        $path_profile_img       = $us_storage_img_profile->find(['codusuario'=>$get_usuario['codigo']]);
+        $path                   = [];
+
+        foreach($path_profile_img as $row){
+            $path       =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+
+            $data_img   = [
+                'codigo'    => $row['codusuario'],
+                'path'      => $path
+            ];
+
+        }
+
         if(empty($get_usuario)){
             redirect();
             exit();
         }
         $path              = $this->Us_storage_img_profile_model->get_img_profile($get_usuario);
-        $this->response("success",compact("data","path"));
+        $this->response("success",compact("data","path","data_img"));
 
     }
 
