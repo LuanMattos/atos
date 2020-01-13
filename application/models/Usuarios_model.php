@@ -27,7 +27,7 @@ class Usuarios_model extends CI_Model{
                                     LEFT JOIN account_home ah on us.codigo = ah.codusuarios
                                 WHERE login = '$login' ")->result_array();
     }
-    public function all_user($where  = NULL,$orderby='us.updated_at',$direction = 'DESC',$limit = 10,$offset = NULL,$result = "array"){
+    public function all_user($where  = NULL,$orderby='us.updated_at',$direction = 'ASC',$limit = 10,$offset = NULL,$result = "array"){
         return $this->db->query("
 SELECT us.codigo as codigo,
        us.nome                          AS nome,

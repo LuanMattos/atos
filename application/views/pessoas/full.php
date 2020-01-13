@@ -51,8 +51,8 @@ endif;
             <div class="all-search-events" >
                 <div class="container" >
                     <div class="row" v-if="data_users.length > 0">
-                            <div class="col-lg-3 col-md-6"  v-for="row in data_users">
-                                    <div class="user-data full-width" >
+                            <div class="col-lg-3 col-md-6"  v-for="(i,l) in data_users" v-if="i">
+                                    <div class="user-data full-width">
                                                 <div class="user-profile">
                                                     <div class="userbg-dt dpbg-1">
                                                         <div class="usr-pic">
@@ -62,19 +62,19 @@ endif;
                                                     <div class="user-main-details">
                                                         <div class="row ml-3">
                                                             <div class="col-10 text-truncate" v-cloak >
-                                                                    {{row[0].nome}}
+                                                                    {{i[0].nome}}
                                                             </div>
                                                         </div>
                                                         <span v-cloak="">
                                                             <i class="fas fa-map-marker-alt"></i>
                                                              <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
-                                                                        {{row[0].endereco}}
+                                                                        {{i[0].endereco}}
                                                                 </div>
                                                             </div>
                                                             <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
-                                                                        {{row[0].sobrenome}}
+                                                                        {{i[0].sobrenome}}
                                                                 </div>
                                                             </div>
                                                         </span>

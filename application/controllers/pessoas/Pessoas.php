@@ -39,16 +39,15 @@ class Pessoas extends SI_Controller
 
     public function data_full_user(){
         $datapost   = (object)$this->input->post(NULL,TRUE);
-
+//        'us.updated_at'
         $data['all_users'] = $this->Usuarios_model->all_user(
             NULL,
-            $orderby    = 'us.updated_at',
+            $orderby    = 'us.codigo',
             $direction  = 'DESC',
             $limit      = 10,
             $offset     = $datapost->offset,
             $result     = "array"
         );
-
         $data_user    = $this->session->get_userdata();
         $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
 
