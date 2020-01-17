@@ -1,5 +1,6 @@
 <?php
 use Modules\Account\RestoreAccount\RestoreAccount as RestoreAccount;
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends SI_Controller
@@ -180,13 +181,12 @@ class Home extends SI_Controller
         $this->load->view("register");
     }
     public function acao_cadastro(){
-
         $data           = (object)$this->input->post("data",TRUE);
         $sms            = new \ServiceSms\ServiceSms();
         $RestoreAccount = new RestoreAccount();
+        $cimongo        = new Cimongo();
 
         $error  = [];
-
 
         $data->datanasc = date_to_us($data->datanasc);
 
@@ -239,20 +239,24 @@ class Home extends SI_Controller
             $this->response("error",compact("error"));
         }
 
-        $validate_login = $this->Usuarios_model->getwhere(["login"=>$data->email]);
+        $data_teste_email  = $this->mongodb->atos->us_usuarios->find(["login"=>$data->email]);
 
-
-        if(count($validate_login)){
-            $validate_login         = reset($validate_login);
-            $error['email']         = "Usuário " . $validate_login['login'] ." já está cadastrado!";
+        foreach($data_teste_email as $validate_login){
+            $login = $validate_login['login'];
+        }
+        if(!empty($login)){
+            $error['email']         = "Usuário " . $login ." já está cadastrado!";
         }
 
         $numero_validado    = $sms->validaTelefoneBr($data->telcodpais . $data->telcel);
-        $verifica_tel_repet = $this->Usuarios_model->getwhere(["telcel"=>"f"]);
+        $data_teste_tel     = $this->mongodb->atos->us_usuarios->find(["telcel"=>$numero_validado]);
 
-        if(count($verifica_tel_repet)){
-            $verifica_tel_repet           = reset($verifica_tel_repet);
-            $error['telcel']         = "Telefone " . $verifica_tel_repet['telcel'] ." já está cadastrado!";
+        foreach($data_teste_tel as $validate_telcel){
+            $telcel = $validate_telcel['telcel'];
+        }
+
+        if(!empty($telcel)){
+            $error['telcel']         = "Telefone " . $telcel ." já está cadastrado!";
         }
 
         if(count($error) > 0){
@@ -260,7 +264,9 @@ class Home extends SI_Controller
         }
 
         $argo_pass                  = password_hash($data->senhacadastro,PASSWORD_ARGON2I);
+
         $data = [
+            "_id"                   => $this->id_mongo($data->email),
             "email"                 => $data->email,
             "login"                 => $data->email,
             "senha"                 => $argo_pass,
@@ -284,23 +290,22 @@ class Home extends SI_Controller
             "destinatario"  => "$numero_validado",
             "date_to_send"  => date("Y-m-d H:i:s")
         ];
-        $sms->processesDirect($dataSms);
 
-        $save = $this->Usuarios_model->save($data,["codigo","email_hash","login"]);
+        $save = $cimongo->insert("us_usuarios",$data,TRUE);
 
-        $create_folder  = new Modules\Storage\Create_folder_user\Create_folder_user();
-        $create_folder->index($save);
-
-        if($save){
-            $data_account = [
-              "code_verification" => $codigo_verificacao,
-              "codusuarios"       => $save['codigo']
-
-            ];
-            $this->Account_home_model->save($data_account);
+        if(empty($save)){
+           exit("Erro ao salvar dados no banco!");
         }
 
-        $this->session->set_userdata(["verification_user"=>$save['email_hash'],"login"=>$data['login']], 1);
+        $data_conta = [
+            "code_verification" => $codigo_verificacao,
+            "codusuarios"       => $save['_id']
+        ];
+
+        $cimongo->insert("us_usuarios_conta",$data_conta,TRUE);
+
+        $this->session->set_userdata(["verification_user"=>$data['email_hash'],"login"=>$data['login']], 1);
+
         $this->response("success");
     }
     public function logout(){

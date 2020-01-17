@@ -1,0 +1,10 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+$config['host'] = "localhost";
+$config['port'] = "27017";
+$config['db'] = "atos";
+$config['user'] = "";
+$config['pass'] = "";
+$config['query_safety'] = TRUE;
+$config['db_flag'] = TRUE;
+$config['sess_use_mongo'] = TRUE;
+$config['sess_collection_name']	= 'ci_sessions';

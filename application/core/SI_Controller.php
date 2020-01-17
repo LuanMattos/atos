@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SI_Controller extends CI_Controller{
     public $mongodb;
+    public $mongomanager;
+    public $mongobulkwrite;
 
     public function __construct(){
         parent::__construct();
@@ -13,8 +15,10 @@ class SI_Controller extends CI_Controller{
     }
     protected function conect_mongodb(){
         $this->config->load('database');
-        $configmongo      = (object)$this->config->item('mongodb');
-        $this->mongodb    = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
+        $configmongo                = (object)$this->config->item('mongodb');
+        $this->mongodb              = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
+        $this->mongomanager         = new MongoDB\Driver\Manager("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
+        $this->mongobulkwrite       =  new \MongoDB\Driver\BulkWrite();
 
     }
     /**
@@ -24,6 +28,9 @@ class SI_Controller extends CI_Controller{
         $value_a = preg_replace('/[^[:alpha:]_]/', '',$value);
         return addslashes($value_a);
 
+    }
+    public function id_mongo($data = ""){
+        return md5($data).rand().uniqid();
     }
     public  function load_helpers(){
         $this->load->helper(
