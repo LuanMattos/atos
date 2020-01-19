@@ -3,7 +3,7 @@ use Modules\Account\RestoreAccount\RestoreAccount as RestoreAccount;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends SI_Controller
+class Home extends Home_Controller
 {
 
     public function __construct(){
@@ -15,11 +15,11 @@ class Home extends SI_Controller
         $this->load->helper("cookie");
         $this->load->helper("url");
 
+
     }
 
     public function index(){
         $data       = $this->input->post(NULL, TRUE);
-
         error_reporting(0);
         ini_set("display_errors",0);
 
@@ -129,17 +129,17 @@ class Home extends SI_Controller
     }
 
     public function back(){
-        $data = [];
-        $error = $this->session->get_userdata();
+//        $data = [];
+//        $error = $this->session->get_userdata();
+//
+//        if(isset($error['toError'])){
+//            if($error['toError']):
+//                $data['error_senha'] = "Usuário/senha incorreto(s)";
+//            endif;
+//        }
+//        $this->session->sess_destroy();
 
-        if(isset($error['toError'])){
-            if($error['toError']):
-                $data['error_senha'] = "Usuário/senha incorreto(s)";
-            endif;
-        }
-        $this->session->sess_destroy();
-
-        $this->load->view('index',$data);
+        $this->load->view('index');
     }
     public function logged(){
         $data_s = $this->session->get_userdata();
@@ -244,6 +244,7 @@ class Home extends SI_Controller
         foreach($data_teste_email as $validate_login){
             $login = $validate_login['login'];
         }
+
         if(!empty($login)){
             $error['email']         = "Usuário " . $login ." já está cadastrado!";
         }

@@ -10,17 +10,14 @@ class Dashboard_activity extends SI_Controller{
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
+        $this->verifica_sessao();
 
     }
     public function index(){
         $data_s = $this->session->get_userdata();
 
-        if(!isset($data_s['logado'])){
-            $this->session->sess_destroy();
-            redirect();
-        }else{
-            $this->load->view("area_a/index");
             if(!empty($data_s)){
+
                 $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
                 if(count($data)){
                     $dados = reset($data);
@@ -31,8 +28,6 @@ class Dashboard_activity extends SI_Controller{
                 $this->load->view("home/index",compact("dados","pais_cidade"));
 
             }
-        }
-
 
     }
     public function update_img_profile()

@@ -30,6 +30,8 @@ else:
     $data = [];
 endif;
 ?>
+<?= $this->load->view("area_a/index"); ?>
+
 <?= $this->load->view("menu/menu",compact("data")); ?>
 <main class="dashboard-mp" id="div-geral-dashboard_activity">
     <?= $this->load->view("area_b/index"); ?>

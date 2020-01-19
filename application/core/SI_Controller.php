@@ -13,6 +13,16 @@ class SI_Controller extends CI_Controller{
         $this->conect_mongodb();
 
     }
+    public function verifica_sessao(){
+        $data_s = $this->session->get_userdata();
+        $this->load->helper("cookie");
+
+        if(!isset($data_s['logado'])) {
+            $this->session->sess_destroy();
+            delete_cookie('session_coo');
+            redirect();
+        }
+    }
     protected function conect_mongodb(){
         $this->config->load('database');
         $configmongo                = (object)$this->config->item('mongodb');
