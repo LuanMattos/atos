@@ -10,21 +10,6 @@ class Verification extends SI_Controller
         $this->load->model("account/home/Account_home_model");
         $this->load->model("Usuarios_model");
     }
-    public function logged(){
-        $data_s = $this->session->get_userdata();
-        if(!isset($data_s['logado'])){
-            $this->session->sess_destroy();
-            redirect("Home/index");
-        }else{
-            if(!empty($data_s)){
-                $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
-                if(count($data)){
-                    $dados = reset($data);
-                }
-                $this->load->view('home',compact("dados"));
-            }
-        }
-    }
 
     public function index(){
         $this->load->view("verification/index");

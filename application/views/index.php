@@ -44,7 +44,7 @@
 <!--                                    </div>-->
 <!--                                    <div class="or">Ou</div>-->
                                     <div class="login-register-form">
-                                        <form action="<?= site_url('Home/index') ?>" method="POST">
+                                        <form action="<?= site_url('Login/start_login') ?>" method="POST">
                                             <div class="form-group">
                                                 <input class="title-discussion-input"
                                                        type="email"
@@ -62,9 +62,9 @@
                                                 >
                                             </div>
                                             <button class="login-btn" type="submit">Logar</button>
-                                            <div class="container text-black">
-                                                Continuar conectado <input type="checkbox" name="conectado">
-                                            </div>
+<!--                                            <div class="container text-black">-->
+<!--                                                Continuar conectado <input type="checkbox" name="conectado">-->
+<!--                                            </div>-->
                                         </form>
                                         <a href="#" class="forgot-link">Esqueceu a senha?</a>
                                         <div class="regstr-link">Não é registrado?

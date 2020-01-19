@@ -19,146 +19,56 @@ class Home extends Home_Controller
     }
 
     public function index(){
-        $data       = $this->input->post(NULL, TRUE);
-        error_reporting(0);
-        ini_set("display_errors",0);
+        $datasession            = $this->session->get_userdata();
 
-        session_start();
+        if(isset($datasession['login'])){
+            $data = $this->mongodb->atos->us_usuarios->find(['login'=>$datasession['login']]);
+            foreach($data as $row){
 
-        $sessao_atual   = $this->session->get_userdata()['__ci_last_regenerate'];
+                if($row['logado']):
+                    $this->load->view('home');
+                else:
 
-        $where          = ['__ci_last_regenerate'=>$sessao_atual];
-        $session_db     = $this->Usuarios_model->getWhere($where);
+                    if($row['permanecer_logado'] === false){
+                        //                    $this->valida_login_code_confirmation($row);
 
-        if(count($session_db)){
-            if(is_array($session_db)):
-                foreach($session_db as $row){
+                        if($row['logado']):
+                            $this->load->view('home');
+                        else:
+                            $this->session->sess_destroy();
+                            redirect("Login");
+                        endif;
 
-                    if($row['logado'] === 'f'){
-                        $this->session->sess_destroy();
-                        redirect();
-                    }elseif($row['logado'] === 't'){
-
-                        $this->valida_login_code_confirmation($data);
-
-                        redirect("Home/Logged");
+                    }elseif($row['permanecer_logado'] === true){
+                        if($row['logado']):
+                            $this->load->view('home');
+                        else:
+                            $this->session->sess_destroy();
+                            redirect("Login");
+                        endif;
+                    }else{
+                        redirect('Login');
                     }
-                }
-            endif;
 
-        }
+                endif;
 
-        if (isset($data['login'])) {
-            $user = $this->Usuarios_model->login($data['login']);
-        } else {
+
+            }
+
+        }else{
             $this->session->sess_destroy();
-            redirect("Home/back");
+            redirect("Login");
         }
+
 
 //        var_dump(password_hash("admin", PASSWORD_DEFAULT));//criptografa a sessão
-        if (!empty($data) && !empty($user)) {
-            foreach ($user as $line) {
 
-                if ($line['login'] === $data['login']) {
-                    if (password_verify($data['senha'], $line['senha']) == true) {
-
-                        if(isset($data['conectado'])){
-                            set_cookie("session_coo",$sessao_atual,PHP_INT_MAX);
-                            $data = [
-                                "codigo"                => $line['codigo'],
-                                "__ci_last_regenerate"  => $sessao_atual,
-                                "logado"                => "t",
-                                'session_coo'           => $_COOKIE['ci_session']
-
-                            ];
-
-                        }else{
-                            $data = [
-                                "codigo"                => $line['codigo'],
-                                "__ci_last_regenerate"  => $sessao_atual,
-                                "logado"                => "f",
-                                'session_coo'           => ''
-
-                            ];
-                        }
-
-                        $this->Usuarios_model->save($data);
-                        $data = $this->Usuarios_model->getWhere(["codigo"=>$data['codigo']]);
-                        $this->valida_login_code_confirmation($data);
-
-                        if(count($data)){
-                            $this->session->set_userdata(["logado"=>1,"login"=>$data[0]['login']]);
-                            redirect("Home/logged");
-                        }
-
-                    } else {
-                        $this->session->sess_destroy();
-                        $this->session->set_userdata(["toError"=>1]);
-
-                        redirect("Home/back");
-                    }
-                } else {
-                    $this->session->sess_destroy();
-                    $this->session->set_userdata(["toError"=>1]);
-                    redirect("Home/back");
-                }
-            }
-        } else {
-            $this->session->sess_destroy();
-            redirect("Home/back");
-        }
 
     }
-    public function valida_login_code_confirmation($data){
-        if(is_array($data)) {
-                $data = reset($data);
-            //verifica se usuario ja confirmou cadastro atraves do codigo de validacao
-            if (isset($data['login'])) {
-                if (empty($data['login']) || empty($data['senha'])) {
-                    redirect();
-                }
-                if (!empty($data['login']))
-                    $validate_login = reset($this->Usuarios_model->validate_login($data['login']));
-
-                if ($validate_login['verification'] === 'f' || empty($validate_login['verification'])):
-                    $this->session->set_userdata(['verification_user' => $validate_login['email_hash']]);
-                    redirect("verification/Verification/index");
-                endif;
-            }
-        }
-    }
-
-    public function back(){
-//        $data = [];
-//        $error = $this->session->get_userdata();
-//
-//        if(isset($error['toError'])){
-//            if($error['toError']):
-//                $data['error_senha'] = "Usuário/senha incorreto(s)";
-//            endif;
-//        }
-//        $this->session->sess_destroy();
-
-        $this->load->view('index');
-    }
-    public function logged(){
-        $data_s = $this->session->get_userdata();
-
-        if(!isset($data_s['logado'])){
-            $this->session->sess_destroy();
-            redirect("Home/index");
-        }else{
-            if(!empty($data_s)){
-                $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
-                if(count($data)){
-                    $dados = reset($data);
-                }
-                $location               = reset($this->Location_user_model->getWhere(['codusuario'=>$dados['codigo']]));
-                $pais_cidade['nome']    = explode(',',$location['formatted_address_google_maps']);
-                $this->load->view('home',compact("dados","location","pais_cidade"));
-            }
-        }
-    }
+    /**
+     * verifica se usuario ja confirmou cadastro atraves do codigo de validacao
+     * @param $data
+    **/
     public function search(){
         $data_s = $this->session->get_userdata();
 
@@ -188,7 +98,6 @@ class Home extends Home_Controller
 
         $error  = [];
 
-        $data->datanasc = date_to_us($data->datanasc);
 
         if(empty($data->telcodpais)){
             $error['telcel'] = "Preencha o código de telefone de seu país!";
@@ -207,8 +116,10 @@ class Home extends Home_Controller
         if(empty($data->repsenha)){
             $error['repsenha'] = "Preencha o campo senha!";
         }
-        if(empty($data->datanasc)){
-            $error['datanasc'] = "Preencha o campo data nascimento!";
+        if(empty($data->datanasc) || (strlen($data->datanasc) != 10)){
+            $error['datanasc'] = "Data de nascimento inválida!";
+        }else{
+            $data->datanasc = date_to_us($data->datanasc);
         }
         if(empty($data->telcel)){
             $error['telcel'] = "Preencha o campo  telefone!";
@@ -275,7 +186,8 @@ class Home extends Home_Controller
             "telcel"                => "{$numero_validado}",
             "nome"                  => $this->clear_car($data->nome),
             "sobrenome"             => $this->clear_car($data->sobrenome),
-            "email_hash"            => $this->encript_atos($data->email)
+            "email_hash"            => $this->encript_atos($data->email),
+            'logado'                => TRUE
         ];
 
         $error['telcel']    = "O número de telefone é inválido";
@@ -289,7 +201,8 @@ class Home extends Home_Controller
         $dataSms = [
             "msg"           => $codigo_verificacao . " é o seu código de verificação atos",
             "destinatario"  => "$numero_validado",
-            "date_to_send"  => date("Y-m-d H:i:s")
+            "date_to_send"  => date("Y-m-d H:i:s"),
+            "logado"        => true
         ];
 
         $save = $cimongo->insert("us_usuarios",$data,TRUE);
@@ -310,26 +223,25 @@ class Home extends Home_Controller
         $this->response("success");
     }
     public function logout(){
-        $sessao_atual       = $this->session->get_userdata()['__ci_last_regenerate'];
+        $data           = $this->session->get_userdata();
+        $data['login']  = $this->mongodb->atos->us_usuarios->find(['login'=>$data['login']]);
+        foreach($data['login'] as $row){
 
-        $where              = ['__ci_last_regenerate'=>$sessao_atual];
-        $data               = $this->Usuarios_model->getWhere($where);
+            $new_data = [
+                "__ci_last_regenerate"  => null,
+                "logado"                => false,
+                'permanecer_logado'     => false,
+                "session_coo"           => ''
+            ];
+            $mongobulkwrite         = $this->mongobulkwrite;
+            $mongobulkwrite->update(["_id"=>$row['_id']],['$set' => $new_data], ['multi' => false, 'upsert' => true]);
+            $this->mongomanager->executeBulkWrite('atos.us_usuarios',$mongobulkwrite);
 
-        if(is_array($data)){
-
-            foreach($data as $user){
-                $new_data = [
-                    "codigo"                =>$user['codigo'],
-                    "__ci_last_regenerate"  =>null,
-                    "logado"                =>'f',
-                    "session_coo"           =>''
-                ];
-                $this->Usuarios_model->save($new_data);
-            }
         }
 
         $this->session->sess_destroy();
-        redirect();
+        redirect('Login');
+
     }
 
     /**
