@@ -38,6 +38,9 @@ var vm = new Vue({
             //     this.posts.push({count})
             // }
         },
+        openfile:function(){
+            $('#input-file-postagem').click();
+        },
         postar:function(){
 
             var data = new FormData();

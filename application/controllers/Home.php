@@ -222,6 +222,7 @@ class Home extends Home_Controller
 
         $this->response("success");
     }
+
     public function logout(){
         $data           = $this->session->get_userdata();
         $data['login']  = $this->mongodb->atos->us_usuarios->find(['login'=>$data['login']]);
@@ -269,70 +270,64 @@ class Home extends Home_Controller
             $s3           = new S3();
             $hash         = uniqid(rand()).date("Y-m-d H:i:so");
             $data_user    = $this->session->get_userdata();
-            $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
+            $get_usuarios  = $this->mongodb->atos->us_usuarios->find(['login'=>$data_user['login']]);
 
-            if(empty($get_usuario)){
-                redirect();
-                exit();
-            }
+            foreach($get_usuarios as $get_usuario) {
 
-            $search             = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
-            $name_replace       = str_replace($search, "", $hash);
-            $name_file          = $name_replace . md5($get_usuario['login']);
+                $search         = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
+                $name_replace   = str_replace($search, "", $hash);
+                $name_file      = $name_replace . md5($get_usuario['login']);
 
-            $data_file['name']  = $name_file;
+                $data_file['name'] = $name_file;
 
-            $s3->putBucket($bucket_name);
-            $name_folder_user = $get_usuario['nome'] . md5($get_usuario['login']);
+                $s3->putBucket($bucket_name);
+                $name_folder_user = $get_usuario['nome'] . md5($get_usuario['login']);
 
-            if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user .'/'.$name_file, S3::ACL_PUBLIC_READ)) {
+                if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user . '/' . $name_file, S3::ACL_PUBLIC_READ)) {
 
 //                        $us_storage     = $this->mongodb->atos->us_storage;
-                        $us_storage_img = $this->mongodb->atos->us_storage_img;
-                        $us_storage_img->insertOne([
-                            'server_name'   => 'https://s3.amazonaws.com/',
-                            'text_timeline' => $text_timeline,
-                            'bucket'        => $bucket_name,
-                            'folder_user'   => $name_folder_user,
-                            'name_file'     => $name_file,
-                            'codusuario'    => $get_usuario['codigo'],
-                            'created_at'    => date('Y-m-d H:i:s'),
-                            'updated_at'    => date('Y-m-d H:i:s'),
+                    $us_storage_img = $this->mongodb->atos->us_storage_img;
+                    $us_storage_img->insertOne([
+                        'server_name'    => 'https://s3.amazonaws.com/',
+                        'text_timeline'  => $text_timeline,
+                        'bucket'         => $bucket_name,
+                        'folder_user'    => $name_folder_user,
+                        'name_file'      => $name_file,
+                        'codusuario'     => $get_usuario['_id'],
+                        'created_at'     => date('Y-m-d H:i:s'),
+                        'updated_at'     => date('Y-m-d H:i:s'),
 
-                        ]);
-                 $path = 'https://s3.amazonaws.com/' . $bucket_name . '/' . $name_folder_user . '/' . $name_file;
-                $this->response('success',compact('path'));
+                    ]);
+                    $path = 'https://s3.amazonaws.com/' . $bucket_name . '/' . $name_folder_user . '/' . $name_file;
+                    $this->response('success', compact('path'));
 
-            }else{
-                $this->response('error',['msg'=>'Erro ao baixar a imagem para o servidor!']);
+                } else {
+                    $this->response('error', ['msg' => 'Erro ao baixar a imagem para o servidor!']);
+                }
             }
         }
     }
     public function get_storage_img(){
-        $data_user    = $this->session->get_userdata();
-        $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
+        $data_user      = $this->session->get_userdata();
+        $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$data_user['login']]);
 
-        if(empty($get_usuario)){
-            redirect();
-            exit();
-        }
+        foreach ($get_usuario as $row_usuarios) {
+            $us_storage_img = $this->mongodb->atos->us_storage_img;
+            $options        = ["sort" => ["created_at" => -1]];
+            $data_time_line = $us_storage_img->find(['codusuario' => $row_usuarios['_id']], $options);
+            $data           = [];
 
-        $us_storage_img = $this->mongodb->atos->us_storage_img;
+            foreach ($data_time_line as $row) {
+                $url    = $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+                $text   = $row['text_timeline'];
 
-        $options        = ["sort" => ["created_at" => -1]];
-        $data_time_line = $us_storage_img->find(['codusuario'=>$get_usuario['codigo']],$options);
-        $data           = [];
+                $data_row = [
+                    'path' => $url,
+                    'text' => $text
+                ];
+                array_push($data, $data_row);
 
-        foreach($data_time_line as $row){
-            $url    =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
-            $text   = $row['text_timeline'];
-
-            $data_row = [
-                'path' => $url,
-                'text' => $text
-            ];
-            array_push($data,$data_row);
-
+            }
         }
 
         $this->response('success',compact('data'));

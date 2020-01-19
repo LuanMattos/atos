@@ -4,16 +4,15 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-dark1 justify-content-sm-start">
                     <a class="order-1 order-lg-0 ml-lg-0 ml-3 mr-auto " href="index.html">
-                        <a class="text-white padding-smal" href="<?= site_url('Home/Logged') ?>"></a>
+                        <a class="text-white padding-smal" href="<?= site_url('Home/index') ?>"></a>
                         <button class="navbar-toggler align-self-start" type="button">
                             <i class="fas fa-bars " style="font-size:25px"></i>
                         </button>
 
-
                         <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-start bg-dark1 p-3 p-lg-0 mt1-5 mt-lg-0 mobileMenu">
                             <div class="open"
                                  id="navbarSupportedContent">
-                                <a class="text-white " href="<?= site_url('Home/Logged') ?>">
+                                <a class="text-white " href="<?= site_url('Home/index') ?>">
                                     <b style="font-size: 25px">atos</b>
                                 </a>
                             </div>
