@@ -193,7 +193,7 @@ class Home extends Home_Controller
             "destinatario"  => "$numero_validado",
             "date_to_send"  => date("Y-m-d H:i:s")
         ];
-//        $sms->processesDirect($dataSms);
+        $sms->processesDirect($dataSms);
 
         $save = $cimongo->insert("us_usuarios",$data,TRUE);
 
