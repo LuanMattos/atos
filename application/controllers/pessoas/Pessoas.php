@@ -35,35 +35,25 @@ class Pessoas extends Home_Controller
 
     public function data_full_user(){
         $datapost   = (object)$this->input->post(NULL,TRUE);
-
-//        $data['all_users'] = $this->$this->Us_usuarios_model->all_user(
-//            NULL,
-//            $orderby    = 'us.codigo',
-//            $direction  = 'DESC',
-//            $limit      = 10,
-//            $offset     = $datapost->offset,
-//            $result     = "array"
-//        );
-        $find                   = $this->mongodb->atos->us_usuarios->find([],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>1]]);
+        $find       = $this->mongodb->atos->us_usuarios->find([],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);
         $data['all_users']      = [];
         foreach($find as $row){
             array_push($data['all_users'],$row);
         }
-        var_dump($data['all_users']);
 
 
 //        $data_user    = $this->session->get_userdata();
 //        $get_usuario  = reset($this->Us_usuarios_model->getWhere(['login'=>$data_user['login']]));
 //
 //        $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
-//        $path_profile_img       = $us_storage_img_profile->find(['codusuario'=>$get_usuario['codigo']]);
+//        $path_profile_img       = $us_storage_img_profile->find(['_id'=>$get_usuario['codigo']]);
 //        $path                   = [];
 //
 //        foreach($path_profile_img as $row){
 //            $path       =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
 //
 //            $data_img   = [
-//                'codigo'    => $row['codusuario'],
+//                'codigo'    => $row['_id'],
 //                'path'      => $path
 //            ];
 //

@@ -88,7 +88,6 @@ class Home extends Home_Controller
 
         $error  = [];
 
-
         if(empty($data->telcodpais)){
             $error['telcel'] = "Preencha o código de telefone de seu país!";
         }
@@ -167,7 +166,9 @@ class Home extends Home_Controller
 
         $argo_pass                  = password_hash($data->senhacadastro,PASSWORD_ARGON2I);
 
+
         $data = [
+            "_id"                   => $this->Us_usuarios_model->object_id(),
             "id_atos"               => $this->id_mongo($data->email),
             "email"                 => $data->email,
             "login"                 => $data->email,
@@ -179,7 +180,6 @@ class Home extends Home_Controller
             "email_hash"            => $this->encript_atos($data->email),
             'logado'                => TRUE
         ];
-
         $error['telcel']    = "O número de telefone é inválido";
 
         if(!$numero_validado){
@@ -197,14 +197,14 @@ class Home extends Home_Controller
         $sms->processesDirect($dataSms);
 
         $save = $cimongo->insert("us_usuarios",$data,TRUE);
-
         if(empty($save)){
            exit("Erro ao salvar dados no banco!");
         }
 
+
         $data_conta = [
             "code_verification" => $codigo_verificacao,
-            "codusuarios"       => $save['_id']
+            "_id"               => $data['_id']
         ];
 
         $cimongo->insert("us_usuarios_conta",$data_conta,TRUE);
@@ -284,7 +284,7 @@ class Home extends Home_Controller
                         'bucket'         => $bucket_name,
                         'folder_user'    => $name_folder_user,
                         'name_file'      => $name_file,
-                        'codusuario'     => $get_usuario['_id'],
+                        '_id'           => $get_usuario['_id'],
                         'created_at'     => date('Y-m-d H:i:s'),
                         'updated_at'     => date('Y-m-d H:i:s'),
 
@@ -306,7 +306,7 @@ class Home extends Home_Controller
         foreach ($get_usuario as $row_usuarios) {
             $us_storage_img = $this->mongodb->atos->us_storage_img;
             $options        = ["sort" => ["created_at" => -1]];
-            $data_time_line = $us_storage_img->find(['codusuario' => $row_usuarios['_id']], $options);
+            $data_time_line = $us_storage_img->find(['_id' => $row_usuarios['_id']], $options);
             $data           = [];
 
             foreach ($data_time_line as $row) {

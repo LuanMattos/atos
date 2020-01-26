@@ -17,7 +17,6 @@ class Verification extends SI_Controller
     public function validate_code(){
         $datapost        = $this->input->post("data",TRUE);
         $session         = $this->session->get_userdata();
-        $cimongo         = new Cimongo();
 
         $us_usuarios            = $this->mongodb->atos->us_usuarios;
         $us_usuarios_conta      = $this->mongodb->atos->us_usuarios_conta;
@@ -27,10 +26,9 @@ class Verification extends SI_Controller
         $codeUser           = "";
 
         foreach ($verify as $key=>$row){
-
             $codeUser = $row['_id'];
         }
-        $us_usuarios_conta_data = $us_usuarios_conta->find(["codusuarios"=>"{$codeUser}"]);
+        $us_usuarios_conta_data = $us_usuarios_conta->find(["_id"=>"{$codeUser}"]);
 
         $code_verification      = "";
 

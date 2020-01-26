@@ -30,13 +30,13 @@ class Area_a extends SI_Controller
                 case "profile":
                     $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
                     $options                = ["sort" => ["created_at" => 1]];
-                    $path_return            = $us_storage_img_profile->find(['codusuario'=>$get_usuario['_id']],$options);
+                    $path_return            = $us_storage_img_profile->find(['_id'=>$get_usuario['_id']],$options);
                     $path                   = [];
                 break;
                 case "cover":
                     $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
                     $options                = ["sort" => ["created_at" => 1]];
-                    $path_return            = $us_storage_img_cover->find(['codusuario'=>$get_usuario['_id']],$options);
+                    $path_return            = $us_storage_img_cover->find(['_id'=>$get_usuario['_id']],$options);
                     $path                   = [];
                 break;
                 default:
@@ -90,7 +90,7 @@ class Area_a extends SI_Controller
                         'bucket'        => $bucket_name,
                         'folder_user'   => $name_folder_user,
                         'name_file'     => $name_file,
-                        'codusuario'    => $get_usuario['_id'],
+                        '_id'    => $get_usuario['_id'],
                         'created_at'    => date('Y-m-d H:i:s'),
                         'updated_at'    => date('Y-m-d H:i:s'),
 

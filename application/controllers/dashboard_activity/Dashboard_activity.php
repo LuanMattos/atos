@@ -60,7 +60,7 @@ class Dashboard_activity extends SI_Controller{
                     'bucket'        => $bucket_name,
                     'folder_user'   => $name_folder_user,
                     'name_file'     => $name_file,
-                    'codusuario'    => $get_usuario['_id'],
+                    '_id'           => $get_usuario['_id'],
                     'created_at'    => date('Y-m-d H:i:s'),
                     'updated_at'    => date('Y-m-d H:i:s'),
 

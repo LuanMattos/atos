@@ -89,6 +89,10 @@ class CI_Model {
     public function get_table(){
 	    return $this->table;
     }
+    public function object_id(){
+        $objectId = (string) new MongoDB\BSON\ObjectId();
+        return $objectId;
+    }
 
     /** Responsável por validar os dados do formulário
      * @param $data

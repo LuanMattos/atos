@@ -13,9 +13,9 @@ class RestoreAccount extends GeneralService {
         if(!$code){
             $codigo = $this->gerarCodigoVolta();
             if(!$codigo){
-                return $codigo . uniqid() . rand();
+                return substr(uniqid(),8,14);
             }
-            return $codigo . uniqid();
+            return substr(uniqid(),7,13);
         }
 
         return $code;
@@ -34,10 +34,10 @@ class RestoreAccount extends GeneralService {
         $exist = $this->Us_usuarios_conta_model->data_by_code_verification($finally);
 
         if(!$exist){
-            return false;
+            return $finally;
         }
+        return false;
 
-        return $finally;
     }
 
 
