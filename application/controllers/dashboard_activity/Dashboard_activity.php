@@ -18,10 +18,9 @@ class Dashboard_activity extends SI_Controller{
 
             if(!empty($data_s)){
                 $dados               = $this->Us_usuarios_model->data_user_by_session($data_s);
-
                 $location            = $this->Us_location_user_model->data_location_by_id($dados['_id']);
-                $pais_cidade['nome'] = reset(explode(',',$location['formatted_address_google_maps']));
-                $this->load->view("dashboard_activity/index",compact("dados","pais_cidade"));
+                $dados['address']    = $location['formatted_address_google_maps'];
+                $this->load->view("dashboard_activity/index",compact("dados"));
 
             }
 

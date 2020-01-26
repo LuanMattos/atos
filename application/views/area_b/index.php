@@ -7,9 +7,7 @@
                         <h3><?= isset($data['nome'])?$data['nome']:"" ?></h3>
                         <span><?= isset($data['sobrenome'])?$data['sobrenome']:"" ?></span>
                         <span><i class="fas fa-map-marker-alt"></i>
-                            <?= set_val($pais_cidade['nome'][0]) ?> -
-                            <?= set_val($pais_cidade['nome'][2]) ?>
-                            <?= set_val($pais_cidade['nome'][3])?" - " . set_val($pais_cidade['nome'][3]):"" ?>
+                            <?= set_val($data['address']) ?>
                         </span>
                     </div>
 

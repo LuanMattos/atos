@@ -7,8 +7,8 @@ class Verification extends SI_Controller
     public function __construct(){
         parent::__construct();
         $this->output->enable_profiler(FALSE);
-        $this->load->model("account/home/Account_home_model");
-        $this->load->model("Usuarios_model");
+        $this->load->model("account/us_usuarios_conta_model");
+        $this->load->model("Us_usuarios_model");
     }
 
     public function index(){

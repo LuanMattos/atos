@@ -26,15 +26,15 @@
 <body>
 <?php
 if (isset($dados)):
-$data = $dados;
+    $data = $dados;
 else:
-$data = [];
+    $data = [];
 endif;
 ?>
 <?= $this->load->view("area_a/index"); ?>
 <?= $this->load->view("menu/menu", compact("data")); ?>
 <main class="dashboard-mp" id="div-geral-pessoas-full">
-    <?= $this->load->view("area_b/index"); ?>
+    <?= $this->load->view("area_b/index",compact("data")); ?>
     <main class="Search-results">
         <div class="main-section">
             <div class="container">

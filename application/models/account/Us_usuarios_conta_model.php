@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Us_usuarios_model extends CI_Model{
+class Us_usuarios_conta_model extends CI_Model{
 
     public function __construct()
     {
         parent::__construct();
         $this->set_table_index("_id");
-        $this->set_table("us_usuarios");
+        $this->set_table("us_usuarios_conta");
     }
-    public function data_user_by_session($data_session = NULL){
+    public function data_conta_by_session($data_session = NULL){
         if(!$data_session || empty($data_session)){
             $this->response('error',["msg"=>"Erro ao carregar dados de sessão"]);
             exit();
@@ -21,15 +21,13 @@ class Us_usuarios_model extends CI_Model{
         }
         return false;
     }
-    public function all_users($limit){
-        $options   = ["sort" => ["_id" => -1],"limit"=>$limit];
-        $_data     = $this->mongodb->atos->us_usuarios->find([],$options);
-        $data      = [];
+    public function data_by_code_verification($code){
 
-        foreach($_data as $row){
-            array_push($data,$row);
+        $data   = $this->mongodb->atos->us_usuarios_conta->find(["code_verification"=>$code]);
+        foreach($data as $row){
+            return $row;
         }
-        return $data;
+        return false;
     }
 
 }

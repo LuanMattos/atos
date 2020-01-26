@@ -28,10 +28,12 @@ class RestoreAccount extends GeneralService {
         $uniqueid       = substr(uniqid(),6,12);
         $finally        = $uniqueid;
 
-        $this->load->model("account/home/Account_home_model");
+        $this->load->model("account/Us_usuarios_conta_model");
 
-        $exist = $this->Account_home_model->getWhere(["code_verification"=>$finally]);
-        if(count($exist)){
+
+        $exist = $this->Us_usuarios_conta_model->data_by_code_verification($finally);
+
+        if(!$exist){
             return false;
         }
 
