@@ -3,7 +3,7 @@
         <div class="add-activity" style="z-index: 3">
             <div class="activity-group">
                 <div class="maine-activity-img">
-                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/event-view/user-1.jpg" alt="">
+                    <img class='crop-img-home' :src="img_profile.length?img_profile:path_img_time_line_default" alt="">
                 </div>
                 <textarea style="z-index:0" :class="error_text_area?'border-danger-postagem':''" class="add-activity-des"  id='text-area-postagem' placeholder="O que tem de novo?"></textarea>
             </div>

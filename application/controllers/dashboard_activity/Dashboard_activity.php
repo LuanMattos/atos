@@ -5,8 +5,8 @@ class Dashboard_activity extends SI_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Usuarios_model');
-        $this->load->model('location/Location_user_model');
+        $this->load->model('Us_usuarios_model');
+        $this->load->model('location/Us_location_user_model');
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
@@ -17,15 +17,11 @@ class Dashboard_activity extends SI_Controller{
         $data_s = $this->session->get_userdata();
 
             if(!empty($data_s)){
+                $dados               = $this->Us_usuarios_model->data_user_by_session($data_s);
 
-                $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
-                if(count($data)){
-                    $dados = reset($data);
-
-                }
-                $location            = reset($this->Location_user_model->getWhere(['codusuario'=>$dados['codigo']]));
-                $pais_cidade['nome'] = explode(',',$location['formatted_address_google_maps']);
-                $this->load->view("home/index",compact("dados","pais_cidade"));
+                $location            = $this->Us_location_user_model->data_location_by_id($dados['_id']);
+                $pais_cidade['nome'] = reset(explode(',',$location['formatted_address_google_maps']));
+                $this->load->view("dashboard_activity/index",compact("dados","pais_cidade"));
 
             }
 
@@ -46,16 +42,13 @@ class Dashboard_activity extends SI_Controller{
             $s3             = new S3();
             $hash           = uniqid(rand()) . date("Y-m-d H:i:so");
             $data_user      = $this->session->get_userdata();
-            $get_usuario    = reset($this->Usuarios_model->getWhere(['login' => $data_user['login']]));
+            $find_usuario   = $this->mongodb->atos->us_usuarios->find(['login' => $data_user['login']]);
 
-            if (empty($get_usuario)) {
-                redirect();
-                exit();
-            }
-            $search = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
-            $name_replace = str_replace($search, "", $hash);
-            $name_file = $name_replace . md5($get_usuario['login']);
-            $data_file['name'] = $name_file;
+            foreach($find_usuario as $get_usuario){
+            $search              = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
+            $name_replace        = str_replace($search, "", $hash);
+            $name_file           = $name_replace . md5($get_usuario['login']);
+            $data_file['name']   = $name_file;
 
             $s3->putBucket($bucket_name);
             $name_folder_user = $get_usuario['nome'] . md5($get_usuario['login']);
@@ -68,7 +61,7 @@ class Dashboard_activity extends SI_Controller{
                     'bucket'        => $bucket_name,
                     'folder_user'   => $name_folder_user,
                     'name_file'     => $name_file,
-                    'codusuario'    => $get_usuario['codigo'],
+                    'codusuario'    => $get_usuario['_id'],
                     'created_at'    => date('Y-m-d H:i:s'),
                     'updated_at'    => date('Y-m-d H:i:s'),
 
@@ -77,31 +70,11 @@ class Dashboard_activity extends SI_Controller{
                 $this->response('success', compact('path'));
             }else{
                 $this->response('error',['msg'=>'Erro ao baixar a imagem para o servidor!']);
-            }
-
+          }
         }
+      }
     }
-    public function get_img_profile(){
-        $data_user    = $this->session->get_userdata();
-        $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
 
-        if(empty($get_usuario)){
-            redirect();
-            exit();
-        }
-
-        $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
-
-        $options            = ["sort" => ["created_at" => 1]];
-        $path_profile_img   = $us_storage_img_profile->find(['codusuario'=>$get_usuario['codigo']],$options);
-        $path               = [];
-
-        foreach($path_profile_img as $row){
-            $path    =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
-
-        }
-        $this->response('success',compact('path'));
-    }
 
 
 }

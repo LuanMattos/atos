@@ -187,14 +187,13 @@
                             <a href="#" class="account-link dropdown-toggle-no-caret" role="button"
                                data-toggle="dropdown">
                                 <div class="user-dp">
-                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/dp.jpg" alt=""></div>
+                                    <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_time_line_default" alt=""></div>
                                 <span><?= isset($data['nome']) ? $data['nome'] : ""; ?> </span>
                                 <i class="fas fa-angle-down"></i>
                             </a>
                             <div class="dropdown-menu account-dropdown dropdown-menu-right">
                                 <a class="link-item" href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Perfil</a>
-                                <a class="link-item" href="<?= site_url('account_settings/Account_settings/index') ?>">Configurações
-                                    da conta</a>
+                                <a class="link-item" href="<?= site_url('account_settings/Account_settings/index') ?>">Configurações da conta</a>
                                 <a class="link-item" href="<?= site_url('invite/Invite/index') ?>">Convite</a>
                                 <a class="link-item" href="<?= site_url('Home/logout') ?>">Sair</a>
                             </div>
@@ -205,6 +204,3 @@
         </div>
     </div>
 </header>
-
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
-<script src="<?= URL_RAIZ() ?>js/menu.js"></script>

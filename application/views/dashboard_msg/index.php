@@ -57,6 +57,8 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
+<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
+
 </body>
 
 </html>

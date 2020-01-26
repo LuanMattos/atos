@@ -25,42 +25,43 @@
 
 <body>
 
-<?php   if(isset($dados)):
-    $data = $dados;
+<?php
+if(isset($row)):
+    $data = $row;
 else:
     $data = [];
 endif;
 ?>
 <?= $this->load->view("menu/menu",compact("data")); ?>
-<style>
-    .container-hover-profile {
-    position: relative;
-    width: 50%;
-    }
-
-    .middle-alterar {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-    }
-
-
-    .profile-home:hover .middle-alterar {
-    opacity: 1;
-    }
-
-    .text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
-    }
-</style>
+<!--<style>-->
+<!--    .container-hover-profile {-->
+<!--    position: relative;-->
+<!--    width: 50%;-->
+<!--    }-->
+<!---->
+<!--    .middle-alterar {-->
+<!--    transition: .5s ease;-->
+<!--    opacity: 0;-->
+<!--    position: absolute;-->
+<!--    top: 50%;-->
+<!--    left: 50%;-->
+<!--    transform: translate(-50%, -50%);-->
+<!--    -ms-transform: translate(-50%, -50%);-->
+<!--    text-align: center;-->
+<!--    }-->
+<!---->
+<!---->
+<!--    .profile-home:hover .middle-alterar {-->
+<!--    opacity: 1;-->
+<!--    }-->
+<!---->
+<!--    .text {-->
+<!--    background-color: #4CAF50;-->
+<!--    color: white;-->
+<!--    font-size: 16px;-->
+<!--    padding: 16px 32px;-->
+<!--    }-->
+<!--</style>-->
 <main class="dashboard-mp " style="margin-top: 80px" id="div-geral-time-line">
     <div class="main-section">
         <div class="container">
@@ -68,9 +69,9 @@ endif;
                 <div class="col-lg-3 col-md-5">
                     <div class="main-left-sidebar">
                         <div class="user-data full-width">
-                            <div class="user-profile">
+                            <div class="user-profile" >
                                 <div class="username-dt dpbg-1">
-                                    <div class="my-dp-dash  cursor-pointer">
+                                    <div class="my-dp-dash  crop-img-home-mini cursor-pointer" v-bind:style="img_cover.length?'background-image:url(' + img_cover + ')':'background-image:url('+ path_img_cover_default +')'  ">
                                         <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_profile_default" alt="">
 
                                     </div>
@@ -79,9 +80,7 @@ endif;
                                     <h4><?= isset($data['nome'])?$data['nome']:""; ?></h4>
                                     <span>
                                         <i class="fas fa-map-marker-alt"></i>
-                                        <?= set_val($pais_cidade['nome'][0]) ?> -
-                                        <?= set_val($pais_cidade['nome'][2]) ?>
-                                        <?= set_val($pais_cidade['nome'][3])?" - " . set_val($pais_cidade['nome'][3]):"" ?>
+                                        <?= set_val($data['address']) ?>
                                     </span>
                                 </div>
                                 <ul class="followers-dts">
@@ -313,6 +312,7 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
+<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
 
 <!---->
 </body>

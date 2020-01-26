@@ -65,6 +65,7 @@ class Login extends Login_Controller{
                     }
                 }
             }
+
         }
         $this->session->sess_destroy();
         redirect("Login");

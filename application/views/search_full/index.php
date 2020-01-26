@@ -166,6 +166,7 @@
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
+<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
 
 </body>
 

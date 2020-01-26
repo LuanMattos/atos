@@ -65,12 +65,12 @@ die('This file is used for development purposes only.');
  * @property CI_Utf8             $utf8                                Provides support for UTF-8 environments
  * @property Ispconfig           $ispconfig                           This class enables you to use the ISPConfig 3 Remote API
  * @property Boleto              $boleto                              Boleto Class
- * @property Usuarios_model      $Usuarios_model                      Usuarios_model
+ * @property Us_usuarios_model         $Us_usuarios_model                   Us_usuarios_model
  * @property Provider_sms_model        $Provider_sms_model                  Provedor SMS
  * @property Sms_fila_model            $Sms_fila_model                      Fila de SMS
  * @property Account_home_model        $Account_home_model                  Model referente a configurações de nova conta ou recuperacao de senha
  * @property Pais_model                $Pais_model                          Model com todos os paies
- * @property Location_user_model       $Location_user_model                 Model referente a localização do usuario
+ * @property Us_location_user_model       $Us_location_user_model                 Model referente a localização do usuario
  * @property Us_storage_model          $Us_storage_model                    Model com nome da pasta do usuario
  * @property Us_storage_img_model      $Us_storage_img_model                Imagens do usuario (vinculada com Us_storage)
  * @property mongodb                   $mongodb                             Driver conexão mongo

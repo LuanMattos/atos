@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Account_settings extends SI_Controller{
+class Account_settings extends Account_settings_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->load->model("Usuarios_model");
-        $this->load->model("location/Location_user_model");
+        $this->load->model("Us_usuarios_model");
+        $this->load->model("location/Us_location_user_model");
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
@@ -20,44 +20,25 @@ class Account_settings extends SI_Controller{
             $this->session->sess_destroy();
             redirect();
         }else{
-            if(!empty($data_s)){
-                $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
-                if(count($data)){
-                    $dados = reset($data);
-                }
-                $location = reset($this->Location_user_model->getWhere(['codusuario'=>$dados['codigo']]));
-                $this->load->view("account_settings/index",compact("dados","location"));
-            }
+            $data       = $this->Us_usuarios_model->data_user_by_session($data_s);
+            $location   = $this->Us_location_user_model->data_location_by_id($data['_id']);
+            $this->load->view("account_settings/index",compact("dados","location"));
         }
 
     }
     public function acao_salvar_localizacao(){
         $session    = $this->session->get_userdata();
+        $datapost   = $this->input->post("data",TRUE);
+
 
         if(empty($session['login'])){
             $this->session->sess_destroy();
             redirect();
         }
-        $data_user  = reset($this->Usuarios_model->getWhere(['login'=>$session['login']]));
-        $codusuario = $data_user['codigo'];
-        $datapost   = $this->input->post("data",TRUE);
 
-        $new_data = [
-            "codusuario" => $codusuario
-        ];
-        $data             = array_merge($new_data,$datapost);
-        $valida_location  = reset($this->Location_user_model->getWhere(["codusuario"=>$codusuario]));
-
-        if(!empty($valida_location)){
-            ;
-            $new_data = [
-                "codigo"     => $valida_location['codigo'],
-                "codusuario" => $codusuario
-            ];
-            $data             = array_merge($new_data,$datapost);
-        }
-
-        $this->Location_user_model->save($data);
+        $data_user          = $this->Us_usuarios_model->data_user_by_session(['login'=>$session['login']]);
+        $datapost['_id'] = $data_user['_id'];
+        $this->Us_location_user_model->save_mongo($datapost);
 
     }
 
@@ -96,10 +77,10 @@ class Account_settings extends SI_Controller{
         }
 
         $usuario            = $this->session->get_userdata();
-        $data_user          = reset($this->Usuarios_model->getWhere(["login"=>$usuario['login']]));
+        $data_user          = reset($this->Us_usuarios_model->getWhere(["login"=>$usuario['login']]));
         $new_data           = array_merge($data,["codigo"=>$data_user['codigo']]);
 
-        $save = $this->Usuarios_model->save($new_data);
+        $save = $this->Us_usuarios_model->save($new_data);
 
 
         if(!$save){

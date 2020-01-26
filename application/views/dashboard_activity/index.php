@@ -30,12 +30,15 @@ else:
     $data = [];
 endif;
 ?>
-<?= $this->load->view("area_a/index"); ?>
+<main class="dashboard-mp">
 
-<?= $this->load->view("menu/menu",compact("data")); ?>
-<main class="dashboard-mp" id="div-geral-dashboard_activity">
-    <?= $this->load->view("area_b/index"); ?>
-    <?= $this->load->view("area_c_dashboard_activity/index"); ?>
+    <?= $this->load->view("area_a/index"); ?>
+
+    <?= $this->load->view("menu/menu",compact("data")); ?>
+    <div id="div-geral-dashboard_activity">
+        <?= $this->load->view("area_b/index"); ?>
+        <?= $this->load->view("area_c_dashboard_activity/index"); ?>
+    </div>
 </main>
 <!-- Body End -->
 <!-- Footer Start -->
@@ -53,8 +56,10 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
-<script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity.js"></script>
 <script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
+<script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity.js"></script>
+<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
+
 
 </body>
 

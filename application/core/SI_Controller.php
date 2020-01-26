@@ -23,6 +23,9 @@ class SI_Controller extends CI_Controller{
             redirect();
         }
     }
+    public function mongocollection($param,$options = []){
+        return new MongoDB\Collection($this->mongomanager,$param['database'],$param['collection'],$options);
+    }
     protected function conect_mongodb(){
         $this->config->load('database');
         $configmongo                = (object)$this->config->item('mongodb');

@@ -11,8 +11,11 @@ var home = {
 var vm = new Vue({
     el: '#div-geral-time-line',
     data: {
-        img_profile:'',
-        path_img_profile_default:location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
+        img_profile      : '',
+        img_cover        : '',
+        path_img_profile_default     : location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
+        path_img_cover_default       : location.origin + '/application/assets/libs/images/event-view/my-bg.jpg',
+        path_img_time_line_default   : location.origin + '/application/assets/libs/images/event-view/user-1.jpg',
         posts            : [0],
         loading          : false,
         error_input_file : false,
@@ -22,14 +25,13 @@ var vm = new Vue({
         this.getPosts()
     },
     mounted:function(){
-        var url       = home.Url("get_img_profile");
         var self_vue  = this;
-        $.post(
-            url,
-            {},
-            function(response){
-                self_vue.$data.img_profile = response.path;
-            },'json');
+        var url       = App.url("area_a", "Area_a", "get_img");
+        // ------------------profile-------------------
+        $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
+        // -------------------cover-------------------
+        var url       = App.url("area_a", "Area_a", "get_img");
+        $.post(url, {type:"cover"}, function(response){self_vue.$data.img_cover = response.path;},'json');
     },
     methods: {
         getPosts() {

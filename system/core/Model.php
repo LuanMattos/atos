@@ -149,21 +149,32 @@ class CI_Model {
         return $this->db->delete($this->get_table(),$where,$limit,$reset_data);
 
     }
-
     /**
-     * Função responsável por salvar no banco case tenha ID
-     * Função responsável por atualizar no banco caso não receba ID
-     * $table   = string                                --> tabela onde será inserido os dados
-     * $data    = array('nome'=>'joao','senha'=>'123')  --> array associativo com as respectivas entidades
-     * Erro ainda a serrem melhorados
+     * Save para mongo
+    */
+    public function save_mongo($data = []){
+        $this->config->load('database');
+        $configmongo = (object)$this->config->item('mongodb');
+
+        if(array_key_exists($this->get_table_index(),$data)){
+            $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();;
+            $mongobulkwrite->update(["_id"=>$data['_id']],['$set' => $data], ['multi' => false, 'upsert' => true]);
+            $this->mongomanager->executeBulkWrite($configmongo->database . '.' . $this->get_table() ,$mongobulkwrite);
+        }else{
+            $cimongo = new Cimongo();
+            $cimongo->insert($this->get_table(),$data,TRUE);
+        }
+    }
+    /**
+     * Save para sql
      */
     public function save($data = NULL,$return = ""){
 
         if(is_array($data)){
             if(array_key_exists($this->get_table_index(),$data)){
-                $table_index = $this->get_table_index();
-                $value_index = $data[$this->get_table_index()];
-                $save = $this->db->update($this->get_table(),$data,"$table_index = $value_index");
+                $table_index    = $this->get_table_index();
+                $value_index    = $data[$this->get_table_index()];
+                $save           = $this->db->update($this->get_table(),$data,"$table_index = $value_index");
                 if(!$save){
                     return $this->db->error();
                 }
@@ -177,11 +188,10 @@ class CI_Model {
 
             if(!empty($return)){
 
-                $last_id        = $this->db->insert_id();
-
-                $data_return    = $this->db->select($return)->from($this->get_table())
+                $last_id      = $this->db->insert_id();
+                $data_return  = $this->db->select($return)->from($this->get_table())
                                            ->where([$this->get_table_index()=>$last_id]);
-                $data_r = $data_return->get()->result_array();
+                $data_r       = $data_return->get()->result_array();
                 if(count($data_r)){
                     $data_r = reset($data_r);
                     return $data_r;

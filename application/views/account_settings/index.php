@@ -72,7 +72,8 @@ endif;
 
 <?= $this->load->view("footer/footer"); ?>
 
-
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -85,6 +86,8 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/mascaras.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/datepicker.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/i18n/datepicker.en.js"></script>
+<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
+
 </body>
 
 </html>

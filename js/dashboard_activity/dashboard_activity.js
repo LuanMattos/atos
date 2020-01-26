@@ -9,11 +9,7 @@ var dashboard_activity = {
 };
 
 var vue_instance_dashboard_activity = new Vue({
-        el: '#div-geral-dashboard_activity',
-        data: {
-        },
 
 
-    }
-);
+    });
 

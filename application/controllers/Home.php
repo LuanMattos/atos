@@ -8,13 +8,12 @@ class Home extends Home_Controller
 
     public function __construct(){
         parent::__construct();
-        $this->load->model("Usuarios_model");
+        $this->load->model("Us_usuarios_model");
         $this->load->model("account/home/Account_home_model");
-        $this->load->model("location/Location_user_model");
+        $this->load->model("location/Us_location_user_model");
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
-
 
     }
 
@@ -24,16 +23,21 @@ class Home extends Home_Controller
         if(isset($datasession['login'])){
             $data = $this->mongodb->atos->us_usuarios->find(['login'=>$datasession['login']]);
             foreach($data as $row){
+                 $address = $this->Us_location_user_model->data_location_by_id($row['_id']);
+                 if(!empty($address)):
+                    $row['address'] = $address['formatted_address_google_maps'];
+                 endif;
 
                 if($row['logado']):
-                    $this->load->view('home');
+
+                    $this->load->view('home',compact('row'));
                 else:
 
                     if($row['permanecer_logado'] === false){
-                        //                    $this->valida_login_code_confirmation($row);
+//                                            $this->valida_login_code_confirmation($row);
 
                         if($row['logado']):
-                            $this->load->view('home');
+                            $this->load->view('home',compact('row'));
                         else:
                             $this->session->sess_destroy();
                             redirect("Login");
@@ -41,7 +45,7 @@ class Home extends Home_Controller
 
                     }elseif($row['permanecer_logado'] === true){
                         if($row['logado']):
-                            $this->load->view('home');
+                            $this->load->view('home',compact('row'));
                         else:
                             $this->session->sess_destroy();
                             redirect("Login");
@@ -49,20 +53,14 @@ class Home extends Home_Controller
                     }else{
                         redirect('Login');
                     }
-
                 endif;
-
-
             }
 
         }else{
             $this->session->sess_destroy();
             redirect("Login");
         }
-
-
 //        var_dump(password_hash("admin", PASSWORD_DEFAULT));//criptografa a sessão
-
 
     }
     /**
@@ -201,9 +199,9 @@ class Home extends Home_Controller
         $dataSms = [
             "msg"           => $codigo_verificacao . " é o seu código de verificação atos",
             "destinatario"  => "$numero_validado",
-            "date_to_send"  => date("Y-m-d H:i:s"),
-            "logado"        => true
+            "date_to_send"  => date("Y-m-d H:i:s")
         ];
+//        $sms->processesDirect($dataSms);
 
         $save = $cimongo->insert("us_usuarios",$data,TRUE);
 
@@ -307,6 +305,7 @@ class Home extends Home_Controller
             }
         }
     }
+
     public function get_storage_img(){
         $data_user      = $this->session->get_userdata();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$data_user['login']]);
@@ -333,26 +332,6 @@ class Home extends Home_Controller
         $this->response('success',compact('data'));
 
     }
-    public function get_img_profile(){
-        $data_user    = $this->session->get_userdata();
-        $get_usuario  = reset($this->Usuarios_model->getWhere(['login'=>$data_user['login']]));
 
-        if(empty($get_usuario)){
-            redirect();
-            exit();
-        }
-
-        $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
-
-        $options            = ["sort" => ["created_at" => 1]];
-        $path_profile_img   = $us_storage_img_profile->find(['codusuario'=>$get_usuario['codigo']],$options);
-        $path               = [];
-
-        foreach($path_profile_img as $row){
-            $path    =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
-
-        }
-        $this->response('success',compact('path'));
-    }
 
 }

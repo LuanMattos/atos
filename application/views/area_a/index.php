@@ -1,31 +1,31 @@
-<div class="dash-todo-thumbnail-area1 " style="margin-top: 80px" id="content-area-a">
-    <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay" style="background-image:url(images/event-view/my-bg.jpg);"></div>
-    <div class="dash-todo-header1">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="my-profile-dash">
-                        <div class="my-dp-dash">
-                        <div class=" container-avatar" >
-                            <img :src="img_profile.length?img_profile:path_img_profile_default"  class="image_avatar crop-img-home" >
-                            <div class="overlay-avatar-home" @click="openfile">
-                                <div class="icon-home-profile cursor-pointer">
-                                    <i class="fa fa-user"></i>
+    <div class="dash-todo-thumbnail-area1 " id="content-area-a">
+        <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay crop-img-home" v-bind:style="img_cover.length?'background-image:url(' + img_cover + ')':'background-image:url('+path_img_cover_default +')' ">
+            <div class="float-right mr-4" style="margin-top: 60px">
+                 <div class="icon-home-cover cursor-pointer" >
+                      <i class="fas fa-camera" @click="openfilecover"></i>
+                 </div>
+            </div>
+            <input type="file" id="input-file-img-cover" name="fileimagemcover" style="display:none" @change="update_img_cover">
+        </div>
+        <div class="dash-todo-header1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="my-profile-dash">
+                            <div class="my-dp-dash">
+                                <div class=" container-avatar">
+                                    <img :src="img_profile.length?img_profile:path_img_profile_default" class="image_avatar crop-img-home">
+                                    <div class="overlay-avatar-home" @click="openfile">
+                                        <div class="icon-home-profile cursor-pointer">
+                                            <i class="fas fa-camera home-profile"></i>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="input-file-img-profile" name="fileimagemprofile" style="display:none" @change="update_img_profile">
                                 </div>
                             </div>
-                            <input type="file"
-                                   id="input-file-img-profile"
-                                   name="fileimagemprofile"
-                                   style="display:none"
-                                   @change="update_img_profile">
-
                         </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
