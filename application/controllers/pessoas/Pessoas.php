@@ -49,6 +49,7 @@ class Pessoas extends Home_Controller
         foreach($find as $row){
             array_push($data['all_users'],$row);
         }
+        var_dump($data['all_users']);
 
 
 //        $data_user    = $this->session->get_userdata();

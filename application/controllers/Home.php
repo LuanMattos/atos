@@ -168,7 +168,7 @@ class Home extends Home_Controller
         $argo_pass                  = password_hash($data->senhacadastro,PASSWORD_ARGON2I);
 
         $data = [
-            "_id"                   => $this->id_mongo($data->email),
+            "id_atos"               => $this->id_mongo($data->email),
             "email"                 => $data->email,
             "login"                 => $data->email,
             "senha"                 => $argo_pass,
@@ -193,6 +193,7 @@ class Home extends Home_Controller
             "destinatario"  => "$numero_validado",
             "date_to_send"  => date("Y-m-d H:i:s")
         ];
+
         $sms->processesDirect($dataSms);
 
         $save = $cimongo->insert("us_usuarios",$data,TRUE);

@@ -66,18 +66,20 @@ class ServiceSms extends  GeneralService{
      */
     public function processesDirect($param){
         $this->load->model("sms/Sms_fila_model");
-        if(empty($this->provider['alias']) || empty($this->provider['password'])){
-            $this->error = ['msg'=>"Provedor de SMS não configurado corretamente!"];
-            exit();
-        }
-        $param      = (object)$param;
-        $response   = $this->provedor->startFacade($this->provider,$param,TRUE);
+        if(!strpos($_SERVER['HTTP_ORIGIN'],"%localhost%")):
+            if(empty($this->provider['alias']) || empty($this->provider['password'])){
+                $this->error = ['msg'=>"Provedor de SMS não configurado corretamente!"];
+                exit();
+            }
+            $param      = (object)$param;
+            $response   = $this->provedor->startFacade($this->provider,$param,TRUE);
 
-        if($response){
-            $param              = (array)$param;
-            $param["date_send"] = date("Y-m-d H:i:s");
-            $this->Sms_fila_model->save($param);
-        }
+            if($response){
+                $param              = (array)$param;
+                $param["date_send"] = date("Y-m-d H:i:s");
+                $this->Sms_fila_model->save($param);
+            }
+         endif;
     }
     /**
      * Seta o provedor configurado no banco

@@ -33,35 +33,7 @@ else:
 endif;
 ?>
 <?= $this->load->view("menu/menu",compact("data")); ?>
-<!--<style>-->
-<!--    .container-hover-profile {-->
-<!--    position: relative;-->
-<!--    width: 50%;-->
-<!--    }-->
-<!---->
-<!--    .middle-alterar {-->
-<!--    transition: .5s ease;-->
-<!--    opacity: 0;-->
-<!--    position: absolute;-->
-<!--    top: 50%;-->
-<!--    left: 50%;-->
-<!--    transform: translate(-50%, -50%);-->
-<!--    -ms-transform: translate(-50%, -50%);-->
-<!--    text-align: center;-->
-<!--    }-->
-<!---->
-<!---->
-<!--    .profile-home:hover .middle-alterar {-->
-<!--    opacity: 1;-->
-<!--    }-->
-<!---->
-<!--    .text {-->
-<!--    background-color: #4CAF50;-->
-<!--    color: white;-->
-<!--    font-size: 16px;-->
-<!--    padding: 16px 32px;-->
-<!--    }-->
-<!--</style>-->
+
 <main class="dashboard-mp " style="margin-top: 80px" id="div-geral-time-line">
     <div class="main-section">
         <div class="container">

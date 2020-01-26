@@ -21,8 +21,8 @@ var vue_instance_pessoas = new Vue({
             $.post(
                     pessoas.Url("data_full_user"),
                     {
-                        limit:limit,
-                        offset:offset
+                        limit   : limit,
+                        offset  : offset
                     },
                     function(json){
 

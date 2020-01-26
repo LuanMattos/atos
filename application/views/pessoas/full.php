@@ -33,8 +33,8 @@ endif;
 ?>
 <?= $this->load->view("area_a/index"); ?>
 <?= $this->load->view("menu/menu", compact("data")); ?>
+<?= $this->load->view("area_b/index",compact("data")); ?>
 <main class="dashboard-mp" id="div-geral-pessoas-full">
-    <?= $this->load->view("area_b/index",compact("data")); ?>
     <main class="Search-results">
         <div class="main-section">
             <div class="container">
@@ -50,8 +50,8 @@ endif;
             <div class="all-search-events" >
                 <div class="container" >
                     <div class="row" v-if="data_users.length > 0">
-                            <div class="col-lg-3 col-md-6"  v-for="(i,l) in data_users" v-if="i">
-                                    <div class="user-data full-width">
+                        <div class="col-lg-3 col-md-6"  v-for="(i,l) in data_users" v-if="i">
+                             <div class="user-data full-width">
                                                 <div class="user-profile">
                                                     <div class="userbg-dt dpbg-1">
                                                         <div class="usr-pic">
