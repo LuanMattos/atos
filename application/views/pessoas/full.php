@@ -55,7 +55,7 @@ endif;
                                                 <div class="user-profile">
                                                     <div class="userbg-dt dpbg-1">
                                                         <div class="usr-pic">
-                                                            <img  src="<?= URL_RAIZ() ?>application/assets/libs/images/find-peoples/user-1.jpg" alt="">
+                                                            <img   :src="i[0].img_profile.length?i[0].img_profile:default_img_prfile" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="user-main-details">

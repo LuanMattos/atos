@@ -8,8 +8,9 @@ var pessoas = {
 var vue_instance_pessoas = new Vue({
     el:"#div-geral-pessoas-full",
     data:{
-        data_users:[],
-        loading: true,
+        data_users         : [],
+        loading            : true,
+        default_img_prfile : 'application/assets/libs/images/find-peoples/user-1.jpg'
 
     },
     methods:{
@@ -17,8 +18,6 @@ var vue_instance_pessoas = new Vue({
                 var offset      = this.data_users.length;
                 var limit       = 10;
                 var vue_self    = this;
-            console.log(offset);
-
 
             $.post(
                     pessoas.Url("data_full_user"),
