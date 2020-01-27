@@ -34,15 +34,18 @@ class Pessoas extends Home_Controller
     }
 
     public function data_full_user(){
-        $datapost   = (object)$this->input->post(NULL,TRUE);
-        $find       = $this->mongodb->atos->us_usuarios->find([],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);
+        $datapost       = (object)$this->input->post(NULL,TRUE);
+        $data_user      = $this->session->get_userdata();
+//        db.us_usuarios.find({email:{$not:/admin@admin.com.br/}})
+
+        $find           = $this->mongodb->atos->us_usuarios->find(['email' => ['$ne' => $data_user['login']]],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);
+
         $data['all_users']      = [];
         foreach($find as $row){
             array_push($data['all_users'],$row);
         }
 
 
-//        $data_user    = $this->session->get_userdata();
 //        $get_usuario  = reset($this->Us_usuarios_model->getWhere(['login'=>$data_user['login']]));
 //
 //        $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
