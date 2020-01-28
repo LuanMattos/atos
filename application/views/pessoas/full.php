@@ -52,10 +52,11 @@ endif;
                     <div class="row" v-if="data_users.length > 0">
                         <div class="col-lg-3 col-md-6"  v-for="(i,l) in data_users" v-if="i">
                              <div class="user-data full-width">
-                                                <div class="user-profile">
-                                                    <div class="userbg-dt dpbg-1">
-                                                        <div class="usr-pic">
-                                                            <img   :src="i[0].img_profile.length?i[0].img_profile:default_img_prfile" alt="">
+
+                                                <div class="user-profile ">
+                                                    <div class="username-dt dpbg-1">
+                                                        <div class="my-dp-dash   cursor-pointer" >
+                                                            <img class="crop-img-home-mini" :src="i[0].img_profile.length?i[0].img_profile:default_img_prfile" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="user-main-details">
