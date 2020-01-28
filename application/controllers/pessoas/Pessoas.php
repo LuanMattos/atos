@@ -56,6 +56,28 @@ class Pessoas extends Home_Controller
         $this->response("success",compact("data","path","data_img"));
 
     }
+    public function get_img_menu_pessoas(){
+        $data_user      = $this->session->get_userdata();
+
+        $find           = $this->mongodb->atos->us_usuarios->find(['email' => ['$ne' => $data_user['login']]],['limit'=>7, 'sort'=>['_id'=>-1]]);
+
+        $data['all_users']      = [];
+
+        foreach($find as $row){
+            array_push($data['all_users'],$row);
+
+            $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
+            $path_profile_img       = $us_storage_img_profile->find(['_id'=>$row['_id']]);
+
+            foreach($path_profile_img as $row_path){
+                $row['img_profile']       =  $row_path['server_name'] . $row_path['bucket'] . '/' . $row_path['folder_user'] . '/' . $row_path['name_file'];
+
+            }
+        }
+
+        $this->response("success",compact("data"));
+
+    }
 
 
 

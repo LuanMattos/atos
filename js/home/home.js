@@ -13,6 +13,7 @@ var vm = new Vue({
     data: {
         img_profile      : '',
         img_cover        : '',
+        users_menu       : [],
         path_img_profile_default     : location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
         path_img_cover_default       : location.origin + '/application/assets/libs/images/event-view/my-bg.jpg',
         path_img_time_line_default   : location.origin + '/application/assets/libs/images/event-view/user-1.jpg',
@@ -32,6 +33,12 @@ var vm = new Vue({
         // -------------------cover-------------------
         var url       = App.url("area_a", "Area_a", "get_img");
         $.post(url, {type:"cover"}, function(response){self_vue.$data.img_cover = response.path;},'json');
+        var url       = App.url("pessoas", "Pessoas", "get_img_menu_pessoas");
+        // ------------------menu-pessoas-------------------
+        $.post(url, {}, function(response){
+            // self_vue.$data.users_menu = response.data.all_users;
+            self_vue.$data.users_menu =response.data.all_users;
+        },'json');
     },
     methods: {
         getPosts() {

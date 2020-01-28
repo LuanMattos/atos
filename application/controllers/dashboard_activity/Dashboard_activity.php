@@ -21,9 +21,7 @@ class Dashboard_activity extends SI_Controller{
                 $location            = $this->Us_location_user_model->data_location_by_id($dados['_id']);
                 $dados['address']    = $location['formatted_address_google_maps'];
                 $this->load->view("dashboard_activity/index",compact("dados"));
-
             }
-
     }
     public function update_img_profile()
     {   $this->load->library('amazon/S3');

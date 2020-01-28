@@ -9,7 +9,20 @@ var dashboard_activity = {
 };
 
 var vue_instance_dashboard_activity = new Vue({
+    el: "#div-geral-dashboard_activity",
+    data: {
+        amigos : [],
+        path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg'
 
+    },
+    mounted:function(){
+        var self_vue  = this;
+        var url       = App.url("pessoas", "Pessoas", "amigos");
+        // ------------------profile-------------------
+        // $.post(url, {type:"profile"}, function(response){self_vue.$data.amigos = response.data.all_users;},'json');
+
+
+    }
 
     });
 

@@ -74,9 +74,10 @@ endif;
                                 </div>
                             </div>
                         </div>
+                        <?= $this->load->view("pessoas/menu"); ?>
                         <div class="user-data full-width">
                             <div class="categories-left-heading">
-                                <h3>Categories</h3>
+                                <h3>Categorias</h3>
                             </div>
                             <div class="categories-items">
                                 <a class="category-item" href="#"><i class="fas fa-music"></i>Músicas</a>
@@ -90,7 +91,6 @@ endif;
                                 <a class="category-item" href="#"><i class="fas fa-ellipsis-h"></i>Outros</a>
                             </div>
                         </div>
-                        <?= $this->load->view("pessoas/index"); ?>
                     </div>
                 </div>
 
