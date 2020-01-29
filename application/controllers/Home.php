@@ -284,7 +284,7 @@ class Home extends Home_Controller
                         'bucket'         => $bucket_name,
                         'folder_user'    => $name_folder_user,
                         'name_file'      => $name_file,
-                        '_id'           => $get_usuario['_id'],
+                        'codusuario'     => $get_usuario['_id'],
                         'created_at'     => date('Y-m-d H:i:s'),
                         'updated_at'     => date('Y-m-d H:i:s'),
 
@@ -306,7 +306,7 @@ class Home extends Home_Controller
         foreach ($get_usuario as $row_usuarios) {
             $us_storage_img = $this->mongodb->atos->us_storage_img;
             $options        = ["sort" => ["created_at" => -1]];
-            $data_time_line = $us_storage_img->find(['_id' => $row_usuarios['_id']], $options);
+            $data_time_line = $us_storage_img->find(['codusuario' => $row_usuarios['_id']], $options);
             $data           = [];
 
             foreach ($data_time_line as $row) {

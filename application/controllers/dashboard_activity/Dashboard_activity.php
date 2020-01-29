@@ -27,6 +27,7 @@ class Dashboard_activity extends SI_Controller{
     {   $this->load->library('amazon/S3');
         $data_file = $_FILES['fileimagemprofile'];
 
+
         if (empty($data_file)) {
             $this->response(['error', ['msg' => 'Selecione um a imagem!']]);
         } else {
@@ -42,6 +43,7 @@ class Dashboard_activity extends SI_Controller{
             $find_usuario   = $this->mongodb->atos->us_usuarios->find(['login' => $data_user['login']]);
 
             foreach($find_usuario as $get_usuario){
+
             $search              = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
             $name_replace        = str_replace($search, "", $hash);
             $name_file           = $name_replace . md5($get_usuario['login']);
@@ -58,7 +60,7 @@ class Dashboard_activity extends SI_Controller{
                     'bucket'        => $bucket_name,
                     'folder_user'   => $name_folder_user,
                     'name_file'     => $name_file,
-                    '_id'           => $get_usuario['_id'],
+                    'codusuario'    => $get_usuario['_id'],
                     'created_at'    => date('Y-m-d H:i:s'),
                     'updated_at'    => date('Y-m-d H:i:s'),
 
