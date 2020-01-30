@@ -54,9 +54,9 @@ endif;
                              <div class="user-data full-width">
 
                                                 <div class="user-profile ">
-                                                    <div class="username-dt dpbg-1">
-                                                        <div class="my-dp-dash   cursor-pointer" >
-                                                            <img class="crop-img-home-mini" :src="i[0].img_profile.length?i[0].img_profile:default_img_prfile" alt="">
+                                                    <div class="username-dt dpbg-1 ">
+                                                        <div class="my-dp-dash crop-img-card-full-pessoas cursor-pointer " v-bind:style="i[0].img_cover.length?'background-image:url(' + i[0].img_cover + ');':''">
+                                                            <img class="crop-img-home-mini" :src="i[0].img_profile.length?i[0].img_profile:default_img_profile" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="user-main-details">
@@ -82,7 +82,7 @@ endif;
                                                     <ul class="follow-msg-dt">
                                                         <li>
                                                             <div class="msg-dt-sm">
-                                                                <button class="msg-btn1">Adicionar</button>
+                                                                <button  v-bind:class="i[0].sol?'msg-btn2 ' + ' button-add-person':'msg-btn1 ' + ' button-add-person'" @click="add_person(i[0]._id,l)" data-id-btn="$index">{{i[0].sol?'Cancelar ' :'Adicionar'}}</button>
                                                             </div>
                                                         </li>
                                                         <li>

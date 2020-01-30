@@ -31,5 +31,9 @@ class Us_usuarios_model extends CI_Model{
         }
         return $data;
     }
+    public function data_amigos_by_id_usuario($data_session = NULL){
+        $this->data_user_by_session($data_session);
+
+    }
 
 }

@@ -35,7 +35,7 @@ class Area_a extends SI_Controller
                 break;
                 case "cover":
                     $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
-                    $options                = ['$max' => "_id" ];
+                    $options                = ['sort' => ["_id"=>1]];
                     $path_return            = $us_storage_img_cover->find(['codusuario'=>$get_usuario['_id']],$options);
                     $path                   = [];
                 break;

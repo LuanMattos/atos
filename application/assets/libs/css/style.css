@@ -65,6 +65,14 @@ footer, header, hgroup, menu, nav, section {
     object-fit: cover;
     object-position: 50% 50px;
 }
+.crop-img-card-full-pessoas{
+    object-fit: cover;
+    object-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.crop-img-card-full-pessoas > img{
+    height: 100%;
+}
 .crop-img-home{
     object-fit: cover;
     object-position: 20% 20%;
@@ -156,6 +164,22 @@ footer, header, hgroup, menu, nav, section {
 .fa-camera.home-profile:hover {
     color: white;
 }
+.msg-btn2{
+    width: 100px;
+    height: 35px;
+    border: 0;
+    background: #2a3030;
+    color: #edf9f1;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.msg-btn2:hover {
+    color: white;
+    background: #3a3e3e;
+}
+
+
 /*------------top-hover--------------*/
 .image_avatar_cover {
     display: block;

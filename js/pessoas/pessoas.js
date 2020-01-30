@@ -8,10 +8,11 @@ var pessoas = {
 var vue_instance_pessoas = new Vue({
     el:"#div-geral-pessoas-full",
     data:{
-        teste_count        :"",
         data_users         : [],
         loading            : true,
-        default_img_prfile : 'application/assets/libs/images/find-peoples/user-1.jpg'
+        class_button       : "msg-btn1",
+        content_button     : "",
+        default_img_profile : location.origin  + '/application/assets/libs/images/find-peoples/user-1.jpg'
 
     },
     methods:{
@@ -34,10 +35,42 @@ var vue_instance_pessoas = new Vue({
                         }else{
                                vue_self.data_users.push(json.data.all_users);
                         }
-                    },'json')
+            },'json')
 
         },
-    }
+        add_person:function(id,l){
+            $.post(
+                App.url("pessoas","Amigos","add_person"),
+                {
+                    id:id
+                },
+                function(json){
+                    if(json === "delete"){
+                        $(".button-add-person:eq("+ l +")").addClass("msg-btn1");
+                        $(".button-add-person:eq("+ l + ")").removeClass("msg-btn2");
+                        $(".button-add-person:eq("+ l +")").html("");
+                        $(".button-add-person:eq("+ l +")").html("Adicionar");
+
+
+                        // vue_instance_pessoas.$data.class_button = "msg-btn1";
+                        // vue_instance_pessoas.$data.content_button = "Adicionar";
+                    }
+                    if(json === "add"){
+                        $(".button-add-person:eq("+ l +")").addClass("msg-btn2");
+                        $(".button-add-person:eq("+ l +")").removeClass("msg-btn1");
+                        $(".button-add-person:eq("+ l +")").html("");
+                        $(".button-add-person:eq("+ l +")").html("Cancelar");
+
+                        // vue_instance_pessoas.$data.class_button = "msg-btn2";
+                        // vue_instance_pessoas.$data.content_button = "Cancelar";
+                    }
+
+                },'json')
+
+        },
+
+    },
+
 });
 
 
