@@ -32,7 +32,7 @@ class Dashboard_activity extends SI_Controller{
             $this->response(['error', ['msg' => 'Selecione um a imagem!']]);
         } else {
 
-            if ($data_file->size > 5242880) {
+            if ($data_file->size > 9242880) {
                 $this->response('error', ['msg' => 'Tamanho de arquivo deve ser de no máximo 5MB']);
                 exit();
             }
