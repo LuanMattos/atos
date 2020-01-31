@@ -50,6 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		https://codeigniter.com/user_guide/libraries/config.html
  */
 class CI_Model {
+    private $table_index;
+    private $table;
+    private $mongodb;
+    private $mongomanager;
+    private $mongobulkwrite;
 
 	/**
 	 * Class constructor
@@ -57,7 +62,16 @@ class CI_Model {
 	 * @link	https://github.com/bcit-ci/CodeIgniter/issues/5332
 	 * @return	void
 	 */
-	public function __construct() {}
+	public function __construct() {
+        $this->config->load('database');
+        $configmongo                = (object)$this->config->item('mongodb');
+        $this->mongodb              = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
+        $this->mongomanager         = new MongoDB\Driver\Manager("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
+        $this->mongobulkwrite       =  new \MongoDB\Driver\BulkWrite();
+    }
+    public function mongocollection($param,$options = []){
+        return new MongoDB\Collection($this->mongomanager,$param['database'],$param['collection'],$options);
+    }
 
 	/**
 	 * __get magic
@@ -67,8 +81,7 @@ class CI_Model {
 	 *
 	 * @param	string	$key
 	 */
-	private $table_index;
-	private $table;
+
 	public function __get($key)
 	{
 		// Debugging note:

@@ -23,7 +23,9 @@ class Home extends Home_Controller
             $data = $this->mongodb->atos->us_usuarios->find(['login'=>$datasession['login']]);
             foreach($data as $row){
                  $address = $this->Us_location_user_model->data_location_by_id($row['_id']);
-                 if(!empty($address)):
+
+
+                if(!empty($address)):
                     $row['address'] = $address['formatted_address_google_maps'];
                  endif;
 

@@ -68,6 +68,17 @@ var vue_instance_pessoas = new Vue({
                 },'json')
 
         },
+        aceitar_pessoa:function(id,l){
+            $.post(
+                App.url("pessoas","Amigos","aceitar_pessoa"),
+                {
+                    id:id
+                },
+                function(json){
+                    console.log(json)
+
+                },'json')
+        }
 
     },
 
@@ -80,8 +91,11 @@ $.post(
         offset:0
     },
     function(json){
+        if(typeof json.data.all_users != "undefined"){
             vue_instance_pessoas.$data.data_users.push(json.data.all_users);
             vue_instance_pessoas.$data.img_profile = json.path;
+        }
+
 
     },'json')
 

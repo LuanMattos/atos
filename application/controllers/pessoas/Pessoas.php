@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pessoas extends Home_Controller
 {
+    private $data_session;
 
     public function __construct(){
         parent::__construct();
@@ -10,6 +11,7 @@ class Pessoas extends Home_Controller
         $this->load->model('storage/img/Us_storage_img_profile_model');
         $this->load->model("location/Us_location_user_model");
         $this->load->model("Us_usuarios_model");
+        $this->data_session = $this->session->get_userdata();
     }
     public function index(){
 
@@ -38,24 +40,51 @@ class Pessoas extends Home_Controller
         $data_user      = $this->session->get_userdata();
         $user_session   = $this->Us_usuarios_model->data_user_by_session($data_user);
 
-        $find           = $this->mongodb->atos->us_usuarios->find(['email' => ['$ne' => $data_user['login']]],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);
+
+        $us_amigos                      = $this->mongodb->atos->us_amigos;
+        $amizades                       = $us_amigos->find(['codusuario'=>$user_session['_id']])->toArray();
+
+        $ids = [0=>$user_session['_id']];
+        foreach($amizades as $row_amizades){
+
+            array_push($ids,$row_amizades['codamigo']);
+        }
+        $find           = $this->mongodb->atos->us_usuarios->find( ["_id"=>['$nin' => $ids]],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);
 
         $data['all_users']      = [];
-        foreach($find as $row){
+
+        foreach($find as $key_top=>$row){
+
             array_push($data['all_users'],$row);
 
-        $options                = ["sort" => ["created_at" => -1]];
-        $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
-        $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
-        $us_amigos_solicitacoes = $this->mongodb->atos->us_amigos_solicitacoes;
-        $path_profile_img       = $us_storage_img_profile->find(['codusuario'=>$row['_id']],$options);
-        $solicitacoes           = $us_amigos_solicitacoes->find(['codusuario'=>$user_session['_id'],'codamigo'=>$row['_id']]);
-        $row['img_profile']     = false;
-        $row['img_cover']       = false;
-        $row['sol']             = false;
 
-            foreach($solicitacoes as $rol_sol){
-                $row['sol']  = true;
+        $options                        = ["sort" => ["created_at" => -1]];
+        $us_storage_img_profile         = $this->mongodb->atos->us_storage_img_profile;
+        $us_storage_img_cover           = $this->mongodb->atos->us_storage_img_cover;
+        $us_amigos_solicitacoes         = $this->mongodb->atos->us_amigos_solicitacoes;
+        $path_profile_img               = $us_storage_img_profile->find(['codusuario'=>$row['_id']],$options);
+        $solicitacoes                   = $us_amigos_solicitacoes->find(['codusuario'=>$user_session['_id'],'codamigo'=>$row['_id']]);
+
+
+
+        $row['img_profile']             = false;
+        $row['img_cover']               = false;
+        $row['sol']                     = false;
+        $row['amigo_solicitante']       = false;
+
+            foreach($solicitacoes as $rol_sol) {
+                $row['sol'] = true;
+            }
+
+            //Verifica se usuário logado possui solicitação de amizade
+            $solicitacoes_usuariologado     = $us_amigos_solicitacoes->find(['codamigo'=>$user_session['_id']]);
+            $data_solicitacao               = $solicitacoes_usuariologado->toArray();
+
+            foreach($data_solicitacao as $row_solicitacao){
+                if($row['_id'] === $row_solicitacao['codusuario']){
+
+                        $row['amigo_solicitante'] = true;
+                }
             }
 
 
@@ -69,7 +98,11 @@ class Pessoas extends Home_Controller
                 $row['img_cover']       =  $row_path_cover['server_name'] . $row_path_cover['bucket'] . '/' . $row_path_cover['folder_user'] . '/' . $row_path_cover['name_file'];
 
             }
+
+
+
         }
+
 
 
 
@@ -98,6 +131,7 @@ class Pessoas extends Home_Controller
         $this->response("success",compact("data"));
 
     }
+
 
 
 

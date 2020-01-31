@@ -75,6 +75,7 @@ endif;
                                                             <div class="row ml-3">
                                                                 <div class="col-10 text-truncate" v-cloak >
                                                                         {{i[0].sobrenome}}
+
                                                                 </div>
                                                             </div>
                                                         </span>
@@ -82,13 +83,25 @@ endif;
                                                     <ul class="follow-msg-dt">
                                                         <li>
                                                             <div class="msg-dt-sm">
-                                                                <button  v-bind:class="i[0].sol?'msg-btn2 ' + ' button-add-person':'msg-btn1 ' + ' button-add-person'" @click="add_person(i[0]._id,l)" data-id-btn="$index">{{i[0].sol?'Cancelar ' :'Adicionar'}}</button>
+                                                                <template v-if="i[0].amigo_solicitante">
+                                                                    <button  class="msg-btn3 " @click="aceitar_pessoa(i[0]._id,l)" data-id-btn="$index">Confirmar </button>
+                                                                </template>
+                                                                <template v-else>
+                                                                    <button  v-bind:class="i[0].sol?'msg-btn2 ' + ' button-add-person':'msg-btn1 ' + ' button-add-person'" @click="add_person(i[0]._id,l)" data-id-btn="$index">{{i[0].sol?'Cancelar ':'Adicionar'}}</button>
+                                                                </template>
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <div class="follow-dt-sm">
-                                                                <button class="follow-btn1">Seguir</button>
-                                                            </div>
+                                                            <template v-if="i[0].amigo_solicitante">
+                                                                <div class="follow-dt-sm">
+                                                                    <button class="follow-btn1">Recusar</button>
+                                                                </div>
+                                                            </template>
+                                                            <template v-else>
+                                                                <div class="follow-dt-sm">
+                                                                    <button class="follow-btn1">Seguir</button>
+                                                                </div>
+                                                            </template>
                                                         </li>
                                                     </ul>
                                                     <div class="profile-link">

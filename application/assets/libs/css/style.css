@@ -178,6 +178,20 @@ footer, header, hgroup, menu, nav, section {
     color: white;
     background: #3a3e3e;
 }
+.msg-btn3{
+    width: 100px;
+    height: 35px;
+    border: 0;
+    background: #4284cf;
+    color: #edf9f1;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.msg-btn3:hover {
+    color: white;
+    background: #4284cf;
+}
 
 
 /*------------top-hover--------------*/
