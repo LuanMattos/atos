@@ -122,6 +122,23 @@ class CI_Model {
 
     }
     /**
+     * Responsável pela busca de dados através da condição Find
+     * Se não informada a condição Where retornal todos os dados
+     * @getWhereMongo
+     * Where = []
+     **/
+    public function getWhereMongo($where = [],$orderby = "_id",$direction =  -1,$limit = NULL,$offset = NULL){
+        $this->config->load('database');
+        $configmongo = (object)$this->config->item('mongodb');
+
+
+        $find           = $this->mongodb->{$configmongo->database}->{$this->get_table()}->find(
+            $where,['limit'=>$limit, 'skip'=>(integer)$offset,'sort'=>[$orderby=>$direction]]
+        );
+        return $find->toArray();
+
+    }
+    /**
      * Responsável pela busca de dados através da condição Where
      * Se não informada a condição Where retornal todos os dados
      * @get_hwere
@@ -167,20 +184,60 @@ class CI_Model {
 
     }
     /**
-     * Save para mongo
+     * $data            = ['amigos' => ['$each' =>  new \MongoDB\Model\BSONArray(["amigos"=>['_id'=>'dfs334drf4353']])]
+     * @type $addToSet  = Verifica se elemento já não existe se existe não insere
+     * @type $push      = Faz o push independente se elemento já existe ou não
+     * @type $pull      = Apaga de acordo com criterios
+     *  exemplo de apagar sub-documento $data = [
+    '   amigos' =>  ['_id'=>new \MongoDB\BSON\ObjectId('5e3637413c1f7f52464cc385'),'nome'=>'testea']
+    ];
+    **/
+    public function save_sub_document($data = [],$where = [], $type = '$addToSet'){
+
+        $this->config->load('database');
+        $configmongo = (object)$this->config->item('mongodb');
+
+        $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();;
+
+        $mongobulkwrite->update(
+            $where,
+            [$type => $data],
+            ['upsert' => true]
+        );
+        $this->mongomanager->executeBulkWrite($configmongo->database . '.' . $this->get_table() ,$mongobulkwrite);
+
+    }
+    /**
+     * Save para mongo um nível
     */
     public function save_mongo($data = []){
         $this->config->load('database');
         $configmongo = (object)$this->config->item('mongodb');
 
         if(array_key_exists($this->get_table_index(),$data)){
-            $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();;
+            $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();
             $mongobulkwrite->update(["_id"=>$data['_id']],['$set' => $data], ['multi' => false, 'upsert' => true]);
             $this->mongomanager->executeBulkWrite($configmongo->database . '.' . $this->get_table() ,$mongobulkwrite);
         }else{
             $cimongo = new Cimongo();
             $cimongo->insert($this->get_table(),$data,TRUE);
         }
+    }
+    /**
+     * atualiza documento
+     */
+    public function replaceDocument($data = [],$where = []){
+        $this->config->load('database');
+        $configmongo                = (object)$this->config->item('mongodb');
+
+        if(array_key_exists($this->get_table_index(),$where)){
+            return  $this->mongodb->{$configmongo->database}->{$this->get_table()}->insertOne(
+
+                $data
+            );
+
+        }
+
     }
     /**
      * Save para sql

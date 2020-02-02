@@ -14,3 +14,29 @@ db.nomecolecao.find({},{});
 db.nomecolecao.insert({nome:"luiz",idade:29})
 //deleta as row e as entidades da tabela
 db.us_storage.deleteMany({})
+
+
+
+------------------------PHP
+$push pucha o elemento independente se ja existe
+$addToSet só adiciona o elemento se o mesmo nao existir
+
+
+$mongobulkwrite->update(
+                $where,
+                ['$addToSet' => [
+                    'amigos' => ['$each' =>  new \MongoDB\Model\BSONArray(["amigos"=>['teste'=>'csdaf']])],
+                ]],
+                ['upsert' => true]
+            );
+
+
+            o operador $each é como se fosse o foreac (para adicionar mais de um valor)
+---para deletar um subdocumento
+
+$data = [
+            'amigos' =>  ['_id'=>new \MongoDB\BSON\ObjectId('5e3637413c1f7f52464cc385'),'nome'=>'testea']
+            ];
+//        $this->Us_amigos_model->save_mongo($data);
+//        exit('dsfsd');
+        $this->Us_amigos_model->save_sub_document($data,$where , $type = '$pull');

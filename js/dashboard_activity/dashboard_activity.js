@@ -17,9 +17,11 @@ var vue_instance_dashboard_activity = new Vue({
     },
     mounted:function(){
         var self_vue  = this;
-        var url       = App.url("pessoas", "Pessoas", "amigos");
+        var url       = App.url("pessoas", "Amigos", "amigos_by_usuario");
         // ------------------profile-------------------
-        // $.post(url, {type:"profile"}, function(response){self_vue.$data.amigos = response.data.all_users;},'json');
+        $.post(url, {}, function(response){
+            // self_vue.$data.amigos = response.data.all_users;
+            },'json');
 
 
     }

@@ -17,7 +17,7 @@ var vue_instance_pessoas = new Vue({
     },
     methods:{
         getPosts() {
-                var offset       = this.data_users.length + 1;
+                var offset       = this.data_users.length;
                 var limit        = 10;
                 var vue_self     = this;
 
@@ -48,6 +48,7 @@ var vue_instance_pessoas = new Vue({
                     if(json === "delete"){
                         $(".button-add-person:eq("+ l +")").addClass("msg-btn1");
                         $(".button-add-person:eq("+ l + ")").removeClass("msg-btn2");
+                        $(".button-add-person:eq("+ l + ")").removeClass("msg-btn3");
                         $(".button-add-person:eq("+ l +")").html("");
                         $(".button-add-person:eq("+ l +")").html("Adicionar");
 
@@ -58,12 +59,32 @@ var vue_instance_pessoas = new Vue({
                     if(json === "add"){
                         $(".button-add-person:eq("+ l +")").addClass("msg-btn2");
                         $(".button-add-person:eq("+ l +")").removeClass("msg-btn1");
+                        $(".button-add-person:eq("+ l +")").removeClass("msg-btn3");
                         $(".button-add-person:eq("+ l +")").html("");
                         $(".button-add-person:eq("+ l +")").html("Cancelar");
 
                         // vue_instance_pessoas.$data.class_button = "msg-btn2";
                         // vue_instance_pessoas.$data.content_button = "Cancelar";
                     }
+
+                },'json')
+
+        },delete_amizade:function(id,l){
+            $.post(
+                App.url("pessoas","Amigos","delete_amizade"),
+                {
+                    id:id
+                },
+                function(json){
+                    if(json.info){
+                        $(".amizade-buttom:eq(" + l + ")").hide();
+                        $(".btn-adicionar-amizade:eq(" + l + ")").show();
+                        $(".btn-adicionar-amizade:eq("+ l +")").addClass("msg-btn1");
+                        $(".btn-adicionar-amizade:eq("+ l + ")").removeClass("msg-btn2");
+                        $(".btn-adicionar-amizade:eq("+ l + ")").removeClass("msg-btn3");
+                        $(".btn-adicionar-amizade:eq("+ l +")").html("Adicionar");
+                    }
+
 
                 },'json')
 
@@ -75,7 +96,11 @@ var vue_instance_pessoas = new Vue({
                     id:id
                 },
                 function(json){
-                    console.log(json)
+                    if(json.info){
+                        $(".card-button-pessoa:eq(" + l + ")").find(".btn-confirmar-amizade").hide();
+                        $(".card-button-pessoa:eq(" + l + ")").find(".amizade-buttom").show();
+
+                    }
 
                 },'json')
         }

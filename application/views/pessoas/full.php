@@ -82,13 +82,21 @@ endif;
                                                     </div>
                                                     <ul class="follow-msg-dt">
                                                         <li>
-                                                            <div class="msg-dt-sm">
-                                                                <template v-if="i[0].amigo_solicitante">
-                                                                    <button  class="msg-btn3 " @click="aceitar_pessoa(i[0]._id,l)" data-id-btn="$index">Confirmar </button>
-                                                                </template>
-                                                                <template v-else>
-                                                                    <button  v-bind:class="i[0].sol?'msg-btn2 ' + ' button-add-person':'msg-btn1 ' + ' button-add-person'" @click="add_person(i[0]._id,l)" data-id-btn="$index">{{i[0].sol?'Cancelar ':'Adicionar'}}</button>
-                                                                </template>
+                                                            <div class="msg-dt-sm card-button-pessoa" >
+                                                                <div class="amizade-buttom" style="display: none">
+                                                                      <button  class=" msg-btn2  " data-toggle="dropdown">Amigos </button>
+                                                                      <div class="dropdown-menu">
+                                                                            <span class="dropdown-item cursor-pointer" @click="delete_amizade(i[0]._id,l)">Excluir amizade</span>
+                                                                       </div>
+                                                                </div>
+                                                                    <template v-if="i[0].amigo_solicitante">
+                                                                        <button  class="msg-btn3 btn-confirmar-amizade" @click="aceitar_pessoa(i[0]._id,l)" data-id-btn="$index">Confirmar </button>
+                                                                    </template>
+                                                                    <template v-else>
+                                                                        <button  class="btn-cancelar-amizade" v-bind:class="i[0].sol?'msg-btn2 ' + ' button-add-person':'msg-btn1 ' + ' button-add-person'" @click="add_person(i[0]._id,l)" data-id-btn="$index">{{i[0].sol?'Cancelar ':'Adicionar'}}</button>
+                                                                    </template>
+                                                                        <button  class="btn-adicionar-amizade" style="display: none" @click="add_person(i[0]._id,l)" data-id-btn="$index">Adicionar</button>
+
                                                             </div>
                                                         </li>
                                                         <li>
