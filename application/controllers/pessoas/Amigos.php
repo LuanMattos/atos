@@ -93,7 +93,7 @@ class Amigos extends Home_Controller
             $data = [
                 "_id" => $data_user['_id'],
                     "amigos"=>new \MongoDB\Model\BSONArray(["amigos"=>[
-                            "_id"               => $amigo['_id'],
+                            "_id"               => new \MongoDB\BSON\ObjectId($amigo['_id']),
                             "nome"              => $amigo['nome'],
                             "sobrenome"         => $amigo['sobrenome'],
                             "datanasc"          => $amigo['datanasc'],
@@ -106,11 +106,10 @@ class Amigos extends Home_Controller
             $this->Us_amigos_model->save_mongo($data);
 
         }else{
-
             $data = ['amigos' =>
                         ['$each' =>  new \MongoDB\Model\BSONArray(
                                 ["amigos"=>[
-                                    '_id'=>new \MongoDB\BSON\ObjectId($datapost->id),
+                                    '_id'=>new \MongoDB\BSON\ObjectId($amigo['_id']),
                                     "nome"              => $amigo['nome'],
                                     "sobrenome"         => $amigo['sobrenome'],
                                     "datanasc"          => $amigo['datanasc'],
@@ -133,7 +132,7 @@ class Amigos extends Home_Controller
             $data = [
                 "_id" => $datapost->id,
                 "amigos"=>new \MongoDB\Model\BSONArray(["amigos"=>[
-                        "_id"               => $data_user['_id'],
+                        "_id"               => new \MongoDB\BSON\ObjectId($data_user['_id']),
                         "nome"              => $data_user['nome'],
                         "sobrenome"         => $data_user['sobrenome'],
                         "datanasc"          => $data_user['datanasc'],
@@ -151,7 +150,7 @@ class Amigos extends Home_Controller
             $data = ['amigos' =>
                 ['$each' =>  new \MongoDB\Model\BSONArray(
                     ["amigos"=>[
-                        '_id'=>new \MongoDB\BSON\ObjectId($datapost->id),
+                        '_id'=>new \MongoDB\BSON\ObjectId($data_user['_id']),
                         "nome"              => $data_user['nome'],
                         "sobrenome"         => $data_user['sobrenome'],
                         "datanasc"          => $data_user['datanasc'],

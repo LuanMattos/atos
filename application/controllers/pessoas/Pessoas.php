@@ -41,25 +41,18 @@ class Pessoas extends Home_Controller
         $user_session   = $this->Us_usuarios_model->data_user_by_session($data_user);
         $this->load->model("usuarios/Us_amigos_model");
 
-//        $amigos = $this->Us_amigos_model->getWhereMongo(['_id'=>$user_session['_id']]);
-//        debug($amigos);
-
 
         $us_amigos                      = $this->mongodb->atos->us_amigos;
-        $coluna_codusuario              = $us_amigos->find(['codusuario'=>$user_session['_id']])->toArray();
 
 
+        $amigos             = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$user_session['_id']]));
+//        debug($amigos);
         $ids = [0=>$user_session['_id']];
 
-        foreach($coluna_codusuario as $row_amizades){
-
-            array_push($ids,$row_amizades['codamigo']);
+        foreach($amigos['amigos'] as $row_amizades){
+            array_push($ids,reset($row_amizades['_id']));
         }
-        $coluna_codamigo                  = $us_amigos->find(['codamigo'=>$user_session['_id']])->toArray();
-        foreach($coluna_codamigo as $row_amizades){
 
-                array_push($ids,$row_amizades['codusuario']);
-        }
 
         $find           = $this->mongodb->atos->us_usuarios->find( ["_id"=>['$nin' => $ids]],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);
 
@@ -107,6 +100,8 @@ class Pessoas extends Home_Controller
 
             }
         }
+
+
 
         $this->response("success",compact("data","path","data_img"));
     }
