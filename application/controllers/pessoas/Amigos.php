@@ -169,12 +169,21 @@ class Amigos extends Home_Controller
         $this->response("success");
 
     }
-    public function amigos_by_usuario(){
-        $datapost   = (object)$this->input->post(NULL,TRUE);
+    public function amigos_by_usuario_limit(){
+        $this->load->model("storage/img/Us_storage_img_profile_model");
 
-        $data_user      = $this->Us_usuarios_model->data_user_by_session($this->data_session);
-        $this->Us_amigos_model->get_amigos_by_id($data_user);
+        $data_user              = $this->Us_usuarios_model->data_user_by_session($this->data_session);
+        $data                   = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$data_user['_id']],$orderby = "_id",$direction =  -1,$limit = 6,$offset = NULL));
+        $row['img_profile']     = [];
 
+        foreach($data['amigos'] as $row){
+            $path                   = reset($this->Us_storage_img_profile_model->getWhereMongo(['_id'=>reset($row['_id'])]));
+            $row['img_profile']     =  $path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file'];
+
+
+        }
+
+        $this->response("success",compact("data"));
 
     }
 
