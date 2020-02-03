@@ -117,6 +117,7 @@ class Pessoas extends Home_Controller
 
             $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
             $path_profile_img       = $us_storage_img_profile->find(['_id'=>$row['_id']]);
+            $row['img_profile']     = "";
 
             foreach($path_profile_img as $row_path){
                 $row['img_profile']       =  $row_path['server_name'] . $row_path['bucket'] . '/' . $row_path['folder_user'] . '/' . $row_path['name_file'];
