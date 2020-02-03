@@ -63,8 +63,6 @@ var vue_instance_pessoas = new Vue({
                         $(".button-add-person:eq("+ l +")").html("");
                         $(".button-add-person:eq("+ l +")").html("Cancelar");
 
-                        // vue_instance_pessoas.$data.class_button = "msg-btn2";
-                        // vue_instance_pessoas.$data.content_button = "Cancelar";
                     }
 
                 },'json')
@@ -117,8 +115,11 @@ $.post(
     },
     function(json){
         if(typeof json.data.all_users != "undefined"){
-            vue_instance_pessoas.$data.data_users.push(json.data.all_users);
-            vue_instance_pessoas.$data.img_profile = json.path;
+            if(json.data.all_users.length){
+                vue_instance_pessoas.$data.data_users.push(json.data.all_users);
+                vue_instance_pessoas.$data.img_profile = json.path;
+            }
+
         }
 
 

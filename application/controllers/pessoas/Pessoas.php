@@ -41,18 +41,12 @@ class Pessoas extends Home_Controller
         $user_session   = $this->Us_usuarios_model->data_user_by_session($data_user);
         $this->load->model("usuarios/Us_amigos_model");
 
-
-        $us_amigos                      = $this->mongodb->atos->us_amigos;
-
-
         $amigos             = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$user_session['_id']]));
-//        debug($amigos);
         $ids = [0=>$user_session['_id']];
 
         foreach($amigos['amigos'] as $row_amizades){
             array_push($ids,reset($row_amizades['_id']));
         }
-
 
         $find           = $this->mongodb->atos->us_usuarios->find( ["_id"=>['$nin' => $ids]],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);
 
@@ -62,7 +56,7 @@ class Pessoas extends Home_Controller
 
             array_push($data['all_users'],$row);
 
-        $options                        = ["sort" => ["created_at" => -1]];
+        $options                        = ["sort" => ["created_at" => 1]];
         $us_storage_img_profile         = $this->mongodb->atos->us_storage_img_profile;
         $us_storage_img_cover           = $this->mongodb->atos->us_storage_img_cover;
         $us_amigos_solicitacoes         = $this->mongodb->atos->us_amigos_solicitacoes;
