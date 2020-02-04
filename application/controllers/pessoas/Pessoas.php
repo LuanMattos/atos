@@ -54,7 +54,6 @@ class Pessoas extends Home_Controller
         $data['all_users']      = [];
         $row['img_profile']     = false;
 
-
         foreach($find as $key_top=>$row){
 
             $find_img           =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
