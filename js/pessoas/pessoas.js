@@ -117,7 +117,6 @@ $.post(
         if(typeof json.data.all_users != "undefined"){
             if(json.data.all_users.length){
                 vue_instance_pessoas.$data.data_users.push(json.data.all_users);
-                vue_instance_pessoas.$data.img_profile = json.path;
             }
 
         }

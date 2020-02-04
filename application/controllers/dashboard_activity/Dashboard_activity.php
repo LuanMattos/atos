@@ -69,11 +69,8 @@ class Dashboard_activity extends SI_Controller{
                 $this->response('success', compact('path'));
             }else{
                 $this->response('error',['msg'=>'Erro ao baixar a imagem para o servidor!']);
-          }
         }
       }
     }
-
-
-
+  }
 }
