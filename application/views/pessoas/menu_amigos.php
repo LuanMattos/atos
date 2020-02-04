@@ -1,6 +1,6 @@
 <div class="user-data full-width" >
     <div class="categories-left-heading">
-        <h6><a href="<?= site_url("pessoas/Pessoas/index")?>">Amigos</a></h6>
+        <h6><a href="<?= site_url("pessoas/Amigos/index")?>">Amigos</a></h6>
     </div>
     <template v-for="i in amigos">
         <div class="sugguest-user">

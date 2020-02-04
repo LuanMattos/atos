@@ -19,6 +19,16 @@ class Amigos extends Home_Controller
         }
 
     }
+    public function index(){
+        $dados = $this->data_user();
+        $this->load->view('pessoas/full_amigos',compact("dados"));
+    }
+    public function full_amigos(){
+        $user_logado    = $this->data_user();
+        $data           = $this->Us_amigos_model->data_full_amigos($user_logado);
+
+        $this->response('success',compact("data"));
+    }
     /**
      * Verifica se usuario já adicinou amigo
      * @param $param
@@ -68,6 +78,7 @@ class Amigos extends Home_Controller
     }
     public function delete_amizade(){
         $datapost       = (object)$this->input->post(NULL,TRUE);
+        debug($datapost);
         $data_s         = $this->session->get_userdata();
 
         $data_user      = $this->Us_usuarios_model->data_user_by_session($data_s);

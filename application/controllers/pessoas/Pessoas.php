@@ -108,16 +108,12 @@ class Pessoas extends Home_Controller
         $data['all_users']      = [];
 
         foreach($find as $row){
+
+            $row['img_profile'] = "";
+            $find_img           =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+            $row['img_profile'] =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
             array_push($data['all_users'],$row);
 
-            $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
-            $path_profile_img       = $us_storage_img_profile->find(['_id'=>$row['_id']]);
-            $row['img_profile']     = "";
-
-            foreach($path_profile_img as $row_path){
-                $row['img_profile']       =  $row_path['server_name'] . $row_path['bucket'] . '/' . $row_path['folder_user'] . '/' . $row_path['name_file'];
-
-            }
         }
 
         $this->response("success",compact("data"));
