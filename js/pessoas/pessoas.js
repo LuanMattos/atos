@@ -12,7 +12,7 @@ var vue_instance_pessoas = new Vue({
         loading            : true,
         class_button       : "msg-btn1",
         content_button     : "",
-        default_img_profile : location.origin  + '/application/assets/libs/images/find-peoples/user-1.jpg'
+        default_img_profile : location.origin  + '/application/assets/libs/images/find-peoples/user-1.jpg',
 
     },
     methods:{
@@ -52,9 +52,6 @@ var vue_instance_pessoas = new Vue({
                         $(".button-add-person:eq("+ l +")").html("");
                         $(".button-add-person:eq("+ l +")").html("Adicionar");
 
-
-                        // vue_instance_pessoas.$data.class_button = "msg-btn1";
-                        // vue_instance_pessoas.$data.content_button = "Adicionar";
                     }
                     if(json === "add"){
                         $(".button-add-person:eq("+ l +")").addClass("msg-btn2");

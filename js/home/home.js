@@ -20,7 +20,8 @@ var vm = new Vue({
         posts            : [0],
         loading          : false,
         error_input_file : false,
-        error_text_area  : false
+        error_text_area  : false,
+
     },
     created() {
         this.getPosts()
@@ -91,7 +92,27 @@ var vm = new Vue({
 
             $('#input-file-postagem').val("");
             $('#text-area-postagem').val("");
+            },
+        add_person:function(id,l){
+            $.post(
+                App.url("pessoas","Amigos","add_person"),
+                {
+                    id:id
+                },
+                function(json){
+
+                },'json')
+
+        },
+        verify_click:function(event,element){
+            if(event === 'cancelar'){
+                $('.btn-enviar-solicitacao:eq('+ element + ')').addClass('hide');
+                $('.div-confirmada-solicitacao:eq(' + element + ')').removeClass('hide');
+            }else if(event ==='enviar'){
+                $('.btn-enviar-solicitacao:eq(' + element + ')').removeClass('hide');
+                $('.div-confirmada-solicitacao:eq('+element+')').addClass('hide');
             }
+        }
         }
     }
 );

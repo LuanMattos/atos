@@ -10,7 +10,9 @@ class Pessoas extends Home_Controller
         $this->output->enable_profiler(FALSE);
         $this->load->model('storage/img/Us_storage_img_profile_model');
         $this->load->model("location/Us_location_user_model");
+        $this->load->model("usuarios/Us_amigos_model");
         $this->load->model("Us_usuarios_model");
+        $this->load->model("usuarios/Us_amigos_solicitacoes_model");
         $this->data_session = $this->session->get_userdata();
     }
     public function index(){
@@ -39,9 +41,7 @@ class Pessoas extends Home_Controller
         $datapost       = (object)$this->input->post(NULL,TRUE);
         $data_user      = $this->session->get_userdata();
         $user_session   = $this->Us_usuarios_model->data_user_by_session($data_user);
-        $this->load->model("usuarios/Us_amigos_model");
-
-        $amigos             = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$user_session['_id']]));
+        $amigos         = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$user_session['_id']]));
         $ids = [0=>$user_session['_id']];
 
         foreach($amigos['amigos'] as $row_amizades){
@@ -101,13 +101,27 @@ class Pessoas extends Home_Controller
         $this->response("success",compact("data","path","data_img"));
     }
     public function get_img_menu_pessoas(){
-        $data_user      = $this->session->get_userdata();
-
-        $find           = $this->mongodb->atos->us_usuarios->find(['email' => ['$ne' => $data_user['login']]],['limit'=>7, 'sort'=>['_id'=>-1]]);
+        $usuario_logado = $this->data_user();
+        $ids            = [0=>$usuario_logado['_id']];
 
         $data['all_users']      = [];
+        $amigos                 = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$usuario_logado['_id']]));
 
-        foreach($find as $row){
+        foreach($amigos['amigos'] as $row){
+
+            array_push($ids,reset($row['_id']));
+        }
+
+        $amigos_nao = $this->mongodb->atos->us_usuarios->find( ["_id"=>['$nin' => $ids]],['limit'=>10, 'sort'=>['_id'=>-1]]);
+
+        $row['sol'] = false;
+
+        foreach($amigos_nao as $row){
+            //se usuario logado enviou solicitacao
+            $solicitacoes = $this->Us_amigos_solicitacoes_model->getWhereMongo(['codusuario'=>$usuario_logado['_id'],'codamigo'=>$row['_id']]);
+            if(count($solicitacoes)){
+                $row['sol'] = true;
+            }
 
             $row['img_profile'] = "";
             $find_img           =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
@@ -115,6 +129,7 @@ class Pessoas extends Home_Controller
             array_push($data['all_users'],$row);
 
         }
+
 
         $this->response("success",compact("data"));
 
