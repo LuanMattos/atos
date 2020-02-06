@@ -100,19 +100,19 @@ var vm = new Vue({
                     id:id
                 },
                 function(json){
+                    if(json === "delete"){
+                        $(".div-confirmada-solicitacao:eq(" + l + ")").hide();
+                        $(".btn-enviar-solicitacao:eq(" + l + ")").show();
+
+                    }
+                    if(json === "add"){
+                        $(".div-confirmada-solicitacao:eq(" + l + ")").show();
+                        $(".btn-enviar-solicitacao:eq(" + l + ")").hide();
+                    }
 
                 },'json')
 
         },
-        verify_click:function(event,element){
-            if(event === 'cancelar'){
-                $('.btn-enviar-solicitacao:eq('+ element + ')').addClass('hide');
-                $('.div-confirmada-solicitacao:eq(' + element + ')').removeClass('hide');
-            }else if(event ==='enviar'){
-                $('.btn-enviar-solicitacao:eq(' + element + ')').removeClass('hide');
-                $('.div-confirmada-solicitacao:eq('+element+')').addClass('hide');
-            }
-        }
         }
     }
 );
