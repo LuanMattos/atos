@@ -78,7 +78,6 @@ class Amigos extends Home_Controller
     }
     public function delete_amizade(){
         $datapost       = (object)$this->input->post(NULL,TRUE);
-        debug($datapost);
         $data_s         = $this->session->get_userdata();
 
         $data_user      = $this->Us_usuarios_model->data_user_by_session($data_s);
@@ -196,6 +195,20 @@ class Amigos extends Home_Controller
 
         $this->response("success",compact("data"));
 
+    }
+    public function solicitacoes_by_usuario_limit(){
+        $data_user          = $this->data_user();
+        $find_sol           = $this->Us_amigos_solicitacoes_model->getWhereMongo(['codamigo'=>$data_user['_id']]);
+        $data               = [];
+        $row['img_profile'] = [];
+        foreach($find_sol as $row){
+            $data_amigos                   = reset($this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']]));
+            $path                          = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$data_amigos['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+            $data_amigos['img_profile']    = $path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file'];
+
+            array_push($data,$data_amigos);
+        }
+        $this->response('sucess',compact('data'));
     }
 
 }

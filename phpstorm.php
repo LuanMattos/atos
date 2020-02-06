@@ -89,6 +89,7 @@ class CI_Controller {
 }
 
 /**
+ * @property getWhereMongo        $getWhereMongo                       get where para mongo
  * @property CI_Benchmark        $benchmark                           This class enables you to mark points and calculate the time difference between them. Memory consumption can also be displayed.
  * @property CI_Calendar         $calendar                            This class enables the creation of calendars
  * @property CI_Cache            $cache                               Caching Class

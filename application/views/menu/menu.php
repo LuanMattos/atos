@@ -38,42 +38,20 @@
                                     <i class="fas fa-user-plus"></i>
                                 </a>
                                 <div class="dropdown-menu user-request-dropdown dropdown-menu-right">
-                                    <div class="user-request-list">
-                                        <div class="request-users">
-                                            <div class="user-request-dt">
-                                                <a href="#">
-                                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/user-dp-1.jpg"
-                                                         alt="">
-                                                </a>
-                                                <a href="#" class="user-title">Jassica William</a>
+                                    <template v-for="i in amigos">
+
+                                        <div class="user-request-list">
+                                            <div class="request-users">
+                                                <div class="user-request-dt">
+                                                    <a href="#">
+                                                        <img class='crop-img-home-mini' :src="i.img_profile.length?i.img_profile:path_img_time_line_default" alt="">
+                                                    </a>
+                                                    <a href="#" class="user-title">{{i.nome}}</a>
+                                                </div>
+                                                <button class="accept-btn">Aceitar</button>
                                             </div>
-                                            <button class="accept-btn">Aceitar</button>
                                         </div>
-                                    </div>
-                                    <div class="user-request-list">
-                                        <div class="request-users">
-                                            <div class="user-request-dt">
-                                                <a href="#">
-                                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/user-dp-1.jpg"
-                                                         alt="">
-                                                </a>
-                                                <a href="#" class="user-title">Rock Smith</a>
-                                            </div>
-                                            <button class="accept-btn">Aceitar</button>
-                                        </div>
-                                    </div>
-                                    <div class="user-request-list">
-                                        <div class="request-users">
-                                            <div class="user-request-dt">
-                                                <a href="#">
-                                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/user-dp-1.jpg"
-                                                         alt="">
-                                                </a>
-                                                <a href="#" class="user-title">Joy Doe</a>
-                                            </div>
-                                            <button class="accept-btn">Aceitar</button>
-                                        </div>
-                                    </div>
+                                    </template>
                                     <div class="user-request-list">
                                         <a href="<?= site_url('my_dashboard_all_requests/My_dashboard_all_requests/index') ?>"
                                            class="view-all">Visualizar todos convites</a>

@@ -22,9 +22,7 @@ var vue_instance_dashboard_activity = new Vue({
         $.post(url, {}, function(response){
             self_vue.$data.amigos = response.data.amigos;
             },'json');
-
-
+        }
     }
-
-    });
+);
 

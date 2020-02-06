@@ -255,7 +255,7 @@ class Home extends Home_Controller
         if(empty($data_file)) {
             $this->response(['error',['msg'=>'Selecione um a imagem!']]);
         }else{
-            if ($data_file->size > 5242880) {
+            if ($data_file->size > 55242880) {
                 $this->response('error', ['msg' => 'Tamanho de arquivo deve ser de no máximo 5MB']);
                 exit();
             }
