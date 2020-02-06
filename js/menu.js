@@ -22,8 +22,22 @@ var vue_instance_menu = new Vue({
         $.post(url, {}, function(response){
             self_vue.$data.amigos = response.data;
         },'json');
+    },
+    methods:{
+        aceitar_pessoa:function(id,l){
+            $.post(
+                App.url("pessoas","Amigos","aceitar_pessoa"),
+                {
+                    id:id
+                },
+                function(json){
+                    if(json.info){
+                        $(".card-list-solicitacao:eq("+l+")").remove();
 
+                    }
 
+                },'json')
+        }
     }
 })
 

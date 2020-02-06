@@ -70,7 +70,7 @@ var vue_instance_amigos = new Vue({
 
         },
         delete_amizade:function(id,l){
-            console.log(id);
+
             $.post(
                 App.url("pessoas","Amigos","delete_amizade"),
                 {

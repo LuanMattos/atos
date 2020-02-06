@@ -86,7 +86,7 @@ endif;
                                                                 <div class="amizade-buttom">
                                                                       <button  class=" msg-btn2  " data-toggle="dropdown">Amigos </button>
                                                                       <div class="dropdown-menu">
-                                                                            <span class="dropdown-item cursor-pointer" @click="delete_amizade(i,l)">Excluir amizade</span>
+                                                                            <span class="dropdown-item cursor-pointer" @click="delete_amizade(i[0]._id,l)">Excluir amizade</span>
                                                                        </div>
                                                                 </div>
 

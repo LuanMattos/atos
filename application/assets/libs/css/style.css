@@ -207,6 +207,36 @@ footer, header, hgroup, menu, nav, section {
     text-align: center;
     color: #4387d3;
 }
+.content-sem-solicitacoes{
+    font-size: 14px;
+    font-weight: 400;
+    padding: 15px 20px;
+    text-align: center;
+    background:#2a3030 ;
+    border: 0;
+    border-radius: 0px;
+    width: 100%;
+    float: left;
+    color: white;
+}
+.content-sem-solicitacoes:hover{
+    color: #fffafe !important;
+    background: #3a3e3e! important
+}
+.div-sem-solicitacoes{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    padding: 0px;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border-bottom: 1px solid #e1e1e1;
+    float: left;
+    color:white;
+}
 
 
 

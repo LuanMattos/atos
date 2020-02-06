@@ -78,13 +78,17 @@ class Amigos extends Home_Controller
     }
     public function delete_amizade(){
         $datapost       = (object)$this->input->post(NULL,TRUE);
-        $data_s         = $this->session->get_userdata();
+        if(isset($datapost->id[0])){
+            $datapost->id = $datapost->id[0];
+        }
 
-        $data_user      = $this->Us_usuarios_model->data_user_by_session($data_s);
+        $data_user = $this->data_user();
+        $data      = ['amigos' =>  ['_id'=>new \MongoDB\BSON\ObjectId($datapost->id)]];
 
-        $mongobulkwrite         = $this->mongobulkwrite;
-        $mongobulkwrite->delete(["codusuario"=>$data_user['_id'],'codamigo'=>$datapost->id], ['limit' => 1]);
-        $this->mongomanager->executeBulkWrite('atos.us_amigos',$mongobulkwrite);
+        $this->Us_amigos_model->save_sub_document($data,['_id'=>$data_user['_id']],  '$pull');
+
+
+
         $this->response("success");
 
     }
