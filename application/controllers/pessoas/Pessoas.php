@@ -96,8 +96,6 @@ class Pessoas extends Home_Controller
             }
         }
 
-
-
         $this->response("success",compact("data","path","data_img"));
     }
     public function get_img_menu_pessoas(){

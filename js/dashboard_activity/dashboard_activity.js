@@ -11,7 +11,8 @@ var dashboard_activity = {
 var vue_instance_dashboard_activity = new Vue({
     el: "#div-geral-dashboard_activity",
     data: {
-        amigos : [],
+        posts   : [],
+        amigos  : [],
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg'
 
     },
@@ -22,6 +23,12 @@ var vue_instance_dashboard_activity = new Vue({
         $.post(url, {}, function(response){
             self_vue.$data.amigos = response.data.amigos;
             },'json');
+        $.post(
+            App.url("","Home","get_storage_img"),
+            {},
+            function(json){
+                vue_instance_dashboard_activity.$data.posts = json.data
+            },'json')
         }
     }
 );

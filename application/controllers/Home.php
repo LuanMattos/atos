@@ -9,6 +9,7 @@ class Home extends Home_Controller
     public function __construct(){
         parent::__construct();
         $this->load->model("Us_usuarios_model");
+        $this->load->model("storage/img/Us_storage_img_profile_model");
         $this->load->model("location/Us_location_user_model");
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
@@ -255,7 +256,7 @@ class Home extends Home_Controller
         if(empty($data_file)) {
             $this->response(['error',['msg'=>'Selecione um a imagem!']]);
         }else{
-            if ($data_file->size > 55242880) {
+            if ($data_file->size > 10000000) {
                 $this->response('error', ['msg' => 'Tamanho de arquivo deve ser de no máximo 5MB']);
                 exit();
             }
@@ -290,6 +291,7 @@ class Home extends Home_Controller
                         'created_at'     => date('Y-m-d H:i:s'),
                         'updated_at'     => date('Y-m-d H:i:s'),
 
+
                     ]);
                     $path = 'https://s3.amazonaws.com/' . $bucket_name . '/' . $name_folder_user . '/' . $name_file;
                     $this->response('success', compact('path'));
@@ -300,24 +302,67 @@ class Home extends Home_Controller
             }
         }
     }
-
+    /**
+     * Postagens apenas do usuário logado (Própria timeline)
+    **/
     public function get_storage_img(){
+        $user_logado    = $this->data_user();
+        $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
+
+        foreach ($get_usuario as $row_usuarios) {
+            $us_storage_img     = $this->mongodb->atos->us_storage_img;
+            $options            = ["sort" => ["created_at" => -1]];
+            $data_time_line     = $us_storage_img->find(['codusuario' => $row_usuarios['_id']], $options);
+            $data               = [];
+            $row['img_profile'] = false;
+
+            foreach ($data_time_line as $row) {
+                $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$user_logado['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+                $imgprofile =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
+                $url        = $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+                $text       = $row['text_timeline'];
+                $name_user  = $row_usuarios['nome'];
+
+                $data_row = [
+                    'path'        => $url,
+                    'text'        => $text,
+                    'nome'        => $name_user,
+                    'img_profile' => $imgprofile
+                ];
+                array_push($data, $data_row);
+
+            }
+        }
+
+        $this->response('success',compact('data'));
+
+    }
+    /**
+     * Postagens do usuário logado e seus amigos(se tiver)
+     **/
+    public function get_postagens(){
         $data_user      = $this->session->get_userdata();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$data_user['login']]);
 
         foreach ($get_usuario as $row_usuarios) {
-            $us_storage_img = $this->mongodb->atos->us_storage_img;
-            $options        = ["sort" => ["created_at" => -1]];
-            $data_time_line = $us_storage_img->find(['codusuario' => $row_usuarios['_id']], $options);
-            $data           = [];
+            $us_storage_img     = $this->mongodb->atos->us_storage_img;
+            $options            = ["sort" => ["created_at" => -1]];
+            $data_time_line     = $us_storage_img->find(['codusuario' => $row_usuarios['_id']], $options);
+            $data               = [];
+            $row['img_profile'] = false;
 
             foreach ($data_time_line as $row) {
-                $url    = $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
-                $text   = $row['text_timeline'];
+                $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+                $imgprofile =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
+                $url        = $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+                $text       = $row['text_timeline'];
+                $name_user  = $row_usuarios['nome'];
 
                 $data_row = [
-                    'path' => $url,
-                    'text' => $text
+                    'path'        => $url,
+                    'text'        => $text,
+                    'nome'        => $name_user,
+                    'img_profile' => $imgprofile
                 ];
                 array_push($data, $data_row);
 

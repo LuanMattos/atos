@@ -39,6 +39,8 @@ endif;
         <?= $this->load->view("area_b/index"); ?>
         <?= $this->load->view("area_c_dashboard_activity/index"); ?>
     </div>
+
+
 </main>
 <!-- Body End -->
 <!-- Footer Start -->

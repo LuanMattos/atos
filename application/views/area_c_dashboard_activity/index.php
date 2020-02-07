@@ -28,6 +28,7 @@
                 <?= $this->load->view("pessoas/menu_amigos"); ?>
             </div>
             <?= $this->load->view("area_c_dashboard_activity/timeline"); ?>
+
         </div>
     </div>
 </div>
