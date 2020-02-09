@@ -1,9 +1,33 @@
+<?php if(isset($data['externo'])): ?>
+    <div class="dash-todo-thumbnail-area1 " id="content-area-a">
+        <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay crop-img-home" style="background-image:url('<?= set_val($data['img_cover']) ?>')">
+            <div class="float-right mr-4" style="margin-top: 60px">
+            </div>
+        </div>
+        <div class="dash-todo-header1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="my-profile-dash">
+                            <div class="my-dp-dash">
+                                <div class=" container-avatar">
+                                    <img src="<?= set_val($data['img_profile']) ?>" class="image_avatar crop-img-home">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
     <div class="dash-todo-thumbnail-area1 " id="content-area-a">
         <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay crop-img-home" v-bind:style="img_cover.length?'background-image:url(' + img_cover + ')':'background-image:url('+path_img_cover_default +')' ">
             <div class="float-right mr-4" style="margin-top: 60px">
-                 <div class="icon-home-cover cursor-pointer" >
-                      <i class="fas fa-camera" @click="openfilecover"></i>
-                 </div>
+                <div class="icon-home-cover cursor-pointer" >
+                    <i class="fas fa-camera" @click="openfilecover"></i>
+                </div>
             </div>
             <input type="file" id="input-file-img-cover" name="fileimagemcover" style="display:none" @change="update_img_cover">
         </div>
@@ -29,3 +53,4 @@
             </div>
         </div>
     </div>
+<?php endif; ?>

@@ -5,8 +5,9 @@ class Dashboard_activity extends SI_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Us_usuarios_model');
+        $this->load->model('storage/img/Us_storage_img_profile_model');
         $this->load->model('location/Us_location_user_model');
+        $this->load->model('Us_usuarios_model');
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
@@ -14,14 +15,40 @@ class Dashboard_activity extends SI_Controller{
 
     }
     public function index(){
+        $id     = $this->input->post("id",TRUE);
+        if(!$id){
+            redirect('dashboard_activity/Dashboard_activity/local');
+        }else{
+            $this->response('success',compact("id"));
+        }
+    }
+    public function local(){
         $data_s = $this->session->get_userdata();
 
-            if(!empty($data_s)){
-                $dados               = $this->Us_usuarios_model->data_user_by_session($data_s);
-                $location            = $this->Us_location_user_model->data_location_by_id($dados['_id']);
-                $dados['address']    = $location['formatted_address_google_maps'];
-                $this->load->view("dashboard_activity/index",compact("dados"));
-            }
+        if(!empty($data_s)){
+            $dados            = $this->Us_usuarios_model->data_user_by_session($data_s);
+            $location         = $this->Us_location_user_model->data_location_by_id($dados['_id']);
+            $dados['address'] = $location['formatted_address_google_maps'];
+        }
+
+        $this->load->view("dashboard_activity/index",compact("dados"));
+    }
+    public function externo($id = null){
+        $dados                  = reset($this->Us_usuarios_model->getWhereMongo(['_id' => $id]));
+        $dados['externo']       = true;
+        $find_img               =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$dados['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+        $dados['img_profile']   =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
+
+        $options                = ["sort" => ["created_at" => 1]];
+        $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
+        $path_cover_img         = $us_storage_img_cover->find(['codusuario'=>$dados['_id']],$options);
+
+        foreach($path_cover_img as $row_path_cover){
+            $dados['img_cover']       =  $row_path_cover['server_name'] . $row_path_cover['bucket'] . '/' . $row_path_cover['folder_user'] . '/' . $row_path_cover['name_file'];
+        }
+
+
+        $this->load->view("dashboard_activity/index",compact("dados"));
     }
     public function update_img_profile()
     {   $this->load->library('amazon/S3');

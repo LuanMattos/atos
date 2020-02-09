@@ -27,6 +27,7 @@ var vm = new Vue({
         this.getPosts()
     },
     mounted:function(){
+
         var self_vue  = this;
         var url       = App.url("area_a", "Area_a", "get_img");
         // ------------------profile-------------------
@@ -112,7 +113,18 @@ var vm = new Vue({
 
                 },'json')
 
-        },
+            }, redirect_user:function (id) {
+                var url = App.url("dashboard_activity","Dashboard_activity","index");
+                $.post(
+                    url,
+                    {
+                        id:id
+                    },
+                    function(json){
+                        window.location.href = App.url("dashboard_activity","Dashboard_activity","externo/" + id);
+                    },'json')
+
+            }
         }
     }
 );

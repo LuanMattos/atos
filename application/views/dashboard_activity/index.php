@@ -32,7 +32,7 @@ endif;
 ?>
 <main class="dashboard-mp">
 
-    <?= $this->load->view("area_a/index"); ?>
+    <?= $this->load->view("area_a/index",compact("data")); ?>
 
     <?= $this->load->view("menu/menu",compact("data")); ?>
     <div id="div-geral-dashboard_activity">
