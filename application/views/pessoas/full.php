@@ -113,7 +113,7 @@ endif;
                                                         </li>
                                                     </ul>
                                                     <div class="profile-link">
-                                                        <a href="user_dashboard_activity.html">Perfil</a>
+                                                        <a href="javascript:void(0)" @click="redirect_user(i[0]._id)">Perfil</a>
                                                     </div>
                                                 </div>
                                     </div>

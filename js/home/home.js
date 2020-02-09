@@ -113,7 +113,8 @@ var vm = new Vue({
 
                 },'json')
 
-            }, redirect_user:function (id) {
+            },
+        redirect_user:function (id) {
                 var url = App.url("dashboard_activity","Dashboard_activity","index");
                 $.post(
                     url,

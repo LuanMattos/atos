@@ -98,6 +98,18 @@ var vue_instance_pessoas = new Vue({
                     }
 
                 },'json')
+        },
+        redirect_user:function (id) {
+            var url = App.url("dashboard_activity","Dashboard_activity","index");
+            $.post(
+                url,
+                {
+                    id:id
+                },
+                function(json){
+                    window.location.href = App.url("dashboard_activity","Dashboard_activity","externo/" + id);
+                },'json')
+
         }
 
     },
