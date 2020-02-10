@@ -8,7 +8,7 @@
                 <span class="cursor-pointer" @click="redirect_user(i._id)">
                     <img class="crop-img-home-mini" :src="i.img_profile.length?i.img_profile:path_img_time_line_default" alt="">
                 </span>
-                <a href="script:void(0)" @click="redirect_user(i._id)"><h4>{{i.nome}}</h4></a>
+                <a href="javascript:void(0)" @click="redirect_user(i._id)"><h4>{{i.nome}}</h4></a>
             </div>
             <button  :class="i.sol?'hide':''" class="request-btn btn-enviar-solicitacao" @click="add_person(i._id,l); "><i class="fas fa-user-plus" ></i></button>
             <div  :class="!i.sol?'hide':''  " class="dropdown div-confirmada-solicitacao">
