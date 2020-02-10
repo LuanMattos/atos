@@ -303,10 +303,10 @@ class Home extends Home_Controller
         }
     }
     /**
-     * Postagens apenas do usuário logado (Própria timeline)
+     * Postagens apenas do usuário logado (Própria timeline) ou quando visita usuário
     **/
     public function get_storage_img(){
-        $id_external = $this->input->post("id",true);
+        $id_external    = $this->input->post("id",true);
         $user_logado    = $this->data_user();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
 
@@ -322,7 +322,7 @@ class Home extends Home_Controller
             $row['img_profile'] = false;
 
             foreach ($data_time_line as $row) {
-                $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$user_logado['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+                $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row_usuarios['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
                 $imgprofile =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
                 $url        = $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
                 $text       = $row['text_timeline'];
