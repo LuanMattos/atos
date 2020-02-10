@@ -54,6 +54,10 @@ class Area_a extends SI_Controller
             $this->response('success',compact('path'));
         endforeach;
     }
+    public function data_user_local(){
+        $data = $this->data_user();
+        $this->response('success',compact("data"));
+    }
     public function update_img_cover()
     {   $this->load->library('amazon/S3');
         $data_file = $_FILES['fileimagemcover'];

@@ -182,7 +182,7 @@
                                data-toggle="dropdown">
                                 <div class="user-dp">
                                     <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_time_line_default" alt=""></div>
-                                <span><?= isset($data['nome']) ? $data['nome'] : ""; ?> </span>
+                                <span>{{data_user_local.nome}} </span>
                                 <i class="fas fa-angle-down"></i>
                             </a>
                             <div class="dropdown-menu account-dropdown dropdown-menu-right">

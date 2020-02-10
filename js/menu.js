@@ -8,6 +8,7 @@ var vue_instance_menu = new Vue({
     el: "#content-menu",
     data: {
         img_profile : '',
+        data_user_local : "",
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
         amigos      : []
 
@@ -19,9 +20,12 @@ var vue_instance_menu = new Vue({
         $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
         var url       = App.url("pessoas", "Amigos", "solicitacoes_by_usuario_limit");
         // ------------------profile-------------------
+        $.post(url, {}, function(response){self_vue.$data.amigos = response.data;},'json');
+        var url       = App.url("area_a", "Area_a", "data_user_local");
+        // ------------------profile-------------------
         $.post(url, {}, function(response){
-            self_vue.$data.amigos = response.data;
-        },'json');
+            self_vue.$data.data_user_local = response.data;
+            },'json');
     },
     methods:{
         aceitar_pessoa:function(id,l){
