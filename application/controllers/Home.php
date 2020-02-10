@@ -306,8 +306,13 @@ class Home extends Home_Controller
      * Postagens apenas do usuário logado (Própria timeline)
     **/
     public function get_storage_img(){
+        $id_external = $this->input->post("id",true);
         $user_logado    = $this->data_user();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
+
+        if(!empty($id_external)){
+            $get_usuario    = $this->mongodb->atos->us_usuarios->find(['_id'=>$id_external]);
+        }
 
         foreach ($get_usuario as $row_usuarios) {
             $us_storage_img     = $this->mongodb->atos->us_storage_img;

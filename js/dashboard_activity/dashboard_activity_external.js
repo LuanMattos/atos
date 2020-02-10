@@ -1,14 +1,14 @@
 if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
 }
-var dashboard_activity = {
+var dashboard_activity_external = {
     Url: function (metodo, params) {
         return App.url("dashboard_activity", "Dashboard_activity", metodo, params);
     }
 
 };
 
-var vue_instance_dashboard_activity = new Vue({
+var vue_instance_dashboard_activity_external = new Vue({
     el: "#div-geral-dashboard_activity",
     data: {
         posts   : [],
@@ -17,6 +17,8 @@ var vue_instance_dashboard_activity = new Vue({
 
     },
     mounted:function(){
+        var id = window.location.href.split(App.url("dashboard_activity", "Dashboard_activity", "external/"))[1];
+
         var self_vue  = this;
         var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
         // ------------------profile-------------------
@@ -25,9 +27,11 @@ var vue_instance_dashboard_activity = new Vue({
             },'json');
         $.post(
             App.url("","Home","get_storage_img"),
-            {},
+            {
+                id:id
+            },
             function(json){
-                vue_instance_dashboard_activity.$data.posts = json.data
+                vue_instance_dashboard_activity_external.$data.posts = json.data
             },'json')
         }
     }

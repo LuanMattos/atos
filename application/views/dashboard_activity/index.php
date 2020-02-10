@@ -60,7 +60,12 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 <script src="<?= URL_RAIZ() ?>js/menu.js"></script>
-<script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity.js"></script>
+<?php if(isset($dados['externo'])): ?>
+    <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_external.js"></script>
+<?php else: ?>
+    <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_local.js"></script>
+<?php endif ?>
+
 
 
 

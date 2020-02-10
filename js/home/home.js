@@ -122,7 +122,7 @@ var vm = new Vue({
                         id:id
                     },
                     function(json){
-                        window.location.href = App.url("dashboard_activity","Dashboard_activity","externo/" + id);
+                        window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + id);
                     },'json')
 
             }
