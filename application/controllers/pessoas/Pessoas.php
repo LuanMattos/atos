@@ -47,6 +47,7 @@ class Pessoas extends Home_Controller
         foreach($amigos['amigos'] as $row_amizades){
             array_push($ids,reset($row_amizades['_id']));
 
+
         }
 
         $find           = $this->mongodb->atos->us_usuarios->find( ["_id"=>['$nin' => $ids]],['limit'=>10, 'skip'=>(integer)$datapost->offset,'sort'=>['_id'=>-1]]);

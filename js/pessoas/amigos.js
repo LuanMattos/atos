@@ -4,7 +4,6 @@ var amigos = {
     }
 
 }
-
 var vue_instance_amigos = new Vue({
     el:"#div-geral-amigos-full",
     data:{
@@ -17,25 +16,25 @@ var vue_instance_amigos = new Vue({
     },
     methods:{
         getPosts() {
-        //         var offset       = this.data_amigos.length;
-        //         var limit        = 10;
-        //         var vue_self     = this;
-        //
-        //
-        //     $.post(
-        //             amigos.Url("data_full_user"),
-        //             {
-        //                 limit   : limit,
-        //                 offset  : offset
-        //             },
-        //             function(json){
-        //
-        //                 if(!json.data.all_users.length){
-        //                     vue_self.loading = false;
-        //                 }else{
-        //                        vue_self.data_amigos.push(json.data.all_users);
-        //                 }
-        //     },'json')
+                var offset       = this.data_amigos.length;
+                var limit        = 10;
+                var vue_self     = this;
+
+
+            $.post(
+                    amigos.Url("full_amigos"),
+                    {
+                        limit   : limit,
+                        offset  : offset
+                    },
+                    function(json){
+
+                        if(!json.data.length){
+                            vue_self.loading = false;
+                        }else{
+                            vue_instance_amigos.$data.data_amigos.push(json.data);
+                        }
+            },'json')
         //
 
         },

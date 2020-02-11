@@ -139,6 +139,23 @@ class CI_Model {
 
     }
     /**
+     * Responsável pela busca de dados através da condição Find
+     * Se não informada a condição Where retornal todos os dados
+     * @getWhereMongo
+     * Where = []
+     **/
+    public function getWhereMongoDocument($where = [],$options){
+        $this->config->load('database');
+        $configmongo = (object)$this->config->item('mongodb');
+
+
+        $find           = $this->mongodb->{$configmongo->database}->{$this->get_table()}->find(
+            $where,$options
+        );
+        return $find->toArray();
+
+    }
+    /**
      * Responsável pela busca de dados através da condição Where
      * Se não informada a condição Where retornal todos os dados
      * @get_hwere

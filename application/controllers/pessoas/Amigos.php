@@ -23,9 +23,12 @@ class Amigos extends Home_Controller
         $dados = $this->data_user();
         $this->load->view('pessoas/full_amigos',compact("dados"));
     }
+//    Arrumar essa merda
     public function full_amigos(){
         $user_logado    = $this->data_user();
-        $data           = $this->Us_amigos_model->data_full_amigos($user_logado);
+        $datapost       = (object)$this->input->post(NULL,TRUE);
+        $options        = ["amigos"=>["_id"=>["sort"=>1]]];
+        $data           = $this->Us_amigos_model->data_full_amigos($user_logado,$options);
 
         $this->response('success',compact("data"));
     }

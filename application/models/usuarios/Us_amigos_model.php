@@ -26,11 +26,12 @@ class Us_amigos_model extends CI_Model{
         }
 
     }
-    public function data_full_amigos($param){
+    public function data_full_amigos($param,$options){
         $this->load->model('storage/img/Us_storage_img_cover_model');
         $data = [];
 
-        $data_amigos = reset($this->getWhereMongo(['_id'=>$param['_id']]));
+        $data_amigos = reset($this->getWhereMongoDocument(['_id'=>$param['_id']],$options ));
+        debug($data_amigos);
         if(isset($data_amigos['amigos'])){
 
             if(count($data_amigos['amigos'])){

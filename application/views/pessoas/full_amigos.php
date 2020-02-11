@@ -113,15 +113,15 @@ endif;
                                                 </div>
                                     </div>
                         </div>
-                        <div class="col-md-12" v-if="loading">
-                            <mugen-scroll :handler="getPosts" :should-handle="loading">
-                                <div class="spinner">
-                                    <div class="bounce1"></div>
-                                    <div class="bounce2"></div>
-                                    <div class="bounce3"></div>
-                                </div>
-                            </mugen-scroll>
-                        </div>
+<!--                        <div class="col-md-12" v-if="loading">-->
+<!--                            <mugen-scroll :handler="getPosts" :should-handle="loading">-->
+<!--                                <div class="spinner">-->
+<!--                                    <div class="bounce1"></div>-->
+<!--                                    <div class="bounce2"></div>-->
+<!--                                    <div class="bounce3"></div>-->
+<!--                                </div>-->
+<!--                            </mugen-scroll>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

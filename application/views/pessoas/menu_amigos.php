@@ -5,9 +5,9 @@
     <template v-for="i in amigos">
         <div class="sugguest-user">
             <div class="sugguest-user-dt" >
-                <a href="user_dashboard_activity.html">
+                <a href="javascript:void(0)" @click="redirect_user(i._id)">
                     <img class="crop-img-home-mini" :src="i.img_profile.length?i.img_profile:path_img_time_line_default" alt=""></a>
-                <a href="user_dashboard_activity.html"><h4>{{i.nome}}</h4></a>
+                <a href="javascript:void(0)" @click="redirect_user(i._id)"><h4>{{i.nome}}</h4></a>
             </div>
 <!--            <button class="request-btn"><i class="fas fa-user-plus"></i></button>-->
         </div>
