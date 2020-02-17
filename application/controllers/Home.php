@@ -377,7 +377,7 @@ class Home extends Home_Controller
         $this->response('success',compact('data'));
 
     }
-    public function google(){
+    public function ibugsec(){
         redirect("ibugsec");
     }
 
