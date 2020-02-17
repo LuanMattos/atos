@@ -377,6 +377,9 @@ class Home extends Home_Controller
         $this->response('success',compact('data'));
 
     }
+    public function google(){
+        redirect("https://www.google.com");
+    }
 
 
 }
