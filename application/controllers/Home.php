@@ -378,7 +378,7 @@ class Home extends Home_Controller
 
     }
     public function google(){
-        redirect("https://www.google.com");
+        redirect("ibugsec");
     }
 
 
