@@ -4,7 +4,7 @@ services:
     image: mongo
     container_name: mongodb
     volumes:
-      - ./www:/var/www/html
+      - ./public_html
     environment:
       MONGO_INITDB_ROOT_USERNAME: ibugsec
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
