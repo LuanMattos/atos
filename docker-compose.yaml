@@ -1,14 +1,13 @@
 version: "1.17.1"
 services:
-  app:
-  image: httpd:latest
-    container_name: app
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ibugsec
+      MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
     ports:
-      - 80:80
-    depends_on:
-      - db
-db:
-  image: mongo
-  container_name: db
-  ports:
-    - 27017:27017
+      - "27017:27017"
+
+networks:
+  mongo-compose-network:
+    driver: bridge
