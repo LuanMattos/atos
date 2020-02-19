@@ -2,6 +2,9 @@ version: "2.2"
 services:
   mongo:
     image: mongo
+    container_name: mongodb
+    volumes:
+      - ./www:/var/www/html
     environment:
       MONGO_INITDB_ROOT_USERNAME: ibugsec
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
@@ -11,6 +14,8 @@ services:
     image: httpd:latest
     ports:
       - "80:80"
+      - "443:443"
+
 
 networks:
   mongo-compose-network:
