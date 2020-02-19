@@ -3,8 +3,6 @@ services:
   mongo:
     image: mongo
     container_name: mongodb
-    volumes:
-      - ./public_html
     environment:
       MONGO_INITDB_ROOT_USERNAME: ibugsec
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
@@ -12,6 +10,9 @@ services:
       - "27017:27017"
   httpd:
     image: httpd:latest
+    container_name: httpd
+    volumes:
+      - ./public_html/atos
     ports:
       - "80:80"
       - "443:443"
