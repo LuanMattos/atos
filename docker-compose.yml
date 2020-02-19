@@ -7,6 +7,10 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
     ports:
       - "27017:27017"
+  httpd:
+    image: httpd:latest
+    ports:
+      - "80:80"
 
 networks:
   mongo-compose-network:
