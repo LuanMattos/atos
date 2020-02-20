@@ -11,7 +11,6 @@ services:
 
   web2:
     image: apache
-    build: ./
     container_name: apache_web
     restart: always
     ports:
