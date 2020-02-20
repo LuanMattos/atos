@@ -9,7 +9,7 @@ services:
     ports:
       - "27017:27017"
   web2:
-    image: php:7.2-apache
+    image: httpd:latest
     container_name: apache_web
     restart: always
     ports:
@@ -18,6 +18,18 @@ services:
       - .:/usr/local/apache2/htdocs
     environment:
           WORKDIR: "."
+  php:
+    image: php:latest
+    container_name: php
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+          WORKDIR: "."
+    volumes:
+      - .:/app
+
+
 
 networks:
   mongo-compose-network:
