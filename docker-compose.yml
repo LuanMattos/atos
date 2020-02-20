@@ -13,8 +13,8 @@ services:
     container_name: web
     env_file:
       - httpd.env
-    environment:
-      - WEB_DOCUMENT_ROOT=/public_html/atos
+    volumes:
+      - ./www:/var/www/html
     ports:
       - "80:80"
 
