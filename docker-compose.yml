@@ -12,9 +12,9 @@ services:
     image: httpd:latest
     container_name: web
     volumes:
-      - ".:/var/www/html"
+      - ".:/var/www/html/bunda"
     environment:
-        WEB_DOCUMENT_ROOT: "/var/www/html"
+        WEB_DOCUMENT_ROOT: "/var/www/html/bunda"
     ports:
       - "80:80"
 
