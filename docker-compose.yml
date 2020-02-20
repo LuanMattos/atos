@@ -11,8 +11,8 @@ services:
   httpd:
     image: httpd:latest
     container_name: httpd
-    volumes:
-      - /public_html/atos:/var/www/html
+    environment:
+      - "APACHE_DOCUMENT_ROOT=public_html"
     ports:
       - "80:80"
       - "443:443"
