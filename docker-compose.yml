@@ -8,13 +8,11 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
     ports:
       - "27017:27017"
-  httpd:
-    image: httpd:latest
-    container_name: httpd
-    environment:
-      - "APACHE_DOCUMENT_ROOT=public_html"
+  apache:
+    image: 'php:7.2-apache'
+    container_name: php
     ports:
-      - "80:80"
+      - '80:80'
       - "443:443"
 
 
