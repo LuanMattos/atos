@@ -8,15 +8,18 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
     ports:
       - "27017:27017"
-  web:
-    image: httpd:latest
-    container_name: web
-    volumes:
-      - ".:/var/www/html/bunda"
-    environment:
-        WEB_DOCUMENT_ROOT: "/var/www/html/bunda"
+
+  web2:
+    image: apache
+    build: ./
+    depends_on:
+      - db
+    container_name: apache_web
+    restart: always
     ports:
-      - "80:80"
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html/
 
 
 networks:
