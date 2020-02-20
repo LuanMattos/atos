@@ -12,8 +12,6 @@ services:
   web2:
     image: apache
     build: ./
-    depends_on:
-      - db
     container_name: apache_web
     restart: always
     ports:
