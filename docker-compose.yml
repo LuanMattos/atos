@@ -14,7 +14,7 @@ services:
     env_file:
       - httpd.env
     environment:
-      - APACHE_DOC_ROOT=/public_html/atos
+      - WEB_DOCUMENT_ROOT=/public_html/atos
     ports:
       - "80:80"
 
