@@ -9,10 +9,10 @@ services:
     ports:
       - "27017:27017"
   web:
-    build: php:7-apache
+    image: httpd:latest
     container_name: web
-    volumes:
-      - .:/public_html/atos
+    env_file:
+      - httpd.env
     ports:
       - "80:80"
 
