@@ -12,7 +12,7 @@ services:
     image: httpd:latest
     container_name: httpd
     volumes:
-      - ./public_html/:/var/www/html/
+      - ./public_html/atos:/var/www/html/
     ports:
       - "80:80"
       - "443:443"
