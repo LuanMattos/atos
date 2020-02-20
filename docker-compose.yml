@@ -11,10 +11,10 @@ services:
   web:
     image: httpd:latest
     container_name: web
-    env_file:
-      - httpd.env
     volumes:
-      - ./www:/var/www/html
+      - ".:/var/www/html"
+    environment:
+        WEB_DOCUMENT_ROOT: "/var/www/html"
     ports:
       - "80:80"
 
