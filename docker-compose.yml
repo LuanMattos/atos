@@ -22,12 +22,10 @@ services:
     image: php:latest
     container_name: php
     restart: always
-    ports:
-      - "80:80"
     environment:
           WORKDIR: "."
     volumes:
-      - .:/app
+      - .:/var/www/html/
 
 
 
