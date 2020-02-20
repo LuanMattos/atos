@@ -24,9 +24,9 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./public_html/atos:/usr/local/apache2/htdocs
+      - .:/usr/local/apache2/htdocs
     environment:
-          WORKDIR: "./public_html/atos"
+          WORKDIR: "."
 
 
 
