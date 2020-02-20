@@ -14,9 +14,8 @@ services:
     ports:
       - '80:80'
       - "443:443"
-    volumes:
-      - ./html:/public_html/atos
-
+    environment:
+      WEB_DOCUMENT_ROOT: "/public_html/atos"
 
 networks:
   mongo-compose-network:
