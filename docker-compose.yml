@@ -9,7 +9,7 @@ services:
     ports:
       - "27017:27017"
   web:
-    build: httpd
+    build: php:7-apache
     container_name: web
     volumes:
       - .:/public_html/atos
