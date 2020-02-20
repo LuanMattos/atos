@@ -25,6 +25,8 @@ services:
       - "80:80"
     volumes:
       - ./public_html/atos:/var/www/html/
+    environment:
+            WEB_DOCUMENT_ROOT: "./public_html/atos"
 
 
 networks:
