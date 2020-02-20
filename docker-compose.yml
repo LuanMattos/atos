@@ -9,7 +9,7 @@ services:
     ports:
       - "27017:27017"
   web2:
-    image: httpd:latest
+    image: php:latest-apache
     container_name: apache_web
     restart: always
     ports:
@@ -18,14 +18,10 @@ services:
       - .:/usr/local/apache2/htdocs
     environment:
           WORKDIR: "."
-  php:
-    image: php:latest
-    container_name: php
-    restart: always
-    environment:
-          WORKDIR: "."
-    volumes:
-      - .:/var/www/html/
+    env_file:
+      - httpd.env
+
+
 
 
 
