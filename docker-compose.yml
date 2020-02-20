@@ -8,16 +8,13 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
     ports:
       - "27017:27017"
-  apache:
-    image: 'php:7.2-apache'
-    container_name: php
+  web:
+    build: docker/php-apache2
+    container_name: web
     volumes:
       - .:/public_html/atos
     ports:
-      - '80:80'
-      - "443:443"
-    environment:
-      WORKDIR: "/public_html/atos"
+      - "80:80"
 
 
 networks:
