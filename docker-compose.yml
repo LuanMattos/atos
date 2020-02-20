@@ -26,7 +26,8 @@ services:
     volumes:
       - ./public_html/atos:/var/www/html/
     environment:
-            WEB_DOCUMENT_ROOT: "./public_html/atos"
+          WORKDIR: "./public_html/atos"
+
 
 
 networks:
