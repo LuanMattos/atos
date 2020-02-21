@@ -12,8 +12,3 @@
 
   ports:
     - "80:80"
-
-
-networks:
-  mongo-compose-network:
-    driver: bridge
