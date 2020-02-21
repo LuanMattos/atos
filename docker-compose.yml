@@ -9,17 +9,26 @@ services:
     ports:
       - "27017:27017"
   web2:
-    image: php:7.3-apache
+    image: apache:latest
     container_name: apache_web
     restart: always
     ports:
       - "80:80"
+    depends_on:
+      - php
     volumes:
       - .:/usr/local/apache2/htdocs
     environment:
           WORKDIR: "."
     env_file:
       - httpd.env
+  php:
+      build:
+        context: ./php
+      volumes:
+        - ".:/var/www/html"
+      ports:
+        - "9000:9000"
 
 
 
