@@ -1,2 +1,2 @@
 FROM tutum/lamp
-MAINTAINER PAAS EMAIL <eu@eu>
+MAINTAINER PAAS EMAIL <seuemail@provedor.com>

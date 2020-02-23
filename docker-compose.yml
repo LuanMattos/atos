@@ -1,29 +1,40 @@
 version: "2.2"
-services:
-  mongo:
-    image: mongo
-    container_name: mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ibugsec
-      MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
-    ports:
-      - "27017:27017"
-  web2:
-    image: httpd:latest
-    container_name: httpd
-    restart: always
+#services:
+#  mongo:
+#    image: mongo
+#    container_name: mongodb
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: ibugsec
+#      MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
+#    ports:
+#      - "27017:27017"
+#  web2:
+#    image: httpd:latest
+#    container_name: httpd
+#    restart: always
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - .:/usr/local/apache2/htdocs
+#    environment:
+#          WORKDIR: "."
+#    env_file:
+#      - httpd.env
+#      -
+
+  dev:
+    dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+
+    build: .
+    expose:
+      - "80"
+
     ports:
       - "80:80"
-    volumes:
-      - .:/usr/local/apache2/htdocs
-    environment:
-          WORKDIR: "."
-    env_file:
-      - httpd.env
-
-
-
-
 
 networks:
   mongo-compose-network:
