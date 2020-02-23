@@ -1,7 +1,6 @@
 version: "2.2"
 services:
   dev:
-    dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
       - /etc/timezone:/etc/timezone
