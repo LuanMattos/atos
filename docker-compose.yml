@@ -1,5 +1,18 @@
 version: "2.2"
-#services:
+services:
+  dev:
+    dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+
+    build: .
+    expose:
+      - "80"
+
+    ports:
+      - "80:80"
 #  mongo:
 #    image: mongo
 #    container_name: mongodb
@@ -22,19 +35,7 @@ version: "2.2"
 #      - httpd.env
 #      -
 
-  dev:
-    dockerfile: Dockerfile
-    volumes:
-      - .:/var/www/html
-      - /etc/timezone:/etc/timezone
-      - /etc/localtime:/etc/localtime
 
-    build: .
-    expose:
-      - "80"
-
-    ports:
-      - "80:80"
 
 networks:
   mongo-compose-network:
