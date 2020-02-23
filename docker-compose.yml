@@ -37,10 +37,10 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres
+    image: postgres:latest
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-k2l9g3v1}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: k2l9g3v1
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -52,3 +52,5 @@ services:
 networks:
   mongo-compose-network:
     driver: bridge
+  postgres:
+      driver: bridge
