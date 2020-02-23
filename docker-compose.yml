@@ -5,11 +5,9 @@ services:
       - .:/var/www/html
       - /etc/timezone:/etc/timezone
       - /etc/localtime:/etc/localtime
-
     build: .
     expose:
       - "80"
-
     ports:
       - "80:80"
   mongo:

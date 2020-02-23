@@ -1,2 +1,1 @@
-FROM tutum/lamp
-MAINTAINER PAAS EMAIL <seuemail@provedor.com>
+FROM php:7.2-apache
