@@ -43,7 +43,7 @@ services:
       POSTGRES_PASSWORD: k2l9g3v1
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - "./data/postgres:/var/lib/postgresql/data"
     ports:
       - "5432:5432"
     networks:
