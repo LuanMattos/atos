@@ -172,6 +172,7 @@ class Home extends Home_Controller
         }
 
         $argo_pass                  = password_hash($data->senhacadastro,PASSWORD_ARGON2I);
+        debug($data);
 
 
 
@@ -189,7 +190,6 @@ class Home extends Home_Controller
             'logado'                => TRUE
         ];
 
-        debug($data);
         $error['telcel']    = "O número de telefone é inválido";
 
         if(!$numero_validado){
