@@ -29,8 +29,10 @@ class SI_Controller extends CI_Controller{
     protected function conect_mongodb(){
         $this->config->load('database');
         $configmongo                = (object)$this->config->item('mongodb');
-        $this->mongodb              = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
-        $this->mongomanager         = new MongoDB\Driver\Manager("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
+//        mongodb://mongodb0.example.com:27017/admin
+
+        $this->mongodb              = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port . "/" .$configmongo->database,[],[]);
+        $this->mongomanager         = new MongoDB\Driver\Manager("mongodb://".$configmongo->hostname . ":" . $configmongo->port. "/" .$configmongo->database,[],[]);
         $this->mongobulkwrite       =  new \MongoDB\Driver\BulkWrite();
 
     }

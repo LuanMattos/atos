@@ -3,9 +3,9 @@ services:
   mongo:
     image: mongo:latest
     container_name: mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: atos
-      MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: atos
+#      MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
     ports:
       - "27017:27017"
 
