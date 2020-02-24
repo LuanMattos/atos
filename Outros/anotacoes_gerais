@@ -51,3 +51,14 @@ error docker:
 
 
 8da7b648a2e0879fdca3a41a30de4d8c35166c12
+
+
+
+Para todas as instâncias
+docker stop $(docker ps -a -q)
+Remove todas as instâncias
+docker rm $(docker ps -a -q)
+Para todas as imagens
+docker image rm $(docker image ls -a -q)
+Para todos os volumes
+docker volume prune
