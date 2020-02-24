@@ -230,18 +230,14 @@ class CI_Model {
     public function save_mongo($data = []){
         $this->config->load('database');
         $configmongo = (object)$this->config->item('mongodb');
-debug($configmongo);
+
         if(array_key_exists($this->get_table_index(),$data)){
             $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();
             $mongobulkwrite->update(["_id"=>$data['_id']],['$set' => $data], ['multi' => false, 'upsert' => true]);
             $this->mongomanager->executeBulkWrite($configmongo->database . '.' . $this->get_table() ,$mongobulkwrite);
         }else{
-            $set = $this->mongodb->{$configmongo->database}->{$this->get_table()};
-            $set->insertOne( $data );
-            return true;
-
-//            $cimongo = new Cimongo();
-//            $cimongo->insert($this->get_table(),$data,TRUE);
+            $cimongo = new Cimongo();
+            $cimongo->insert($this->get_table(),$data,TRUE);
         }
     }
     /**
