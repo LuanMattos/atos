@@ -7,7 +7,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: atos
       MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
     ports:
-      - "27017:27017"
+      - "27018:27017"
 
   apache:
     image: php:7.3.12-apache
