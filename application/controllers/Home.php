@@ -64,7 +64,7 @@ class Home extends Home_Controller
             redirect("Login");
         }
 //        var_dump(password_hash("admin", PASSWORD_DEFAULT));//criptografa a sessão
-        redirect("Login");
+//        redirect("Login");
 
     }
     /**
