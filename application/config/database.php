@@ -31,7 +31,7 @@ $config['mongodb'] = [
     'port'          => '27017',
     'username'      => 'atos',
     'password'      => 'k2l9g3v1',
-    'database'      => 'atos'
+    'database'      => 'admin'
 ];
 
 
