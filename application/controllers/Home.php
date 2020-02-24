@@ -176,7 +176,7 @@ class Home extends Home_Controller
 
 
         $data = [
-//            "_id"                   => $this->Us_usuarios_model->object_id(),
+            "_id"                   => $this->Us_usuarios_model->object_id(),
             "id_atos"               => $this->id_mongo($data->email),
             "email"                 => $data->email,
             "login"                 => $data->email,
