@@ -27,7 +27,7 @@ $db['default']  = [
 ];
 
 $config['mongodb'] = [
-    'hostname'      => '172.21.0.2',
+    'hostname'      => 'mongodb',
     'port'          => '27017',
     'username'      => 'atos',
     'password'      => '',
