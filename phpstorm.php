@@ -79,6 +79,7 @@ die('This file is used for development purposes only.');
  * @property Us_amigos_solicitacoes_model                   $Us_amigos_solicitacoes_model                Model responsavel pelo relacionamento dos usuarios em relacao de solicitacoes (mongo)
  * @property Config_permissoes_informacoes_model            $Config_permissoes_informacoes_model                Model responsavel pelo relacionamento dos usuarios em relacao de solicitacoes (mongo)
  * @property Us_storage_img_cover_model            $Us_storage_img_cover_model                Model responsavel pelo relacionamento dos usuarios em relacao de solicitacoes (mongo)
+ * @property Us_usuarios_conta_model            $Us_usuarios_conta_model                Model responsavel pelo relacionamento dos usuarios em relacao de solicitacoes (mongo)
 
 
 

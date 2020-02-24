@@ -27,10 +27,10 @@ $db['default']  = [
 ];
 
 $config['mongodb'] = [
-    'hostname'      => 'mongodb',
+    'hostname'      => '54.167.207.17',
     'port'          => '27017',
     'username'      => 'atos',
-    'password'      => 'atos',
+    'password'      => '',
     'database'      => 'atos'
 ];
 

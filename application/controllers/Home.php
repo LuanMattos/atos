@@ -11,6 +11,7 @@ class Home extends Home_Controller
         $this->load->model("Us_usuarios_model");
         $this->load->model("storage/img/Us_storage_img_profile_model");
         $this->load->model("location/Us_location_user_model");
+        $this->load->model('account/Us_usuarios_conta_model');
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
@@ -63,6 +64,7 @@ class Home extends Home_Controller
             redirect("Login");
         }
 //        var_dump(password_hash("admin", PASSWORD_DEFAULT));//criptografa a sessão
+        redirect("Login");
 
     }
     /**
@@ -155,6 +157,8 @@ class Home extends Home_Controller
         $numero_validado    = $sms->validaTelefoneBr($data->telcodpais . $data->telcel);
         $data_teste_tel     = $this->mongodb->atos->us_usuarios->find(["telcel"=>$numero_validado]);
 
+
+
         foreach($data_teste_tel as $validate_telcel){
             $telcel = $validate_telcel['telcel'];
         }
@@ -170,6 +174,7 @@ class Home extends Home_Controller
         $argo_pass                  = password_hash($data->senhacadastro,PASSWORD_ARGON2I);
 
 
+
         $data = [
             "_id"                   => $this->Us_usuarios_model->object_id(),
             "id_atos"               => $this->id_mongo($data->email),
@@ -183,6 +188,7 @@ class Home extends Home_Controller
             "email_hash"            => $this->encript_atos($data->email),
             'logado'                => TRUE
         ];
+
         $error['telcel']    = "O número de telefone é inválido";
 
         if(!$numero_validado){
@@ -199,18 +205,15 @@ class Home extends Home_Controller
 
         $sms->processesDirect($dataSms);
 
-        $save = $cimongo->insert("us_usuarios",$data,TRUE);
-        if(empty($save)){
-           exit("Erro ao salvar dados no banco!");
-        }
 
+        $this->Us_usuarios_model->save_mongo($data);
 
         $data_conta = [
             "code_verification" => $codigo_verificacao,
             "_id"               => $data['_id']
         ];
 
-        $cimongo->insert("us_usuarios_conta",$data_conta,TRUE);
+        $this->Us_usuarios_conta_model->save_mongo($data_conta);
 
         $this->session->set_userdata(["verification_user"=>$data['email_hash'],"login"=>$data['login']], 1);
 
