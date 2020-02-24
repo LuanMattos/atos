@@ -10,7 +10,7 @@ class SI_Controller extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load_helpers();
-        $this->conect_mongodb();
+//        $this->conect_mongodb();
 
     }
     public function verifica_sessao(){
