@@ -6,7 +6,7 @@ $query_builder  = TRUE;
 
 $db['default']  = [
 	'dsn'	        => '',
-	'hostname'      => 'localhost',
+	'hostname'      => 'postgres',
 	'username'      => 'postgres',
 	'password'      => 'k2l9g3v1',
 	'database'      => 'postgres',
