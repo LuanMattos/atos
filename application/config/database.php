@@ -6,7 +6,7 @@ $query_builder  = TRUE;
 
 $db['default']  = [
 	'dsn'	        => '',
-	'hostname'      => '54.167.207.17',
+	'hostname'      => 'localhost',
 	'username'      => 'postgres',
 	'password'      => 'k2l9g3v1',
 	'database'      => 'postgres',
@@ -27,11 +27,11 @@ $db['default']  = [
 ];
 
 $config['mongodb'] = [
-    'hostname'      => '54.167.207.17',
+    'hostname'      => 'mongodb',
     'port'          => '27017',
     'username'      => 'atos',
     'password'      => 'atos',
-    'database'      => 'admin'
+    'database'      => 'atos'
 ];
 
 
