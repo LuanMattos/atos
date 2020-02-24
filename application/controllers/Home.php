@@ -89,7 +89,7 @@ class Home extends Home_Controller
         $data           = (object)$this->input->post("data",TRUE);
         $sms            = new \ServiceSms\ServiceSms();
         $RestoreAccount = new RestoreAccount();
-        $cimongo        = new Cimongo();
+//        $cimongo        = new Cimongo();
 
         $error  = [];
 
@@ -189,6 +189,7 @@ class Home extends Home_Controller
             'logado'                => TRUE
         ];
 
+        debug($data);
         $error['telcel']    = "O número de telefone é inválido";
 
         if(!$numero_validado){
