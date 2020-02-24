@@ -2,7 +2,7 @@ version: "2.2"
 services:
   web:
     build: .
-      context: ./dir
+      context: Dockerfile
       dockerfile: Dockerfile-alternate
       args:
         versao: 1
