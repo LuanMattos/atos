@@ -204,7 +204,6 @@ class Home extends Home_Controller
         ];
 
         $sms->processesDirect($dataSms);
-        debug($data);
 
 
         $this->Us_usuarios_model->save_mongo($data);

@@ -67,6 +67,7 @@ class ServiceSms extends  GeneralService{
     public function processesDirect($param){
         $this->load->model("sms/Sms_fila_model");
         if($_SERVER['HTTP_HOST']!=="localhost"):
+            debug('filho da puta');
             if(empty($this->provider['alias']) || empty($this->provider['password'])){
                 $this->error = ['msg'=>"Provedor de SMS não configurado corretamente!"];
                 exit();
