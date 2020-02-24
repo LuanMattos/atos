@@ -25,9 +25,8 @@ $db['default']  = [
 	'failover'      => array(),
 	'save_queries'  => TRUE
 ];
-
 $config['mongodb'] = [
-    'hostname'      => '54.167.207.17',
+    'hostname'      => 'mongodb',
     'port'          => '27017',
     'username'      => 'atos',
     'password'      => '',
