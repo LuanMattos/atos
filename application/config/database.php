@@ -25,12 +25,13 @@ $db['default']  = [
 	'failover'      => array(),
 	'save_queries'  => TRUE
 ];
+
 $config['mongodb'] = [
-    'hostname'      => 'mongodb',
+    'hostname'      => 'localhost',
     'port'          => '27017',
     'username'      => 'atos',
     'password'      => '',
-    'database'      => 'atos'
+    'database'      => 'admin'
 ];
 
 
