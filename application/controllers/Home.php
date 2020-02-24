@@ -172,12 +172,11 @@ class Home extends Home_Controller
         }
 
         $argo_pass                  = password_hash($data->senhacadastro,PASSWORD_ARGON2I);
-        debug($data);
 
 
 
         $data = [
-            "_id"                   => $this->Us_usuarios_model->object_id(),
+//            "_id"                   => $this->Us_usuarios_model->object_id(),
             "id_atos"               => $this->id_mongo($data->email),
             "email"                 => $data->email,
             "login"                 => $data->email,
@@ -189,6 +188,7 @@ class Home extends Home_Controller
             "email_hash"            => $this->encript_atos($data->email),
             'logado'                => TRUE
         ];
+        debug($data);
 
         $error['telcel']    = "O número de telefone é inválido";
 
