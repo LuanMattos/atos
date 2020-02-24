@@ -188,7 +188,7 @@ class Home extends Home_Controller
             "email_hash"            => $this->encript_atos($data->email),
             'logado'                => TRUE
         ];
-//        debug($data);
+        debug($data);
 
         $error['telcel']    = "O número de telefone é inválido";
 
