@@ -1,18 +1,13 @@
 version: "2.2"
 services:
-  dev:
-    volumes:
-      - .:/var/www/html
-      - /etc/timezone:/etc/timezone
-      - /etc/localtime:/etc/localtime
+  web:
     build: .
-    expose:
-      - "80"
+      context: ./dir
+      dockerfile: Dockerfile-alternate
+      args:
+        versao: 1
     ports:
       - "80:80"
-    env_file:
-      - httpd.env
-
 
 
   mongo:

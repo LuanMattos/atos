@@ -9,6 +9,3 @@ RUN buildDeps=" \
     && apt-get install -y --no-install-recommends \
         $buildDeps \
         php-pgsql \
-
-
-        bunda
