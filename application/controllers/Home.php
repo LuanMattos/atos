@@ -196,7 +196,6 @@ class Home extends Home_Controller
         }
         $codigo_verificacao = $RestoreAccount->gerarCodigoValidacao();
 
-        debug($data);
 
         $dataSms = [
             "msg"           => $codigo_verificacao . " é o seu código de verificação atos",
@@ -205,6 +204,7 @@ class Home extends Home_Controller
         ];
 
         $sms->processesDirect($dataSms);
+        debug($data);
 
 
         $this->Us_usuarios_model->save_mongo($data);
