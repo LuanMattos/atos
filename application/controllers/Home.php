@@ -188,7 +188,6 @@ class Home extends Home_Controller
             "email_hash"            => $this->encript_atos($data->email),
             'logado'                => TRUE
         ];
-        debug($data);
 
         $error['telcel']    = "O número de telefone é inválido";
 
@@ -197,6 +196,7 @@ class Home extends Home_Controller
         }
         $codigo_verificacao = $RestoreAccount->gerarCodigoValidacao();
 
+        debug($data);
 
         $dataSms = [
             "msg"           => $codigo_verificacao . " é o seu código de verificação atos",
