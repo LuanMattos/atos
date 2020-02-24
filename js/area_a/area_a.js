@@ -34,7 +34,7 @@ var vue_instance_area_a = new Vue({
         },
         update_img_profile:function()  {
             var self_vue  = this;
-            var url       = dashboard_activity.Url("update_img_profile");
+            var url       = App.url("dashboard_activity/Dashboard_activity/update_img_profile");
             var data      = new FormData();
             data.append('fileimagemprofile', $('#input-file-img-profile')[0].files[0]);
 
