@@ -1,7 +1,7 @@
 version: "2.2"
 services:
   mongo:
-    image: mongo
+    image: mongo:latest
     container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: atos
@@ -16,21 +16,6 @@ services:
       - "80:80"
     volumes:
        - .:/var/www/html
-
-
-#  web2:
-#    image: httpd:latest
-#    container_name: httpd
-#    restart: always
-#    ports:
-#      - "80:80"
-#    volumes:
-#      - .:/usr/local/apache2/htdocs
-#    environment:
-#          WORKDIR: "."
-#    env_file:
-#      - httpd.env
-#      -
 
 
   postgres:
