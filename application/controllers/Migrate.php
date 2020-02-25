@@ -126,6 +126,7 @@ class Migrate extends CI_Controller{
                     );");
         $this->db->query("ALTER TABLE us_storage_img DROP constraint if exists us_storage_pkey;");
         $this->db->query("ALTER TABLE us_storage_img ADD COLUMN IF NOT EXISTS codstorage bigint constraint us_storage_pkey references us_storage;");
+        $this->db->query("insert into provider_sms values (default,'patrick.smsonline','q05gP1XZ13','zenvia');");
     }
 
 
