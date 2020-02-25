@@ -62,3 +62,10 @@ Para todas as imagens
     docker image rm $(docker image ls -a -q)
 Para todos os volumes
     docker volume prune
+
+
+    Para dar push no docker:
+        -primeiro renomear a imagem a ser puxada com o mesmo padrao de usuario/nome_repositorio:nome_novo_imagem
+            docker tag bcef5fd2979d luanmattos/atos:mongodb
+        -depois dar push
+             docker push luanmattos/atos:mongodb

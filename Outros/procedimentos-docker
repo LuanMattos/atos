@@ -2,6 +2,8 @@ Procedimentos docker
 -Instalar docker
 	-https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
+	 sudo apt install gnupg2 pass (para logar com docker)
+
     - docker-compose up com arquivo do projeto
     ServerName atos.click em apache2.conf
     a2enmod rewrite

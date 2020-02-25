@@ -1,39 +1,42 @@
 version: "2.2"
 services:
-  mongo:
-    image: mongo:latest
-    container_name: mongodb
+#  mongo:
+#    image: mongo:latest
+#    container_name: mongodb
+#    ports:
+#      - "27017:27017"
+#
+#  apache:
+#    image: php:7.3.12-apache
+#    container_name: php-apache
+#    ports:
+#      - "80:80"
+#    volumes:
+#       - .:/var/www/html
+#
+#  postgres:
+#    container_name: postgres
+#    image: postgres:latest
 #    environment:
-#      MONGO_INITDB_ROOT_USERNAME: atos
-#      MONGO_INITDB_ROOT_PASSWORD: k2l9g3v1
-    ports:
-      - "27017:27017"
-
-  apache:
-    image: php:7.3.12-apache
-    container_name: php-apache
-    ports:
-      - "80:80"
-    volumes:
-       - .:/var/www/html
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: k2l9g3v1
+#      PGDATA: /data/postgres
+#    volumes:
+#      - "./data/postgres:/var/lib/postgresql/data"
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - postgres
+#
+#networks:
+#  mongo-compose-network:
+#    driver: bridge
+#  postgres:
+#      driver: bridge
 
 
   postgres:
     container_name: postgres
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: k2l9g3v1
-      PGDATA: /data/postgres
-    volumes:
-      - "./data/postgres:/var/lib/postgresql/data"
+    image:  luanmattos/atos:postgresql
     ports:
       - "5432:5432"
-    networks:
-      - postgres
-
-networks:
-  mongo-compose-network:
-    driver: bridge
-  postgres:
-      driver: bridge
