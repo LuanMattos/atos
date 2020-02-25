@@ -64,7 +64,7 @@ services:
         - postgres
 
 networks:
-    postgresql:
+    postgres:
         driver: bridge
     mongo:
         driver: bridge
