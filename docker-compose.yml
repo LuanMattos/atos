@@ -40,3 +40,13 @@ services:
     image:  luanmattos/atos:postgresql
     ports:
       - "5432:5432"
+  mongo:
+    container_name: mongo
+    image:  luanmattos/atos:mongodb
+    ports:
+      - "27017:27017"
+  php_apache:
+    container_name: php_apache
+    image: luanmattos/atos:php-apache
+    ports:
+      - "80:80"
