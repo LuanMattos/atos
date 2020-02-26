@@ -26,13 +26,13 @@ $db['default']  = [
 	'save_queries'  => TRUE
 ];
 
-$config['mongodb'] = [
-    'hostname'      => 'mongo',
-    'port'          => '27017',
-    'username'      => 'atos',
-    'password'      => '',
-    'database'      => 'atos'
-];
+//$config['mongodb'] = [
+//    'hostname'      => 'mongo',
+//    'port'          => '27017',
+//    'username'      => 'atos',
+//    'password'      => '',
+//    'database'      => 'atos'
+//];
 
 
 
