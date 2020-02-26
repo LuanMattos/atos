@@ -42,8 +42,8 @@ Problemas de versão mongodb(parametros nao passados a classe de driver)
 
 
  Entrar em container
- sudo docker exec -it dca40d1ffc10 bash
- sudo docker exec -ti dca40d1ffc10 bash tem alguma diferenca mas nao sei o que é (nano)
+ sudo docker exec -it IDDOCONTAINER bash
+ sudo docker exec -ti IDDOCONTAINER bash tem alguma diferenca mas nao sei o que é (nano)
 
 error docker:
     docker logs {your-container-id-here} -f
