@@ -25,6 +25,7 @@ $db['default']  = [
 	'failover'      => array(),
 	'save_queries'  => TRUE
 ];
+debug($db);
 
 $config['mongodb'] = [
     'hostname'      => 'mongo',
