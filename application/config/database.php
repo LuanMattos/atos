@@ -6,7 +6,7 @@ $query_builder  = TRUE;
 
 $db['default']  = [
 	'dsn'	        => '',
-	'hostname'      => 'postgres',
+	'hostname'      => 'www.atos.click',
 	'username'      => 'postgres',
 	'password'      => '',
 	'database'      => 'postgres',
