@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $active_group   = 'default';
 $query_builder  = TRUE;
+debug(ENVIRONMENT);
 
 $db['default']  = [
 	'dsn'	        => '',
@@ -28,7 +29,7 @@ $db['default']  = [
 ];
 
 $config['mongodb'] = [
-    'hostname'      => 'mongo',
+    'hostname'      => 'www.atos.click',
     'port'          => '27017',
     'username'      => 'atos',
     'password'      => 'fsjf34h4fshdfajb4hjrf5t554456afarg5sd2fdads2fADsdf',
