@@ -4,10 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group   = 'default';
 $query_builder  = TRUE;
 
+if(ENVIRONMENT !== 'production'){
+    $hostname = 'www.atos.click';
+}else{
+    $hostname = 'localhost';
+}
 
 $db['default']  = [
 	'dsn'	        => '',
-	'hostname'      => 'www.atos.click',
+	'hostname'      => $hostname,
 	'username'      => 'postgres',
 	'port'          => '5432',
 	'password'      => 'eFdarksadfw4r54af4fd4a54h2fasfdg',
@@ -28,8 +33,14 @@ $db['default']  = [
 	'save_queries'  => TRUE
 ];
 
+if(ENVIRONMENT !== 'production'){
+    $hostname = 'www.atos.click';
+}else{
+    $hostname = 'localhost';
+}
+
 $config['mongodb'] = [
-    'hostname'      => 'www.atos.click',
+    'hostname'      => $hostname,
     'port'          => '27017',
     'username'      => 'atos',
     'password'      => 'fsjf34h4fshdfajb4hjrf5t554456afarg5sd2fdads2fADsdf',
