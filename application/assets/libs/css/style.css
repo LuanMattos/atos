@@ -50,7 +50,7 @@ footer, header, hgroup, menu, nav, section {
 }
 ::-moz-selection { /* Code for Firefox */
     color: #fff;
-    background: ;
+    background: #4284cf;
 }
 
 ::selection {
