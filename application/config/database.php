@@ -8,6 +8,7 @@ $db['default']  = [
 	'dsn'	        => '',
 	'hostname'      => 'www.atos.click',
 	'username'      => 'postgres',
+	'port'          => '5432',
 	'password'      => 'k2l9g3v1',
 	'database'      => 'atos',
 	'dbdriver'      => 'postgre',
