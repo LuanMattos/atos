@@ -48,7 +48,7 @@ class SI_Controller extends CI_Controller{
     }
     public  function load_helpers(){
         $this->load->helper(
-            array('date_helper')
+            array('date_helper','atos_helper')
         );
     }
 

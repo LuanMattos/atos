@@ -69,3 +69,12 @@ networks:
     mongo:
         driver: bridge
 
+#  db.createUser(
+#  {
+#    user: "atos",
+#    pwd: "atos",
+#    roles: [ "userAdminAnyDatabase",
+#             "dbAdminAnyDatabase",
+#             "readWriteAnyDatabase"]
+#  }
+#  )

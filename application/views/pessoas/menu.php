@@ -6,7 +6,7 @@
         <div class="sugguest-user">
             <div class="sugguest-user-dt">
                 <span class="cursor-pointer" @click="redirect_user(i._id)">
-                    <img class="crop-img-home-mini" :src="i.img_profile.length?i.img_profile:path_img_time_line_default" alt="">
+                    <img class="crop-img-home-mini" :src="i.img_profile.length > 10?i.img_profile:path_img_time_line_default" alt="">
                 </span>
                 <a href="javascript:void(0)" @click="redirect_user(i._id)"><h4>{{i.nome}}</h4></a>
             </div>

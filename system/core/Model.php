@@ -236,8 +236,8 @@ class CI_Model {
             $mongobulkwrite->update(["_id"=>$data['_id']],['$set' => $data], ['multi' => false, 'upsert' => true]);
             $this->mongomanager->executeBulkWrite($configmongo->database . '.' . $this->get_table() ,$mongobulkwrite);
         }else{
-            $cimongo = new Cimongo();
-            $cimongo->insert($this->get_table(),$data,TRUE);
+//            $cimongo = new Cimongo();
+            $this->mongodb->{$configmongo->database}->{$this->get_table()}->insertOne($data);
         }
     }
     /**

@@ -7,7 +7,7 @@ $query_builder  = TRUE;
 if(ENVIRONMENT === 'production'){
     $hostname = 'www.atos.click';
 }else{
-    $hostname = '127.0.0.1';
+    $hostname = 'localhost';
 }
 $db['default']  = [
 	'dsn'	        => '',
@@ -37,6 +37,6 @@ $config['mongodb'] = [
     'hostname'      => 'mongo',
     'port'          => '27017',
     'username'      => 'atos',
-    'password'      => 'fsjf34h4fshdfajb4hjrf5t554456afarg5sd2fdads2fADsdf',
+    'password'      => 'atos',
     'database'      => 'atos'
 ];

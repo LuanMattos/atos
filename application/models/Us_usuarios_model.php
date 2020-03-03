@@ -14,7 +14,7 @@ class Us_usuarios_model extends CI_Model{
             $this->response('error',["msg"=>"Erro ao carregar dados de sessão"]);
             exit();
         }
-        $data   = $this->mongodb->atos->us_usuarios->find(['login' => $data_session['login']]);
+        $data   = $this->getWhereMongo(['login' => $data_session['login']]);
 
         foreach($data as $row){
             return $row;
