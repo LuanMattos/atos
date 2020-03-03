@@ -85,9 +85,7 @@ class Home extends Home_Controller
     }
     public function acao_cadastro(){
         $data           = (object)$this->input->post("data",TRUE);
-        $sms            = new \ServiceSms\ServiceSms();
         $RestoreAccount = new RestoreAccount();
-//        $cimongo        = new Cimongo();
 
         $error  = [];
 
@@ -116,7 +114,7 @@ class Home extends Home_Controller
         if(empty($data->telcel)){
             $error['telcel'] = "Preencha o campo  telefone!";
         }
-        $numero_validado    = $sms->validaTelefoneBr($data->telcodpais . $data->telcel);
+        $numero_validado    = validate_telcel_br($data->telcodpais . $data->telcel);
 
         if(!$numero_validado){
             $error['telcel'] = "Número de telefone inválido!";
@@ -152,7 +150,7 @@ class Home extends Home_Controller
             $error['email']         = "Usuário " . $login ." já está cadastrado!";
         }
 
-        $numero_validado    = $sms->validaTelefoneBr($data->telcodpais . $data->telcel);
+        $numero_validado    = validate_telcel_br($data->telcodpais . $data->telcel);
         $data_teste_tel     = $this->mongodb->atos->us_usuarios->find(["telcel"=>$numero_validado]);
 
 
@@ -201,7 +199,9 @@ class Home extends Home_Controller
             "date_to_send"  => date("Y-m-d H:i:s")
         ];
 
-        $sms->processesDirect( $dataSms );
+//        $sms            = new \ServiceSms\ServiceSms();
+
+//        $sms->processesDirect( $dataSms );
 
 
         $this->Us_usuarios_model->save_mongo($data);
