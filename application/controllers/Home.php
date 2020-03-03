@@ -324,8 +324,8 @@ class Home extends Home_Controller
 
             foreach ($data_time_line as $row) {
                 $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row_usuarios['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
-                $imgprofile =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
-                $url        = $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+                $imgprofile =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
+                $url        = !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
                 $text       = $row['text_timeline'];
                 $name_user  = $row_usuarios['nome'];
 
@@ -359,8 +359,8 @@ class Home extends Home_Controller
 
             foreach ($data_time_line as $row) {
                 $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
-                $imgprofile =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
-                $url        = $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+                $imgprofile =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
+                $url        = !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
                 $text       = $row['text_timeline'];
                 $name_user  = $row_usuarios['nome'];
 

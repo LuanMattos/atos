@@ -48,7 +48,7 @@ class Area_a extends SI_Controller
 
 
             foreach($path_return as $row){
-                $path    =  $row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file'];
+                $path    =  !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
             }
 
             $this->response('success',compact('path'));

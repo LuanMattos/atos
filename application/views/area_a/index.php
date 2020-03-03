@@ -11,7 +11,7 @@
                         <div class="my-profile-dash">
                             <div class="my-dp-dash">
                                 <div class=" container-avatar">
-                                    <img src="<?= set_val($data['img_profile']) ?>" class="image_avatar crop-img-home">
+                                    <img src="<?= isset($data['img_profile']) && !empty($data['img_profile'])?$data['img_profile']:URL_RAIZ(). '/application/assets/libs/images/event-view/user-1.jpg' ?>" class="image_avatar crop-img-home">
 
                                 </div>
                             </div>

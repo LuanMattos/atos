@@ -195,7 +195,7 @@ class Amigos extends Home_Controller
 
         foreach($data['amigos'] as $row){
             $path                   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>reset($row['_id'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
-            $row['img_profile']     =  $path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file'];
+            $row['img_profile']     =  !empty($path['server_name'])?$path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file']:false;
 
 
         }
@@ -211,7 +211,7 @@ class Amigos extends Home_Controller
         foreach($find_sol as $row){
             $data_amigos                   = reset($this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']]));
             $path                          = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$data_amigos['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
-            $data_amigos['img_profile']    = $path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file'];
+            $data_amigos['img_profile']    = !empty($path['server_name'])?$path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file']:false;
 
             array_push($data,$data_amigos);
         }

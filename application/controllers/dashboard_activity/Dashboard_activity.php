@@ -37,14 +37,14 @@ class Dashboard_activity extends SI_Controller{
         $dados                  = reset($this->Us_usuarios_model->getWhereMongo(['_id' => $id]));
         $dados['externo']       = true;
         $find_img               =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$dados['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
-        $dados['img_profile']   =  $find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file'];
+        $dados['img_profile']   =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
 
         $options                = ["sort" => ["created_at" => 1]];
         $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
         $path_cover_img         = $us_storage_img_cover->find(['codusuario'=>$dados['_id']],$options);
 
         foreach($path_cover_img as $row_path_cover){
-            $dados['img_cover']       =  $row_path_cover['server_name'] . $row_path_cover['bucket'] . '/' . $row_path_cover['folder_user'] . '/' . $row_path_cover['name_file'];
+            $dados['img_cover']       =  !empty($row_path_cover['server_name'])?$row_path_cover['server_name'] . $row_path_cover['bucket'] . '/' . $row_path_cover['folder_user'] . '/' . $row_path_cover['name_file']:false;
         }
 
 
