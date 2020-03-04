@@ -309,6 +309,19 @@ footer, header, hgroup, menu, nav, section {
     background-color: #565958;
     color: white;
 }
+.input-search-menu{
+    width: 400px;
+}
+@media only screen and (max-width: 600px) {
+    .input-search-menu{
+        width: 180px;
+        margin-left: -20px;
+    }
+    .autocomplete-results{
+        margin-left: 0.5px;
+        max-width: 20em;
+    }
+}
 
 
 

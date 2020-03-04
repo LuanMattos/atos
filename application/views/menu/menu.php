@@ -23,7 +23,7 @@
                                     <div>
                                         <div class="autocomplete" role="combobox" aria-haspopup="listbox" aria-owns="autocomplete-results" :aria-expanded="isOpen">
                                             <input type="text" placeholder="Buscar"
-                                                   class="appearance-none  bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-1 px-4"
+                                                   class="appearance-none  bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-1 px-4 input-search-menu"
                                                    @input="onChange"
                                                    v-model="search"
                                                    @keyup.down="onArrowDown"
