@@ -77,7 +77,7 @@ class Home extends Home_Controller
             $this->session->sess_destroy();
             redirect();
         }else{
-
+            $this->load->view('search_full/index');
         }
 
     }
