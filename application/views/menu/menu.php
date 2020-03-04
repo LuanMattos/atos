@@ -37,18 +37,19 @@
                                    data-toggle="dropdown">
                                     <i class="fas fa-user-plus"></i>
                                 </a>
+
                                 <div class="dropdown-menu user-request-dropdown dropdown-menu-right">
                                     <template v-if="amigos.length">
                                         <template v-for="(i,l) in amigos">
                                             <div class="user-request-list ">
                                                 <div class="request-users card-list-solicitacao">
                                                     <div class="user-request-dt ">
-                                                        <a href="#">
+                                                        <a href="javascript:void(0)">
                                                             <img class='crop-img-home-mini' :src="i.img_profile.length?i.img_profile:path_img_time_line_default" alt="">
                                                         </a>
-                                                        <a href="#" class="user-title">{{i.nome}}</a>
+                                                        <a href="javascript:void(0)" class="user-title">{{i.nome}}</a>
                                                     </div>
-                                                    <button class="accept-btn" @click="aceitar_pessoa(i._id,l)">Aceitar</button>
+                                                    <button class="accept-btn" v-on:click.prevent.stop="aceitar_pessoa(i._id,l)">Aceitar</button>
                                                 </div>
                                             </div>
                                         </template>
@@ -68,7 +69,7 @@
                                         </div>
 
                                         <div class="div-sem-solicitacoes">
-                                            <a class="content-sem-solicitacoes">Sem solicitações de amizade</a>
+                                            <a class="content-sem-solicitacoes">Sem solicitações de amizades</a>
                                         </div>
                                     </template>
 

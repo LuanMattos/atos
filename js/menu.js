@@ -29,6 +29,7 @@ var vue_instance_menu = new Vue({
     },
     methods:{
         aceitar_pessoa:function(id,l){
+
             $.post(
                 App.url("pessoas","Amigos","aceitar_pessoa"),
                 {
@@ -36,6 +37,7 @@ var vue_instance_menu = new Vue({
                 },
                 function(json){
                     if(json.info){
+
                         $(".card-list-solicitacao:eq("+l+")").remove();
 
                     }
@@ -44,6 +46,7 @@ var vue_instance_menu = new Vue({
         }
     }
 })
+
 
 
 
