@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Invite extends SI_Controller{
+class Invite extends Home_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model("Usuarios_model");
+        $this->load->model("Us_usuarios_model");
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
@@ -20,11 +20,8 @@ class Invite extends SI_Controller{
             redirect();
         }else{
             if(!empty($data_s)){
-                $data = $this->Usuarios_model->getWhere(["login"=>$data_s['login']]);
-                if(count($data)){
-                    $data = reset($data);
-                }
-                $this->load->view("invite/index",$data);
+
+                $this->load->view("invite/index");
 
             }
         }
