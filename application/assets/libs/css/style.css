@@ -247,7 +247,6 @@ footer, header, hgroup, menu, nav, section {
     font-weight: bold;
 }
 
-
 /*------------top-hover--------------*/
 .image_avatar_cover {
     display: block;
@@ -266,13 +265,51 @@ footer, header, hgroup, menu, nav, section {
     font-size: 35px;
 
 }
-.icon-home-cover {
-    position:relative;
-    margin-right: 120%;
-    color: white;
-    font-size: 35px;
-    opacity: 0.5;
+
+/*-----------Autocompriti-------------*/
+.app-autocomplete {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    margin-top: 60px;
 }
+
+.autocomplete {
+    position: relative;
+    width: 130px;
+}
+
+.autocomplete-results {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #eeeeee;
+    height: 200px;
+    overflow: auto;
+    width: 26em;
+    background-color: white;
+    z-index: 1000;
+    position:absolute;
+}
+
+.autocomplete-result {
+    list-style: none;
+    text-align: left;
+    padding: 4px 2px;
+    cursor: pointer;
+}
+.autocomplete-results > li > div.row{
+    margin-left: 5px;
+    max-width: 24em;
+}
+
+
+.autocomplete-result.is-active,
+.autocomplete-result:hover {
+    background-color: #565958;
+    color: white;
+}
+
 
 
 /*----------------------------------*/

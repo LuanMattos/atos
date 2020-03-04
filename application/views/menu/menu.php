@@ -18,11 +18,59 @@
                             </div>
                             <div class="col-lg-4 col-md-4"></div>
                             <div class="col-lg-8 col-md-8">
-                                    <input class="appearance-none  bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-1 px-4"
-                                           type="text"
-                                           placeholder="Buscar"
-                                           style="width: 90%"
-                                    >
+
+                                <script type="text/x-template" id="autocomplete">
+                                    <div>
+                                        <div class="autocomplete" role="combobox" aria-haspopup="listbox" aria-owns="autocomplete-results" :aria-expanded="isOpen">
+                                            <input type="text" placeholder="Buscar"
+                                                   class="appearance-none  bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-1 px-4"
+                                                   @input="onChange"
+                                                   v-model="search"
+                                                   @keyup.down="onArrowDown"
+                                                   @keyup.up="onArrowUp"
+                                                   @keyup.enter="onEnter"
+                                                   aria-autocomplete="list"
+                                                   aria-controls="autocomplete-results"
+                                                   :aria-activedescendant="activedescendant"
+                                                   :aria-labelledby="ariaLabelledBy"
+                                            />
+                                        </div>
+                                        <ul id="autocomplete-results" v-show="isOpen" class="autocomplete-results" role="listbox">
+                                            <li class="loading" v-if="isLoading">
+                                                Aguarde...
+                                            </li>
+                                            <li v-else v-for="(result, i) in results"
+                                                :key="i"
+                                                @click="setResult(result)"
+                                                class="autocomplete-result"
+                                                :class="{ 'is-active': isSelected(i) }"
+                                                role="option"
+                                                :id="getId(i)"
+                                                :aria-selected="isSelected(i)">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="sugguest-user-dt">
+                                                            <img class="crop-img-home-mini" :src="teste.length > 10?teste:path_img_search_default"  alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a href="javascript:void(0)" >
+                                                            <span class="result-text">{{ result }}</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </script>
+                                <div id="autocomplete-app">
+                                    <div>
+                                        <autocomplete :items="itens" aria-labelled-by="fruitLabel" />
+                                    </div>
+                                </div>
+
+
+<!--                                    <input class="appearance-none  bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-1 px-4" type="text" placeholder="Buscar" style="width: 90%">-->
                             </div>
                         </div>
 

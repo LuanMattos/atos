@@ -267,11 +267,17 @@ endif;
 </main>
 
 
+<div id="autocomplete-app">
+</div>
+
+
+
 <!-- Body End -->
 <!-- Footer Start -->
 <?= $this->load->view("footer/footer"); ?>
 <!-- Footer End -->
 <!-- Scripts js -->
+
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.nice-select.js"></script>

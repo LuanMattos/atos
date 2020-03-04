@@ -21,6 +21,10 @@ var vm = new Vue({
         loading          : false,
         error_input_file : false,
         error_text_area  : false,
+        acData : [],
+        inputData : '',
+        focusIndex : '',
+        inputFocus : false
 
     },
     created() {
@@ -154,4 +158,5 @@ $.post(
     function(json){
 
         vm.$data.posts = json.data
-},'json')
+},'json');
+
