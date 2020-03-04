@@ -17,7 +17,7 @@ var vm = new Vue({
         path_img_profile_default     : location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
         path_img_cover_default       : location.origin + '/application/assets/libs/images/event-view/my-bg.jpg',
         path_img_time_line_default   : location.origin + '/application/assets/libs/images/event-view/user-1.jpg',
-        posts            : [0],
+        posts            : [],
         loading          : false,
         error_input_file : false,
         error_text_area  : false,
@@ -152,5 +152,6 @@ $.post(
     home.Url("get_storage_img"),
     {},
     function(json){
-            vm.$data.posts = json.data
+
+        vm.$data.posts = json.data
 },'json')

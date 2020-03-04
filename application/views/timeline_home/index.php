@@ -1,7 +1,6 @@
 <div class="col-lg-12 col-md-12 ">
-    <div v-show="posts.length" v-cloak>
+    <div v-if="posts.length" v-cloak>
         <div class="col-sm-12" v-for="(post, index) in posts" style="margin-bottom: 30px">
-            {{posts}}
             <div class="main-tabs ">
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab-upcoming">
@@ -14,7 +13,7 @@
                                                 <tr>
                                                     <td>
                                                         <div class="maine-activity-img">
-                                                            <img class='crop-img-home' :src="post.img_profile?post.img_profile:path_img_time_line_default" alt="">
+                                                            <img class='crop-img-home' :src="post.img_profile?post.img_profile:path_img_time_line_default">
                                                         </div>
                                                     </td>
                                                     <td width="400px">
@@ -31,7 +30,9 @@
                                                                 </span>
                                                                 <div class="dropdown-menu post-rt-dropdown dropdown-menu-right">
                                                                     <a class="post-link-item" href="#">Ocultar</a>
-                                                                    <a class="post-link-item" href="javascript:void(0)" @click="excluir_postagem(post._id,posts,index)">Excluir</a>
+                                                                    <?php if(!isset($data['externo'])): ?>
+                                                                        <a class="post-link-item" href="javascript:void(0)"  @click="excluir_postagem(post._id,posts,index)">Excluir</a>
+                                                                    <?php endif; ?>
                                                                     <a class="post-link-item" href="#">Detalhes</a>
                                                                     <a class="post-link-item" href="#">Perfil usuário</a>
                                                                     <a class="post-link-item" href="#">Reportar</a>

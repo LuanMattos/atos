@@ -31,6 +31,22 @@ var vue_instance_dashboard_activity_local = new Vue({
             },'json')
         },
     methods:{
+        excluir_postagem:function( id, posts ,$index){
+
+            $.post(
+                App.url("","Home","delete_time_line"),
+                {
+                    id:id
+                },
+                function(json){
+                    if(json){
+                        vue_instance_dashboard_activity_local.posts.splice($index, 1)
+                    }
+                    if(!json){
+                    }
+
+                },'json')
+        },
         redirect_user:function(id){
             var url = App.url("dashboard_activity","Dashboard_activity","index");
             $.post(
