@@ -12,6 +12,7 @@ class Home extends Home_Controller
         $this->load->model("storage/img/Us_storage_img_profile_model");
         $this->load->model("location/Us_location_user_model");
         $this->load->model('account/Us_usuarios_conta_model');
+        $this->load->model('storage/img/Us_storage_img_model');
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
         $this->load->helper("url");
@@ -239,6 +240,16 @@ class Home extends Home_Controller
         redirect('Login');
 
     }
+    public function delete_time_line(){
+        $id = $this->input->post("id",true);
+        $delete = $this->Us_storage_img_model->deleteWhereMongo( [ "_id" => new \MongoDB\BSON\ObjectId($id) ] );
+        if(!$delete){
+            $this->response('error');
+
+        }
+        $this->response('success');
+
+    }
 
     /**
      * Adiciona as imagens ao bucket da Amazon
@@ -282,7 +293,7 @@ class Home extends Home_Controller
 
 //                        $us_storage     = $this->mongodb->atos->us_storage;
                     $us_storage_img = $this->mongodb->atos->us_storage_img;
-                    $us_storage_img->insertOne([
+                    $id = $us_storage_img->insertOne([
                         'server_name'    => 'https://s3.amazonaws.com/',
                         'text_timeline'  => $text_timeline,
                         'bucket'         => $bucket_name,
@@ -291,11 +302,10 @@ class Home extends Home_Controller
                         'codusuario'     => $get_usuario['_id'],
                         'created_at'     => date('Y-m-d H:i:s'),
                         'updated_at'     => date('Y-m-d H:i:s'),
-
-
                     ]);
+                    $id   = reset($id->getInsertedId());
                     $path = 'https://s3.amazonaws.com/' . $bucket_name . '/' . $name_folder_user . '/' . $name_file;
-                    $this->response('success', compact('path'));
+                    $this->response('success', compact('path','id'));
 
                 } else {
                     $this->response('error', ['msg' => 'Erro ao baixar a imagem para o servidor!']);
@@ -323,13 +333,14 @@ class Home extends Home_Controller
             $row['img_profile'] = false;
 
             foreach ($data_time_line as $row) {
-                $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row_usuarios['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
-                $imgprofile =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
+                $find_img   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row_usuarios['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+                $imgprofile = !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
                 $url        = !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
                 $text       = $row['text_timeline'];
                 $name_user  = $row_usuarios['nome'];
 
                 $data_row = [
+                    '_id'         => reset($row['_id']),
                     'path'        => $url,
                     'text'        => $text,
                     'nome'        => $name_user,

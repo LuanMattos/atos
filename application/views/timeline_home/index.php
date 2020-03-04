@@ -1,6 +1,7 @@
 <div class="col-lg-12 col-md-12 ">
     <div v-show="posts.length" v-cloak>
         <div class="col-sm-12" v-for="(post, index) in posts" style="margin-bottom: 30px">
+            {{posts}}
             <div class="main-tabs ">
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab-upcoming">
@@ -30,6 +31,7 @@
                                                                 </span>
                                                                 <div class="dropdown-menu post-rt-dropdown dropdown-menu-right">
                                                                     <a class="post-link-item" href="#">Ocultar</a>
+                                                                    <a class="post-link-item" href="javascript:void(0)" @click="excluir_postagem(post._id,posts,index)">Excluir</a>
                                                                     <a class="post-link-item" href="#">Detalhes</a>
                                                                     <a class="post-link-item" href="#">Perfil usuário</a>
                                                                     <a class="post-link-item" href="#">Reportar</a>

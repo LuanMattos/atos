@@ -52,6 +52,23 @@ var vm = new Vue({
         openfile:function(){
             $('#input-file-postagem').click();
         },
+        excluir_postagem:function( id, posts ,$index){
+
+            $.post(
+                App.url("","Home","delete_time_line"),
+                {
+                    id:id
+                },
+                function(json){
+                    if(json){
+                        // this.$delete(vm.posts, $index)
+                        vm.posts.splice($index, 1)
+                    }
+                    if(!json){
+                    }
+
+                },'json')
+        },
         postar:function(){
 
             var data = new FormData();
@@ -83,7 +100,8 @@ var vm = new Vue({
                     if(response){
                                 var data = {
                                     'text' : text_area,
-                                    'path' : response.path
+                                    'path' : response.path,
+                                    '_id'  : response.id
                                 };
                                 vm.posts.unshift(data);
                             }

@@ -121,6 +121,13 @@ class CI_Model {
         }
 
     }
+    public function deleteWhereMongo( $where ){
+        $this->config->load('database');
+        $configmongo = (object)$this->config->item('mongodb');
+
+        $deleteResult = $this->mongodb->{$configmongo->database}->{$this->get_table()}->deleteOne( $where );
+        return $deleteResult->getDeletedCount();
+    }
     /**
      * Responsável pela busca de dados através da condição Find
      * Se não informada a condição Where retornal todos os dados
