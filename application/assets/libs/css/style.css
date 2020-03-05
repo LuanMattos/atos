@@ -314,6 +314,14 @@ footer, header, hgroup, menu, nav, section {
 .input-search-menu{
     width: 80%;
 }
+ul li.autocomplete-results-empty-register{
+    color:#757a78;
+    text-align: center;
+    padding: 25px;
+}
+ul.autocomplete-results-empty-result-class{
+  height: 80px;
+}
 @media only screen and (max-width: 970px) {
     .mobileMenu{
         width: 80%;
@@ -346,7 +354,7 @@ footer, header, hgroup, menu, nav, section {
         padding: 0;
         margin: 0;
         border: 1px solid #eeeeee;
-        height: 300px;
+        height: auto;
         overflow: auto;
         width: 100%;
         background-color: white;
@@ -377,6 +385,7 @@ footer, header, hgroup, menu, nav, section {
     .dropdown-account-config div.user-dp{
         display: none;
     }
+
 }
 
 

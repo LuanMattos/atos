@@ -35,8 +35,8 @@ class S3{
      */
     public function __construct()
     {
-        $awsAccessKey           = 'AKIA2YRV4XJWF4KICMPG';
-        $awsSecretKey           = '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';
+        $awsAccessKey           = 'AKIA2YRV4XJWOYE6S3ZI';
+        $awsSecretKey           = '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';
         $config["accessKey"]    = $awsAccessKey;
         $config["secretKey"]    = $awsSecretKey;
         $config["useSSL"] = FALSE;
@@ -276,6 +276,7 @@ class S3{
         if ($response->error === false && $response->code !== 200)
             $response->error = array('code' => $response->code, 'message' => 'Unexpected HTTP status');
         if ($response->error !== false)
+
         {
             self::__triggerError(sprintf("S3::getBucket(): [%s] %s",
                 $response->error['code'], $response->error['message']), __FILE__, __LINE__);
@@ -370,6 +371,7 @@ class S3{
             $rest->setHeader('Content-Type', 'application/xml');
         }
         $rest = $rest->getResponse();
+
 
         if ($rest->error === false && $rest->code !== 200)
             $rest->error = array('code' => $rest->code, 'message' => 'Unexpected HTTP status');

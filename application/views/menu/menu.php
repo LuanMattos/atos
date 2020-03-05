@@ -35,9 +35,12 @@
                                                    :aria-labelledby="ariaLabelledBy"
                                             />
                                         </div>
-                                        <ul id="autocomplete-results" v-show="isOpen" class="autocomplete-results" role="listbox">
+                                        <ul id="autocomplete-results" v-show="isOpen" class="autocomplete-results" role="listbox" v-bind:class="!results.length?'autocomplete-results-empty-result-class':''">
                                             <li class="loading" v-if="isLoading">
                                                 Aguarde...
+                                            </li>
+                                            <li v-if="!results.length" class="autocomplete-results-empty-register">
+                                                Nenhum registro encontrado
                                             </li>
                                             <li v-else v-for="(result, i) in results"
                                                 :key="i"
@@ -61,6 +64,7 @@
                                                 </div>
                                             </li>
                                         </ul>
+
                                     </div>
                                 </script>
                                 <div id="autocomplete-app">

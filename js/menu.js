@@ -44,20 +44,21 @@ const Autocomplete = {
             var self = this;
             var data = this.search;
 
+
             $.post(
                 url,
                 {
                     search :  data,
                 },
                 function( json ){
-                    if(json){
+
                         vue_instance_menu.$data.itens = json.data;
-                    }
 
                 },'json'
             )
 
-            this.$emit("input", this.search);
+
+            // this.$emit("input", this.search);
 
             if (this.isAsync) {
                 this.isLoading = true;
@@ -69,11 +70,11 @@ const Autocomplete = {
 
         filterResults() {
             this.results = this.items.filter(item => {
-                return item.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+                return item.nome.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
             });
         },
         setResult(result) {
-            this.search = result;
+            this.search = result.nome;
             this.isOpen = false;
         },
         onArrowDown(evt) {
@@ -90,6 +91,7 @@ const Autocomplete = {
             }
         },
         onEnter() {
+
             this.search = this.results[this.arrowCounter];
             this.isOpen = false;
             this.arrowCounter = -1;

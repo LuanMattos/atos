@@ -78,7 +78,6 @@ class Dashboard_activity extends SI_Controller{
 
             $s3->putBucket($bucket_name);
             $name_folder_user = $get_usuario['nome'] . md5($get_usuario['login']);
-
             if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user . '/' . $name_file, S3::ACL_PUBLIC_READ)) {
 
                 $us_storage_img = $this->mongodb->atos->us_storage_img_profile;

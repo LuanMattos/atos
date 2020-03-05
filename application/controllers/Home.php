@@ -391,7 +391,19 @@ class Home extends Home_Controller
     }
     public function buscar(){
         $datapost = $this->input->post('search',true);
-        $data = $this->Us_usuarios_model->getWhereMongo(['nome'=>['$regex'=>"^$datapost"]]);
+        $datapost = strtolower( $datapost );
+        $datapost = $this->clear_car( $datapost );
+        $searchQuery = array(
+            '$or' => array(
+                array(
+                    'nome' => new \MongoDB\BSON\Regex( $datapost ),
+                ),
+                array(
+                    'sobrenome' => new \MongoDB\BSON\Regex( $datapost ),
+                ),
+            )
+        );
+        $data = $this->Us_usuarios_model->getWhereMongo($searchQuery,$orderby = "created_at",$direction =  -1,$limit = 8,$offset = NULL);
 
         foreach ($data as $row) {
             $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
