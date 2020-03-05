@@ -25,7 +25,7 @@
                             <i class="fab fa-youtube" style="color:#ff0000;"></i>http://www.youtube.com/</a>
                     </div>
                 </div>
-                <?= $this->load->view("pessoas/menu_amigos"); ?>
+                <?= $this->load->view("pessoas/menu_amigos",compact('data')); ?>
             </div>
             <?= $this->load->view("area_c_dashboard_activity/timeline"); ?>
 

@@ -7,7 +7,6 @@ var dashboard_activity_external = {
     }
 
 };
-
 var vue_instance_dashboard_activity_external = new Vue({
     el: "#div-geral-dashboard_activity",
     data: {
@@ -22,7 +21,9 @@ var vue_instance_dashboard_activity_external = new Vue({
         var self_vue  = this;
         var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
         // ------------------profile-------------------
-        $.post(url, {}, function(response){
+        $.post(url, {
+            id : id
+        }, function(response){
             self_vue.$data.amigos = response.data.amigos;
             },'json');
         $.post(

@@ -7,7 +7,6 @@ var dashboard_activity_local = {
     }
 
 };
-
 var vue_instance_dashboard_activity_local = new Vue({
     el: "#div-geral-dashboard_activity",
     data: {

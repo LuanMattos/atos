@@ -188,15 +188,23 @@ class Amigos extends Home_Controller
     }
     public function amigos_by_usuario_limit(){
         $this->load->model("storage/img/Us_storage_img_profile_model");
+        $id = $this->input->post('id',TRUE);
 
-        $data_user              = $this->Us_usuarios_model->data_user_by_session($this->data_session);
-        $data                   = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$data_user['_id']],$orderby = "_id",$direction =  -1,$limit = 6,$offset = NULL));
+        $data_user  = $this->Us_usuarios_model->data_user_by_session($this->data_session);
+        $_id        = $data_user['_id'];
+
+        if($id){
+            $_id = $id;
+        }
+
+        $data                   = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$_id],$orderby = "_id",$direction =  -1,$limit = 6,$offset = NULL));
         $row['img_profile']     = [];
 
         foreach($data['amigos'] as $row){
+
             $path                   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>reset($row['_id'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
             $row['img_profile']     =  !empty($path['server_name'])?$path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file']:false;
-
+            $row['id_user_local']   = $data_user['_id'];
 
         }
 
