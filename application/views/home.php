@@ -287,6 +287,7 @@ endif;
 <script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
+<!--<script src="--><?//= URL_RAIZ() ?><!--application/assets/js/libs/node_modules/axios/dist/axios.js"></script>-->
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>

@@ -389,8 +389,20 @@ class Home extends Home_Controller
         $this->response('success',compact('data'));
 
     }
-    public function ibugsec(){
-        redirect("ibugsec");
+    public function buscar(){
+        $datapost = $this->input->post('search',true);
+        $data = $this->Us_usuarios_model->getWhereMongo(['nome'=>['$regex'=>"^$datapost"]]);
+
+        foreach ($data as $row) {
+            $find_img   =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+            $imgprofile =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
+
+            $row['img_profile'] = $imgprofile;
+
+        }
+
+        $this->response('success',compact( 'data' ) );
+
     }
 
 

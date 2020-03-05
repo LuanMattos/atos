@@ -50,12 +50,12 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div class="sugguest-user-dt">
-                                                            <img class="crop-img-home-mini" :src="teste.length > 10?teste:path_img_search_default"  alt="">
+                                                            <img class="crop-img-home-mini" :src="result.img_profile.length > 10?result.img_profile:path_img_search_default"  alt="">
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <a href="javascript:void(0)" >
-                                                            <span class="result-text">{{ result }}</span>
+                                                            <span class="result-text ">{{ result.nome }}</span>
                                                         </a>
                                                     </div>
                                                 </div>

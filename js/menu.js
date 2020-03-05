@@ -40,6 +40,23 @@ const Autocomplete = {
 
     methods: {
         onChange() {
+            var url = App.url("","Home","buscar");
+            var self = this;
+            var data = this.search;
+
+            $.post(
+                url,
+                {
+                    search :  data,
+                },
+                function( json ){
+                    if(json){
+                        vue_instance_menu.$data.itens = json.data;
+                    }
+
+                },'json'
+            )
+
             this.$emit("input", this.search);
 
             if (this.isAsync) {
@@ -101,6 +118,7 @@ const Autocomplete = {
                 this.results = val;
                 this.isLoading = false;
             }
+
         }
     },
     mounted() {
@@ -115,7 +133,7 @@ const Autocomplete = {
 var vue_instance_menu = new Vue({
     el: "#content-menu",
     data: {
-        itens:['aaaaaaaaaaa','bbbbbbbbbbbb','ccccccccccccc','aaaaaabbbbbbbbbbbbbb'],
+        itens:[],
         img_profile : '',
         data_user_local : "",
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
@@ -150,28 +168,14 @@ var vue_instance_menu = new Vue({
                 },
                 function(json){
                     if(json.info){
-
                         $(".card-list-solicitacao:eq("+l+")").remove();
-
                     }
 
                 },'json')
         }
     }
 })
-// -----------------------------------------------Autocomplete----------------------------------------------------------
 
-
-// new Vue({
-//     el: "#autocomplete-app",
-//     data:{
-//         itens:['aaaaaaaaaaa','bbbbbbbbbbbb','ccccccccccccc','aaaaaabbbbbbbbbbbbbb'],
-//     },
-//     // name: "autocomplete",
-//     components: {
-//         autocomplete: Autocomplete
-//     }
-// });
 
 
 
