@@ -22,8 +22,8 @@
         </div>
     </div>
 <?php else: ?>
-    <div class="dash-todo-thumbnail-area1 " id="content-area-a">
-        <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay crop-img-home" v-bind:style="img_cover.length?'background-image:url(' + img_cover + ')':'background-image:url('+path_img_cover_default +')' ">
+    <div class="dash-todo-thumbnail-area1 crop-img-home dash-bg-image1 dash-bg-overlay" id="content-area-a" v-bind:style="img_cover.length?'background-image:url(' + img_cover + ')':'background-image:url('+path_img_cover_default +')' ">
+        <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay " >
             <div class="float-right mr-4" style="margin-top: 60px">
                 <div class="icon-home-cover cursor-pointer" >
                     <i class="fas fa-camera" @click="openfilecover"></i>

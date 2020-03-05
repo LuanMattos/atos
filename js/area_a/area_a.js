@@ -4,7 +4,6 @@ var area_a = {
     }
 
 }
-
 var vue_instance_area_a = new Vue({
     el:"#content-area-a",
     data:{
