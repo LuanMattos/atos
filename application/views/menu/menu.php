@@ -16,7 +16,7 @@
                                     <b style="font-size: 25px">atos</b>
                                 </a>
                             </div>
-                            <div class="col-lg-4 col-md-4"></div>
+                            <div class="col-lg-4 col-md-4 col-responsive-space"></div>
                             <div class="col-lg-8 col-md-8">
 
                                 <script type="text/x-template" id="autocomplete">
