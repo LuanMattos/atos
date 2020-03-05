@@ -390,19 +390,21 @@ class Home extends Home_Controller
 
     }
     public function buscar(){
-        $datapost = $this->input->post('search',true);
-        $datapost = strtolower( $datapost );
-        $datapost = $this->clear_car( $datapost );
-        $searchQuery = array(
-            '$or' => array(
+        $data_session   = $this->data_user();
+        $datapost       = $this->input->post('search',true);
+        $datapost       = strtolower( $datapost );
+        $datapost       = $this->clear_car( $datapost );
+        $searchQuery    = array(
+              '$or' => array(
                 array(
-                    'nome' => new \MongoDB\BSON\Regex( $datapost ),
+                    'nome' => new \MongoDB\BSON\Regex( $datapost )
                 ),
                 array(
                     'sobrenome' => new \MongoDB\BSON\Regex( $datapost ),
                 ),
-            )
+            ),"_id"=>['$nin' => [0=>$data_session->_id]]
         );
+
         $data = $this->Us_usuarios_model->getWhereMongo($searchQuery,$orderby = "created_at",$direction =  -1,$limit = 8,$offset = NULL);
 
         foreach ($data as $row) {
