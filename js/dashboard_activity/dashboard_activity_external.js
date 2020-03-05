@@ -34,7 +34,20 @@ var vue_instance_dashboard_activity_external = new Vue({
             function(json){
                 vue_instance_dashboard_activity_external.$data.posts = json.data
             },'json')
+        },
+    methods:{
+        redirect_user:function(id){
+            var url = App.url("dashboard_activity","Dashboard_activity","index");
+            $.post(
+                url,
+                {
+                    id:id
+                },
+                function(json){
+                    window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id[0]);
+                },'json')
         }
+    }
     }
 );
 

@@ -10,11 +10,11 @@
                     <img class="crop-img-home-mini" :src="i.img_profile.length?i.img_profile:path_img_time_line_default" alt=""></a>
                 <a href="javascript:void(0)" @click="redirect_user(i._id)"><h4>{{i.nome}}</h4></a>
             </div>
-            <?php if(set_val($data['externo'])): ?>
-            <template v-if="i._id.$oid !== i.id_user_local">
-                <button class="request-btn"><i class="fas fa-user-plus"></i></button>
-            </template>
-            <?php endif; ?>
+<!--            --><?php //if(set_val($data['externo'])): ?>
+<!--            <template v-if="i._id.$oid !== i.id_user_local">-->
+<!--                <button class="request-btn"><i class="fas fa-user-plus"></i></button>-->
+<!--            </template>-->
+<!--            --><?php //endif; ?>
         </div>
     </template>
 </div>
