@@ -35,6 +35,7 @@ const Autocomplete = {
             activedescendant: '',
             path_img_search_default   : location.origin + '/application/assets/libs/images/event-view/user-1.jpg',
 
+
         };
     },
 
@@ -43,7 +44,6 @@ const Autocomplete = {
             var url = App.url("","Home","buscar");
             var self = this;
             var data = this.search;
-
 
             $.post(
                 url,
@@ -76,8 +76,10 @@ const Autocomplete = {
         setResult(result) {
             this.search = result.nome;
             this.isOpen = false;
+            vue_instance_menu.redirect_user( result._id );
         },
         onArrowDown(evt) {
+
             if (this.arrowCounter < this.results.length) {
                 this.arrowCounter = this.arrowCounter + 1;
                 this.setActiveItem();
@@ -141,7 +143,6 @@ var vue_instance_menu = new Vue({
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
         amigos      : [],
         result      :[]
-
     },
     components: {
         autocomplete: Autocomplete
@@ -161,6 +162,17 @@ var vue_instance_menu = new Vue({
             },'json');
     },
     methods:{
+        redirect_user:function( id ){
+            var url = App.url("dashboard_activity","Dashboard_activity","index");
+            $.post(
+                url,
+                {
+                    id : id
+                },
+                function(json){
+                    window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id);
+                },'json')
+        },
         aceitar_pessoa:function(id,l){
 
             $.post(

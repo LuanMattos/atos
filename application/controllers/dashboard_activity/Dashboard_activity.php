@@ -33,7 +33,7 @@ class Dashboard_activity extends SI_Controller{
 
         $this->load->view("dashboard_activity/index",compact("dados"));
     }
-    public function external($id = null){
+    public function external( $id = null ){
         $dados                  = reset($this->Us_usuarios_model->getWhereMongo(['_id' => $id]));
         $dados['externo']       = true;
         $find_img               =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$dados['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
@@ -46,7 +46,6 @@ class Dashboard_activity extends SI_Controller{
         foreach($path_cover_img as $row_path_cover){
             $dados['img_cover']       =  !empty($row_path_cover['server_name'])?$row_path_cover['server_name'] . $row_path_cover['bucket'] . '/' . $row_path_cover['folder_user'] . '/' . $row_path_cover['name_file']:false;
         }
-
 
         $this->load->view("dashboard_activity/index",compact("dados"));
     }

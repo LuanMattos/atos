@@ -1,5 +1,5 @@
 <div class="col-lg-12 col-md-12 ">
-    <div v-if="posts.length" v-cloak>
+    <div v-if="posts" v-cloak>
         <div class="col-sm-12" v-for="(post, index) in posts" style="margin-bottom: 30px">
             <div class="main-tabs ">
                 <div class="tab-content">

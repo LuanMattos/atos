@@ -1,6 +1,6 @@
 <?php if(isset($data['externo'])): ?>
     <div class="dash-todo-thumbnail-area1 " id="content-area-a">
-        <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay crop-img-home" style="background-image:url('<?= set_val($data['img_cover']) ?>')">
+        <div class="dash-todo-thumbnail-area1 crop-img-home dash-bg-image1 dash-bg-overlay" style="background-image:url('<?= set_val($data['img_cover']) ?>')">
             <div class="float-right mr-4" style="margin-top: 60px">
             </div>
         </div>
@@ -21,6 +21,7 @@
             </div>
         </div>
     </div>
+
 <?php else: ?>
     <div class="dash-todo-thumbnail-area1 crop-img-home dash-bg-image1 dash-bg-overlay" id="content-area-a" v-bind:style="img_cover.length?'background-image:url(' + img_cover + ')':'background-image:url('+path_img_cover_default +')' ">
         <div class="todo-thumb1 dash-bg-image1 dash-bg-overlay " >
