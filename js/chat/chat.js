@@ -75,7 +75,9 @@ var vue_instance_chat = new Vue({
                 $('<div class="timestamp">' + d.getHours() + ':' + m + '</div>').appendTo($('.message:last'));
             }
         },
-        minimizar:function(){
+        minimize:function(){
+            var chat = $('.chat');
+            chat.toggleClass('minimize-chat');
         },
         updateScrollbar:function(){
             var messages_content = $('.messages-content');

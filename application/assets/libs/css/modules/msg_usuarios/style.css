@@ -30,7 +30,7 @@ Chat
   bottom: 0;
   margin-bottom: 0;
   width: 320px;
-  height: 60vh;
+  height: 66.5vh;
   z-index: 1000;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
@@ -98,6 +98,9 @@ Messages
   overflow: hidden;
   position: relative;
   width: 100%;
+}
+.messages .mCustomScrollbar {
+  padding-top: 5px;
 }
 .messages .messages-content {
   position: absolute;
@@ -347,6 +350,24 @@ Bounce
   }
   to {
     transform: translateY(-10px);
+  }
+}
+.minimize-chat {
+  position: fixed;
+  float: right;
+  right: 0.5%;
+  bottom: -60%;
+  transition: 1s;
+}
+@media screen and (max-height: 420px) {
+  .minimize-chat {
+    bottom: -55%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .minimize-chat {
+    bottom: -60%;
+    right: 0%;
   }
 }
 

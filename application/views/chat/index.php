@@ -1,6 +1,6 @@
 <div id="content-chat">
-    <div class="chat">
-        <div class="chat-title" >
+    <div class="chat" >
+        <div class="chat-title " @click="minimize()">
             <h1>Fabio Ottaviani</h1>
             <h2>Supah</h2>
             <figure class="avatar">

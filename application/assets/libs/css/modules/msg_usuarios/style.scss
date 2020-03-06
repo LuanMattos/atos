@@ -51,7 +51,7 @@ Chat
 .chat {
   @include align;
   width: 320px;
-  height: 60vh;
+  height: 66.5vh;
   z-index: 1000;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
@@ -118,6 +118,10 @@ Chat Title
 Messages
 --------------------*/
 .messages {
+  .mCustomScrollbar{
+    padding-top: 5px;
+  }
+
   flex: 1 1 auto;
   color: rgba(255, 255, 255, .5);
   overflow: hidden;
@@ -336,4 +340,21 @@ Bounce
   to {
     transform: translateY(-10px);
   }
+}
+.minimize-chat{
+  position: fixed;
+  float: right;
+  right: 0.5%;
+  bottom: -60%;
+  transition: 1s;
+  @media screen and(max-height: 420px) {
+    bottom: -55%;
+  }
+  @media screen and(max-width: 450px) {
+    bottom: -60%;
+    right: 0%;
+
+
+  }
+
 }
