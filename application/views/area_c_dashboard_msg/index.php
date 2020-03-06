@@ -14,12 +14,12 @@
                             <div class="rightbox">
                                 <div class="rightside">
                                     <a href="#"><i class="fas fa-search"></i></a>
-                                    <input type="text" placeholder="Enter a keyword">
+                                    <input type="text" placeholder="Buscar">
                                 </div>
                                 <div class="msg-scroll">
                                     <div class="rightmsg">
                                         <div class="message-radius">
-                                            <img src="images/messages/1_chat.jpg" alt="" title="" >
+                                            <img src="<?= URL_RAIZ() ?>application/assets/libs/images/messages/1_chat.jpg" alt="" title="" >
                                         </div>
                                         <div class="message-heading">
                                             <a href="#"><h4>Rock William</h4></a>
@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="rightmsg">
                                         <div class="message-radius">
-                                            <img src="images/messages/2_chat.jpg" alt="" title="" >
+                                            <img src="<?= URL_RAIZ() ?>application/assets/libs/images/messages/2_chat.jpg" alt="" title="" >
                                         </div>
                                         <div class="message-heading">
                                             <a href="#"><h4>Joy Smith</h4></a>
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="rightmsg">
                                         <div class="message-radius">
-                                            <img src="images/messages/3_chat.jpg" alt="" title="" >
+                                            <img src="<?= URL_RAIZ() ?>application/assets/libs/images/messages/3_chat.jpg" alt="" title="" >
                                         </div>
                                         <div class="message-heading">
                                             <a href="#"><h4>Johnson Dua</h4></a>
@@ -64,7 +64,7 @@
                                 <div class="message-bar-head">
                                     <div class="usr-msg-details">
                                         <div class="usr-ms-img">
-                                            <img src="images/messages/1_chat.jpg" alt="" class="mCS_img_loaded">
+                                            <img src="<?= URL_RAIZ() ?>application/assets/libs/images/messages/1_chat.jpg" alt="" class="mCS_img_loaded">
                                         </div>
                                         <div class="usr-mg-info">
                                             <a href="#"><h3>John Doe</h3></a>
@@ -80,7 +80,7 @@
                                         <div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
                                             <div class="main-message-box">
                                                 <div class="messg-usr-img">
-                                                    <a href="#"><img src="images/messages/1_chat.jpg" alt="" class="mCS_img_loaded"></a>
+                                                    <a href="#"><img src="<?= URL_RAIZ() ?>application/assets/libs/images/messages/1_chat.jpg" alt="" class="mCS_img_loaded"></a>
                                                 </div><!--messg-usr-img end-->
                                             </div><!--main-message-box end-->
                                             <div class="main-message-box ta-right">
@@ -99,7 +99,7 @@
                                                     <span>5 minutes ago</span>
                                                 </div><!--message-dt end-->
                                                 <div class="messg-usr-img">
-                                                    <a href="#"><img src="images/messages/5_chat_small.jpg" alt="" class="mCS_img_loaded"></a>
+                                                    <a href="#"><img src="<?= URL_RAIZ() ?>application/assets/libs/images/messages/5_chat_small.jpg" alt="" class="mCS_img_loaded"></a>
                                                 </div><!--messg-usr-img end-->
                                             </div><!--main-message-box end-->
                                             <div class="main-message-box ta-right">
@@ -118,7 +118,7 @@
                                                     <span>Typing...</span>
                                                 </div><!--message-dt end-->
                                                 <div class="messg-usr-img">
-                                                    <a href="#"><img src="images/messages/5_chat_small.jpg" alt="" class="mCS_img_loaded"></a>
+                                                    <a href="#"><img src="<?= URL_RAIZ() ?>application/assets/libs/images/messages/5_chat_small.jpg" alt="" class="mCS_img_loaded"></a>
                                                 </div><!--messg-usr-img end-->
                                             </div><!--main-message-box end-->
 

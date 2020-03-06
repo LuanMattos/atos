@@ -6249,6 +6249,18 @@ footer {
     margin-bottom: 0;
     width: 100%;
 }
+.right-details > li > div.content-ico-msg{
+    color:#3d403f;
+    font-size: 32px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 1s;
+}
+.right-details > li > div.content-ico-msg:hover{
+    opacity: 1;
+    color:#4284cf;
+}
+
 
 .right-details li {
     display: inline-block;
