@@ -16,14 +16,14 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <ul class="right-details">
                     <li>
-                        <div class="my-all-evnts">
-                            <a href="my_dashboard_events.html">Amigos?</a>
-                        </div>
-                    </li>
-                    <li>
                         <div class="all-dis-evnt">
                             <div class="dscun-txt">Amigos</div>
                             <div class="dscun-numbr">22</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="my-all-evnts" title="Vocês são amigos">
+                            <i class="fas fa-user-check"></i>
                         </div>
                     </li>
                     <li>
