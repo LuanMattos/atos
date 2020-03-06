@@ -28,7 +28,7 @@
                     </li>
                     <li>
                         <div class="content-ico-msg" title="Iniciar conversa">
-                            <i class="far fa-comments"></i>
+                            <i class="far fa-comments" @click="open_chat()"></i>
                         </div>
                     </li>
                 </ul>

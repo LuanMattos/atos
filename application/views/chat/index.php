@@ -1,10 +1,14 @@
-<div id="content-chat">
+<div class="chat-content" >
     <div class="chat" >
         <div class="chat-title " @click="minimize()">
+            <figure class="avatar">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+            </figure>
             <h1>Fabio Ottaviani</h1>
             <h2>Supah</h2>
-            <figure class="avatar">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>
+            <div class="ico-close" @click="close($event)">
+                 <i class="fas fa-times"></i>
+            </div>
         </div>
         <div class="messages">
             <div class="messages-content"></div>

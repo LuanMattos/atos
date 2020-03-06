@@ -46,7 +46,9 @@ endif;
         <?= $this->load->view("area_c_dashboard_activity/index"); ?>
     </div>
 </main>
-<?= $this->load->view("chat/index"); ?>
+<div id="content-chat" >
+    <?= $this->load->view("chat/index"); ?>
+</div>
 
 <!-- Body End -->
 <!-- Footer Start -->

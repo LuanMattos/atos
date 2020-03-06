@@ -56,6 +56,10 @@ var vue_instance_dashboard_activity_local = new Vue({
                 function(json){
                     window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id[0]);
                 },'json')
+        },
+        open_chat : function(){
+            $(".chat-content").toggleClass('hide');
+
         }
     }
 
