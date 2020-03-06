@@ -21,6 +21,12 @@
     <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
     <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
 
+    <!-----CHAT------>
+    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/modules/msg_usuarios/style.css" rel="stylesheet">
+    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+
+
 </head>
 
 <body>
@@ -40,30 +46,24 @@ endif;
         <?= $this->load->view("area_c_dashboard_activity/index"); ?>
     </div>
 </main>
+<?= $this->load->view("chat/index"); ?>
+
 <!-- Body End -->
 <!-- Footer Start -->
 <?= $this->load->view("footer/footer"); ?>
 <!-- Footer End -->
 <!-- Scripts js -->
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.nice-select.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/datepicker.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/i18n/datepicker.en.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
-<script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
-<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
+<?= $this->load->view("head/js"); ?>
+
 <?php if(isset($dados['externo'])): ?>
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_external.js"></script>
 <?php else: ?>
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_local.js"></script>
 <?php endif ?>
 
+<!-----CHAT------>
+
+<script type="module" src="<?= URL_RAIZ()  ?>js/chat/chat.js" ></script>
 
 
 
