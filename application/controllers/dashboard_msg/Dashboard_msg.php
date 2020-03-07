@@ -7,6 +7,7 @@ class Dashboard_msg extends Home_Controller
     public function __construct(){
         parent::__construct();
         $this->load->model("Us_usuarios_model");
+        $this->load->model("dashboard_msg/Msg_usuarios_model");
         $this->load->model("account/Us_usuarios_conta_model");
         $this->load->model("location/Us_location_user_model");
         $this->output->enable_profiler(FALSE);
@@ -31,6 +32,12 @@ class Dashboard_msg extends Home_Controller
             }
         }
 
+    }
+    public function get_msg_local(){
+        $usuario_session = $this->data_user();
+        $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['login' => $usuario_session['login'] ] ) );
+        $data    = $this->Msg_usuarios_model->getWhereMongo( ['_id'=>$usuario['id']] );
+        $this->response('success',compact('data'));
     }
 
 }

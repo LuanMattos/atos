@@ -63,12 +63,6 @@ endif;
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_local.js"></script>
 <?php endif ?>
 
-<!-----CHAT------>
-
-<script type="module" src="<?= URL_RAIZ()  ?>js/chat/chat.js" ></script>
-
-
-
 </body>
 
 </html>

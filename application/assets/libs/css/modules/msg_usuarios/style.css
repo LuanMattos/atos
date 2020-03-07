@@ -42,15 +42,15 @@ Chat
 .chat .ico-close {
   color: white;
   float: right;
-  margin-top: -10px;
+  margin-top: -28px;
   margin-right: 5px;
+  font-size: 25px;
   opacity: 0.8;
 }
 .chat .ico-close :hover {
   transition: 1s;
   opacity: 1;
-  color: #4374b1;
-  cursor: default;
+  cursor: pointer;
 }
 @media screen and (max-width: 500px) {
   .chat {
@@ -62,6 +62,52 @@ Chat
 /*--------------------
 Chat Title
 --------------------*/
+.chat-title-notification {
+  border-bottom: 0.5px solid;
+  flex: 0 1 45px;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 10px 10px 10px 50px;
+  cursor: pointer;
+}
+.chat-title-notification i.fa-comment-alt {
+  float: right;
+  margin-top: -20px;
+  color: #4d8cd2;
+}
+.chat-title-notification h1, .chat-title-notification h2 {
+  font-weight: normal;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
+.chat-title-notification h2 {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.chat-title-notification .avatar {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 9px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.24);
+}
+.chat-title-notification .avatar img {
+  width: 100%;
+  height: auto;
+}
+
 .chat-title {
   flex: 0 1 45px;
   position: relative;
@@ -72,6 +118,14 @@ Chat Title
   text-align: left;
   padding: 10px 10px 10px 50px;
   cursor: pointer;
+}
+.chat-title div.ico-minimize-maximize {
+  margin-top: -5px;
+}
+.chat-title div.ico-minimize-maximize i.fas {
+  margin-left: 80%;
+  color: #b7bebb;
+  font-size: 25px;
 }
 .chat-title h1, .chat-title h2 {
   font-weight: normal;
@@ -369,17 +423,17 @@ Bounce
   position: fixed;
   float: right;
   right: 0.5%;
-  bottom: -60%;
+  bottom: -50%;
   transition: 1s;
 }
 @media screen and (max-height: 420px) {
   .minimize-chat {
-    bottom: -55%;
+    bottom: -50%;
   }
 }
 @media screen and (max-width: 450px) {
   .minimize-chat {
-    bottom: -60%;
+    bottom: -50%;
     right: 0%;
   }
 }
