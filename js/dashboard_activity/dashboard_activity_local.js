@@ -125,7 +125,7 @@ var vue_instance_chat = new Vue({
             var self = this;
 
             // Conectando
-            self.ws = new WebSocket('ws://php_apache_painel:9000');
+            self.ws = new WebSocket('ws://192.168.80.2:9000');
 
             // Evento que será chamado ao abrir conexão
             self.ws.onopen = function() {
