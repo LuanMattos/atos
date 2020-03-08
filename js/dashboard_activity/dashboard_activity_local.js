@@ -125,11 +125,11 @@ var vue_instance_chat = new Vue({
             var self = this;
 
             // Conectando
-            self.ws = new WebSocket('ws://52.204.82.217:10000');
-            console.log(self.ws);
+            // wss://echo.websocket.org
+            self.ws = new WebSocket('ws://echo.websocket.org');
 
             // Evento que será chamado ao abrir conexão
-            self.ws.onopen = function() {
+            self.ws.onopen = function(e) {
 
                 self.addSuccessNotification('Online');
                 // Se houver método de retorno
@@ -137,6 +137,7 @@ var vue_instance_chat = new Vue({
                     onOpen();
                 }
             };
+
 
             // Evento que será chamado quando houver erro na conexão
             self.ws.onerror = function(e) {
@@ -239,6 +240,7 @@ var vue_instance_chat = new Vue({
             // this.updateScrollbar();
             //-----gravar dados do próprio usuario no banco------
 
+            console.log(self.ws)
 
             // Se a conexão não estiver aberta
             if (self.ws.readyState !== self.ws.OPEN) {
