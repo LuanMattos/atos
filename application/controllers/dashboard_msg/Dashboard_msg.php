@@ -37,7 +37,11 @@ class Dashboard_msg extends Home_Controller
         $usuario_session = $this->data_user();
         $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['login' => $usuario_session['login'] ] ) );
         $data    = $this->Msg_usuarios_model->getWhereMongo( ['_id'=>$usuario['id']] );
-        $this->response('success',compact('data'));
+        $usuario_local = [
+            'nome'=>$usuario['nome'],
+            'sobrenome'=>$usuario['sobrenome']
+        ];
+        $this->response('success',compact('data','usuario_local'));
     }
 
 }

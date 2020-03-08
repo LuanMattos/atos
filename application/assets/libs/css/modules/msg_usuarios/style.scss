@@ -417,13 +417,13 @@ Bounce
   position: fixed;
   float: right;
   right: 0.5%;
-  bottom: -50%;
+  bottom: -43%;
   transition: 1s;
   @media screen and(max-height: 420px) {
-    bottom: -50%;
+    bottom: -43%;
   }
   @media screen and(max-width: 450px) {
-    bottom: -50%;
+    bottom: -43%;
     right: 0%;
   }
 

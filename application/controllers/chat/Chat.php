@@ -12,6 +12,10 @@ class Chat extends Home_Controller
         $this->load->helper("url");
 
     }
+    public function index(){
+
+        $this->load->view('chat/index');
+    }
 
 
 }

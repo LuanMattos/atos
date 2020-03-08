@@ -16,6 +16,7 @@ var vue_instance_dashboard_activity_local = new Vue({
     },
     mounted:function(){
         var self_vue  = this;
+        // -------------------------------------------
         var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
         // ------------------profile-------------------
         $.post(url, {}, function(response){
@@ -56,15 +57,9 @@ var vue_instance_dashboard_activity_local = new Vue({
                     window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id[0]);
                 },'json')
         },
+
         open_chat : function(){
-            var url = App.url("dashboard_msg","Dashboard_msg","get_msg_local");
 
-            $.post(url,
-              {},
-              function( json ){
-                console.log(json);
-
-              },'json')
 
 
             $(".chat-content").toggleClass('hide');
@@ -90,29 +85,21 @@ var vue_instance_chat = new Vue({
         path_img_profile_default : location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
         path_img_cover_default   : location.origin + '/application/assets/libs/images/event-view/my-bg.jpg',
         messages_content:'',
-        Fake : [
-            'Hi there, I\'m Fabio and you?',
-            'Nice to meet you',
-            'How are you?',
-            'Not too bad, thanks',
-            'What do you do?',
-            'That\'s awesome',
-            'Codepen is a nice place to stay',
-            'I think you\'re a nice person',
-            'Why do you think that?',
-            'Can you explain?',
-            'Anyway I\'ve gotta go now',
-            'It was a pleasure chat with you',
-            'Time to make a new codepen',
-            'Bye',
-            ':)'
-        ],
+        Fake : [],
         ico_minimize_maximise : 'fas fa-window-minimize',
-        minimize_class : ''
+        minimize_class : '',
+        user: 'Anônimo',
+        text: null,
+        messages: [],
+        ws: null,
+        data_user : '',
+        status : []
 
     },
     mounted:function(){
         var self_vue  = this;
+        var url = App.url("dashboard_msg","Dashboard_msg","get_msg_local");
+        $.post(url, {}, function( json ){ self_vue.data_user = json },'json')
         // ------------------profile-------------------
         var url  = chat.Url("get_img");
         $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
@@ -120,16 +107,46 @@ var vue_instance_chat = new Vue({
         var url  = chat.Url("get_img");
         $.post(url, {type:"cover"}, function(response){self_vue.$data.img_cover = response.path;},'json');
 
-        var $messages = $('.messages-content'),
-          d, h, m,
-          i = 0;
-        $messages.mCustomScrollbar();
-        setTimeout(function() {
-            self_vue.fakeMessage();
-        }, 100);
+        // var $messages = $('.messages-content'),
+        //   d, h, m,
+        //   i = 0;
+        // $messages.mCustomScrollbar();
+        // setTimeout(function() {
+        //     self_vue.fakeMessage();
+        // }, 100);
+        this.connect();
+
 
     },
     methods:{
+        // Método responsável por iniciar conexão com o websocket
+        connect: function(onOpen) {
+
+            var self = this;
+
+            // Conectando
+            self.ws = new WebSocket('ws://172.22.0.2:9000');
+
+            // Evento que será chamado ao abrir conexão
+            self.ws.onopen = function() {
+                self.addSuccessNotification('Online');
+                // Se houver método de retorno
+                if (onOpen) {
+                    onOpen();
+                }
+            };
+
+            // Evento que será chamado quando houver erro na conexão
+            self.ws.onerror = function(e) {
+                self.addErrorNotification('Não foi possível conectar-se ao servidor');
+            };
+
+            // Evento que será chamado quando recebido dados do servidor
+            self.ws.onmessage = function(e) {
+                self.addMessage(JSON.parse(e.data));
+            };
+
+        },
         fakeMessage : function(){
             var i = 0;
             var self = this;
@@ -184,24 +201,89 @@ var vue_instance_chat = new Vue({
                 timeout: 0
             });
         },
-        insertMessage:function(){
-            var msg = $('.message-input').val();
+
+        // Método responsável por adicionar uma mensagem de usuário
+        addMessage: function(data) {
+            this.status.push(data);
+            this.scrollDown();
+        },
+
+        // Método responsável por adicionar uma notificação de sucesso
+        addSuccessNotification: function(text) {
+            this.addMessage({color: '#5490fe', text: text});
+        },
+
+        // Método responsável por adicionar uma notificação de erro
+        addErrorNotification: function( text ) {
+            this.addMessage({color: '#a7acaa', text: text});
+        },
+
+        // Método responsável por enviar uma mensagem
+        sendMessage: function() {
             var self = this;
-            if ($.trim(msg) == '') {
+            var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario_local.nome };
+
+            if ( !this.text ) {
                 return false;
             }
-            $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-            this.setDate();
 
-            $('.message-input').val(null);
+            this.messages.push( data_msg );
+
+            $('.messages-content').appendTo($('.mCSB_container')).addClass('new');
+
+            this.text = null;
             this.updateScrollbar();
-            setTimeout(function() {
-                self.fakeMessage();
-            }, 1000 + (Math.random() * 20) * 100);
+            // setTimeout(function() {
+            //     self.fakeMessage();
+            // }, 1000 + (Math.random() * 20) * 100);
+            return  false;
+
+            // -----------------------------
+
+
+            // Se não houver o texto da mensagem ou o nome de usuário
+            if (!self.text || !self.user) {
+                // Saindo do método
+                return;
+            }
+
+            // Se a conexão não estiver aberta
+            if (self.ws.readyState !== self.ws.OPEN) {
+
+                // Exibindo notificação de erro
+                self.addErrorNotification('Problemas na conexão. Tentando reconectar...');
+
+                // Tentando conectar novamente e caso tenha sucesso
+                // envia a mensagem novamente
+                self.connect(function() {
+                    self.sendMessage();
+                });
+
+                // Saindo do método
+                return;
+            }
+
+            // Envia os dados para o servidor através do websocket
+            self.ws.send(JSON.stringify({
+                user: self.user,
+                text: self.text,
+            }));
+
+            // Limpando texto da mensagem
+            self.text = null;
+
+        },
+
+        // Método responsável por "rolar" a scroll do chat para baixo
+        scrollDown: function() {
+            var container = this.$el.querySelector('.messages');
+            container.scrollTop = container.scrollHeight;
         },
 
 
     }
 
 });
+
+
 

@@ -7,7 +7,6 @@
   "autoload": {
     "psr-4": {
       "Service\\": "services",
-      "UnicoService\\": "services/modules",
       "ServiceSms\\": "services",
       "ServiceZenvia\\": "services",
       "Modules\\Account\\RestoreAccount\\": "services/modules/account",
