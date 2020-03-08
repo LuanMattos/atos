@@ -27,14 +27,11 @@
         </div>
         <div class="messages">
             <div class="messages-content" >
-                <template v-for="message in messages">
-                    <span class="date" >{{ message.date }}</span>
-                    <span class="name" >{{ message.user }}:</span>
-                    <span class="text" >
-                        {{ message.text }}
-                    </span>
-                    <br>
-
+                <template v-for="message in messages" >
+                        <span class="date" >{{ message.date }}</span>
+                        <span class="name" >{{ message.user }}:</span>
+                        <span class="text" >{{ message.text }}</span>
+                        <br>
                 </template>
             </div>
         </div>

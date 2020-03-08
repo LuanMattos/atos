@@ -204,18 +204,21 @@ var vue_instance_chat = new Vue({
 
         // Método responsável por adicionar uma mensagem de usuário
         addMessage: function(data) {
-            this.status.push(data);
+            this.messages.push(data);
             this.scrollDown();
         },
+        addMessageNotification:function(data){
+            this.status.push(data);
 
+        },
         // Método responsável por adicionar uma notificação de sucesso
         addSuccessNotification: function(text) {
-            this.addMessage({color: '#5490fe', text: text});
+            this.addMessageNotification({color: '#5490fe', text: text});
         },
 
         // Método responsável por adicionar uma notificação de erro
         addErrorNotification: function( text ) {
-            this.addMessage({color: '#a7acaa', text: text});
+            this.addMessageNotification({color: '#a7acaa', text: text});
         },
 
         // Método responsável por enviar uma mensagem
@@ -231,25 +234,12 @@ var vue_instance_chat = new Vue({
 
             $('.messages-content').appendTo($('.mCSB_container')).addClass('new');
 
-            this.text = null;
-            this.updateScrollbar();
-            // setTimeout(function() {
-            //     self.fakeMessage();
-            // }, 1000 + (Math.random() * 20) * 100);
-            return  false;
+            // this.updateScrollbar();
+            //-----gravar dados do próprio usuario no banco------
 
-            // -----------------------------
-
-
-            // Se não houver o texto da mensagem ou o nome de usuário
-            if (!self.text || !self.user) {
-                // Saindo do método
-                return;
-            }
 
             // Se a conexão não estiver aberta
             if (self.ws.readyState !== self.ws.OPEN) {
-
                 // Exibindo notificação de erro
                 self.addErrorNotification('Problemas na conexão. Tentando reconectar...');
 
@@ -259,18 +249,18 @@ var vue_instance_chat = new Vue({
                     self.sendMessage();
                 });
 
-                // Saindo do método
                 return;
             }
 
             // Envia os dados para o servidor através do websocket
             self.ws.send(JSON.stringify({
-                user: self.user,
-                text: self.text,
+                user: this.data_user.usuario_local.nome,
+                text: this.text,
             }));
 
-            // Limpando texto da mensagem
-            self.text = null;
+            this.scrollDown();
+            this.text = null;
+
 
         },
 
