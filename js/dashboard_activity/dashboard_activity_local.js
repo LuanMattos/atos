@@ -126,6 +126,7 @@ var vue_instance_chat = new Vue({
 
             // Conectando
             self.ws = new WebSocket('ws://192.168.144.2:9000');
+            console.log(self.ws);
 
             // Evento que será chamado ao abrir conexão
             self.ws.onopen = function() {
