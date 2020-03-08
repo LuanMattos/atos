@@ -200,9 +200,9 @@ class Home extends Home_Controller
             "date_to_send"  => date("Y-m-d H:i:s")
         ];
 
-//        $sms            = new \ServiceSms\ServiceSms();
+        $sms            = new \ServiceSms\ServiceSms();
 
-//        $sms->processesDirect( $dataSms );
+        $sms->processesDirect( $dataSms );
 
 
         $this->Us_usuarios_model->save_mongo($data);

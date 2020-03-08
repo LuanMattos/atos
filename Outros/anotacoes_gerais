@@ -69,3 +69,12 @@ Para todos os volumes
             docker tag bcef5fd2979d luanmattos/atos:mongodb
         -depois dar push
              docker push luanmattos/atos:mongodb
+
+
+Erro supervisor(sotware para gerenciar scripts)
+    --Sofware para gerenciar os scripts e iniciar automaticamente a execução so socket pelo PHP
+sudo supervisord -c supervisor.conf
+Erro => Porta já está sendo usada por outro processo (mesmo que não tenha)
+sudo unlink /tmp/supervisor.sock
+
+sudo unlink /var/run/supervisor.sock
