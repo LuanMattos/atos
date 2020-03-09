@@ -24,7 +24,10 @@ Mixins
   animation: ball .45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
 }
 
-
+.crop-img-card-chat{
+  object-fit: cover;
+  object-position: 1000% 1000%;
+}
 /*--------------------
 Body
 --------------------*/
@@ -131,6 +134,37 @@ Chat Title
     }
   }
 }
+
+.chat-avatar{
+  flex: 0 1 45px;
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0 0 10px 50px;
+  cursor: pointer;
+  .avatar {
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    left: 9px;
+    border-radius: 30px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+
+    img {
+      background-size:cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      width: 170%;
+    }
+  }
+}
 .chat-title {
   flex: 0 1 45px;
   position: relative;
@@ -141,7 +175,6 @@ Chat Title
   text-align: left;
   padding: 10px 10px 10px 50px;
   cursor: pointer;
-
 
   div.ico-minimize-maximize {
     margin-top: -5px;
@@ -180,8 +213,10 @@ Chat Title
     border: 2px solid rgba(255, 255, 255, 0.24);
 
     img {
-      width: 100%;
-      height: auto;
+      background-size:cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      width: 170%;
     }
   }
 }
@@ -199,13 +234,54 @@ Messages
   overflow: hidden;
   position: relative;
   width: 100%;
+  font-size: 13px;
 
+  .msg-local-here{
+    float:right;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    right: 0;
+
+  }
   & .messages-content {
     position: absolute;
+    margin-bottom: 10px;
+    margin-left: 10px;
     top: 0;
     left: 0;
     height: 101%;
     width: 100%;
+    span.name{
+      margin-left: 12%;
+      padding: 0;
+    }
+
+    .align-item-right{
+      float:right;
+      margin-right: 0;
+      span.name{
+        float: right;
+        margin-right: 8%;
+      }
+      .chat-avatar{
+        float: right;
+        right: 0;
+      }
+      span.text{
+        float: right;
+        margin-right: 20%;
+      }
+
+    }
+    .align-item-left{
+      float:left;
+      margin-left: 0;
+      span.name{
+        margin-left: 15%;
+        padding: 0;
+      }
+
+    }
   }
 
 
@@ -216,7 +292,7 @@ Messages
     border-radius: 10px 10px 10px 0;
     background: rgba(0, 0, 0, .3);
     margin: 8px 0;
-    font-size: 11px;
+    font-size: 110px;
     line-height: 1.4;
     margin-left: 35px;
     position: relative;

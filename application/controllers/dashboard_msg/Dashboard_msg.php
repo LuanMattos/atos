@@ -36,10 +36,14 @@ class Dashboard_msg extends Home_Controller
     public function get_msg_local(){
         $usuario_session = $this->data_user();
         $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['login' => $usuario_session['login'] ] ) );
-        $data    = $this->Msg_usuarios_model->getWhereMongo( ['_id'=>$usuario['id']] );
+        $data    = $this->Msg_usuarios_model->getWhereMongo( ['_id'=>$usuario['_id']] );
+
+        $find_img               =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$usuario['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+        $img_profile   =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
         $usuario_local = [
-            'nome'=>$usuario['nome'],
-            'sobrenome'=>$usuario['sobrenome']
+            'nome' => $usuario['nome'],
+            'sobrenome' => $usuario['sobrenome'],
+            'img_profile' => $img_profile
         ];
         $this->response('success',compact('data','usuario_local'));
     }

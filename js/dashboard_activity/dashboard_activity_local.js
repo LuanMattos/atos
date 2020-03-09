@@ -93,7 +93,8 @@ var vue_instance_chat = new Vue({
         messages: [],
         ws: null,
         data_user : '',
-        status : []
+        status : [],
+        here:false,
 
     },
     mounted:function(){
@@ -240,7 +241,6 @@ var vue_instance_chat = new Vue({
             // this.updateScrollbar();
             //-----gravar dados do próprio usuario no banco------
 
-            console.log(self.ws)
 
             // Se a conexão não estiver aberta
             if (self.ws.readyState !== self.ws.OPEN) {
@@ -258,12 +258,15 @@ var vue_instance_chat = new Vue({
 
             // Envia os dados para o servidor através do websocket
             self.ws.send(JSON.stringify({
-                user: this.data_user.usuario_local.nome,
-                text: this.text,
+                user        : this.data_user.usuario_local.nome,
+                text        : this.text,
+                img_profile : this.data_user.usuario_local.img_profile,
+                class_text  : 'msg-local-here'
             }));
 
             this.scrollDown();
             this.text = null;
+            self.here = true;
 
 
         },
