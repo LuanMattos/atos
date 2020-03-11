@@ -27,7 +27,7 @@
         <div class="messages">
             <div  class="messages-content">
                 <template v-for="message in messages" >
-                    <div v-bind:class="message.img_profile ? 'align-item-right' : 'align-item-left'">
+                    <div >
                         <div class="chat-avatar">
                             <figure class="avatar ">
                                 <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
