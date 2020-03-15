@@ -28,7 +28,11 @@
 
 
 </head>
-
+<style>
+    .desktop-closed-message-avatar{
+        display: none !important;
+    }
+</style>
 <body>
 <?php   if(isset($dados)):
     $data = $dados;
@@ -46,16 +50,13 @@ endif;
         <?= $this->load->view("area_c_dashboard_activity/index"); ?>
     </div>
 </main>
-<div id="content-chat" >
-    <?= $this->load->view("chat/index"); ?>
-</div>
-
+<?= $this->load->view("head/js"); ?>
 <!-- Body End -->
 <!-- Footer Start -->
 <?= $this->load->view("footer/footer"); ?>
 <!-- Footer End -->
 <!-- Scripts js -->
-<?= $this->load->view("head/js"); ?>
+<script src="<?= URL_RAIZ() ?>application/assets/js/libs/chat/widget.js"></script>
 
 <?php if(isset($dados['externo'])): ?>
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_external.js"></script>

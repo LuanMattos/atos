@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+use BotMan\BotMan\BotMan;
+use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Drivers\DriverManager;
 
 class Dashboard_activity extends SI_Controller{
 
@@ -25,6 +28,7 @@ class Dashboard_activity extends SI_Controller{
     public function local(){
         $data_s = $this->session->get_userdata();
 
+
         if(!empty($data_s)){
             $dados            = $this->Us_usuarios_model->data_user_by_session($data_s);
             $location         = $this->Us_location_user_model->data_location_by_id($dados['_id']);
@@ -48,6 +52,31 @@ class Dashboard_activity extends SI_Controller{
         }
 
         $this->load->view("dashboard_activity/index",compact("dados"));
+    }
+
+    public function template_chat(){
+        $this->load->view('chats/fundo');
+    }
+    public function chat_call(){
+        $config = [
+            "telegram" => [
+                "token" => "TOKEN"
+            ]
+        ];
+        DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
+        $botman = BotManFactory::create($config);
+
+//        $botman->hears('Olá', function (BotMan $bot) {
+//            $bot->reply('Olá como vai.');
+//        });
+
+        $botman->fallback(function($bot) {
+            $message = $bot->getMessages()[0]->getText();
+            $bot->reply($message);
+        });
+
+// Start listening
+        $botman->listen();
     }
     public function update_img_profile()
     {   $this->load->library('amazon/S3');

@@ -26,11 +26,19 @@
                             <i class="fas fa-user-check"></i>
                         </div>
                     </li>
-                    <li>
-                        <div class="content-ico-msg" title="Iniciar conversa">
-                            <i class="far fa-comments" @click="open_chat()"></i>
-                        </div>
-                    </li>
+                    <?php if(isset($data['externo']) && $data['externo']): ?>
+                        <li>
+                            <div class="content-ico-msg" title="Iniciar conversa">
+                                <i class="far fa-comments" @click="open_chat()"></i>
+                            </div>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <div class="content-ico-msg" title="Iniciar conversa">
+                                <i class="far fa-comments" @click="open_chat()"></i>
+                            </div>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
