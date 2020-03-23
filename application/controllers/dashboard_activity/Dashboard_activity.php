@@ -54,30 +54,8 @@ class Dashboard_activity extends SI_Controller{
         $this->load->view("dashboard_activity/index",compact("dados"));
     }
 
-    public function template_chat(){
-        $this->load->view('chats/fundo');
-    }
-    public function chat_call(){
-        $config = [
-            "telegram" => [
-                "token" => "TOKEN"
-            ]
-        ];
-        DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
-        $botman = BotManFactory::create($config);
 
-//        $botman->hears('Olá', function (BotMan $bot) {
-//            $bot->reply('Olá como vai.');
-//        });
 
-        $botman->fallback(function($bot) {
-            $message = $bot->getMessages()[0]->getText();
-            $bot->reply($message);
-        });
-
-// Start listening
-        $botman->listen();
-    }
     public function update_img_profile()
     {   $this->load->library('amazon/S3');
         $data_file = $_FILES['fileimagemprofile'];

@@ -21,6 +21,7 @@ class Area_a extends SI_Controller
     public function get_img(){
         $data_user      = $this->session->get_userdata();
         $type           = $this->input->post("type",TRUE);
+        $id_user        = $this->input->post('id',TRUE);
 
         $find_usuario   = $this->mongodb->atos->us_usuarios->find(['login' => $data_user['login']]);
 
@@ -39,6 +40,12 @@ class Area_a extends SI_Controller
                     $path_return            = $us_storage_img_cover->find(['codusuario'=>$get_usuario['_id']],$options);
                     $path                   = [];
                 break;
+                case "where":
+                    $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
+                    $options                = ['sort' => ["_id"=>1]];
+                    $path_return            = $us_storage_img_profile->find(['codusuario'=>$id_user],$options);
+                    $path                   = [];
+                    break;
                 default:
                     if(empty($type)):
                         $this->response("success",['msg'=>'Não foi definido um type valido para retorno!']);

@@ -45,7 +45,7 @@ class Dashboard_msg extends Home_Controller
             'sobrenome' => $usuario['sobrenome'],
             'img_profile' => $img_profile
         ];
-        $this->response('success',compact('data','usuario_local'));
+        $this->response('success',compact('data','usuario'));
     }
 
 }

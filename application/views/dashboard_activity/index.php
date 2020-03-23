@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, shrink-to-fit=9">
     <meta name="description" content="Gambolthemes">
     <meta name="author" content="Gambolthemes">
-    <title>Goeveni - My Dashbaord Activity</title>
+    <title>Atos</title>
 
     <!-- Favicon Icon -->
     <link rel="icon" type="image/png" href="images/fav.png">
@@ -48,15 +48,19 @@ endif;
     <div id="div-geral-dashboard_activity">
         <?= $this->load->view("area_b/index"); ?>
         <?= $this->load->view("area_c_dashboard_activity/index"); ?>
+
     </div>
 </main>
+<div id="content-chat">
+    <?= $this->load->view("chat/index"); ?>
+</div>
 <?= $this->load->view("head/js"); ?>
 <!-- Body End -->
 <!-- Footer Start -->
 <?= $this->load->view("footer/footer"); ?>
 <!-- Footer End -->
 <!-- Scripts js -->
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/chat/widget.js"></script>
+
 
 <?php if(isset($dados['externo'])): ?>
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_external.js"></script>

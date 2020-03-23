@@ -1,19 +1,19 @@
-<div class="chat-content" >
+<div class="chat-content hide" >
     <div class="chat" v-bind:class="minimize_class">
-        <div class="chat-title-notification" >
-            <figure class="avatar">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
-            </figure>
-            <h1>Maria Silva</h1>
-            <h2>Pereira</h2>
-            <i class="fas fa-comment-alt"></i>
-        </div>
+<!--        <div class="chat-title-notification" >-->
+<!--            <figure class="avatar">-->
+<!--                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />-->
+<!--            </figure>-->
+<!--            <h1>Maria Silva</h1>-->
+<!--            <h2>Pereira</h2>-->
+<!--            <i class="fas fa-comment-alt"></i>-->
+<!--        </div>-->
         <div class="chat-title " >
             <figure class="avatar ">
                     <img   v-bind:src="img_profile" />
             </figure>
-            <h1 v-if="data_user" v-cloak>{{data_user.usuario_local.nome}}</h1>
-            <h2 v-if="data_user" v-cloak>{{data_user.usuario_local.sobrenome}}</h2>
+            <h1 v-if="data_user" v-cloak>{{data_user.usuario.nome}}</h1>
+            <h2 v-if="data_user" v-cloak>{{data_user.usuario.sobrenome}}</h2>
             <template v-for="x in  status">
                 <span v-bind:style="'color:' + x.color  + ';' + 'font-size:8px'" v-cloak>{{x.text}}</span>
             </template>
@@ -30,6 +30,7 @@
                     <div >
                         <div class="chat-avatar">
                             <figure class="avatar ">
+
                                 <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
                             </figure>
                         </div>

@@ -28,13 +28,13 @@
                     </li>
                     <?php if(isset($data['externo']) && $data['externo']): ?>
                         <li>
-                            <div class="content-ico-msg" title="Iniciar conversa">
-                                <i class="far fa-comments" @click="open_chat()"></i>
+                            <div class="content-ico-msg" title="Mandar uma mensagem">
+                                <i class="far fa-comments" @click="open_chat(true)"></i>
                             </div>
                         </li>
                     <?php else: ?>
                         <li>
-                            <div class="content-ico-msg" title="Iniciar conversa">
+                            <div class="content-ico-msg" title="Mandar uma mensagem">
                                 <i class="far fa-comments" @click="open_chat()"></i>
                             </div>
                         </li>
