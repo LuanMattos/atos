@@ -1,18 +1,16 @@
 /*--------------------
 Mixins
 --------------------*/
-@mixin align {
+@mixin right {
   position: fixed;
-  float: right;
-  right: 0.5%;
-  bottom: 0;
-  margin-bottom: 0;
-  //transform: translate(-50%, -50%);
+  float:right;
+  right: 10px;
+  top:20%;
 }
 
 
 @mixin ball {
-  @include align;
+  @include right;
   content: '';
   display: block;
   width: 3px;
@@ -20,14 +18,10 @@ Mixins
   border-radius: 50%;
   background: rgba(255, 255, 255, .5);
   z-index: 2;
-  margin-top: 4px;
   animation: ball .45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
 }
 
-.crop-img-card-chat{
-  object-fit: cover;
-  object-position: 1000% 1000%;
-}
+
 /*--------------------
 Body
 --------------------*/
@@ -37,12 +31,14 @@ Body
   box-sizing: border-box;
 }
 
+
 .bg {
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   z-index: 1;
+  background: url('https://images.unsplash.com/photo-1451186859696-371d9477be93?crop=entropy&fit=crop&fm=jpg&h=975&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925') no-repeat 0 0;
   filter: blur(80px);
   transform: scale(1.2);
 }
@@ -52,57 +48,33 @@ Body
 Chat
 --------------------*/
 .chat {
-  @include align;
-  width: 320px;
-  height: 66.5vh;
-  z-index: 1000;
+  @include right;
+  width: 300px;
+  height: 80vh;
+  max-height: 500px;
+  z-index: 2;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
-  background: #3d403f;
+  background: rgba(0, 0, 0, .8);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-
-  .ico-close{
-    color:white;
-    float: right;
-    margin-top: -28px;
-    margin-right: 5px;
-    font-size: 25px;
-    opacity:0.8;
-      :hover{
-        transition:1s;
-        opacity:1;
-        cursor: pointer;
-      }
-  }
-  @media screen and(max-width: 500px) {
-    width: 100%;
-    right: 0;
-
-  }
 }
 
 
 /*--------------------
 Chat Title
 --------------------*/
-.chat-title-notification{
-  border-bottom: .5px solid;
+.chat-title {
   flex: 0 1 45px;
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.2);
+  background: #383737;
   color: #fff;
   text-transform: uppercase;
   text-align: left;
   padding: 10px 10px 10px 50px;
-  cursor: pointer;
-  i.fa-comment-alt{
-    float: right;
-    margin-top: -20px;
-    color:#4d8cd2;
-  }
+
   h1, h2 {
     font-weight: normal;
     font-size: 10px;
@@ -115,6 +87,7 @@ Chat Title
     font-size: 8px;
     letter-spacing: 1px;
   }
+
   .avatar {
     position: absolute;
     z-index: 1;
@@ -135,153 +108,27 @@ Chat Title
   }
 }
 
-.chat-avatar{
-  flex: 0 1 45px;
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  text-transform: uppercase;
-  text-align: left;
-  padding: 0 0 10px 50px;
-  cursor: pointer;
-  .avatar {
-    position: absolute;
-    z-index: 1;
-    top: 8px;
-    left: 9px;
-    border-radius: 30px;
-    width: 20px;
-    height: 20px;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.24);
-
-    img {
-      background-size:cover;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      width: 170%;
-    }
-  }
-}
-.chat-title {
-  flex: 0 1 45px;
-  position: relative;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.2);
-  color: #fff;
-  text-transform: uppercase;
-  text-align: left;
-  padding: 10px 10px 10px 50px;
-  cursor: pointer;
-
-  div.ico-minimize-maximize {
-    margin-top: -5px;
-
-    i.fas{
-      margin-left: 80%;
-      color:#b7bebb;
-      font-size: 25px;
-    }
-  }
-
-  h1, h2 {
-    font-weight: normal;
-    font-size: 10px;
-    margin: 0;
-    padding: 0;
-  }
-
-  h2 {
-    color: rgba(255, 255, 255, .5);
-    font-size: 8px;
-    letter-spacing: 1px;
-  }
-
-  .avatar {
-    position: absolute;
-    z-index: 1;
-    top: 8px;
-    left: 9px;
-    border-radius: 30px;
-    width: 30px;
-    height: 30px;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    border: 2px solid rgba(255, 255, 255, 0.24);
-
-    img {
-      background-size:cover;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      width: 170%;
-    }
-  }
-}
 
 /*--------------------
 Messages
 --------------------*/
 .messages {
-  .mCustomScrollbar{
-    padding-top: 5px;
-  }
-
   flex: 1 1 auto;
-  color: rgba(255, 255, 255, .5);
-  overflow: hidden;
+  color: #f9fff9;
   position: relative;
   width: 100%;
-  font-size: 13px;
+  background-color: rgba(0,0,0,.3);
 
-  .msg-local-here{
-    float:right;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    right: 0;
-
-  }
   & .messages-content {
     position: absolute;
-    margin-bottom: 10px;
-    margin-left: 10px;
     top: 0;
+    bottom: 0;
     left: 0;
-    height: 101%;
+    height: 100%;
     width: 100%;
-    span.name{
-      margin-left: 12%;
-      padding: 0;
-    }
+    overflow-y: scroll;
+    -ms-overflow-y: scroll;
 
-    .align-item-right{
-      float:right;
-      margin-right: 0;
-      span.name{
-        float: right;
-        margin-right: 8%;
-      }
-      .chat-avatar{
-        float: right;
-        right: 0;
-      }
-      span.text{
-        float: right;
-        margin-right: 20%;
-      }
-
-    }
-    .align-item-left{
-      float:left;
-      margin-left: 0;
-      span.name{
-        margin-left: 15%;
-        padding: 0;
-      }
-
-    }
   }
 
 
@@ -292,9 +139,9 @@ Messages
     border-radius: 10px 10px 10px 0;
     background: rgba(0, 0, 0, .3);
     margin: 8px 0;
-    font-size: 110px;
+    font-size: 11px;
     line-height: 1.4;
-    margin-left: 35px;
+    margin-left: 42px;
     position: relative;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
 
@@ -302,7 +149,7 @@ Messages
       position: absolute;
       bottom: -15px;
       font-size: 9px;
-      color: rgba(255, 255, 255, .3);
+      color: white;
     }
 
     &::before {
@@ -315,6 +162,8 @@ Messages
     }
 
     .avatar {
+      object-fit: cover;
+      margin: 0;
       position: absolute;
       z-index: 1;
       bottom: -15px;
@@ -323,21 +172,20 @@ Messages
       width: 30px;
       height: 30px;
       overflow: hidden;
-      margin: 0;
       padding: 0;
       border: 2px solid rgba(255, 255, 255, 0.24);
 
       img {
-        width: 100%;
-        height: auto;
+        height: 100%;
       }
     }
 
     &.message-personal {
       float: right;
+      right: 10px;
       color: #fff;
       text-align: right;
-      background: linear-gradient(120deg, #3e6aa4, #4d8cd2);
+      background: linear-gradient(120deg, #797a75, #797a75);
       border-radius: 10px 10px 0 10px;
 
       &::before {
@@ -358,6 +206,7 @@ Messages
       transform: scale(0);
       transform-origin: 0 0;
       animation: bounce 500ms linear both;
+      background-color: #3e6b9d;
     }
 
     &.loading {
@@ -398,7 +247,7 @@ Message Box
 .message-box {
   flex: 0 1 40px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: #4d4c4c;
   padding: 10px;
   position: relative;
 
@@ -436,29 +285,13 @@ Message Box
     transition: background .2s ease;
 
     &:hover {
-      background: #4374b1;
-      cursor:pointer;
+      background: #1D7745;
     }
   }
 }
 
 
-/*--------------------
-Custom Srollbar
---------------------*/
-.mCSB_scrollTools {
-  margin: 1px -3px 1px 0;
-  opacity: 0;
-}
 
-.mCSB_inside > .mCSB_container {
-  margin-right: 0px;
-  padding: 0 10px;
-}
-
-.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-  background-color: rgba(0, 0, 0, 0.5)!important;
-}
 
 
 /*--------------------
@@ -488,19 +321,4 @@ Bounce
   to {
     transform: translateY(-10px);
   }
-}
-.minimize-chat{
-  position: fixed;
-  float: right;
-  right: 0.5%;
-  bottom: -43%;
-  transition: 1s;
-  @media screen and(max-height: 420px) {
-    bottom: -43%;
-  }
-  @media screen and(max-width: 450px) {
-    bottom: -43%;
-    right: 0%;
-  }
-
 }

@@ -24,20 +24,16 @@
                  <i class="fas fa-times" @click="close($event)"></i>
             </div>
         </div>
-        <div class="messages">
+        <div class="messages" >
             <div  class="messages-content">
                 <template v-for="message in messages" >
-                    <div >
-                        <div class="chat-avatar">
-                            <figure class="avatar ">
-
+                   <div v-bind:class="message.recebendo?'message new':'message message-personal new'">
+                        <figure class="avatar crop-img-center" v-if="message.recebendo">
                                 <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
-                            </figure>
-                        </div>
+                        </figure>
                         <span class="date" >{{ message.date }}</span>
                         <span class="name" >{{ message.user }}:</span>
                         <span class="text" >{{ message.text }}</span>
-                        <br>
                     </div>
                 </template>
             </div>

@@ -93,6 +93,7 @@ var vue_instance_chat = new Vue({
         data_user : '',
         status : [],
         here:false,
+        loading:false,
 
     },
     mounted:function(){
@@ -129,7 +130,6 @@ var vue_instance_chat = new Vue({
                 }
             };
 
-
             // Evento que será chamado quando houver erro na conexão
             self.ws.onerror = function(e) {
                 self.addErrorNotification('Não foi possível conectar-se ao servidor');
@@ -137,10 +137,13 @@ var vue_instance_chat = new Vue({
 
             // Evento que será chamado quando recebido dados do servidor
             self.ws.onmessage = function(e) {
-                console.log(e.data)
                 self.addMessage(JSON.parse(e.data));
             };
 
+        },
+        getPosts() {
+
+                return this.messages;
         },
         close_connection : function(){
             var self = this;
@@ -153,13 +156,13 @@ var vue_instance_chat = new Vue({
                 return false;
             }
             $('<div class="message loading new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-            this.updateScrollbar();
+
 
             setTimeout(function() {
                 $('.message.loading').remove();
                 $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + self.Fake[i] + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 self.setDate();
-                self.updateScrollbar();
+
                 i++;
             }, 1000 + (Math.random() * 20) * 100);
         },
@@ -182,24 +185,16 @@ var vue_instance_chat = new Vue({
                     this.ico_minimize_maximise = 'fas fa-window-minimize';
                     this.minimize_class = '';
                 break;
-
             }
-
         },
         close:function(event){
             $(event.target).parent().parent().parent().parent().addClass('hide');
         },
-        updateScrollbar:function(){
-            var messages_content = $('.messages-content');
-            messages_content.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
-                scrollInertia: 10,
-                timeout: 0
-            });
-        },
 
         // Método responsável por escutar novas mensagens
         addMessage: function(data) {
-            console.log(data)
+            data.recebendo = true;
+            this.scrollbottom();
             this.messages.push(data);
             this.scrollDown();
         },
@@ -216,21 +211,22 @@ var vue_instance_chat = new Vue({
         addErrorNotification: function( text ) {
             this.addMessageNotification({color: '#a7acaa', text: text});
         },
-
+        scrollbottom:function(){
+            $(".messages-content").animate({ scrollTop: $(document).height() }, "fast");
+        },
         // Método responsável por enviar uma mensagem
         sendMessage: function() {
             var self = this;
-            var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario.nome };
+            var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario.nome,recebendo:false };
 
             if ( !this.text ) {
                 return false;
             }
 
+            this.scrollbottom();
+
             this.messages.push( data_msg );
-
-            $('.messages-content').appendTo($('.mCSB_container')).addClass('new');
-
-            // this.updateScrollbar();
+            // $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
             //-----gravar dados do próprio usuario no banco------
 
 
@@ -274,6 +270,3 @@ var vue_instance_chat = new Vue({
 
 
 });
-
-
-
