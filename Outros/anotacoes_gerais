@@ -82,3 +82,6 @@ sudo unlink /var/run/supervisor.sock
 
 Listar processos por porta
 sudo ss -plnt sport eq :80
+
+Processos por aplicação
+ps aux | grep supervisor

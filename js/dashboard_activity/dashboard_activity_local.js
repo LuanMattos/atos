@@ -122,7 +122,6 @@ var vue_instance_chat = new Vue({
 
             // Evento que será chamado ao abrir conexão
             self.ws.onopen = function(e) {
-
                 self.addSuccessNotification('Online');
                 // Se houver método de retorno
                 if (onOpen) {
@@ -132,8 +131,6 @@ var vue_instance_chat = new Vue({
 
             // Evento que será chamado quando houver erro na conexão
             self.ws.onerror = function(e) {
-                console.log(e)
-
                 self.addErrorNotification('Não foi possível conectar-se ao servidor');
             };
 
@@ -141,6 +138,7 @@ var vue_instance_chat = new Vue({
             self.ws.onmessage = function(e) {
                 self.addMessage(JSON.parse(e.data));
             };
+
 
         },
         getPosts() {
@@ -241,8 +239,10 @@ var vue_instance_chat = new Vue({
                     self.sendMessage();
                 });
 
+
                 return;
             }
+
 
             // Envia os dados para o servidor através do websocket
             self.ws.send(JSON.stringify({
@@ -250,6 +250,8 @@ var vue_instance_chat = new Vue({
                 text        : this.text,
                 img_profile : self.img_profile,
                 class_text  : 'float-rigth-msg',
+                command     : 'message',
+                channel     : ''
             }));
 
             this.text = null;

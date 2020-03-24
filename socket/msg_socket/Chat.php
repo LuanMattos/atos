@@ -31,7 +31,7 @@ class Chat implements MessageComponentInterface {
                 $this->subscriptions[$from->resourceId] = $data->channel;
                 break;
             case "message":
-                if (isset($this->subscriptions[$conn->resourceId])) {
+                if (isset($this->subscriptions[$from->resourceId])) {
                     $target = $this->subscriptions[$from->resourceId];
                     foreach ($this->subscriptions as $id=>$channel) {
                         if ($channel == $target && $id != $from->resourceId) {
