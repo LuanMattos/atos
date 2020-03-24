@@ -1,5 +1,5 @@
-<div class="chat-content hide" >
-    <div class="chat" v-bind:class="minimize_class">
+<div class="chat-content hide" v-bind:class="minimize_class">
+    <div class="chat" >
 <!--        <div class="chat-title-notification" >-->
 <!--            <figure class="avatar">-->
 <!--                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />-->
@@ -8,20 +8,34 @@
 <!--            <h2>Pereira</h2>-->
 <!--            <i class="fas fa-comment-alt"></i>-->
 <!--        </div>-->
-        <div class="chat-title " >
-            <figure class="avatar ">
-                    <img   v-bind:src="img_profile" />
-            </figure>
-            <h1 v-if="data_user" v-cloak>{{data_user.usuario.nome}}</h1>
-            <h2 v-if="data_user" v-cloak>{{data_user.usuario.sobrenome}}</h2>
-            <template v-for="x in  status">
-                <span v-bind:style="'color:' + x.color  + ';' + 'font-size:8px'" v-cloak>{{x.text}}</span>
-            </template>
-            <div class="ico-minimize-maximize" @click="minimize_maximize()">
-                <i v-bind:class="ico_minimize_maximise"></i>
-            </div>
-            <div class="ico-close" >
-                 <i class="fas fa-times" @click="close($event)"></i>
+        <div class="chat-title">
+             <div class="row">
+                 <div class="col-1">
+                        <figure class="avatar crop-img-center">
+                            <img v-bind:src="img_profile" />
+                        </figure>
+                 </div>
+                 <div class="col-7">
+                     <div style="margin-top: 10px">
+                         <h1 v-if="data_user" v-cloak>{{data_user.usuario.nome}}</h1>
+                         <h2 v-if="data_user" v-cloak>{{data_user.usuario.sobrenome}}</h2>
+                     </div>
+                 </div>
+                 <div class="col-1">
+<!--                        <div class="ico-minimize-maximize" @click="minimize_maximize()">-->
+<!--                            <i v-bind:class="ico_minimize_maximise + ' cursor-pointer min-max'"></i>-->
+<!--                        </div>-->
+                 </div>
+                 <div class="col-1">
+                        <i class="fas fa-times cursor-pointer" @click="close($event)" style="margin-top: 7px"></i>
+                    </div>
+             </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col">
+                    <template v-for="x in  status">
+                        <span v-bind:style="'color:' + x.color  + ';' + 'font-size:8px'" v-cloak>{{x.text}}</span>
+                    </template>
+                </div>
             </div>
         </div>
         <div class="messages" >

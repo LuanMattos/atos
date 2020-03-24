@@ -188,9 +188,8 @@ var vue_instance_chat = new Vue({
             }
         },
         close:function(event){
-            $(event.target).parent().parent().parent().parent().addClass('hide');
+            $(event.target).closest(".chat-content").addClass('hide');
         },
-
         // Método responsável por escutar novas mensagens
         addMessage: function(data) {
             data.recebendo = true;
