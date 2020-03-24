@@ -132,6 +132,8 @@ var vue_instance_chat = new Vue({
 
             // Evento que será chamado quando houver erro na conexão
             self.ws.onerror = function(e) {
+                console.log(e)
+
                 self.addErrorNotification('Não foi possível conectar-se ao servidor');
             };
 
@@ -195,7 +197,6 @@ var vue_instance_chat = new Vue({
             data.recebendo = true;
             this.scrollbottom();
             this.messages.push(data);
-            this.scrollDown();
         },
         addMessageNotification:function(data){
             this.status.push(data);
@@ -251,18 +252,13 @@ var vue_instance_chat = new Vue({
                 class_text  : 'float-rigth-msg',
             }));
 
-            this.scrollDown();
             this.text = null;
             self.here = true;
 
 
         },
 
-        // Método responsável por "rolar" a scroll do chat para baixo
-        scrollDown: function() {
-            var container = this.$el.querySelector('.messages');
-            container.scrollTop = container.scrollHeight;
-        },
+
 
 
     },

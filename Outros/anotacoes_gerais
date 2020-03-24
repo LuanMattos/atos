@@ -78,3 +78,7 @@ Erro => Porta já está sendo usada por outro processo (mesmo que não tenha)
 sudo unlink /tmp/supervisor.sock
 
 sudo unlink /var/run/supervisor.sock
+
+
+Listar processos por porta
+sudo ss -plnt sport eq :80
