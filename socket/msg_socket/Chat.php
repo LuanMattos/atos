@@ -1,6 +1,7 @@
 <?php
 namespace Chat;
 use MongoDB\Collection;
+use MongoDB\Driver\Manager;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 class Chat implements MessageComponentInterface {
@@ -12,7 +13,8 @@ class Chat implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
         $this->subscriptions = [];
         $this->users = [];
-        new Collection();
+//        new Collection();
+        new Manager();
 
 
     }
