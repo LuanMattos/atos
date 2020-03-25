@@ -15,7 +15,7 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         ),
         'M' => 
         array (
-            'Mongo\\MongoDb\\' => 14,
+            'Mongo\\' => 6,
             'Modules\\Storage\\Create_folder_user\\' => 35,
             'Modules\\Account\\RestoreAccount\\' => 31,
         ),
@@ -34,7 +34,7 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         array (
             0 => __DIR__ . '/../..' . '/services',
         ),
-        'Mongo\\MongoDb\\' => 
+        'Mongo\\' => 
         array (
             0 => __DIR__ . '/../..' . '/services/mongo',
         ),
