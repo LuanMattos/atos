@@ -2,7 +2,9 @@
 namespace Chat;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-require "../../../../vendor/cboden/ratchet/src/Ratchet/WebSocket/MessageComponentInterface.php";
+
+require dirname(__DIR__) . '../../../vendor/autoload.php';
+
 class Chat implements MessageComponentInterface {
     protected $clients;
     private $subscriptions;
