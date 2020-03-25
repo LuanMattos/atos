@@ -1,8 +1,5 @@
 <?php
 namespace Service\Modules\Mongo;
-
-
-include '../GeneralService.php';
 use Service\GeneralService;
 
 
