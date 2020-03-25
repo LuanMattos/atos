@@ -4,6 +4,7 @@ namespace Service\Modules\Mongo;
 use Service\GeneralService;
 
 include '../GeneralService.php';
+use Service;
 
 class MongoDb extends GeneralService
 {
