@@ -1,9 +1,7 @@
 <?php
 namespace Service\Modules\Mongo;
-use Service\GeneralService;
 
-
-class MongoDb extends GeneralService
+class MongoDb extends \CI_Model
 {
     public $mongodb;
     public $mongomanager;
