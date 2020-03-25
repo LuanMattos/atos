@@ -1,10 +1,11 @@
 <?php
 namespace Chat;
+require dirname(__DIR__) . '../../../vendor/autoload.php';
+
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\WebSocket\MessageCallableInterface;
 
-require dirname(__DIR__) . '../../../vendor/autoload.php';
 
 
 class Chat implements \Ratchet\WebSocket\MessageComponentInterface {
