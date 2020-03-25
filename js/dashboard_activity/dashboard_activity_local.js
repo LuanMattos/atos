@@ -250,7 +250,7 @@ var vue_instance_chat = new Vue({
                 text        : this.text,
                 img_profile : self.img_profile,
                 class_text  : 'float-rigth-msg',
-                command     : 'message',
+                command     : 'subscribe',
                 channel     : ''
             }));
 
