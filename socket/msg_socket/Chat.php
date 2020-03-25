@@ -2,9 +2,10 @@
 
 namespace Chat;
 
-use MongoDB\Driver\Manager;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
+use RdKafka\Metadata\Collection;
+
 require dirname(__DIR__) . '/../vendor/autoload.php';
 
 
@@ -17,10 +18,11 @@ class Chat implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
         $this->subscriptions = [];
         $this->users = [];
-        new Manager();
 
+        new \MongoDB\Collection();
 
     }
+
 
     public function onOpen( ConnectionInterface $conn ) {
         $this->clients->attach( $conn );
