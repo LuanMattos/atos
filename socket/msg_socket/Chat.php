@@ -2,7 +2,7 @@
 namespace Chat;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use Modules\Mongo as mongo;
+use Mongo as mongo;
 
 class Chat implements MessageComponentInterface {
     protected $clients;
@@ -13,7 +13,7 @@ class Chat implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
         $this->subscriptions = [];
         $this->users = [];
-        var_dump(new mongo\MongoDb());
+        var_dump(new \MongoDb());
     }
 
     public function onOpen( ConnectionInterface $conn ) {
