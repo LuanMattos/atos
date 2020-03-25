@@ -11,7 +11,7 @@
       "ServiceZenvia\\": "services",
       "Modules\\Account\\RestoreAccount\\": "services/modules/account",
       "Modules\\Storage\\Create_folder_user\\": "services/modules/storage",
-      "Mongo\\": "services/mongo"
+      "Mongo\\MongoDb\\": "services/mongo"
     }
   }
 }

@@ -13,7 +13,7 @@ class Chat implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
         $this->subscriptions = [];
         $this->users = [];
-        new MongoDb\MongoDb();
+        var_dump(new MongoDb\MongoDb());
     }
 
     public function onOpen( ConnectionInterface $conn ) {
