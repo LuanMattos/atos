@@ -1,5 +1,5 @@
 <?php
-//namespace Mongo\MongoDb;
+namespace Mongo\MongoDb;
 use Service\GeneralService;
 
 class MongoDb extends GeneralService
