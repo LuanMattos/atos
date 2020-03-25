@@ -43,10 +43,10 @@ class Chat implements MessageComponentInterface {
                         var_dump($channel);
                         var_dump($id);
                         var_dump($from->resourceId);
-
-                        if ($channel == $target && $id != $from->resourceId) {
+//                        && $id != $from->resourceId
+                        if ($channel == $target ) {
                             echo "Enviou";
-                            $this->users[$id]->send($msg);
+                            $this->users[$channel]->send($msg);
                         }
                     }
                 }
