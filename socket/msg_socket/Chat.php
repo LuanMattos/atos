@@ -1,7 +1,6 @@
 <?php
 
 namespace Chat;
-require dirname(__DIR__) . '/../vendor/autoload.php';
 
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
