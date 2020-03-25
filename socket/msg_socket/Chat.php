@@ -26,14 +26,18 @@ class Chat implements MessageComponentInterface {
 
     public function onMessage( ConnectionInterface $from, $msg ) {
         $data = json_decode($msg);
-        var_dump($data . "<br>");
+        var_dump($data);
+        var_dump("<br>");
+
         switch ($data->command) {
             case "subscribe":
                 $this->subscriptions[$from->resourceId] = $data->channel;
-                var_dump($this->subscriptions . "<br>");
+                var_dump($this->subscriptions);
+                var_dump("<br>");
                 break;
             case "message":
-                var_dump($this->subscriptions . "<br>");
+                var_dump($this->subscriptions);
+                var_dump("<br>");
 
                 if (isset($this->subscriptions[$from->resourceId])) {
                     $target = $this->subscriptions[$from->resourceId];
