@@ -36,7 +36,7 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         ),
         'Mongo\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/mongo',
+            0 => __DIR__ . '/../..' . '/services/mongo',
         ),
         'Modules\\Storage\\Create_folder_user\\' => 
         array (
