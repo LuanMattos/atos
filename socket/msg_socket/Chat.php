@@ -54,7 +54,7 @@ class Chat implements MessageComponentInterface {
 
 //                        && $id != $from->resourceId
                         if ($channel == $target) {
-                            $this->users[$id]->send($data);
+                            $this->users[$id]->send($msg);
                         }
                     }
                 }
