@@ -1,8 +1,9 @@
 <?php
 namespace Chat;
+use Mongo\MongoDb\MongoDb;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use Mongo\MongoDb\MongoDb;
+
 class Chat implements MessageComponentInterface {
     protected $clients;
     private $subscriptions;
