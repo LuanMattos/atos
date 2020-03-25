@@ -4,6 +4,7 @@ namespace Chat;
 
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
+require_once '../../system/core/Model.php';
 
 
 class Chat implements MessageComponentInterface {
