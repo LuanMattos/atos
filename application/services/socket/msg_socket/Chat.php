@@ -7,7 +7,7 @@ use Ratchet\WebSocket\MessageCallableInterface;
 require dirname(__DIR__) . '../../../vendor/autoload.php';
 
 
-class Chat implements MessageCallableInterface {
+class Chat implements \Ratchet\WebSocket\MessageComponentInterface {
     protected $clients;
     private $subscriptions;
     private $users;
