@@ -119,6 +119,8 @@ var vue_instance_chat = new Vue({
             // Conectando
             // wss://echo.websocket.org
             self.ws = new WebSocket('ws://www.atos.click:8050');
+            console.log(self.ws)
+
 
             // Evento que será chamado ao abrir conexão
             self.ws.onopen = function(e) {
@@ -227,7 +229,6 @@ var vue_instance_chat = new Vue({
             // $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
             //-----gravar dados do próprio usuario no banco------
 
-
             // Se a conexão não estiver aberta
             if (self.ws.readyState !== self.ws.OPEN) {
                 // Exibindo notificação de erro
@@ -235,7 +236,7 @@ var vue_instance_chat = new Vue({
 
                 // Tentando conectar novamente e caso tenha sucesso
                 // envia a mensagem novamente
-                self.connect(function() {
+                self.connect(function(e) {
                     self.sendMessage();
                 });
 

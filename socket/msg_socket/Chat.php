@@ -20,6 +20,7 @@ class Chat implements MessageComponentInterface {
 //        $this->clients->attach( $conn );
 
         echo "Nova conexão! ({$conn->resourceId})\n";
+        echo json_encode($conn->resourceId);
 
 
     }
