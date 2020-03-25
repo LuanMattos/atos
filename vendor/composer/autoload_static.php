@@ -67,6 +67,7 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
+            'GeneralService\\' => 15,
         ),
         'B' => 
         array (
@@ -175,6 +176,10 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GeneralService\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/application/services',
         ),
         'BotMan\\Drivers\\Web\\' => 
         array (
