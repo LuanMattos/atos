@@ -42,6 +42,7 @@ class Chat implements MessageComponentInterface {
                     foreach ($this->subscriptions as $id=>$channel) {
                         var_dump($channel);
                         var_dump($id);
+                        var_dump($from->resourceId);
 
                         if ($channel == $target && $id != $from->resourceId) {
                             echo "Enviou";
