@@ -1,9 +1,10 @@
 <?php
 namespace Chat;
-use MongoDB\Collection;
-use MongoDB\Driver\Manager;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+require dirname(__DIR__) . '/../vendor/autoload.php';
+use MongoDB\Driver\Manager;
+
 class Chat implements MessageComponentInterface {
     protected $clients;
     private $subscriptions;
@@ -13,7 +14,6 @@ class Chat implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
         $this->subscriptions = [];
         $this->users = [];
-//        new Collection();
         new Manager();
 
 
