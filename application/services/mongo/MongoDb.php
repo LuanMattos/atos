@@ -1,9 +1,11 @@
 <?php
 namespace Service\Modules\Mongo;
 
+use Service\GeneralService;
+
 include '../GeneralService.php';
 
-class MongoDb
+class MongoDb extends GeneralService
 {
     public $mongodb;
     public $mongomanager;
