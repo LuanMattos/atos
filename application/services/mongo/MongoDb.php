@@ -4,6 +4,7 @@ use Service\GeneralService;
 
 class MongoDb extends GeneralService
 {
+    public function bunda(){}
 //    public $mongodb;
 //    public $mongomanager;
 //    public $mongobulkwrite;
