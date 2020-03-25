@@ -1,10 +1,8 @@
 <?php
 namespace Chat;
-use MongoDB\MongoDb as Mongo;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-
-
+use MongoDb\MongoDb;
 class Chat implements MessageComponentInterface {
     protected $clients;
     private $subscriptions;
@@ -14,7 +12,7 @@ class Chat implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
         $this->subscriptions = [];
         $this->users = [];
-        new Mongo();
+        var_dump(new MongoDb());
     }
 
     public function onOpen( ConnectionInterface $conn ) {

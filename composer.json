@@ -7,6 +7,8 @@
     },
     "autoload": {
         "psr-4": {
+            "MongoDb\\": "application/services/mongo"
+
         }
     }
 }

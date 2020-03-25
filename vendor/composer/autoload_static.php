@@ -61,6 +61,7 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'M' => 
         array (
             'Mpociot\\Pipeline\\' => 17,
+            'MongoDb\\' => 8,
             'MongoDB\\' => 8,
         ),
         'G' => 
@@ -162,6 +163,10 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'Mpociot\\Pipeline\\' => 
         array (
             0 => __DIR__ . '/..' . '/mpociot/pipeline/src',
+        ),
+        'MongoDb\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/application/services/mongo',
         ),
         'MongoDB\\' => 
         array (

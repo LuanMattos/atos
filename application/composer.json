@@ -10,8 +10,7 @@
       "ServiceSms\\": "services",
       "ServiceZenvia\\": "services",
       "Modules\\Account\\RestoreAccount\\": "services/modules/account",
-      "Modules\\Storage\\Create_folder_user\\": "services/modules/storage",
-      "Mongo\\": "services/mongo"
+      "Modules\\Storage\\Create_folder_user\\": "services/modules/storage"
     }
   }
 }
