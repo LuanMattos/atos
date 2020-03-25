@@ -4,5 +4,10 @@
         "cboden/ratchet": "^0.4",
         "botman/botman": "^2.3",
         "botman/driver-web": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Service\\Modules\\Mongo\\": "application/services"
+        }
     }
 }

@@ -2,6 +2,7 @@
 namespace Chat;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Service\Modules\Mongo;
 
 class Chat implements MessageComponentInterface {
     protected $clients;
@@ -12,6 +13,7 @@ class Chat implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
         $this->subscriptions = [];
         $this->users = [];
+        new \MongoDB();
     }
 
     public function onOpen( ConnectionInterface $conn ) {
@@ -62,9 +64,9 @@ class Chat implements MessageComponentInterface {
 //        $this->clients->detach( $conn );
 //
         echo "Conexão {$conn->resourceId} foi desconectado\n";
-//        $this->clients->detach($conn);
-//        unset($this->users[$conn->resourceId]);
-//        unset($this->subscriptions[$conn->resourceId]);
+        $this->clients->detach($conn);
+        unset($this->users[$conn->resourceId]);
+        unset($this->subscriptions[$conn->resourceId]);
     }
 
     public function onError( ConnectionInterface $conn, \Exception $e ) {

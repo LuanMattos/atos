@@ -32,7 +32,7 @@ class SI_Controller extends CI_Controller{
 
         $this->mongodb              = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port ,[],[]);
         $this->mongomanager         = new MongoDB\Driver\Manager("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
-        $this->mongobulkwrite       =  new \MongoDB\Driver\BulkWrite();
+        $this->mongobulkwrite       = new \MongoDB\Driver\BulkWrite();
 
     }
     /**
