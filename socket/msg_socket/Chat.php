@@ -24,10 +24,12 @@ class Chat implements MessageComponentInterface {
 
 
     }
+    public function msgToUser($msg, $id) {
+        $this->clients[$id]->send($msg);
+    }
 
     public function onMessage( ConnectionInterface $from, $msg ) {
         $data = json_decode($msg);
-        var_dump($from);
 
         switch ($data->command) {
             case "subscribe":
