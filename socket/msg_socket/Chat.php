@@ -27,6 +27,7 @@ class Chat implements MessageComponentInterface {
 
     public function onMessage( ConnectionInterface $from, $msg ) {
         $data = json_decode($msg);
+        var_dump($from);
 
         switch ($data->command) {
             case "subscribe":
@@ -37,10 +38,8 @@ class Chat implements MessageComponentInterface {
                 if (isset($this->subscriptions[$from->resourceId])) {
                     $target = $this->subscriptions[$from->resourceId];
                     foreach ($this->subscriptions as $id=>$channel) {
-                        var_dump($this->subscriptions);
 //                        && $id != $from->resourceId
                         if ($channel == $target ) {
-                            echo "Enviou";
                             $this->users[$channel]->send($msg);
                         }
                     }
