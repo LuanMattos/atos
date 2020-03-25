@@ -52,8 +52,8 @@ class Chat implements MessageComponentInterface {
                         var_dump($id);
                         var_dump("----------------------------------------------------------------");
 
-
-                        if ($channel == $target && $id != $from->resourceId) {
+//                        && $id != $from->resourceId
+                        if ($channel == $target) {
                             echo "ENVIOU  para " . $this->users[$id];
                             $this->users[$id]->send($data->message);
                         }
