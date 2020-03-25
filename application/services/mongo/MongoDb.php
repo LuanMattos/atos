@@ -1,10 +1,10 @@
 <?php
 namespace Service\Modules\Mongo;
 
-use Service\GeneralService;
 
 include '../GeneralService.php';
-use Service;
+use Service\GeneralService;
+
 
 class MongoDb extends GeneralService
 {
