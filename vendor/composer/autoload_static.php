@@ -36,7 +36,6 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Spatie\\Macroable\\' => 17,
-            'Service\\Modules\\Mongo\\' => 22,
         ),
         'R' => 
         array (
@@ -63,6 +62,7 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         array (
             'Mpociot\\Pipeline\\' => 17,
             'MongoDB\\' => 8,
+            'Modules\\Mongo\\' => 14,
         ),
         'G' => 
         array (
@@ -111,10 +111,6 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'Spatie\\Macroable\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/macroable/src',
-        ),
-        'Service\\Modules\\Mongo\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/application/services/mongo',
         ),
         'React\\Stream\\' => 
         array (
@@ -171,6 +167,10 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'MongoDB\\' => 
         array (
             0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
+        ),
+        'Modules\\Mongo\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/application/services/mongo',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

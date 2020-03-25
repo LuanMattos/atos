@@ -1,16 +1,14 @@
 <?php
-namespace Service\Modules\Mongo;
+namespace Modules\Mongo;
+use Service\GeneralService;
 
-class MongoDb extends \SI_Controller
+class MongoDb extends GeneralService
 {
     public $mongodb;
     public $mongomanager;
     public $mongobulkwrite;
-    public function __construct(){
-        parent::__construct();
 
-        $this->load_helpers();
-        $this->conect_mongodb();
-    }
+//        $this->load_helpers();
+//        $this->conect_mongodb();
 
 }

@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class SI_Controller extends CI_Controller{
     public $mongodb;
     public $mongomanager;

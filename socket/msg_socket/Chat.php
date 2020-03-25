@@ -2,7 +2,7 @@
 namespace Chat;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use Service\Modules\Mongo as mongo;
+use Modules\Mongo as mongo;
 
 class Chat implements MessageComponentInterface {
     protected $clients;
