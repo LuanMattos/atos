@@ -243,15 +243,15 @@ var vue_instance_chat = new Vue({
                 return;
             }
 
-
+            self.ws.send(JSON.stringify({ command : 'subscribe',channel:62}));
             // Envia os dados para o servidor através do websocket
             self.ws.send(JSON.stringify({
                 user        : this.data_user.usuario.nome,
                 text        : this.text,
                 img_profile : self.img_profile,
                 class_text  : 'float-rigth-msg',
-                command     : 'subscribe',
-                channel     : ''
+                command     : 'message',
+                channel     : 62
             }));
 
             this.text = null;

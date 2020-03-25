@@ -41,7 +41,18 @@ class Chat implements MessageComponentInterface {
 
                 if (isset($this->subscriptions[$from->resourceId])) {
                     $target = $this->subscriptions[$from->resourceId];
+                    var_dump("---------------------TARGET-------------------------------------");
+                    var_dump($target);
+                    var_dump("----------------------------------------------------------------");
                     foreach ($this->subscriptions as $id=>$channel) {
+                        var_dump("---------------------CHANNEL FOREACH-------------------------------------");
+                        var_dump($channel);
+                        var_dump("----------------------------------------------------------------");
+                        var_dump("---------------------ID FOREACH-------------------------------------");
+                        var_dump($id);
+                        var_dump("----------------------------------------------------------------");
+
+
                         if ($channel == $target && $id != $from->resourceId) {
                             $this->users[$id]->send($data->message);
                         }
