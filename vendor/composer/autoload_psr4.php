@@ -28,10 +28,8 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Opis\\Closure\\' => array($vendorDir . '/opis/closure/src'),
     'Mpociot\\Pipeline\\' => array($vendorDir . '/mpociot/pipeline/src'),
-    'MongoDb\\' => array($baseDir . '/application/services/mongo'),
     'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
-    'GeneralService\\' => array($baseDir . '/application/services'),
     'BotMan\\Drivers\\Web\\' => array($vendorDir . '/botman/driver-web/src'),
     'BotMan\\BotMan\\' => array($vendorDir . '/botman/botman/src'),
 );

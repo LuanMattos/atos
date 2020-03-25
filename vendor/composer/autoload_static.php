@@ -61,13 +61,11 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'M' => 
         array (
             'Mpociot\\Pipeline\\' => 17,
-            'MongoDb\\' => 8,
             'MongoDB\\' => 8,
         ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
-            'GeneralService\\' => 15,
         ),
         'B' => 
         array (
@@ -165,10 +163,6 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         array (
             0 => __DIR__ . '/..' . '/mpociot/pipeline/src',
         ),
-        'MongoDb\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/application/services/mongo',
-        ),
         'MongoDB\\' => 
         array (
             0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
@@ -176,10 +170,6 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GeneralService\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/application/services',
         ),
         'BotMan\\Drivers\\Web\\' => 
         array (
