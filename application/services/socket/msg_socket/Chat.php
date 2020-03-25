@@ -3,7 +3,7 @@ namespace Chat;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-class Chat implements MessageComponentInterface {
+class Chat implements \Ratchet\WebSocket\MessageComponentInterface {
     protected $clients;
     private $subscriptions;
     private $users;
