@@ -1,8 +1,11 @@
 <?php
+
 namespace Chat;
-use Ratchet\MessageComponentInterface;
-use Ratchet\ConnectionInterface;
 require dirname(__DIR__) . '/../vendor/autoload.php';
+
+use Ratchet\ConnectionInterface;
+use Ratchet\MessageComponentInterface;
+
 
 class Chat implements MessageComponentInterface {
     protected $clients;
