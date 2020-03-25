@@ -62,9 +62,9 @@ class Chat implements MessageComponentInterface {
 //        $this->clients->detach( $conn );
 //
         echo "Conexão {$conn->resourceId} foi desconectado\n";
-        $this->clients->detach($conn);
-        unset($this->users[$conn->resourceId]);
-        unset($this->subscriptions[$conn->resourceId]);
+//        $this->clients->detach($conn);
+//        unset($this->users[$conn->resourceId]);
+//        unset($this->subscriptions[$conn->resourceId]);
     }
 
     public function onError( ConnectionInterface $conn, \Exception $e ) {
