@@ -1,7 +1,7 @@
 <?php
 namespace Service\Modules\Mongo;
 
-require '../GeneralService.php';
+include '../GeneralService.php';
 
 class MongoDb
 {
