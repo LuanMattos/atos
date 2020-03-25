@@ -29,7 +29,6 @@ return array(
     'Opis\\Closure\\' => array($vendorDir . '/opis/closure/src'),
     'Mpociot\\Pipeline\\' => array($vendorDir . '/mpociot/pipeline/src'),
     'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
-    'Modules\\Mongo\\' => array($baseDir . '/application/services/mongo'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'BotMan\\Drivers\\Web\\' => array($vendorDir . '/botman/driver-web/src'),
     'BotMan\\BotMan\\' => array($vendorDir . '/botman/botman/src'),

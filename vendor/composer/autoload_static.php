@@ -62,7 +62,6 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         array (
             'Mpociot\\Pipeline\\' => 17,
             'MongoDB\\' => 8,
-            'Modules\\Mongo\\' => 14,
         ),
         'G' => 
         array (
@@ -167,10 +166,6 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         'MongoDB\\' => 
         array (
             0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
-        ),
-        'Modules\\Mongo\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/application/services/mongo',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
