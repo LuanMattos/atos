@@ -114,7 +114,7 @@ class ComposerStaticInit943e8d5f42930d400abe817191698955
         ),
         'Service\\Modules\\Mongo\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/application/services',
+            0 => __DIR__ . '/../..' . '/application/services/mongo',
         ),
         'React\\Stream\\' => 
         array (
