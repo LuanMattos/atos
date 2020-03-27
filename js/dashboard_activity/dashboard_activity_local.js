@@ -96,10 +96,13 @@ var vue_instance_chat = new Vue({
         loading:false,
 
     },
-    mounted:function(){
+    mounted(){
         var self_vue  = this;
         var url = App.url("dashboard_msg","Dashboard_msg","get_msg_local");
-        $.post(url, {}, function( json ){ self_vue.data_user = json },'json')
+        axios.post(url, {}).then(function(response){
+            self_vue.data_user = response.data;
+            self_vue.connect();
+        });
         // ------------------profile-------------------
         var url  = chat.Url("get_img");
         $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
@@ -107,7 +110,7 @@ var vue_instance_chat = new Vue({
         var url  = chat.Url("get_img");
         $.post(url, {type:"cover"}, function(response){self_vue.$data.img_cover = response.path;},'json');
 
-        this.connect();
+
 
     },
     methods:{
@@ -115,15 +118,19 @@ var vue_instance_chat = new Vue({
         connect: function(onOpen) {
 
             var self = this;
+            var _id = this._data.data_user.usuario._id;
 
-            // Conectando
-            // wss://echo.websocket.org
-            self.ws = new WebSocket('ws://www.atos.click:8050');
+
+            if(!_.isUndefined(_id) && !_.isEmpty(_id)){
+                self.ws = new WebSocket('ws://localhost:8050?' + _id);
+            }else{
+                console.log("Usuário não possui identificação válida!");
+                return false;
+            }
 
 
             // Evento que será chamado ao abrir conexão
             self.ws.onopen = function(e) {
-                console.log(e)
                 self.addSuccessNotification('Online');
                 // Se houver método de retorno
                 if (onOpen) {
@@ -244,7 +251,7 @@ var vue_instance_chat = new Vue({
                 return;
             }
 
-            self.ws.send(JSON.stringify({ command : 'subscribe',channel:91}));
+            self.ws.send(JSON.stringify({ command : 'subscribe',channel:100}));
             // Envia os dados para o servidor através do websocket
             self.ws.send(JSON.stringify({
                 user        : this.data_user.usuario.nome,
@@ -252,7 +259,7 @@ var vue_instance_chat = new Vue({
                 img_profile : self.img_profile,
                 class_text  : 'float-rigth-msg',
                 command     : 'message',
-                channel     : 91
+                id     : 100
             }));
 
             this.text = null;

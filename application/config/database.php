@@ -32,11 +32,6 @@ $db['default']  = [
 	'save_queries'  => TRUE
 ];
 
-
-$config['mongodb'] = [
-    'hostname'      => 'mongo',
-    'port'          => '27017',
-    'username'      => 'atos',
-    'password'      => 'atos',
-    'database'      => 'atos'
-];
+require_once 'database_chat.php';
+$mongo = new database_chat();
+$config['mongodb'] = $mongo->config_mongo();
