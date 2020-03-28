@@ -33,17 +33,26 @@ class Dashboard_msg extends Home_Controller
         }
 
     }
-    public function get_msg_local(){
+    public function get_msg($external = false){
         $usuario_session = $this->data_user();
+        $id = $this->input->post("id",true);
         $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['login' => $usuario_session['login'] ] ) );
-        $data    = $this->Msg_usuarios_model->getWhereMongo( ['_id'=>$usuario['_id']] );
 
-        $find_img               =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$usuario['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+        if( $external ){
+            $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['_id' => $id ] ) );
+        }
+
+        $data    = reset( $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id']] ) );
+
+
+        $find_img      =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$usuario['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
         $img_profile   =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
-        $usuario_local = [
+        $usuario = [
+            'id'=>$usuario['_id'],
             'nome' => $usuario['nome'],
             'sobrenome' => $usuario['sobrenome'],
-            'img_profile' => $img_profile
+            'img_profile' => $img_profile,
+            'channel'=>$data['resourceId']
         ];
         $this->response('success',compact('data','usuario'));
     }

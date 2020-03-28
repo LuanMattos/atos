@@ -99,3 +99,11 @@ sudo service memcached start
 
 hacker - proxy
 proxychains  /bin/jmeter
+
+Listar conexões apache
+netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+apt-get install apachetop
+apachetop -T 120 -f /var/log/httpd/access_log;
+
+
+localhost, 127.0.0.0/8, ::1

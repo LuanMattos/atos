@@ -28,8 +28,6 @@ class Chat  implements MessageComponentInterface {
         $this->mongobulkwrite = new \MongoDB\Driver\BulkWrite();
         $this->mongomanager   = new Manager("mongodb://".$this->config->hostname . ":" . $this->config->port,[],[]);
 
-
-
     }
 
 
@@ -37,13 +35,10 @@ class Chat  implements MessageComponentInterface {
         $id_usuario = $conn->httpRequest->getUri()->getQuery();
         $id = $conn->httpRequest->getHeader ('Cookie');
 
-
-//        $this->mongodb->{$configmongo->database}->{$this->get_table()}->insertOne($data);
-//        -----------------------------------------
-
-        $usuario = $this->mongodb->{$this->config->database}->us_usuarios->find(["_id"=>$id_usuario],['limit'=>1])->toArray();
+        $usuario     = $this->mongodb->{$this->config->database}->us_usuarios->find(["_id"=>$id_usuario],['limit'=>1])->toArray();
         $msg_usuario = $this->mongodb->{$this->config->database}->msg_usuarios->find(["codusuario"=>$id_usuario],['limit'=>1])->toArray();
         if(!empty( $usuario ) && !empty( $id ) ){
+
             $data = [
                 "codusuario" => $usuario[0]->_id,
                 "status"     => 1,
@@ -53,14 +48,12 @@ class Chat  implements MessageComponentInterface {
 
         if(count($msg_usuario)){
             $this->mongocollection("msg_usuarios",[])->updateOne(["_id"=>new \MongoDB\BSON\ObjectId($msg_usuario[0]['_id'])],['$set'=>$data]);
-
         }else{
             $this->mongodb->{$this->config->database}->msg_usuarios->insertOne( $data );
         }
 
-
             $this->users[$conn->resourceId] = $conn;
-//        $this->clients->attach( $conn );
+//          $this->clients->attach( $conn );
 
             echo "Nova conexão! ({$conn->resourceId})\n";
             echo json_encode($conn->resourceId);
@@ -76,32 +69,27 @@ class Chat  implements MessageComponentInterface {
 
         $data = json_decode($msg);
 
-//        switch ($data->command) {
-//            case "subscribe":
-//                $this->subscriptions[$from->resourceId] = $data->channel;
-//                break;
-//            case "message":
-//
-//                if (isset($this->subscriptions[$from->resourceId])) {
-//                    $target = $this->subscriptions[$from->resourceId];
-//                    foreach ($this->subscriptions as $id=>$channel) {
-//                        var_dump($this->subscriptions);
-////                        && $id != $from->resourceId
-//                        if ($channel == $target ) {
-//                            $this->users[$channel]->send($msg);
-//                        }
-//                    }
-//                }
-//        }
-//        $numRecv = count( $this->clients ) - 1;
-//        echo sprintf('Conexão %d enviou mensagem "%s" para %d outra conexão%s' . "\n"
-//            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
-//
-//        foreach ( $this->clients as $client ) {
-//            if ( $from !== $client ) {
-//                $client->send( $msg );
-//            }
-//        }
+        switch ($data->command) {
+            case "subscribe":
+                $this->subscriptions[$from->resourceId] = $data->channel;
+                break;
+            case "message":
+//                        && $id != $from->resourceId
+            echo "==========>>>".isset($data->channel)?$data->channel:'';
+                        if(isset( $this->users[$data->channel] )){
+                            $this->users[$data->channel]->send($msg);
+                        }
+
+        }
+        $numRecv = count( $this->clients ) - 1;
+        echo sprintf('Conexão %d enviou mensagem "%s" para %d outra conexão%s' . "\n"
+            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
+
+        foreach ( $this->clients as $client ) {
+            if ( $from !== $client ) {
+                $client->send( $msg );
+            }
+        }
     }
 
     public function onClose( ConnectionInterface $conn ) {

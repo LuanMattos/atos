@@ -98,7 +98,7 @@ var vue_instance_chat = new Vue({
     },
     mounted(){
         var self_vue  = this;
-        var url = App.url("dashboard_msg","Dashboard_msg","get_msg_local");
+        var url = App.url("dashboard_msg","Dashboard_msg","get_msg");
         axios.post(url, {}).then(function(response){
             self_vue.data_user = response.data;
             self_vue.connect();
@@ -118,13 +118,12 @@ var vue_instance_chat = new Vue({
         connect: function(onOpen) {
 
             var self = this;
-            var _id = this._data.data_user.usuario._id;
-
+            var _id = this._data.data_user.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
                 self.ws = new WebSocket('ws://localhost:8050?' + _id);
             }else{
-                console.log("Usuário não possui identificação válida!");
+                console.debug("Usuário não possui identificação válida!");
                 return false;
             }
 
@@ -233,7 +232,6 @@ var vue_instance_chat = new Vue({
             this.scrollbottom();
 
             this.messages.push( data_msg );
-            // $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
             //-----gravar dados do próprio usuario no banco------
 
             // Se a conexão não estiver aberta
@@ -251,7 +249,8 @@ var vue_instance_chat = new Vue({
                 return;
             }
 
-            self.ws.send(JSON.stringify({ command : 'subscribe',channel:100}));
+
+            // self.ws.send(JSON.stringify({ command : 'subscribe'}));
             // Envia os dados para o servidor através do websocket
             self.ws.send(JSON.stringify({
                 user        : this.data_user.usuario.nome,

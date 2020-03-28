@@ -81,22 +81,31 @@ var vue_instance_chat = new Vue({
         data_user : '',
         status : [],
         here:false,
-
+        user_local:false
     },
     mounted:function(){
-        var self_vue  = this;
-        var id = window.location.href.split(App.url("dashboard_activity", "Dashboard_activity", "external/"))[1];
 
-        var url = App.url("dashboard_msg","Dashboard_msg","get_msg_local");
-        $.post(url, {}, function( json ){ self_vue.data_user = json },'json')
+        var self_vue  = this;
+
+        //dados usuario externo
+
+        var id  = window.location.href.split(App.url("dashboard_activity", "Dashboard_activity", "external/"))[1];
+        var url = App.url("dashboard_msg","Dashboard_msg","get_msg/" + true);
+        const params = new URLSearchParams();
+
+        params.append('id', id);
+        axios({ method: 'post', url : url, data : params })
+        .then(function( json ){ self_vue.data_user = json.data;});
+
         // ------------------profile-------------------
         var url  = chat.Url("get_img");
         $.post(url, {type : "where",id : id}, function(response){self_vue.$data.img_profile = response.path;},'json');
         // ------------------cover------------------
-        var url  = chat.Url("get_img");
-        $.post(url, {type:"cover"}, function(response){self_vue.$data.img_cover = response.path;},'json');
 
-        this.connect();
+        //dados usuario local
+        var url = App.url("dashboard_msg","Dashboard_msg","get_msg" );
+        axios({ method: 'post', url : url, data : null })
+          .then(function( json ){ self_vue.user_local = json.data;self_vue.connect()});
 
     },
     methods:{
@@ -104,10 +113,14 @@ var vue_instance_chat = new Vue({
         connect: function(onOpen) {
 
             var self = this;
+            var _id = this._data.user_local.data.codusuario;
 
-            // Conectando
-            // wss://echo.websocket.org
-            self.ws = new WebSocket('ws://www.atos.click:8050');
+            if(!_.isUndefined(_id) && !_.isEmpty(_id)){
+                self.ws = new WebSocket('ws://localhost:8050?' + _id);
+            }else{
+                console.debug("Usuário não possui identificação válida!");
+                return false;
+            }
 
             // Evento que será chamado ao abrir conexão
             self.ws.onopen = function(e) {
@@ -220,11 +233,8 @@ var vue_instance_chat = new Vue({
 
             // Se a conexão não estiver aberta
             if (self.ws.readyState !== self.ws.OPEN) {
-                // Exibindo notificação de erro
                 self.addErrorNotification('Problemas na conexão. Tentando reconectar...');
 
-                // Tentando conectar novamente e caso tenha sucesso
-                // envia a mensagem novamente
                 self.connect(function() {
                     self.sendMessage();
                 });
@@ -232,21 +242,33 @@ var vue_instance_chat = new Vue({
                 return;
             }
 
-            // Envia os dados para o servidor através do websocket
-            self.ws.send(JSON.stringify({
-                user        : this.data_user.usuario.nome,
-                text        : this.text,
-                img_profile : this.data_user.usuario.img_profile,
-                class_text  : 'msg-local-here'
-            }));
+            var self = this;
+            var id  = window.location.href.split(App.url("dashboard_activity", "Dashboard_activity", "external/"))[1];
+            var url = App.url("dashboard_msg","Dashboard_msg","get_msg/" + true);
+            const params = new URLSearchParams();
 
-            this.scrollDown();
-            this.text = null;
-            self.here = true;
+            params.append('id', id);
+            axios({ method: 'post', url : url, data : params })
+              .then(function( json ){
 
+                  var channel = json.data.usuario.channel;
+
+                  // Envia os dados para o servidor através do websocket
+                  self.ws.send(JSON.stringify({
+                      user        : self.data_user.usuario.nome,
+                      text        : self.text,
+                      img_profile : self.data_user.usuario.img_profile,
+                      class_text  : 'msg-local-here',
+                      channel     : channel,
+                      command:'message'
+                  }));
+
+                  self.scrollDown();
+                  self.text = null;
+                  self.here = true;
+              });
 
         },
-
         // Método responsável por "rolar" a scroll do chat para baixo
         scrollDown: function() {
             var container = this.$el.querySelector('.messages');
