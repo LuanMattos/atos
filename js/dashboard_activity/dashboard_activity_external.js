@@ -105,7 +105,7 @@ var vue_instance_chat = new Vue({
         //dados usuario local
         var url = App.url("dashboard_msg","Dashboard_msg","get_msg" );
         axios({ method: 'post', url : url, data : null })
-          .then(function( json ){ self_vue.user_local = json.data;self_vue.connect()});
+          .then(function( json ){ self_vue.user_local = json.data;self_vue.connect();});
 
     },
     methods:{
@@ -257,7 +257,7 @@ var vue_instance_chat = new Vue({
                   self.ws.send(JSON.stringify({
                       user        : self.data_user.usuario.nome,
                       text        : self.text,
-                      img_profile : self.data_user.usuario.img_profile,
+                      img_profile : self.user_local.usuario.img_profile,
                       class_text  : 'msg-local-here',
                       channel     : channel,
                       command:'message'
