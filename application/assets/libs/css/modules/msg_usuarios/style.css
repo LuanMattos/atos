@@ -336,5 +336,11 @@ Bounce
     transform: translateY(-10px);
   }
 }
+.crop-img-chat {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 /*# sourceMappingURL=style.css.map */

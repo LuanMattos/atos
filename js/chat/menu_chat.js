@@ -26,8 +26,12 @@ var vue_instance_menu_chat = new Vue({
           vue_instance_chat._data.data_user = json.data;
           vue_instance_chat._data.img_profile = json.data.usuario.img_profile;
         });
+      var chat = $(".chat-content");
 
-      $(".chat-content").toggleClass('hide');
+      if( chat.is(":visible") ){
+        return false;
+      }
+      chat.toggleClass('hide');
     }
   }
 })
