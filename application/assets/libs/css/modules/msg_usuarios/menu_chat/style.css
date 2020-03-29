@@ -120,6 +120,42 @@ canvas {
   display: none;
   height: 100%;
 }
+.list-phone .bottom-menu,
+.list-text .bottom-menu,
+.list-account .bottom-menu,
+.list-chat .bottom-menu {
+  float: right;
+  display: block;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  color: #d8ded8;
+}
+.list-phone .bottom-menu i,
+.list-text .bottom-menu i,
+.list-account .bottom-menu i,
+.list-chat .bottom-menu i {
+  font-size: 35px;
+  cursor: pointer;
+}
+.list-phone .bottom-menu :hover,
+.list-text .bottom-menu :hover,
+.list-account .bottom-menu :hover,
+.list-chat .bottom-menu :hover {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
+  -o-transition: 0.5s;
+  color: white;
+}
+@media only screen and (max-width: 970px) {
+  .list-phone .bottom-menu,
+.list-text .bottom-menu,
+.list-account .bottom-menu,
+.list-chat .bottom-menu {
+    bottom: 20%;
+  }
+}
 
 .list-phone.shown,
 .list-text.shown,

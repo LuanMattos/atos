@@ -11,7 +11,7 @@
         <div class="chat-title">
              <div class="row">
                  <div class="col-1">
-                            <img v-bind:src="img_profile" class="crop-img-chat" />
+                      <img v-bind:src="img_profile" class="crop-img-chat" />
                  </div>
                  <div class="col-7">
                      <div style="margin-top: 10px">

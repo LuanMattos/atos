@@ -13,6 +13,9 @@
                     </li>
                 </template>
             </ul>
+            <div class="bottom-menu">
+                <i class="fas fa-angle-double-right" @click="close_menu_chat()"></i>
+            </div>
         </div>
     </div>
 </div>

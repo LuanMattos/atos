@@ -32,6 +32,9 @@ var vue_instance_menu_chat = new Vue({
         return false;
       }
       chat.toggleClass('hide');
+    },
+    close_menu_chat:function(){
+      $(".content-menu-chat").toggleClass('hide-transition');
     }
   }
 })

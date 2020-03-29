@@ -101,6 +101,7 @@ canvas {
   .chat {
     background-color: #e5e5e5;
   }
+
 }
 
 
@@ -110,6 +111,29 @@ canvas {
 .list-chat {
   display: none;
   height: 100%;
+  .bottom-menu{
+    float:right;
+    display: block;
+    position: absolute;
+    bottom: 10%;
+    right:5%;
+    color:#d8ded8;
+    i{
+      font-size:35px;
+      cursor:pointer;
+    }
+    :hover{
+      -webkit-transition: .5s;
+      -moz-transition: .5s;
+      transition: .5s;
+      -o-transition: .5s;
+      color:white;
+    }
+    @media only screen and (max-width: 970px) {
+      bottom: 20%;
+    }
+
+    }
 }
 .list-phone.shown,
 .list-text.shown,

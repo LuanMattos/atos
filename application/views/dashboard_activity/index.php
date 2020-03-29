@@ -49,6 +49,9 @@ endif;
 <div id="content-chat">
     <?= $this->load->view("chat/index"); ?>
 </div>
+<div class="content-open-menu-chat">
+    <i class="fas fa-comments"></i>
+</div>
 <?= $this->load->view('chat/menu_chat'); ?>
 <!-- Scripts js -->
 <?= $this->load->view("head/js"); ?>
