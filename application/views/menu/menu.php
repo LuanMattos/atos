@@ -10,15 +10,13 @@
                         </button>
 
                         <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-start bg-dark1 p-3 p-lg-0 mt1-5 mt-lg-0 mobileMenu">
-                            <div class="open"
-                                 id="navbarSupportedContent">
+                            <div class="open" id="navbarSupportedContent">
                                 <a class="text-white " href="<?= site_url('Home/index') ?>">
                                     <b style="font-size: 25px">atos</b>
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-responsive-space"></div>
-                            <div class="col-lg-8 col-md-8">
-
+                            <div style="width: 80%">
                                 <script type="text/x-template" id="autocomplete">
                                     <div>
                                         <div class="autocomplete" role="combobox" aria-haspopup="listbox" aria-owns="autocomplete-results" :aria-expanded="isOpen">
@@ -72,9 +70,8 @@
                                         <autocomplete :items="itens" aria-labelled-by="fruitLabel" />
                                     </div>
                                 </div>
-
-
-<!--                                    <input class="appearance-none  bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-1 px-4" type="text" placeholder="Buscar" style="width: 90%">-->
+                            </div>
+                            <div style="padding-bottom: 30px" class="menu-responsive-top">
                             </div>
                         </div>
 

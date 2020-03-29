@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <meta name="description" content="Gambolthemes">
-    <meta name="author" content="Gambolthemes">
+    <meta name="description" content="Atos - social network">
+    <meta name="author" content="Atos">
     <title>Atos - Home</title>
 
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="images/fav.png">
+    <link rel="icon" type="image/png" >
 
     <!-- Stylesheets -->
     <link href="<?= URL_RAIZ() ?>application/assets/libs/css/responsive.css" rel="stylesheet">
@@ -45,7 +45,6 @@ endif;
                                 <div class="username-dt dpbg-1">
                                     <div class="my-dp-dash  crop-img-home-mini cursor-pointer" v-bind:style="img_cover.length?'background-image:url(' + img_cover + ')':'background-image:url('+ path_img_cover_default +')'  ">
                                         <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_profile_default" alt="">
-
                                     </div>
                                 </div>
                                 <div class="user-main-details">
@@ -270,6 +269,9 @@ endif;
 
 <div id="content-chat">
     <?= $this->load->view('chat/index'); ?>
+</div>
+<div class="content-open-menu-chat">
+    <i class="fas fa-comments"></i>
 </div>
 <?= $this->load->view('chat/menu_chat'); ?>
 <!-- Scripts js -->

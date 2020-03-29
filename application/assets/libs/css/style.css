@@ -243,6 +243,26 @@ footer, header, hgroup, menu, nav, section {
   font-weight: bold;
 }
 
+.content-open-menu-chat {
+  position: fixed;
+  font-size: 45px;
+  float: right;
+  right: 2%;
+  bottom: 2%;
+  cursor: pointer;
+}
+.content-open-menu-chat :hover {
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  color: #6b9eea;
+}
+
+.hide-transition {
+  transition: width 0.5s;
+  display: none;
+}
+
 /*------------top-hover--------------*/
 .image_avatar_cover {
   display: block;
@@ -347,6 +367,20 @@ ul.autocomplete-results-empty-result-class {
 
   .col-responsive-space {
     display: none;
+  }
+
+  .menu-responsive-top {
+    float: left;
+    left: 0;
+  }
+  .menu-responsive-top i {
+    position: absolute;
+    color: white;
+    font-size: 34px;
+    float: left;
+    left: 50px;
+    padding-top: 25px;
+    cursor: pointer;
   }
 }
 @media only screen and (max-width: 450px) {

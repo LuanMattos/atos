@@ -60,6 +60,11 @@ canvas {
   overflow: hidden;
   position: fixed;
 }
+@media only screen and (max-width: 970px) {
+  #hangout {
+    margin-top: 100px;
+  }
+}
 #hangout .collapsed {
   height: 55px;
   box-shadow: none;

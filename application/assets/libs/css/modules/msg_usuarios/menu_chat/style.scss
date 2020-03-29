@@ -51,7 +51,12 @@ canvas {
   overflow: hidden;
   position: fixed;
 
-  .collapsed {
+  @media only screen and (max-width: 970px) {
+    margin-top:100px;
+  }
+
+
+    .collapsed {
     height: 55px;
     box-shadow: none;
   }

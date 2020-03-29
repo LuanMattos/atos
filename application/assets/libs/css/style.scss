@@ -225,6 +225,26 @@ footer, header, hgroup, menu, nav, section {
   margin-bottom: 5px;
   font-weight: bold;
 }
+.content-open-menu-chat{
+  position:fixed;
+  font-size: 45px;
+  float:right;
+  right: 2%;
+  bottom:2%;
+  cursor:pointer;
+
+  :hover{
+    transition:.5s;
+    -webkit-transition:.5s;
+    -moz-transition:.5s;
+    color:#6b9eea;
+  }
+
+}
+.hide-transition{
+  transition: width .5s;
+  display: none;
+}
 
 /*------------top-hover--------------*/
 .image_avatar_cover {
@@ -323,6 +343,19 @@ ul.autocomplete-results-empty-result-class{
   }
   .col-responsive-space{
     display: none;
+  }
+  .menu-responsive-top{
+    float:left;
+    left:0;
+    i{
+      position: absolute;
+      color:white;
+      font-size: 34px;
+      float:left;
+      left:50px;
+      padding-top: 25px;
+      cursor:pointer;
+    }
   }
 }
 

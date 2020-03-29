@@ -42,3 +42,9 @@ var App = {}
     // }
     }
 
+$(document).ready(function(){
+    $(".content-open-menu-chat").on("click",function(){
+        $(".content-menu-chat").toggleClass('hide-transition');
+    })
+})
+

@@ -1,5 +1,5 @@
 <style id="dynamic-styles"></style>
-<div id="hangout">
+<div id="hangout" class="content-menu-chat hide-transition">
     <div id="content">
         <div class="list-account">
             <div class="meta-bar">
