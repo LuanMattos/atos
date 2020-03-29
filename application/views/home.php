@@ -266,24 +266,18 @@ endif;
 <!--    </div>-->
 </main>
 <div id="autocomplete-app"></div>
-<!-- Body End -->
-<!-- Footer Start -->
 <?= $this->load->view("footer/footer"); ?>
-<!-- Footer End -->
-<!-- Scripts js -->
+
 <div id="content-chat">
     <?= $this->load->view('chat/index'); ?>
 </div>
 <?= $this->load->view('chat/menu_chat'); ?>
-
+<!-- Scripts js -->
 <?= $this->load->view("head/js"); ?>
 <?= $this->load->view("head/chat/assets"); ?>
 
-
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
 <?= $this->load->view("head/menu_chat/assets"); ?>
-
-<!---->
 </body>
 
 </html>

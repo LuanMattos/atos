@@ -20,9 +20,6 @@
     <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
     <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
-
-    <!-----CHAT------>
-    <?= $this->load->view("head/chat/assets"); ?>
 </head>
 <style>
     .desktop-closed-message-avatar{
@@ -47,17 +44,16 @@ endif;
 
     </div>
 </main>
+<?= $this->load->view("footer/footer"); ?>
+
 <div id="content-chat">
     <?= $this->load->view("chat/index"); ?>
 </div>
-<?= $this->load->view("head/js"); ?>
 <?= $this->load->view('chat/menu_chat'); ?>
-
-<!-- Body End -->
-<!-- Footer Start -->
-<?= $this->load->view("footer/footer"); ?>
-<!-- Footer End -->
 <!-- Scripts js -->
+<?= $this->load->view("head/js"); ?>
+<?= $this->load->view("head/chat/assets"); ?>
+
 <script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 <?php if(isset($dados['externo'])): ?>
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_external.js"></script>
@@ -65,6 +61,8 @@ endif;
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_local.js"></script>
 <?php endif ?>
 <?= $this->load->view("head/menu_chat/assets"); ?>
+
+
 
 </body>
 
