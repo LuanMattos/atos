@@ -1,11 +1,11 @@
-<div class="col-lg-12 col-md-12 " style="z-index: 1">
-    <div class="main-posts" style="z-index: 2">
-        <div class="add-activity" style="z-index: 3">
+<div class="col-lg-12 col-md-12 ">
+    <div class="main-posts" >
+        <div class="add-activity" >
             <div class="activity-group">
                 <div class="maine-activity-img">
                     <img class='crop-img-home' :src="img_profile.length?img_profile:path_img_time_line_default" alt="">
                 </div>
-                <textarea style="z-index:0" :class="error_text_area?'border-danger-postagem':''" class="add-activity-des"  id='text-area-postagem' placeholder="O que tem de novo?"></textarea>
+                <textarea  :class="error_text_area?'border-danger-postagem':''" class="add-activity-des"  id='text-area-postagem' placeholder="O que tem de novo?"></textarea>
             </div>
             <form id="form-input-time-line" method="post" enctype="multipart/form-data">
                 <div class="setting-upload">

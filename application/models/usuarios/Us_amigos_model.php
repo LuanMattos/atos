@@ -26,12 +26,12 @@ class Us_amigos_model extends CI_Model{
         }
 
     }
-    public function data_full_amigos($param,$options){
+    public function data_full_amigos($param,$options,$chat = false){
         $this->load->model('storage/img/Us_storage_img_cover_model');
         $data = [];
 
         $data_amigos = reset($this->getWhereMongoDocument(['_id'=>$param['_id']],$options ));
-        debug($data_amigos);
+
         if(isset($data_amigos['amigos'])){
 
             if(count($data_amigos['amigos'])){
@@ -42,6 +42,7 @@ class Us_amigos_model extends CI_Model{
 
                     $path_cover_img         = reset($this->Us_storage_img_cover_model->getWhereMongo(['codusuario'=>reset($row['_id'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
                     $row['img_cover']       =  $path_cover_img['server_name'] . $path_cover_img['bucket'] . '/' . $path_cover_img['folder_user'] . '/' . $path_cover_img['name_file'];
+                    $row['login']           = reset($this->Us_usuarios_model->getWhereMongo(['_id'=>reset($row['_id'])]))['login'];
 
                     array_push($data,$row);
 

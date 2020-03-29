@@ -23,8 +23,22 @@ class Amigos extends Home_Controller
         $dados = $this->data_user();
         $this->load->view('pessoas/full_amigos',compact("dados"));
     }
-//    Arrumar essa merda
     public function full_amigos(){
+        $user_logado    = $this->data_user();
+        $datapost       = (object)$this->input->post(NULL,TRUE);
+        $options        = ["amigos"=>["_id"=>["sort"=>1]]];
+        $data           = $this->Us_amigos_model->data_full_amigos($user_logado,$options);
+
+        $this->response('success',compact("data"));
+    }
+    /**
+     * Filtra todos usuarios para o chat de acordo com configuração
+     * offline 0
+     * online 1
+     * desconectado 2
+     * ocupado 3
+    **/
+    public function full_amigos_chat(){
         $user_logado    = $this->data_user();
         $datapost       = (object)$this->input->post(NULL,TRUE);
         $options        = ["amigos"=>["_id"=>["sort"=>1]]];

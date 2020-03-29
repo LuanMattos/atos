@@ -265,32 +265,23 @@ endif;
 <!--        </div>-->
 <!--    </div>-->
 </main>
-
-
-<div id="autocomplete-app">
-</div>
-
-
-
+<div id="autocomplete-app"></div>
 <!-- Body End -->
 <!-- Footer Start -->
 <?= $this->load->view("footer/footer"); ?>
 <!-- Footer End -->
 <!-- Scripts js -->
+<div id="content-chat">
+    <?= $this->load->view('chat/index'); ?>
+</div>
+<?= $this->load->view('chat/menu_chat'); ?>
 
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.nice-select.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/datepicker.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/i18n/datepicker.en.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
+<?= $this->load->view("head/js"); ?>
+<?= $this->load->view("head/chat/assets"); ?>
+
+
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
-<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
+<?= $this->load->view("head/menu_chat/assets"); ?>
 
 <!---->
 </body>

@@ -42,8 +42,7 @@ var vm = new Vue({
         var url       = App.url("pessoas", "Pessoas", "get_img_menu_pessoas");
         // ------------------menu-pessoas-------------------
         $.post(url, {}, function(response){
-            // self_vue.$data.users_menu = response.data.all_users;
-            self_vue.$data.users_menu =response.data.all_users;
+            self_vue.$data.users_menu = response.data.all_users;
         },'json');
     },
     methods: {
@@ -152,11 +151,4 @@ var vm = new Vue({
     }
 );
 
-$.post(
-    home.Url("get_storage_img"),
-    {},
-    function(json){
-
-        vm.$data.posts = json.data
-},'json');
-
+$.post( home.Url("get_storage_img"), {}, function(json){vm.$data.posts = json.data},'json');

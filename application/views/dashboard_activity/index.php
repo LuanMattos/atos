@@ -22,11 +22,7 @@
     <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
 
     <!-----CHAT------>
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/modules/msg_usuarios/style.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
-
-
-
+    <?= $this->load->view("head/chat/assets"); ?>
 </head>
 <style>
     .desktop-closed-message-avatar{
@@ -55,18 +51,20 @@ endif;
     <?= $this->load->view("chat/index"); ?>
 </div>
 <?= $this->load->view("head/js"); ?>
+<?= $this->load->view('chat/menu_chat'); ?>
+
 <!-- Body End -->
 <!-- Footer Start -->
 <?= $this->load->view("footer/footer"); ?>
 <!-- Footer End -->
 <!-- Scripts js -->
-
-
+<script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 <?php if(isset($dados['externo'])): ?>
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_external.js"></script>
 <?php else: ?>
     <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_local.js"></script>
 <?php endif ?>
+<?= $this->load->view("head/menu_chat/assets"); ?>
 
 </body>
 

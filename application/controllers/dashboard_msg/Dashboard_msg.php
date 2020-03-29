@@ -33,11 +33,18 @@ class Dashboard_msg extends Home_Controller
         }
 
     }
-    public function get_msg($external = false){
+    public function get_msg( $external = false ){
         $usuario_session = $this->data_user();
-        $id = $this->input->post("id",true);
-        $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['login' => $usuario_session['login'] ] ) );
+        $id         = $this->input->post("id",true);
+        $login_post      = $this->input->post("login",true);
+        $login           = $usuario_session['login'];
 
+        if( $login_post ){
+            $login = $login_post;
+        }
+        $usuario    = reset($this->Us_usuarios_model->getWhereMongo( ['login' =>  $login] ) );
+
+        //vai cair por terra, no geral, todos que forem external, terão na URL apenas o email por motivos de segurança
         if( $external ){
             $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['_id' => $id ] ) );
         }
@@ -52,7 +59,8 @@ class Dashboard_msg extends Home_Controller
             'nome' => $usuario['nome'],
             'sobrenome' => $usuario['sobrenome'],
             'img_profile' => $img_profile,
-            'channel'=>$data['resourceId']
+            'login' => $data['login'],
+            'channel' => $data['resourceId']
         ];
         $this->response('success',compact('data','usuario'));
     }
