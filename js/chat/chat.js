@@ -50,55 +50,33 @@ var vue_instance_chat = new Vue({
 
     },
     methods:{
-        // Método responsável por iniciar conexão com o websocket
         connect: function(onOpen) {
-
             var self = this;
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-                self.ws = new WebSocket('ws://localhost:8050?' + _id);
+                self.ws = new WebSocket('ws://www.atos.click:8050?' + _id);
             }else{
                 console.debug("Usuário não possui identificação válida!");
                 return false;
             }
 
-            // Evento que será chamado ao abrir conexão
             self.ws.onopen = function(e) {
 
                 self.addSuccessNotification('Online');
-                // Se houver método de retorno
                 if (onOpen) {
                     onOpen();
                 }
             };
 
-
-            // Evento que será chamado quando houver erro na conexão
             self.ws.onerror = function(e) {
                 self.addErrorNotification('Não foi possível conectar-se ao servidor');
             };
 
-            // Evento que será chamado quando recebido dados do servidor
             self.ws.onmessage = function(e) {
                 self.addMessage(JSON.parse(e.data));
             };
 
-        },
-        fakeMessage : function(){
-            var i = 0;
-            var self = this;
-            if ($('.message-input').val() != '') {
-                return false;
-            }
-            $('<div class="message loading new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-
-            setTimeout(function() {
-                $('.message.loading').remove();
-                $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + self.Fake[i] + '</div>').appendTo($('.mCSB_container')).addClass('new');
-                self.setDate();
-                i++;
-            }, 1000 + (Math.random() * 20) * 100);
         },
         setDate:function(){
             var d = new Date();
@@ -126,12 +104,16 @@ var vue_instance_chat = new Vue({
         close:function(event){
             $(event.target).parent().parent().parent().parent().parent().addClass('hide');
         },
-      // Método responsável por escutar novas mensagens
         addMessage: function(data) {
-          this.messages.push(data);
+          var login_usuario_chat = this.data_user.usuario.login;
+
+          if(login_usuario_chat === data.from){
+              this.messages.push(data);
+          }
             this.scrollDown();
+
+            //escuta
         },
-      // Método responsável por enviar uma mensagem
         sendMessage: function() {
         var login = this.data_user.usuario.login;
         var login_local = this.user_local.usuario.login;
@@ -146,10 +128,6 @@ var vue_instance_chat = new Vue({
 
         $('.messages-content').appendTo($('.mCSB_container')).addClass('new');
 
-        //-----gravar dados do próprio usuario no banco------
-
-
-        // Se a conexão não estiver aberta
         if (self.ws.readyState !== self.ws.OPEN) {
           self.addErrorNotification('Problemas na conexão. Tentando reconectar...');
 
@@ -167,7 +145,6 @@ var vue_instance_chat = new Vue({
           .then(function( json ){
             var channel = json.data.usuario.channel;
 
-            // Envia os dados para o servidor através do websocket
             self.ws.send(JSON.stringify({
               user        : self.data_user.usuario.nome,
               text        : self.text,
@@ -175,16 +152,18 @@ var vue_instance_chat = new Vue({
               class_text  : 'msg-local-here',
               channel     : channel,
               command     : 'message',
-              to          :self.data_user.usuario.login,
-              recebendo:true
+              to          : self.data_user.usuario.login,
+              recebendo   : true,
+              from        : login_local
             }));
 
-            self.scrollDown();
             self.text = null;
             self.here = true;
           });
+            this.scrollDown();
 
-      },
+
+        },
         addMessageNotification:function(data){
             this.status.push(data);
         },
@@ -198,8 +177,7 @@ var vue_instance_chat = new Vue({
         },
         // Método responsável por "rolar" a scroll do chat para baixo
         scrollDown: function() {
-            var container = this.$el.querySelector('.messages');
-            container.scrollTop = container.scrollHeight;
+            $( "div.messages-content").scrollTop(1000000000000000);
         },
     },
 });

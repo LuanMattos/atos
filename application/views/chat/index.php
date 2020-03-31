@@ -36,10 +36,10 @@
                 </div>
             </div>
         </div>
-        <div class="messages" >
+        <div class="messages">
             <div  class="messages-content">
                 <template v-for="message in messages" >
-                   <div v-bind:class="message.recebendo?'message new':'message message-personal new'" class="crop-img-pessoas-mini">
+                   <div v-bind:class="message.recebendo?'message new':'message message-personal new'">
                        <figure class="avatar" v-if="message.recebendo">
                                <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
                        </figure>
