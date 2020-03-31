@@ -48,7 +48,6 @@ class Dashboard_msg extends Home_Controller
         if( $external ){
             $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['_id' => $id ] ) );
         }
-
         $data    = reset( $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id']] ) );
 
 
@@ -59,7 +58,7 @@ class Dashboard_msg extends Home_Controller
             'nome' => $usuario['nome'],
             'sobrenome' => $usuario['sobrenome'],
             'img_profile' => $img_profile,
-            'login' => $data['login'],
+            'login' => $usuario['login'],
             'channel' => $data['resourceId']
         ];
         $this->response('success',compact('data','usuario'));

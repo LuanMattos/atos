@@ -17,6 +17,7 @@ class Chat  implements MessageComponentInterface {
     private $mongodb;
     private $mongobulkwrite;
     private $mongomanager;
+    private $codusuario;
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
@@ -37,6 +38,7 @@ class Chat  implements MessageComponentInterface {
 
         $usuario     = $this->mongodb->{$this->config->database}->us_usuarios->find(["_id"=>$id_usuario],['limit'=>1])->toArray();
         $msg_usuario = $this->mongodb->{$this->config->database}->msg_usuarios->find(["codusuario"=>$id_usuario],['limit'=>1])->toArray();
+        $this->codusuario = $usuario[0]->_id;
         if(!empty( $usuario ) && !empty( $id ) ){
 
             $data = [
@@ -68,27 +70,47 @@ class Chat  implements MessageComponentInterface {
     public function onMessage( ConnectionInterface $from, $msg ) {
 
         $data = json_decode($msg);
+        $to = $this->mongodb->{$this->config->database}->us_usuarios->find(["login"=>$data->to],['limit'=>1])->toArray();
+        $from_id = $from->httpRequest->getUri()->getQuery();
+
+
 
         switch ($data->command) {
             case "subscribe":
                 $this->subscriptions[$from->resourceId] = $data->channel;
                 break;
             case "message":
-//                        && $id != $from->resourceId
-            echo "==========>>>".isset($data->channel)?$data->channel:'';
-                        if(isset( $this->users[$data->channel] )){
-                            $this->users[$data->channel]->send($msg);
-                        }
+            if(isset( $this->users[$data->channel] )){
+                $this->users[$data->channel]->send($msg);
+                $data_msg   = [
+                    "msg" => [
+                        "_id"         => new ObjectId(),
+                        "to"          => $to[0]->_id,
+                        "from"        => $from_id,
+                        "text"        => $data->text,
+                        "created_at"  => date('Y-m-d H:i:s')
+                    ]
+                ];
+                $where  = [ "codusuario" => $from_id ];
 
-        }
-        $numRecv = count( $this->clients ) - 1;
-        echo sprintf('Conexão %d enviou mensagem "%s" para %d outra conexão%s' . "\n"
-            , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
+                $this->save_sub_document($data_msg, $where, $type = '$addToSet',$table = "msg_usuarios");
 
-        foreach ( $this->clients as $client ) {
-            if ( $from !== $client ) {
-                $client->send( $msg );
+//                --------------
+
+                $data_msg   = [
+                    "msg" => [
+                        "_id"         => new ObjectId(),
+                        "to"          => $from_id,
+                        "from"        => $to[0]->_id,
+                        "text"        => $data->text,
+                        "created_at"  => date('Y-m-d H:i:s')
+                    ]
+                ];
+
+                $where  = [ "codusuario" => $to[0]->_id ];
+                $this->save_sub_document($data_msg, $where, $type = '$addToSet',$table = "msg_usuarios");
             }
+
         }
     }
 
@@ -108,6 +130,19 @@ class Chat  implements MessageComponentInterface {
     }
     public function mongocollection($collection,$options){
         return  new Collection($this->mongomanager,$this->config->database,$collection,$options);
+    }
+    public function save_sub_document($data = [],$where = [], $type = '$addToSet',$table = "msg_usuarios"){
+        $configmongo = (object)$this->config;
+
+        $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();;
+
+        $mongobulkwrite->update(
+            $where,
+            [$type => $data],
+            ['upsert' => true]
+        );
+        $this->mongomanager->executeBulkWrite($configmongo->database . '.' . $table ,$mongobulkwrite);
+
     }
 
 }

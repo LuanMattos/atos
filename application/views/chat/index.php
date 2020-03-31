@@ -40,12 +40,12 @@
             <div  class="messages-content">
                 <template v-for="message in messages" >
                    <div v-bind:class="message.recebendo?'message new':'message message-personal new'" class="crop-img-pessoas-mini">
-                        <figure class="avatar" v-if="message.recebendo">
-                                <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
-                        </figure>
-                        <span class="date" >{{ message.date }}</span>
-                        <span class="name" >{{ message.user }}:</span>
-                        <span class="text" >{{ message.text }}</span>
+                       <figure class="avatar" v-if="message.recebendo">
+                               <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
+                       </figure>
+                       <span class="date" >{{ message.date }}</span>
+                       <span class="name" >{{ message.user }}:</span>
+                       <span class="text" >{{ message.text }}</span>
                     </div>
                 </template>
             </div>
