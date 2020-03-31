@@ -33,7 +33,7 @@ class Dashboard_msg extends Home_Controller
         }
 
     }
-    public function get_msg( $external = false ){
+    public function get_msg( $external = false){
         $usuario_session = $this->data_user();
         $id         = $this->input->post("id",true);
         $login_post      = $this->input->post("login",true);
@@ -43,13 +43,24 @@ class Dashboard_msg extends Home_Controller
             $login = $login_post;
         }
         $usuario    = reset($this->Us_usuarios_model->getWhereMongo( ['login' =>  $login] ) );
+        $usuario_local    = reset($this->Us_usuarios_model->getWhereMongo( ['login' =>  $usuario_session['login']] ) );
 
         //vai cair por terra, no geral, todos que forem external, terão na URL apenas o email por motivos de segurança
         if( $external ){
             $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['_id' => $id ] ) );
         }
-        $data    = reset( $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id']] ) );
 
+//        $rows = $col->find(array('nome' => array ('$all' => array(new MongoRegex('/Ubuntu/')))));
+
+        $msg_usuario_local    =  reset($this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario_local['_id']]));
+        $data = [];
+        //mensagens
+        foreach ($msg_usuario_local['msg'] as $key=>$msg){
+            if(reset($msg['codusuario']) === $usuario['_id']){
+                array_push($data,$msg);
+            }
+        }
+        $resourceId = reset($this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id'] ] ));
 
         $find_img      =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$usuario['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
         $img_profile   =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
@@ -59,7 +70,7 @@ class Dashboard_msg extends Home_Controller
             'sobrenome' => $usuario['sobrenome'],
             'img_profile' => $img_profile,
             'login' => $usuario['login'],
-            'channel' => $data['resourceId']
+            'channel' => $resourceId['resourceId']
         ];
         $this->response('success',compact('data','usuario'));
     }

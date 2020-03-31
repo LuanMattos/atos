@@ -23,8 +23,21 @@ var vue_instance_menu_chat = new Vue({
       params.append('login', login);
       axios({ method: 'post', url : url, data : params })
         .then(function( json ){
-          vue_instance_chat._data.data_user = json.data;
-          vue_instance_chat._data.img_profile = json.data.usuario.img_profile;
+            vue_instance_chat._data.data_user = json.data;
+            vue_instance_chat._data.img_profile = json.data.usuario.img_profile;
+
+
+
+          if(!_.isUndefined(json.data.data)) {
+
+              json.data.data.map(function (el,index ) {
+                el.img_profile = json.data.usuario.img_profile;
+              })
+              vue_instance_chat._data.messages = json.data.data;
+          }else{
+            vue_instance_chat._data.messages = [];
+          }
+
         });
       var chat = $(".chat-content");
 
@@ -32,6 +45,14 @@ var vue_instance_menu_chat = new Vue({
         return false;
       }
       chat.toggleClass('hide');
+    },
+    setDate:function(date){
+      var d = new Date(toString());
+      var m = '';
+      if (m != d.getMinutes()) {
+        m = d.getMinutes();
+        $('<div class="timestamp">' + d.getHours() + ':' + m + '</div>').appendTo($('.message:last'));
+      }
     },
     close_menu_chat:function(){
       $(".content-menu-chat").toggleClass('hide-transition');

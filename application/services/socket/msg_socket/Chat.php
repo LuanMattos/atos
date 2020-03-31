@@ -71,6 +71,8 @@ class Chat  implements MessageComponentInterface {
 
         $data = json_decode($msg);
         $to = $this->mongodb->{$this->config->database}->us_usuarios->find(["login"=>$data->to],['limit'=>1])->toArray();
+
+        //user local
         $from_id = $from->httpRequest->getUri()->getQuery();
 
 
@@ -85,25 +87,25 @@ class Chat  implements MessageComponentInterface {
                 $data_msg   = [
                     "msg" => [
                         "_id"         => new ObjectId(),
-                        "to"          => $to[0]->_id,
-                        "from"        => $from_id,
+                        "codusuario"  => new ObjectId($to[0]->_id),
                         "text"        => $data->text,
-                        "created_at"  => date('Y-m-d H:i:s')
+                        "created_at"  => date('Y-m-d H:i:s'),
+                        "recebendo"   => false
                     ]
                 ];
                 $where  = [ "codusuario" => $from_id ];
 
                 $this->save_sub_document($data_msg, $where, $type = '$addToSet',$table = "msg_usuarios");
 
-//                --------------
+//                --------------usuario que está recebendo
 
                 $data_msg   = [
                     "msg" => [
                         "_id"         => new ObjectId(),
-                        "to"          => $from_id,
-                        "from"        => $to[0]->_id,
+                        "codusuario"  => new ObjectId($from_id),
                         "text"        => $data->text,
-                        "created_at"  => date('Y-m-d H:i:s')
+                        "created_at"  => date('Y-m-d H:i:s'),
+                        "recebendo"   => true
                     ]
                 ];
 

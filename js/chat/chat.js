@@ -128,7 +128,6 @@ var vue_instance_chat = new Vue({
         },
       // Método responsável por escutar novas mensagens
         addMessage: function(data) {
-          data.recebendo = true;
           this.messages.push(data);
             this.scrollDown();
         },
@@ -137,7 +136,7 @@ var vue_instance_chat = new Vue({
         var login = this.data_user.usuario.login;
         var login_local = this.user_local.usuario.login;
         var self = this;
-        var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario.nome,recebendo:false,to:this.data_user.usuario.login,from:login_local };
+        var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario.nome,to:this.data_user.usuario.login,from:login_local };
 
         if ( !this.text ) {
           return false;
@@ -176,7 +175,8 @@ var vue_instance_chat = new Vue({
               class_text  : 'msg-local-here',
               channel     : channel,
               command     : 'message',
-              to          :self.data_user.usuario.login
+              to          :self.data_user.usuario.login,
+              recebendo:true
             }));
 
             self.scrollDown();

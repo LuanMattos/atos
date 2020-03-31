@@ -44,7 +44,6 @@
                                <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
                        </figure>
                        <span class="date" >{{ message.date }}</span>
-                       <span class="name" >{{ message.user }}:</span>
                        <span class="text" >{{ message.text }}</span>
                     </div>
                 </template>
