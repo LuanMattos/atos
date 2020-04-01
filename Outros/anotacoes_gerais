@@ -86,15 +86,7 @@ sudo ss -plnt sport eq :80
 Processos por aplicação
 ps aux | grep supervisor
 
-
-Instalação memcache PHP
-apt-get install zlib1g-dev
-pecl install memcache OU sudo apt-get install php-memcache
-echo "extension = memcache.so" | sudo tee /etc/php5/conf.d/memcache.ini
-ps aux | grep memcache
-Instalação do SERVIDOR (APLICATIVO) do memcacheD
-sudo apt-get install memcached
-sudo service memcached start
+Para deixar um processo em background, basta rodar nohup php -f nome-do-arquivo.php & e para o código sempre rodar quando iniciar/reiniciar o servidor, basta criar um shell script em /etc/init.d
 
 
 hacker - proxy
