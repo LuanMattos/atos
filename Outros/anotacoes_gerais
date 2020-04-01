@@ -106,4 +106,3 @@ apt-get install apachetop
 apachetop -T 120 -f /var/log/httpd/access_log;
 
 
-localhost, 127.0.0.0/8, ::1
