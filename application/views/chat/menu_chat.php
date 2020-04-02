@@ -9,7 +9,7 @@
                 <template v-for="amigo in amigos">
                     <li @click="open_chat(amigo)">
                         <img v-bind:src="amigo.img_profile" class="crop-img-home-mini">
-                        <span class="name">{{amigo.nome}} {{amigo.sobrenome}}</span><i class="mdi mdi-menu-down"></i>
+                        <span class="name">{{amigo.nome | firstUpperCase}} {{amigo.sobrenome | firstUpperCase}}</span><i class="mdi mdi-menu-down"></i>
                     </li>
                 </template>
             </ul>

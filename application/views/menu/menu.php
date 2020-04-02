@@ -141,7 +141,7 @@
                                                         <span>{{msg.text}}</span>
                                                     </a>
                                                 </div>
-                                                <div class="time4">{{msg.dias}}</div>
+                                                <div class="time4">{{msg.dias}}  atrás</div>
                                             </div>
                                         </div>
                                     </template>

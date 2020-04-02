@@ -134,6 +134,7 @@ const Autocomplete = {
 };
 
 
+
 var vue_instance_menu = new Vue({
     el: "#content-menu",
     data: {
