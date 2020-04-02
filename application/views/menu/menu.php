@@ -136,7 +136,7 @@
                                                 <div class="user-request-dt">
                                                     <a href="#">
                                                         <img v-bind:src="msg.img_profile"
-                                                             alt="">
+                                                             class="crop-img-chat">
                                                         <div class="user-title1">{{msg.name}}</div>
                                                         <span>{{msg.text}}</span>
                                                     </a>
