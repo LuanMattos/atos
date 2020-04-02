@@ -58,8 +58,6 @@ Vue.filter('firstUpperCase', function (value) {
             str = prim.toUpperCase() + resto;
             text = str;
             return text;
-        }else{
-            return false
         }
     }
     return pri_mai(value)
