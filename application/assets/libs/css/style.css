@@ -383,6 +383,10 @@ ul.autocomplete-results-empty-result-class {
     cursor: pointer;
   }
 }
+.text-like {
+  color: #4284cf;
+}
+
 @media only screen and (max-width: 450px) {
   .mobileMenu {
     width: 100%;
@@ -1737,7 +1741,7 @@ main {
 }
 
 .title-post {
-  color: black;
+  color: #5a5b56;
   font-size: 12px;
 }
 
@@ -1966,6 +1970,9 @@ main {
   line-height: 0;
   color: #847577;
   cursor: pointer;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
 }
 
 .like-item span {

@@ -358,6 +358,9 @@ ul.autocomplete-results-empty-result-class{
     }
   }
 }
+.text-like{
+  color:rgb(66, 132, 207);
+}
 
 @media only screen and (max-width: 450px) {
 
@@ -1692,7 +1695,7 @@ main {
   display: flex;
 }
 .title-post{
-  color:black;
+  color:#5a5b56;
   font-size: 12px;
 }
 
@@ -1922,6 +1925,9 @@ main {
   line-height: 0;
   color: #847577;
   cursor: pointer;
+  -moz-transition: .5s;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
 }
 
 .like-item span {

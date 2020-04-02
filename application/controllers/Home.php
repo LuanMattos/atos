@@ -9,6 +9,7 @@ class Home extends Home_Controller
     public function __construct(){
         parent::__construct();
         $this->load->model("Us_usuarios_model");
+        $this->load->model("usuarios/Us_amigos_model");
         $this->load->model("storage/img/Us_storage_img_profile_model");
         $this->load->model("location/Us_location_user_model");
         $this->load->model('account/Us_usuarios_conta_model');
@@ -240,6 +241,31 @@ class Home extends Home_Controller
         redirect('Login');
 
     }
+    public function compute_like(){
+        $id = $this->input->post('id',true);
+        $user = (object)$this->data_user();
+
+        $data = [
+            "like" => [
+                '_id'=>new \MongoDB\BSON\ObjectId( $user->_id )
+            ]
+        ];
+        $liked    =  reset($this->Us_storage_img_model->getWhereMongo( ["_id" => new \MongoDB\BSON\ObjectId( $id ),'like._id'=>new \MongoDB\BSON\ObjectId( $user->_id )]));
+        if( count($liked['like']) ){
+            $this->Us_storage_img_model->save_sub_document( $data,["_id" => new \MongoDB\BSON\ObjectId( $id )],'$pull' );
+            $this->response('success','dislike');
+
+        }else{
+            $data = [
+                "like" => [
+                    '_id'=>new \MongoDB\BSON\ObjectId( $user->_id ),
+                    'created_at' => date('Y-m-d H:i:s')
+                ]
+            ];
+            $this->Us_storage_img_model->save_sub_document( $data,["_id" => new \MongoDB\BSON\ObjectId( $id )] );
+            $this->response('success','like');
+        }
+    }
     public function delete_time_line(){
         $id = $this->input->post("id",true);
         $delete = $this->Us_storage_img_model->deleteWhereMongo( [ "_id" => new \MongoDB\BSON\ObjectId($id) ] );
@@ -316,7 +342,7 @@ class Home extends Home_Controller
     /**
      * Postagens apenas do usuário logado (Própria timeline) ou quando visita usuário
     **/
-    public function get_storage_img(){
+    public function get_storage_img($timeline = false){
         $id_external    = $this->input->post("id",true);
         $user_logado    = $this->data_user();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
@@ -324,31 +350,48 @@ class Home extends Home_Controller
         if(!empty($id_external)){
             $get_usuario    = $this->mongodb->atos->us_usuarios->find(['_id'=>$id_external]);
         }
+        $ids = [0=>$user_logado['_id']];
+
+        if( $timeline ){
+            $amigos = reset( $this->Us_amigos_model->getWhereMongo( ['_id'=>$user_logado['_id']] ) );
+            if( $amigos ){
+                foreach ( $amigos['amigos'] as $row_amizades ) {
+                    array_push($ids,reset($row_amizades['_id']));
+                }
+            }
+        }
+
 
         foreach ($get_usuario as $row_usuarios) {
             $us_storage_img     = $this->mongodb->atos->us_storage_img;
             $options            = ["sort" => ["created_at" => -1]];
-            $data_time_line     = $us_storage_img->find(['codusuario' => $row_usuarios['_id']], $options);
+            $data_time_line     = $us_storage_img->find(['codusuario'=>['$in'=>$ids]], $options);
+
             $data               = [];
             $row['img_profile'] = false;
 
-            foreach ($data_time_line as $row) {
-                $find_img   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row_usuarios['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+            foreach ($data_time_line->toArray() as $row) {
+
+                $find_img   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['codusuario']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
                 $imgprofile = !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
                 $url        = !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
                 $text       = $row['text_timeline'];
-                $name_user  = $row_usuarios['nome'];
+                $name_user  = reset($this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']]));
 
                 $data_row = [
                     '_id'         => reset($row['_id']),
                     'path'        => $url,
                     'text'        => $text,
-                    'nome'        => $name_user,
-                    'img_profile' => $imgprofile
+                    'nome'        => $name_user['nome'],
+                    'img_profile' => $imgprofile,
+                    'like'        => $row['like']  ? $row['like'] : [],
+                    'id_local'    => $user_logado['_id']
+
                 ];
                 array_push($data, $data_row);
 
             }
+
         }
 
         $this->response('success',compact('data'));

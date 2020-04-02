@@ -23,7 +23,7 @@
                                                         </a>
                                                     </td>
                                                     <td>
-                                                            <div class="post-dt-dropdown dropdown">
+                                                       <div class="post-dt-dropdown dropdown">
                                                                 <span class="dropdown-toggle-no-caret" role="button"
                                                                       data-toggle="dropdown">
                                                                      <i class="fas fa-ellipsis-v"></i>
@@ -80,19 +80,30 @@
                                 </div>
                                 <div class="like-comments">
                                     <div class="left-comments">
-                                        <a href="#" class="like-item" title="Like">
-                                            <i class="fas fa-heart"></i>
-                                            <span><ins>Gostei</ins> 251</span>
-                                        </a>
+                                        <template v-if="post.like.length">
+                                            <template v-for="(i,l) in post.like">
+                                                <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
+                                                    <i v-bind:class="action_like  + ' ' + (post.id_local === i._id.$oid ? 'text-like':'')" ></i>
+                                                    <span> 251</span>
+                                                </a>
+                                            </template>
+                                        </template>
+                                        <template v-if="!post.like.length">
+                                            <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
+                                                <i v-bind:class="action_like " ></i>
+                                                <span> 251</span>
+                                            </a>
+                                        </template>
+
                                         <a href="#" class="like-item lc-left" title="Comment">
                                             <i class="fas fa-comment-alt"></i>
-                                            <span><ins>Comentários</ins> 10</span>
+                                            <span> 10</span>
                                         </a>
                                     </div>
                                     <div class="right-comments">
                                         <a href="#" class="like-item" title="Share">
                                             <i class="fas fa-share-alt"></i>
-                                            <span><ins>Compartilhamentos</ins> 21</span>
+                                            <span> 21</span>
                                         </a>
                                     </div>
                                 </div>
