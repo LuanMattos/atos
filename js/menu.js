@@ -142,7 +142,8 @@ var vue_instance_menu = new Vue({
         data_user_local : "",
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
         amigos      : [],
-        result      :[]
+        result      : [],
+        msg_menu    : []
     },
     components: {
         autocomplete: Autocomplete
@@ -160,32 +161,25 @@ var vue_instance_menu = new Vue({
         $.post(url, {}, function(response){
             self_vue.$data.data_user_local = response.data;
             },'json');
+        this.get_msg();
     },
     methods:{
         redirect_user:function( id ){
             var url = App.url("dashboard_activity","Dashboard_activity","index");
-            $.post(
-                url,
-                {
-                    id : id
-                },
-                function(json){
-                    window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id);
-                },'json')
+            $.post( url, { id : id },
+            function(json){ window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id); },'json')
         },
         aceitar_pessoa:function(id,l){
+            var url = App.url("pessoas","Amigos","aceitar_pessoa");
 
-            $.post(
-                App.url("pessoas","Amigos","aceitar_pessoa"),
-                {
-                    id:id
-                },
-                function(json){
-                    if(json.info){
-                        $(".card-list-solicitacao:eq("+l+")").remove();
-                    }
-
-                },'json')
+            $.post( url, { id : id },
+                function(json){ if(json.info){ $(".card-list-solicitacao:eq("+l+")").remove(); } },'json')
+        },
+        get_msg : function(){
+            var self = this;
+            var url  = App.url("dashboard_msg","Dashboard_msg","get_msg_menu");
+            axios({ method: 'post', url : url, data : false })
+              .then(function( json ){self.msg_menu =  json.data.data.msg; });
         }
     }
 })

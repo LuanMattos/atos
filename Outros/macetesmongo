@@ -40,3 +40,24 @@ $data = [
 //        $this->Us_amigos_model->save_mongo($data);
 //        exit('dsfsd');
         $this->Us_amigos_model->save_sub_document($data,$where , $type = '$pull');
+CONSULTA EM SUDOCUMENTOS
+        $msg    =  $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$user->_id,'msg.recebendo'=>false],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL);
+LIMITAR CONSULTA SUBDOCUMENTO com slice (projection)
+    $msg    =  $this->mongodb->atos->msg_usuarios->find( ['codusuario'=>$user->_id],['projection'=>['msg'=>['$slice'=>-1]]])->toArray();
+    Exemplo: -5 (5 ultimos elementos da matriz)
+             5 (5 primeiros elementos da matriz)
+PARA CRIAR UM SUBDOCUMENTO
+    Para criar subdocumentos no mongo, aconselha-se usar new \MongoDB\Model\BSONDocument() ou MongoDB\Model\BSONArray() (default)
+
+
+
+        $and – operador lógico AND
+        $or – operador lógico OR
+        $not – operador lógico NOT
+        $gt = maior que
+        $lt = menor que
+        $gte = maior ou igual
+        $lte = menor ou igual
+        $ne = diferente de
+        $in = todos os documentos cujo atributo possui um dos valores especificados (no SQL operador IN)
+        $nin = todos os documentos cujo atributo não possui um dos valores especificados (no SQL operador NOT IN)

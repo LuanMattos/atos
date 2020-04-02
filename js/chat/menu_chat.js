@@ -34,6 +34,8 @@ var vue_instance_menu_chat = new Vue({
               })
               vue_instance_chat._data.messages = json.data.data;
           }
+
+
         });
       var chat = $(".chat-content");
 
@@ -41,6 +43,11 @@ var vue_instance_menu_chat = new Vue({
         return false;
       }
       chat.toggleClass('hide');
+
+      setTimeout(function(){
+        self.scrollDown();
+      },'100')
+
     },
     setDate:function(date){
       var d = new Date(toString());
@@ -52,7 +59,11 @@ var vue_instance_menu_chat = new Vue({
     },
     close_menu_chat:function(){
       $(".content-menu-chat").toggleClass('hide-transition');
-    }
+    },
+    scrollDown: function() {
+      var height = document.querySelector(".messages-content").scrollHeight;
+      $('.messages-content').scrollTop(height);
+    },
   }
 })
 

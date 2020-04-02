@@ -1137,7 +1137,7 @@ span.right-cm {
 .request-users {
   float: left;
   width: 100%;
-  padding: 20px;
+  padding: 12px;
 }
 
 .user-request-dt {
@@ -1258,6 +1258,15 @@ span.right-cm {
   color: #a7a8aa;
   float: right;
   position: absolute;
+  right: 20px;
+}
+.time4 {
+  font-size: 11px;
+  font-weight: 500;
+  color: #a7a8aa;
+  float: right;
+  position: absolute;
+  margin-top:80px;
   right: 20px;
 }
 

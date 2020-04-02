@@ -79,6 +79,9 @@ sudo unlink /tmp/supervisor.sock
 
 sudo unlink /var/run/supervisor.sock
 
+DESATIVAR XDEBUG
+sudo phpdismod -s cli xdebug
+
 
 Listar processos por porta
 sudo ss -plnt sport eq :80

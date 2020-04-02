@@ -74,5 +74,31 @@ class Dashboard_msg extends Home_Controller
         ];
         $this->response('success',compact('data','usuario'));
     }
+    public function get_msg_menu(){
+        $user = (object)$this->data_user();
+        $data  =  reset( $this->mongodb->atos->msg_usuarios->find( ['codusuario'=>$user->_id],['projection'=>['msg'=>['$slice'=>-3]]])->toArray() );
+        if( $data ){
+            foreach($data['msg'] as $row){
+                $user                   = reset( $this->Us_usuarios_model->getWhereMongo(['_id'=>reset($row['codusuario'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL) );
+                $row['name']            = ucfirst( $user['nome'] ) . " " . ucfirst( $user['sobrenome'] );
+                $path                   = reset( $this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>reset($row['codusuario'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+                $row['img_profile']     = !empty( $path['server_name'])?$path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file']:false;
+
+                $dias = 0;
+
+                if( !empty( $row['created_at'] ) ) {
+                    $date = new DateTime($row['created_at']);
+                    $now  = new DateTime();
+
+
+                    $dias = $date->diff($now)->format("%d dia(s), %h hora(s) e %i minuto(s)");
+                }
+
+                $row['dias'] = $dias;
+            }
+        }
+
+        $this->response('success',compact('data'));
+    }
 
 }

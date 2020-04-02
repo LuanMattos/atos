@@ -130,45 +130,21 @@
                                     <i class="fas fa-comment-dots"></i>
                                 </a>
                                 <div class="dropdown-menu message-dropdown dropdown-menu-right">
-                                    <div class="user-request-list">
-                                        <div class="request-users">
-                                            <div class="user-request-dt">
-                                                <a href="#">
-                                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/user-dp-1.jpg"
-                                                         alt="">
-                                                    <div class="user-title1">Jassica William</div>
-                                                    <span>Hey How are you John Doe...</span>
-                                                </a>
+                                    <template v-for="msg in msg_menu">
+                                        <div class="user-request-list">
+                                            <div class="request-users">
+                                                <div class="user-request-dt">
+                                                    <a href="#">
+                                                        <img v-bind:src="msg.img_profile"
+                                                             alt="">
+                                                        <div class="user-title1">{{msg.name}}</div>
+                                                        <span>{{msg.text}}</span>
+                                                    </a>
+                                                </div>
+                                                <div class="time4">{{msg.dias}}</div>
                                             </div>
-                                            <div class="time5">2 min ago</div>
                                         </div>
-                                    </div>
-                                    <div class="user-request-list">
-                                        <div class="request-users">
-                                            <div class="user-request-dt">
-                                                <a href="#">
-                                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/user-dp-1.jpg"
-                                                         alt="">
-                                                    <div class="user-title1">Rock Smith</div>
-                                                    <span>Interesting Event! I will join this...</span>
-                                                </a>
-                                            </div>
-                                            <div class="time5">5 min ago</div>
-                                        </div>
-                                    </div>
-                                    <div class="user-request-list">
-                                        <div class="request-users">
-                                            <div class="user-request-dt">
-                                                <a href="#">
-                                                    <img src="<?= URL_RAIZ() ?>application/assets/libs/images/user-dp-1.jpg"
-                                                         alt="">
-                                                    <div class="user-title1">Joy Doe</div>
-                                                    <span>Hey Sir! What about you...</span>
-                                                </a>
-                                            </div>
-                                            <div class="time5">10 min ago</div>
-                                        </div>
-                                    </div>
+                                    </template>
                                     <div class="user-request-list">
                                         <a href="<?= site_url('dashboard_msg/Dashboard_msg/index') ?>" class="view-all">Visualizar
                                             todas mensagens</a>

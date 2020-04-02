@@ -46,7 +46,8 @@ var vue_instance_chat = new Vue({
         //dados usuario local
         var url = App.url("dashboard_msg","Dashboard_msg","get_msg" );
         axios({ method: 'post', url : url, data : null })
-          .then(function( json ){ self_vue.user_local = json.data;self_vue.connect(); });
+          .then(function( json ){ self_vue.user_local = json.data;self_vue.connect();
+          });
 
     },
     methods:{
@@ -159,8 +160,10 @@ var vue_instance_chat = new Vue({
 
             self.text = null;
             self.here = true;
+            self.scrollDown();
+
           });
-            this.scrollDown();
+
 
 
         },
@@ -177,7 +180,9 @@ var vue_instance_chat = new Vue({
         },
         // Método responsável por "rolar" a scroll do chat para baixo
         scrollDown: function() {
-            $( "div.messages-content").scrollTop(1000000000000000);
+            var height = document.querySelector(".messages-content").scrollHeight + 100
+            $('.messages-content').scrollTop(height);
+
         },
     },
 });
