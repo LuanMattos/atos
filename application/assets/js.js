@@ -48,3 +48,19 @@ $(document).ready(function(){
     })
 })
 
+Vue.filter('firstUpperCase', function (value) {
+    function pri_mai(text){
+        if(!_.isUndefined(text)) {
+            var str = text;
+            qtd = text.length;
+            prim = str.substring(0, 1);
+            resto = str.substring(1, qtd);
+            str = prim.toUpperCase() + resto;
+            text = str;
+            return text;
+        }else{
+            return false
+        }
+    }
+    return pri_mai(value)
+})

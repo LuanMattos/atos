@@ -207,7 +207,7 @@
                             <a href="#" class="account-link dropdown-toggle-no-caret" role="button" data-toggle="dropdown">
                                 <div class="user-dp">
                                     <img class="crop-img-home" :src="img_profile.length?img_profile:path_img_time_line_default" alt=""></div>
-                                <span v-cloak>{{data_user_local.nome}} </span>
+                                <span v-cloak>{{data_user_local.nome | firstUpperCase}} </span>
                                 <i class="fas fa-angle-down"></i>
                             </a>
                             <div class="dropdown-menu account-dropdown dropdown-menu-right">
