@@ -81,21 +81,28 @@
                                 </div>
                                 <div class="like-comments">
                                     <div class="left-comments">
-                                        <template v-if="post.like.length">
-                                            <template v-for="(i,l) in post.like">
+                                        <template v-if="post.like">
+                                            <template v-if="post.like.length">
+                                                <template v-for="(i,l) in post.like">
+                                                    <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
+                                                        <i v-bind:class="action_like  + ' ' + (post.id_local === i._id.$oid ? 'text-like':'')" ></i>
+                                                        <span> 251</span>
+                                                    </a>
+                                                </template>
+                                            </template>
+                                            <template v-if="!post.like.length">
                                                 <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
-                                                    <i v-bind:class="action_like  + ' ' + (post.id_local === i._id.$oid ? 'text-like':'')" ></i>
+                                                    <i v-bind:class="action_like " ></i>
                                                     <span> 251</span>
                                                 </a>
                                             </template>
                                         </template>
-                                        <template v-if="!post.like.length">
+                                        <template v-else>
                                             <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
                                                 <i v-bind:class="action_like " ></i>
                                                 <span> 251</span>
                                             </a>
                                         </template>
-
                                         <a href="#" class="like-item lc-left" title="Comment">
                                             <i class="fas fa-comment-alt"></i>
                                             <span> 10</span>

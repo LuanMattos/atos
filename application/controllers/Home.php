@@ -328,6 +328,7 @@ class Home extends Home_Controller
                         'codusuario'     => $get_usuario['_id'],
                         'created_at'     => date('Y-m-d H:i:s'),
                         'updated_at'     => date('Y-m-d H:i:s'),
+                        'like'           => []
                     ]);
                     $id   = reset($id->getInsertedId());
                     $path = 'https://s3.amazonaws.com/' . $bucket_name . '/' . $name_folder_user . '/' . $name_file;
