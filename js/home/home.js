@@ -57,21 +57,9 @@ var vm = new Vue({
               $('#input-file-postagem').click();
           },
           excluir_postagem: function (id, posts, $index) {
-
-              $.post(
-                App.url("", "Home", "delete_time_line"),
-                {
-                    id: id
-                },
-                function (json) {
-                    if (json) {
-                        // this.$delete(vm.posts, $index)
-                        vm.posts.splice($index, 1)
-                    }
-                    if (!json) {
-                    }
-
-                }, 'json')
+            var url = App.url("", "Home", "delete_time_line");
+              $.post( url, { id: id },
+                function (json) { if (json) { vm.posts.splice($index, 1)} }, 'json')
           },
           postar: function () {
 
@@ -151,13 +139,17 @@ var vm = new Vue({
           compute_like: function (data,index) {
               var self = this;
               var url = App.url("", "Home", "compute_like");
+              var qtd = this.posts[index].count_like;
+
               const params = new URLSearchParams();
               params.append('id', data._id);
               axios({ method: 'post', url: url, data: params }).then(function (json) {
                 if(json.data === 'like'){
                   $(".left-comments:eq(" + index + ")").find(".fa-heart").addClass('text-like');
+                  self.posts[index].count_like = qtd + 1;
                 }else if(json.data === 'dislike'){
                   $(".left-comments:eq(" + index + ")").find(".fa-heart").removeClass('text-like');
+                  self.posts[index].count_like = qtd - 1;
                 }
 
               });

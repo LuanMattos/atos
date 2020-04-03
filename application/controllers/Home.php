@@ -268,11 +268,16 @@ class Home extends Home_Controller
     }
     public function delete_time_line(){
         $id = $this->input->post("id",true);
-        $delete = $this->Us_storage_img_model->deleteWhereMongo( [ "_id" => new \MongoDB\BSON\ObjectId($id) ] );
-        if(!$delete){
-            $this->response('error');
+        $user_local = $this->data_user();
+        $validate = reset( $this->Us_storage_img_model->getWhereMongo( [ "_id" => new \MongoDB\BSON\ObjectId($id) ] ) );
 
+        if($validate['codusuario'] === $user_local['_id']){
+            $delete = $this->Us_storage_img_model->deleteWhereMongo( [ "_id" => new \MongoDB\BSON\ObjectId($id) ] );
+            if(!$delete){
+                $this->response('error');
+            }
         }
+
         $this->response('success');
 
     }
@@ -341,7 +346,7 @@ class Home extends Home_Controller
         }
     }
     /**
-     * Postagens apenas do usuário logado (Própria timeline) ou quando visita usuário
+     * Retorna postagens
     **/
     public function get_storage_img($timeline = false){
         $id_external    = $this->input->post("id",true);
@@ -378,6 +383,17 @@ class Home extends Home_Controller
                 $url        = !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
                 $text       = $row['text_timeline'];
                 $name_user  = reset($this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']]));
+                $liked      = false;
+
+                foreach($row['like'] as $line){
+                    if(reset($line['_id']) === $user_logado['_id']){
+                        $liked = true;
+                    }
+                }
+                $delete = true;
+                if($row['codusuario'] !== $user_logado['_id']){
+                    $delete = false;
+                }
 
                 $data_row = [
                     '_id'         => reset($row['_id']),
@@ -386,9 +402,13 @@ class Home extends Home_Controller
                     'nome'        => $name_user['nome'],
                     'img_profile' => $imgprofile,
                     'like'        => $row['like']  ? $row['like'] : [],
-                    'id_local'    => $user_logado['_id']
+                    'id_local'    => $user_logado['_id'],
+                    'count_like'  => count($row['like']),
+                    'liked'       => $liked,
+                    'delete'      => $delete
 
                 ];
+
                 array_push($data, $data_row);
 
             }

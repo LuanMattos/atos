@@ -32,7 +32,9 @@
                                                                 <div class="dropdown-menu post-rt-dropdown dropdown-menu-right">
                                                                     <a class="post-link-item" href="#">Ocultar</a>
                                                                     <?php if(!isset($data['externo'])): ?>
-                                                                        <a class="post-link-item" href="javascript:void(0)"  @click="excluir_postagem(post._id,posts,index)">Excluir</a>
+                                                                        <template v-if="post.delete">
+                                                                            <a class="post-link-item" href="javascript:void(0)"  @click="excluir_postagem(post._id,posts,index)">Excluir</a>
+                                                                        </template>
                                                                     <?php endif; ?>
                                                                     <a class="post-link-item" href="#">Detalhes</a>
                                                                     <a class="post-link-item" href="#">Perfil usuário</a>
@@ -81,32 +83,14 @@
                                 </div>
                                 <div class="like-comments">
                                     <div class="left-comments">
-                                        <template v-if="post.like">
-                                            <template v-if="post.like.length">
-                                                <template v-for="(i,l) in post.like">
-                                                    <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
-                                                        <i v-bind:class="action_like  + ' ' + (post.id_local === i._id.$oid ? 'text-like':'')" ></i>
-                                                        <span> 251</span>
-                                                    </a>
-                                                </template>
-                                            </template>
-                                            <template v-if="!post.like.length">
-                                                <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
-                                                    <i v-bind:class="action_like " ></i>
-                                                    <span> 251</span>
-                                                </a>
-                                            </template>
-                                        </template>
-                                        <template v-else>
-                                            <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
-                                                <i v-bind:class="action_like " ></i>
-                                                <span> 251</span>
-                                            </a>
-                                        </template>
-                                        <a href="#" class="like-item lc-left" title="Comment">
+                                       <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
+                                          <i v-bind:class="action_like  + ' ' + (post.liked ? 'text-like':'')" ></i>
+                                          <span>{{post.count_like}}</span>
+                                       </a>
+                                       <a href="#" class="like-item lc-left" title="Comment">
                                             <i class="fas fa-comment-alt"></i>
                                             <span> 10</span>
-                                        </a>
+                                       </a>
                                     </div>
                                     <div class="right-comments">
                                         <a href="#" class="like-item" title="Share">
