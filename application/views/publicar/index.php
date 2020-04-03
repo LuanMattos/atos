@@ -1,4 +1,4 @@
-<div class="col-lg-12 col-md-12 ">
+<div class="">
     <div class="main-posts" >
         <div class="add-activity" >
             <div class="activity-group">

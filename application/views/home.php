@@ -93,7 +93,7 @@ endif;
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-7 mt-20">
+                <div class="col-lg-6 col-md-7 mt-22">
 
                     <?= $this->load->view("publicar/index"); ?>
 

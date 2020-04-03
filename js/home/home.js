@@ -161,9 +161,9 @@ var vm = new Vue({
                 }
 
               });
-          }
+          },
+
       }
   }
 );
-
 $.post( home.Url("get_storage_img/" + true), {}, function(json){vm.$data.posts = json.data},'json');

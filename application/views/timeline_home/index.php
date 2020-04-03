@@ -1,4 +1,5 @@
-<div class="col-lg-12 col-md-12 ">
+<!--col-lg-12 col-md-12-->
+<div class="">
     <div v-if="posts" v-cloak>
         <div class="col-sm-12" v-for="(post, index) in posts" style="margin-bottom: 30px">
             <div class="main-tabs ">
@@ -12,7 +13,7 @@
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <div class="maine-activity-img">
+                                                        <div class="maine-activity-img" >
                                                             <img class='crop-img-home' :src="post.img_profile?post.img_profile:path_img_time_line_default">
                                                         </div>
                                                     </td>
@@ -46,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="event-main-image">
-                                    <div class="main-photo">
+                                    <div class="main-photo" >
                                         <img class="crop-img-center" :src="post.path">
                                     </div>
                                 </div>
