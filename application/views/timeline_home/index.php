@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="event-main-image">
                                     <div class="main-photo" >
-                                        <img class="crop-img-center" :src="post.path">
+                                        <img class="crop-img-center cursor-pointer" :src="post.path" @click="showImg(post.path)">
                                     </div>
                                 </div>
                                 <div class="event-city-dt p-2">

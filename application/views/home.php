@@ -35,6 +35,7 @@ endif;
 <?= $this->load->view("menu/menu",compact("data")); ?>
 
 <main class="dashboard-mp " style="margin-top: 80px" id="div-geral-time-line">
+
     <div class="main-section">
         <div class="container">
             <div class="row">
@@ -264,6 +265,9 @@ endif;
 <!--        </div>-->
 <!--    </div>-->
 </main>
+
+<?= $this->load->view("template/lightbox_image/index"); ?>
+
 <div id="autocomplete-app"></div>
 <?= $this->load->view("footer/footer"); ?>
 
@@ -277,8 +281,10 @@ endif;
 <!-- Scripts js -->
 <?= $this->load->view("head/js"); ?>
 <?= $this->load->view("head/chat/assets"); ?>
+<?= $this->load->view("head/image_lightbox/assets"); ?>
 
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
+
 <?= $this->load->view("head/menu_chat/assets"); ?>
 </body>
 
