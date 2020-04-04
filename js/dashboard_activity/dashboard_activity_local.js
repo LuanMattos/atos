@@ -67,6 +67,8 @@ var vue_instance_dashboard_activity_local = new Vue({
         showImg ( path ) {
             vue_lightbox._data.imgs = path
             vue_lightbox._data.visible = true
+            vue_lightbox._data.edit = false
+
         },
     }
 
