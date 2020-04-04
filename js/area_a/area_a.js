@@ -82,10 +82,18 @@ var vue_instance_area_a = new Vue({
             );
         },
         showImg ( path,el,edit) {
-          vue_lightbox._data.imgs = path;
-          vue_lightbox._data.visible = true;
-          vue_lightbox._data.element_open = el;
-          vue_lightbox._data.edit = edit;
+          if(path.length){
+            vue_lightbox._data.imgs = path;
+            vue_lightbox._data.visible = true;
+            vue_lightbox._data.edit = edit;
+            vue_lightbox._data.element_open = el;
+
+          }else{
+            // vue_lightbox._data.imgs = path_img_cover_default;
+            // vue_lightbox._data.visible = true;
+            $( el ).click();
+
+          }
         },
     }
 });
