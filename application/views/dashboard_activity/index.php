@@ -44,6 +44,7 @@ endif;
 
     </div>
 </main>
+<?= $this->load->view("template/lightbox_image/index"); ?>
 <?= $this->load->view("footer/footer"); ?>
 
 <div id="content-chat">
@@ -56,6 +57,7 @@ endif;
 <!-- Scripts js -->
 <?= $this->load->view("head/js"); ?>
 <?= $this->load->view("head/chat/assets"); ?>
+<?= $this->load->view("head/image_lightbox/assets"); ?>
 
 <script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 <?php if(isset($dados['externo'])): ?>

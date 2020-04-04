@@ -4,9 +4,14 @@ var vue_lightbox = new Vue({
     visible: false,
     imgs: [
 
-    ]
+    ],
+    edit:false,
+    element_open:''
   },
   methods: {
+    openfile:function(){
+      $( this.element_open ).click();
+    },
     showImg (index) {
       this.index = index
       this.visible = true

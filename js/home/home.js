@@ -54,7 +54,7 @@ var vm = new Vue({
               // }
           },
           openfile: function () {
-              $('#input-file-postagem').click();
+            $('#input-file-postagem').click();
           },
           excluir_postagem: function (id, posts, $index) {
             var url = App.url("", "Home", "delete_time_line");
@@ -156,7 +156,7 @@ var vm = new Vue({
           },
         showImg ( path ) {
           vue_lightbox._data.imgs = path
-          vue_lightbox._data.visible = true
+           vue_lightbox._data.visible = true
         },
 
       }

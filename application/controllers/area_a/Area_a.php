@@ -46,6 +46,12 @@ class Area_a extends SI_Controller
                     $path_return            = $us_storage_img_profile->find(['codusuario'=>$id_user],$options);
                     $path                   = [];
                     break;
+                case "where_cover":
+                    $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
+                    $options                = ['sort' => ["_id"=>1]];
+                    $path_return            = $us_storage_img_cover->find(['codusuario'=>$id_user],$options);
+                    $path                   = [];
+                    break;
                 default:
                     if(empty($type)):
                         $this->response("success",['msg'=>'Não foi definido um type valido para retorno!']);

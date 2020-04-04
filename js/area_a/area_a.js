@@ -11,17 +11,26 @@ var vue_instance_area_a = new Vue({
         img_profile              : '',
         img_cover                : '',
         path_img_profile_default : location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
-        path_img_cover_default   : location.origin + '/application/assets/libs/images/event-view/my-bg.jpg'
+        path_img_cover_default   : location.origin + '/application/assets/libs/images/event-view/my-bg.jpg',
+
 
     },
     mounted:function(){
         var self_vue  = this;
+        var id        = window.location.href.split(App.url("dashboard_activity", "Dashboard_activity", "external/"))[1];
+        var type      = "profile";
+
+        if( !_.isUndefined( id ) ){ type = 'where'; }
+
         // ------------------profile-------------------
         var url  = area_a.Url("get_img");
-        $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
+        $.post(url, { type:type,id : id}, function(response){self_vue.$data.img_profile = response.path;},'json');
         // ------------------cover------------------
-        var url  = area_a.Url("get_img");
-        $.post(url, {type:"cover"}, function(response){self_vue.$data.img_cover = response.path;},'json');
+        var url   = area_a.Url("get_img");
+        type      = "cover";
+        if( !_.isUndefined( id ) ){ type = 'where_cover'; }
+
+        $.post(url, {type:type,id : id }, function(response){self_vue.$data.img_cover = response.path;},'json');
 
     },
     methods:{
@@ -36,7 +45,7 @@ var vue_instance_area_a = new Vue({
             var url       = App.url("dashboard_activity/Dashboard_activity/update_img_profile");
             var data      = new FormData();
             data.append('fileimagemprofile', $('#input-file-img-profile')[0].files[0]);
-
+            vue_lightbox._data.visible = false
             $.ajax({
                     url         : url,
                     data        : data,
@@ -46,7 +55,7 @@ var vue_instance_area_a = new Vue({
                     dataType    : 'json',
                     success     : function(response) {
                         self_vue.$data.img_profile = response.path;
-
+                        vue_lightbox._data.visible = false
                     }
                 }
             );
@@ -57,6 +66,7 @@ var vue_instance_area_a = new Vue({
             var data      = new FormData();
             data.append('fileimagemcover', $('#input-file-img-cover')[0].files[0]);
 
+          vue_lightbox._data.visible = false
             $.ajax({
                     url         : url,
                     data        : data,
@@ -70,6 +80,12 @@ var vue_instance_area_a = new Vue({
                     }
                 }
             );
+        },
+        showImg ( path,el,edit) {
+          vue_lightbox._data.imgs = path;
+          vue_lightbox._data.visible = true;
+          vue_lightbox._data.element_open = el;
+          vue_lightbox._data.edit = edit;
         },
     }
 });
