@@ -13,7 +13,7 @@ var vue_instance_dashboard_activity_external = new Vue({
         posts   : [],
         amigos  : [],
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
-        action_like:''
+        action_like:'fas fa-heart'
 
     },
     mounted:function(){
@@ -52,7 +52,30 @@ var vue_instance_dashboard_activity_external = new Vue({
             if(external){
                 $(".chat-content").toggleClass('hide');
             }
-        }
+        },
+        compute_like: function (data,index) {
+            var self = this;
+            var url = App.url("", "Home", "compute_like");
+            var qtd = this.posts[index].count_like;
+
+            const params = new URLSearchParams();
+            params.append('id', data._id);
+            axios({ method: 'post', url: url, data: params }).then(function (json) {
+                if(json.data === 'like'){
+                    $(".left-comments:eq(" + index + ")").find(".fa-heart").addClass('text-like');
+                    self.posts[index].count_like = qtd + 1;
+                }else if(json.data === 'dislike'){
+                    $(".left-comments:eq(" + index + ")").find(".fa-heart").removeClass('text-like');
+                    self.posts[index].count_like = qtd - 1;
+                }
+
+            });
+        },
+        showImg ( path) {
+            vue_lightbox._data.imgs = path;
+            vue_lightbox._data.visible = true;
+            vue_lightbox._data.edit = false;
+        },
     }
     }
 );

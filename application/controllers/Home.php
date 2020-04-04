@@ -353,10 +353,14 @@ class Home extends Home_Controller
         $user_logado    = $this->data_user();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
 
+        $ids = [0=>$user_logado['_id']];
+
+
         if(!empty($id_external)){
             $get_usuario    = $this->mongodb->atos->us_usuarios->find(['_id'=>$id_external]);
+            $ids = [0=>$id_external];
+
         }
-        $ids = [0=>$user_logado['_id']];
 
         if( $timeline ){
             $amigos = reset( $this->Us_amigos_model->getWhereMongo( ['_id'=>$user_logado['_id']] ) );
