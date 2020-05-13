@@ -103,3 +103,5 @@ apachetop -T 120 -f /var/log/httpd/access_log;
 docker logs {your-container-id-here} -f
 
 
+sudo chmod -R 755 /var/www
+
