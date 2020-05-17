@@ -10,25 +10,25 @@ if(ENVIRONMENT === 'production'){
     $hostname = 'localhost';
 }
 
-$db['default'] = array(
-    'dsn'	   => '',
-    'hostname' => $hostname,
-    'port'     => '5432',
-    'username' => 'postgres',
-    'password' => 'eFdarksadfw4r54af4fd4a54h2fasfdg',
-    'database' => 'atos',
-    'dbdriver' => 'postgre',
-    'dbprefix' => '',
-    'pconnect' => FALSE,
-//	'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on' => FALSE,
-    'cachedir' => '',
-    'char_set' => 'utf8',
-    'dbcollat' => 'utf8_general_ci',
-    'swap_pre' => '',
-    'encrypt' => FALSE,
-    'compress' => FALSE,
-    'stricton' => FALSE,
-    'failover' => array(),
-    'save_queries' => TRUE
-);
+$db['default']  = [
+    'dsn'	        => '',
+    'hostname'      => $hostname,
+    'username'      => 'postgres',
+    'port'          => '5432',
+    'password'      => 'eFdarksadfw4r54af4fd4a54h2fasfdg',
+    'database'      => 'atos',
+    'dbdriver'      => 'postgre',
+    'dbprefix'      => '',
+    'pconnect'      => FALSE,
+//	'db_debug'      => (ENVIRONMENT !== 'production'),
+    'cache_on'      => FALSE,
+    'cachedir'      => '',
+    'char_set'      => 'utf8',
+    'dbcollat'      => 'utf8_general_ci',
+    'swap_pre'      => '',
+    'encrypt'       => FALSE,
+    'compress'      => FALSE,
+    'stricton'      => FALSE,
+    'failover'      => array(),
+    'save_queries'  => TRUE
+];
