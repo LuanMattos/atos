@@ -1,0 +1,25 @@
+version: "2.2"
+services:
+  php_apache:
+    container_name: php_apache_painel
+    image: luanmattos/atos:php-apache
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+
+  postgres:
+    container_name: postgres_painel
+    image:  luanmattos/atos:postgresql
+    environment:
+        POSTGRES_USER: painel
+        POSTGRES_PASSWORD: dfsaf435fd4gs46565674dfgs4fs654ts562hg5s4fga
+    ports:
+        - "5400:5432"
+    networks:
+        - postgres_painel
+
+networks:
+    postgres_painel:
+        driver: bridge
+

@@ -1,0 +1,86 @@
+processos git:
+
+
+git branch -D <nome do branch>
+git push <nome do origin> <nome do branch> --delete
+---------------------------LINUX-----------------------------------------------------------------------------------------
+VER PROCESSOS DO SO:
+	ps -ef | grep chrome 
+Descompactar *bz2
+
+	tar -jxvf nome do arquivo terminado em .tar.bz2
+Descompactar *xz
+	tar -Jxxvf nome do arquivo terminado em .tar.xz
+Descompactar *gz
+	tar -zxvf  nome do arquivo terminado em .tar.gz
+Descompactar *deb
+	dpkg -i
+-
+
+POSTGRES---------------------------------
+instalar versão anterior postgres
+
+instalar driver do postgres no php7
+    sudo apt install php-pgsql
+
+sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main"
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc
+sudo apt-key add -
+sudo apt-get update
+sudo apt-get install postgresql-9.6
+
+sudo apt-get install postgresql-9.6 
+
+depois de instalar trocar a senha:
+
+psql -c "ALTER USER postgres WITH PASSWORD 'nova_senha'" -d postgres
+
+
+startar:
+sudo  -u postgre psql
+
+-----------------codegniter-----------------------
+Crirar date_to_br() === > system/core/common.php
+
+
+
+----------------------------------------
+
+DOCKER----------------------------------
+
+Nomear um container e cria-lo: docker run -d -p 5000:5000 --name NomeDoRepositorio registry
+(-d -p 5000:5000 é a porta padrao onde será executado o container)
+
+Caso queira que o servidor restarte automaticamente caso caia:docker run -d -p 5000:5000 --restart=always --name repositorio registry
+
+Inserir a imagem no localhost:5000/php:docker tag wordpress 192.168.0.10:5000/wordpress
+
+Agora temos que pussh na imagem: docker push 192.168.0.10:5000/wordpress
+
+Agora vamos avisar docker daemon que podemos confiar no diretorio:/lib/systemd/system/docker.service
+
+(editando o arquivo = ExecStart=/usr/bin/dockerd --insecure-registry localhost:5000)
+
+(assim avisaremos que localhost:5000 sera permitido)
+
+Agora vamos reiniciar os serviços: systemctl daemon-reload | systemctl restart docker
+
+docker run --name teste-postgres --network=postgres-network -e "POSTGRES_PASSWORD=Postgres2018!"
+-p 5432:5432 -v /home/renatogroffe/Desenvolvimento/PostgreSQL:/var/lib/postgresql/data -d postgres
+
+
+APACHE----------------------------------
+Para conceder permissões para criar/editar/excluir arquivos no diretorio do apache, assim podendo também o php storm editar os arquivos:
+	sudo chmod 777 -R www
+
+---------------INSTALACAO PLACA TP-LINK LONGO ALCANCE------------------------
+sudo apt-get install git linux-headers-generic build-essential dkms
+git clone https://github.com/agtbaskara/rtl8192eu-linux-driver.git 
+cd rtl8192eu-linux-driver 
+sudo dkms add . 
+sudo dkms install rtl8192eu/1.0 
+cd /usr/src/rtl8192eu-1.0/ 
+sudo make clean 
+sudo make (OU sudo make install) 
+sudo modprobe -a 8192e
+

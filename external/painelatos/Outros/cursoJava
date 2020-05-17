@@ -1,0 +1,27 @@
+ANDROID STUDIO:
+    -Já vem com todos os recursos instalados na máquina(JDK,JRE)
+    -Possui próprio emuldador Java(muito pesado), recomenda-se emular no celular ou com o ADB server
+    
+Sites compiladores JAva:
+compilejava.net
+
+JavaFx :
+O Java é como se fosse um carro popular(sem ar condicionado e etc), para inserir novos utilitários, deve-se importálos usando "import".
+Existem inúmeras bibliotecas tais como:
+    Java.lang=básico do java
+    Java.applet = aplicativos
+    Java.util = utilitários(entrada de teclado e etc)
+    Java.math = equações matemáticas
+    Java.net = redes
+    Javax.sound  = som mídia
+    JavaFxml    = xml
+    Java Swing  = ambientes de janela(gráfico)
+    
+    
+JAVA SWING
+
+    WT-Característica negativa = componentes visuais ficam a carga do S.O
+    import java.awt
+    
+    Swing import javax.swing    disponibiliza interfaces mais amigaveis
+    
