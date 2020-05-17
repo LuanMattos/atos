@@ -5,9 +5,9 @@ $active_group   = 'default';
 $query_builder  = TRUE;
 
 //if(ENVIRONMENT === 'production'){
-//    $hostname = 'www.atos.click';
+    $hostname = 'www.atos.click';
 //}else{
-    $hostname = 'localhost';
+//    $hostname = 'localhost';
 //}
 
 $db['default']  = [
