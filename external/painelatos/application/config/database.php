@@ -11,10 +11,10 @@ if(ENVIRONMENT === 'production'){
 }
 
 $db['default'] = array(
-    'dsn'	=> '',
+    'dsn'	   => '',
     'hostname' => $hostname,
     'port'     => '5432',
-    'username' => 'painel',
+    'username' => 'postgres',
     'password' => 'eFdarksadfw4r54af4fd4a54h2fasfdg',
     'database' => 'atos',
     'dbdriver' => 'postgre',
