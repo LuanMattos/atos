@@ -105,3 +105,5 @@ docker logs {your-container-id-here} -f
 
 sudo chmod -R 755 /var/www
 
+Sofware para gestão dos containers
+    https://www.portainer.io/installation/
