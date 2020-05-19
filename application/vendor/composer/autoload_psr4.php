@@ -9,6 +9,11 @@ return array(
     'Service\\' => array($baseDir . '/services'),
     'ServiceZenvia\\' => array($baseDir . '/services'),
     'ServiceSms\\' => array($baseDir . '/services'),
+    'PHPMailer\\PHPMailer\\' => array($baseDir . '/libraries/email/vendor/phpmailer/phpmailer/src'),
     'Modules\\Storage\\Create_folder_user\\' => array($baseDir . '/services/modules/storage'),
     'Modules\\Account\\RestoreAccount\\' => array($baseDir . '/services/modules/account'),
+    'Luthier\\Auth\\' => array($baseDir . '/services/routes/src/Auth'),
+    'Luthier\\' => array($baseDir . '/services/routes/src'),
+    'DebugBar\\DataCollector\\' => array($baseDir . '/services/routes/vendor/maximebf/debugbar/src/DebugBar/DataCollector'),
+    'DebugBar\\' => array($baseDir . '/services/routes/vendor/maximebf/debugbar/src/DebugBar'),
 );

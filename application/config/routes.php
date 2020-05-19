@@ -33,7 +33,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | URI contains no data. In the above example, the "welcome" class
 | would be loaded.
 |
-|	$route['404_override'] = 'errors/page_missing';
 |
 | This route will tell the Router which controller/method to use if those
 | provided in the URL cannot be matched to a valid route.
@@ -49,7 +48,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+
+$route['sign/up'] = 'Home/register';
+//$route['(:any)'] = 'Login/index';
+
+$route['404_override'] = 'Home/error_404';
+//$route = Luthier\Route::getRoutes();
+
+
+
 $route['default_controller'] = 'Home';
-$route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['ibugsec'] = "Home/ibugsec";
+

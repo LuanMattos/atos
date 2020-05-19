@@ -16,5 +16,10 @@ $hook['pre_system'][] =  [
    'class'      =>   '' ,
    'function'   =>   'load_app_controllers' ,
    'filename'   =>   'App_controllers.php' ,
-   'filepath'   =>   'hooks'
+   'filepath'   =>   'hooks',
  ];
+
+
+
+//$hook = Luthier\Hook::getHooks();
+

@@ -15,8 +15,8 @@ class Home extends Home_Controller
         $this->load->model('account/Us_usuarios_conta_model');
         $this->load->model('storage/img/Us_storage_img_model');
         $this->output->enable_profiler(FALSE);
-        $this->load->helper("cookie");
-        $this->load->helper("url");
+        $this->load->library('email/mail');
+
 
     }
 
@@ -82,12 +82,17 @@ class Home extends Home_Controller
         }
 
     }
+
     public function register(){
         $this->load->view("register");
     }
     public function acao_cadastro(){
+
         $data           = (object)$this->input->post("data",TRUE);
         $RestoreAccount = new RestoreAccount();
+
+        $mail  = new Mail();
+
 
         $error  = [];
 
@@ -195,6 +200,8 @@ class Home extends Home_Controller
         $codigo_verificacao = $RestoreAccount->gerarCodigoValidacao();
 
 
+
+
         $dataSms = [
             "msg"           => $codigo_verificacao . " é o seu código de verificação atos",
             "destinatario"  => "$numero_validado",
@@ -216,6 +223,17 @@ class Home extends Home_Controller
         $this->Us_usuarios_conta_model->save_mongo($data_conta);
 
         $this->session->set_userdata(["verification_user"=>$data['email_hash'],"login"=>$data['login']], 1);
+        $nome = ucfirst( $data['nome'] );
+        $sobrenome = ucfirst( $data['sobrenome'] );
+        $param = [];
+        $param['from']       = 'account@atos.click';
+        $param['to']         = $data['email'];
+        $param['name']       = "Atos";
+        $param['name_to']    = $data['nome'];
+        $param['assunto']    = 'Ativação de conta Atos!';
+        $param['corpo_html'] ="Olá <b>$nome $sobrenome</b> este é seu código de verificação $codigo_verificacao para acesso à conta. <br>Não responda este E-mail.";
+        $param['corpo']      = '';
+        $mail->send( $param );
 
         $this->response("success");
     }
@@ -485,6 +503,9 @@ class Home extends Home_Controller
 
         $this->response('success',compact( 'data' ) );
 
+    }
+    public function error_404(){
+        $this->load->view('errors/404');
     }
 
 

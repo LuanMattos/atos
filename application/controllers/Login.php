@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Login extends Login_Controller{
 
     public function __construct()
@@ -8,6 +7,8 @@ class Login extends Login_Controller{
         parent::__construct();
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
+
+
     }
 
     public function index(){

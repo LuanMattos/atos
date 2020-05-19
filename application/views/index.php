@@ -68,7 +68,7 @@
                                         </form>
                                         <a href="#" class="forgot-link">Esqueceu a senha?</a>
                                         <div class="regstr-link">Não é registrado?
-                                            <a href="<?= site_url('Home/register') ?>">Registre-se Agora</a></div>
+                                            <a href="<?= site_url('sign/up') ?>">Registre-se Agora</a></div>
                                     </div>
                                 </div>
                             </div>

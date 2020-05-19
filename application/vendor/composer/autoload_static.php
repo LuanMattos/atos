@@ -13,10 +13,24 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
             'ServiceZenvia\\' => 14,
             'ServiceSms\\' => 11,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
         'M' => 
         array (
             'Modules\\Storage\\Create_folder_user\\' => 35,
             'Modules\\Account\\RestoreAccount\\' => 31,
+        ),
+        'L' => 
+        array (
+            'Luthier\\Auth\\' => 13,
+            'Luthier\\' => 8,
+        ),
+        'D' => 
+        array (
+            'DebugBar\\DataCollector\\' => 23,
+            'DebugBar\\' => 9,
         ),
     );
 
@@ -33,6 +47,10 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         array (
             0 => __DIR__ . '/../..' . '/services',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/libraries/email/vendor/phpmailer/phpmailer/src',
+        ),
         'Modules\\Storage\\Create_folder_user\\' => 
         array (
             0 => __DIR__ . '/../..' . '/services/modules/storage',
@@ -40,6 +58,22 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         'Modules\\Account\\RestoreAccount\\' => 
         array (
             0 => __DIR__ . '/../..' . '/services/modules/account',
+        ),
+        'Luthier\\Auth\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/services/routes/src/Auth',
+        ),
+        'Luthier\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/services/routes/src',
+        ),
+        'DebugBar\\DataCollector\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/services/routes/vendor/maximebf/debugbar/src/DebugBar/DataCollector',
+        ),
+        'DebugBar\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/services/routes/vendor/maximebf/debugbar/src/DebugBar',
         ),
     );
 
