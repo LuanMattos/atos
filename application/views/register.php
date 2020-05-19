@@ -65,6 +65,7 @@
                                             </div>
                                             <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.email}}
+                                                {{error.erro_envio_email}}
                                             </div>
                                             <div class="form-group">
                                                 <input class="date title-discussion-input  datepicker-here " type="text" placeholder="Data de nascimento"  data-language="pt-BR" name="datanasc" autocomplete="off" >

@@ -41,7 +41,7 @@ class Mail{
             $mail->send();
             return true;
         } catch (Exception $e) {
-            echo "Erro ao enviar: {$mail->ErrorInfo}";
+            return $mail->ErrorInfo;
         }
 
     }

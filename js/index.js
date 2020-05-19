@@ -16,7 +16,8 @@ var index = {
                 telcel: "",
                 nome:"",
                 sobrenome:"",
-                telcodpais:"55"
+                telcodpais:"55",
+                erro_envio_email:"Erro ao enviar e-mail de confirmação! Tente novamente"
 
             }
         }

@@ -200,8 +200,6 @@ class Home extends Home_Controller
         $codigo_verificacao = $RestoreAccount->gerarCodigoValidacao();
 
 
-
-
         $dataSms = [
             "msg"           => $codigo_verificacao . " é o seu código de verificação atos",
             "destinatario"  => "$numero_validado",
@@ -220,10 +218,9 @@ class Home extends Home_Controller
             "_id"               => $data['_id']
         ];
 
-        $this->Us_usuarios_conta_model->save_mongo($data_conta);
 
         $this->session->set_userdata(["verification_user"=>$data['email_hash'],"login"=>$data['login']], 1);
-        $nome = ucfirst( $data['nome'] );
+        $nome                       = ucfirst( $data['nome'] );
         $sobrenome                  = ucfirst( $data['sobrenome'] );
         $param = [];
         $param['from']              = 'account@atos.click';
@@ -233,6 +230,8 @@ class Home extends Home_Controller
         $param['assunto']           = 'Ativação de conta Atos!';
         $data['codigo_confirmacao'] = $codigo_verificacao;
         $data['cadastro']           = true;
+        $data['nome']               = $nome;
+        $data['sobrenome']          = $sobrenome;
 
         $html = $this->load->view("email/confirme",$data,true);
         $param['corpo']      = '';
@@ -240,9 +239,12 @@ class Home extends Home_Controller
         $send = $mail->send( $param );
 
         if( $send ){
+            $this->Us_usuarios_conta_model->save_mongo($data_conta);
             $this->response("success");
+        }else{
+            $error['erro_envio_email'] = "E-mail inválido, para criar uma conta, digite um E-mail válido!";
+            $this->response("error",compact("error"));
         }
-
     }
 
     public function logout(){
