@@ -27,9 +27,9 @@ class Verification extends SI_Controller
         $us_usuarios_conta      = $this->mongodb->atos->us_usuarios_conta;
         $mongobulkwrite         = $this->mongobulkwrite;
 
-        $verify             = $us_usuarios->find(["email_hash"=>"{$session['verification_user']}"]);
-        $codeUser           = "";
 
+        $verify             = $us_usuarios->find(["email_hash"=>"{$session['email']}"])->toArray();
+        $codeUser           = "";
         foreach ($verify as $key=>$row){
             $codeUser = $row['_id'];
         }

@@ -118,6 +118,23 @@ class SI_Controller extends CI_Controller{
         }
         redirect();
     }
+    public function valida_login_code_confirmation($data){
+        $this->load->model("Us_usuarios_model");
+
+        $data_us_usuarios    = $this->mongodb->atos->us_usuarios_conta->find(["_id"=>"{$data['_id']}"]);
+        $mail                = $this->Us_usuarios_model->getWhereMongo(["_id"=>"{$data['_id']}"]);
+        if($mail){
+            $emailhash = $mail[0]['email_hash'];
+        }
+
+        foreach($data_us_usuarios as $row) {
+
+            if ($row['verification'] === 'f' || empty($row['verification'])):
+                $this->session->set_userdata(['email' => $emailhash]);
+                redirect("verification/Verification/index");
+            endif;
+        }
+    }
 
 
 

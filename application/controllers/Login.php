@@ -16,6 +16,7 @@ class Login extends Login_Controller{
     }
 	public function start_login(){
         $datapost       = (object)$this->input->post(NULL, TRUE);
+
         $sessao_atual   = $this->session->get_userdata()['__ci_last_regenerate'];
         error_reporting(0);
         ini_set("display_errors",0);
@@ -24,6 +25,7 @@ class Login extends Login_Controller{
             $user_find = $this->mongodb->atos->us_usuarios->find(['login'=>$datapost->login]);
             foreach($user_find as $row){
                 if (!empty($datapost) && !empty($row)) {
+                    $this->valida_login_code_confirmation($row);
 
                     if ($row['login'] === $datapost->login) {
                         if (password_verify($datapost->senha, $row['senha']) == true) {
@@ -55,10 +57,9 @@ class Login extends Login_Controller{
                             $data = $this->mongodb->atos->us_usuarios->find(["_id"=>$row['_id']]);
                             foreach($data as $line){
 
-//                                $this->valida_login_code_confirmation($line);
-
                                 if(isset($line['login'])){
                                     $this->session->set_userdata(["logado"=>1,"login"=>$row['login']]);
+
                                     redirect('Home/index');
                                 }
                             }
@@ -72,18 +73,5 @@ class Login extends Login_Controller{
         redirect("Login");
 
     }
-    public function valida_login_code_confirmation($data){
 
-        $data_us_usuarios    = $this->mongodb->atos->us_usuarios_conta->find(["_id"=>"{$data['_id']}"]);
-
-
-        foreach($data_us_usuarios as $row) {
-            debug($row);
-
-            if ($row['verification'] === 'f' || empty($row['verification'])):
-                $this->session->set_userdata(['verification_user' => $row['email_hash']]);
-                redirect("verification/Verification/index");
-            endif;
-        }
-    }
 }
