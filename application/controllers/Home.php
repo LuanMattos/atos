@@ -33,6 +33,7 @@ class Home extends Home_Controller
                 if(!empty($address)):
                     $row['address'] = $address['formatted_address_google_maps'];
                  endif;
+                $this->valida_login_code_confirmation($row);
 
                 if($row['logado']):
 
@@ -40,7 +41,6 @@ class Home extends Home_Controller
                 else:
 
                     if($row['permanecer_logado'] === false){
-//                                            $this->valida_login_code_confirmation($row);
 
                         if($row['logado']):
                             $this->load->view('home',compact('row'));
@@ -51,17 +51,18 @@ class Home extends Home_Controller
 
                     }elseif($row['permanecer_logado'] === true){
                         if($row['logado']):
+
                             $this->load->view('home',compact('row'));
                         else:
                             $this->session->sess_destroy();
                             redirect("Login");
                         endif;
+
                     }else{
                         redirect('Login');
                     }
                 endif;
             }
-
         }else{
             $this->session->sess_destroy();
             redirect("Login");
