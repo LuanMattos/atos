@@ -224,18 +224,25 @@ class Home extends Home_Controller
 
         $this->session->set_userdata(["verification_user"=>$data['email_hash'],"login"=>$data['login']], 1);
         $nome = ucfirst( $data['nome'] );
-        $sobrenome = ucfirst( $data['sobrenome'] );
+        $sobrenome                  = ucfirst( $data['sobrenome'] );
         $param = [];
-        $param['from']       = 'account@atos.click';
-        $param['to']         = $data['email'];
-        $param['name']       = "Atos";
-        $param['name_to']    = $data['nome'];
-        $param['assunto']    = 'Ativação de conta Atos!';
-        $param['corpo_html'] ="Olá <b>$nome $sobrenome</b> este é seu código de verificação $codigo_verificacao para acesso à conta. <br>Não responda este E-mail.";
-        $param['corpo']      = '';
-        $mail->send( $param );
+        $param['from']              = 'account@atos.click';
+        $param['to']                = $data['email'];
+        $param['name']              = "Atos";
+        $param['name_to']           = $data['nome'];
+        $param['assunto']           = 'Ativação de conta Atos!';
+        $data['codigo_confirmacao'] = $codigo_verificacao;
+        $data['cadastro']           = true;
 
-        $this->response("success");
+        $html = $this->load->view("email/confirme",$data,true);
+        $param['corpo']      = '';
+        $param['corpo_html'] = $html;
+        $send = $mail->send( $param );
+
+        if( $send ){
+            $this->response("success");
+        }
+
     }
 
     public function logout(){

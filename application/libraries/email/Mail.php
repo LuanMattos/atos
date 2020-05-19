@@ -39,7 +39,7 @@ class Mail{
             $mail->AltBody = $param['corpo'];//corpo nao html
 
             $mail->send();
-            echo json_encode( ['info'=>1] );
+            return true;
         } catch (Exception $e) {
             echo "Erro ao enviar: {$mail->ErrorInfo}";
         }
