@@ -16,7 +16,6 @@ $(function(){
     });
 
     $("#comecar").on("click",function(){
-
         $.post(
             verification.Url("validate_code"),
             {
@@ -25,6 +24,7 @@ $(function(){
             function (j) {
                 if(!j.info){
                     vue_instance.form.error = j.error;
+                    return false;
                 }
                 if(j.info){
                     window.location.href = App.url("","Home","index");

@@ -16,6 +16,11 @@ class Verification extends SI_Controller
     }
     public function validate_code(){
         $datapost        = $this->input->post("data",TRUE);
+        if(!$datapost){
+            $error['codigov'] = "Preencha o campo com o código de verificação enviado para seu E-mail ou telefone";
+            $this->response("error",compact("error"));
+        }
+
         $session         = $this->session->get_userdata();
 
         $us_usuarios            = $this->mongodb->atos->us_usuarios;

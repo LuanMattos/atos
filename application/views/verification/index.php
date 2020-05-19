@@ -1,20 +1,31 @@
 <head>
-    <script type="text/javascript"
-            src="<?= site_url("application/assets/js/libs/bootstrap-4.1.3/js/jquery-3.3.1.slim.min.js") ?>"></script>
-    <script type="text/javascript"
-            src="<?= site_url("application/assets/js/libs/bootstrap-4.1.3/dist/js/bootstrap.js") ?>"></script>
+    <script type="text/javascript" src="<?= site_url("application/assets/js/libs/bootstrap-4.1.3/js/jquery-3.3.1.slim.min.js") ?>"></script>
+    <script type="text/javascript" src="<?= site_url("application/assets/js/libs/bootstrap-4.1.3/dist/js/bootstrap.js") ?>"></script>
     <link rel="stylesheet" href="<?= site_url("application/assets/js/libs/bootstrap-4.1.3/dist/css/bootstrap.css") ?>">
-    <link rel="stylesheet"
-          href="<?= site_url("application/assets/js/libs/icons/fontawesome-free-5.10.2-web/css/all.css") ?>">
-    <link href="<?= site_url("application/assets/css/tailwindcss.css") ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= site_url("application/assets/js/libs/icons/fontawesome-free-5.10.2-web/css/all.css") ?>">
+    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/style.css" rel="stylesheet">
+
+
 
 </head>
 <style>
     .bg {
-        background-color: #3e3e3f;
+        background-color: #3e3e3f !important;
     }
+
     [v-cloak] {
         display: none;
+    }
+    .login-btn:hover{
+        background-color: #3e6b9d;
+        transition: 1s;
+    }
+    .description-validate{
+        font-size: 14px;
+        color:#e5ecea;
+    }
+    .text-error{
+        color:#f4742f;
     }
 
 </style>
@@ -23,36 +34,36 @@
 <div id="general-verification-container">
     <div class="col">
         <div class="img-home">
-            <img src="<?= URL_RAIZ() . 'application/assets/images/svg/home.svg' ?>" style="width: 450px">
+            <img src="<?= URL_RAIZ() . 'application/assets/images/svg/home.svg' ?>" style="width: 30%">
         </div>
     </div>
-    <div class="font-thin text-base text-gray-800 text-left text-white w-75 ">
-        <p class="text-left ml-10 text-lg mb-4">Para prosseguir, precisamos validar sua conta, preencha com o código de
-            verificação que você recebeu em seu e-mail e/ou telefone</p>
-    </div>
-    <div class="row d-flex  justify-content-center">
-        <div class="col-md-6">
-            <div class="w-75">
+        <p class="text-left container text-center description-validate">
+            Para prosseguir, precisamos validar sua conta, preencha com o código de
+            verificação que você recebeu em seu e-mail e/ou telefone
+        </p>
+    <div class="row d-flex  justify-content-center p-48">
+        <div class="col-md-6 p-48">
+            <div class="form-group ">
                 <input type="text"
-                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-0 py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                       class="title-discussion-input"
                        placeholder="Código de verificação"
+                       style="height:60px"
                        v-model="form.codevalidation"
+                       required
                 >
             </div>
         </div>
     </div>
     <div class="row d-flex  justify-content-center">
         <div class="col-md-6">
-            <div class="w-75">
-                <button class="shadow bg-gray-300 hover:bg-gray-100 focus:shadow-outline focus:outline-none text-gray-700 font-bold py-2 w-100 rounded-0"
+                <button class="login-btn cursor-pointer"
                         type="button"
                         id="comecar"
                 >
                     Enviar
                 </button>
                 <br>
-                <span class=' font-mono text-red-600 text-xs' v-cloak>{{form.error.codigov}}</span>
-            </div>
+                <span class='text-error' v-cloak>{{form.error.codigov}}</span>
         </div>
     </div>
 </div>
