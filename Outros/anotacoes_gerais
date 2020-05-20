@@ -122,3 +122,6 @@ sudo apt-get install php-pear
 sudo pecl install mongodb
 
 extension=mongodb.so > php.ini
+
+WebSocket Seguro
+https://translate.googleusercontent.com/translate_c?depth=1&hl=pt-BR&prev=search&rurl=translate.google.com&sl=en&sp=nmt4&u=http://socketo.me/docs/deploy&usg=ALkJrhjE7qABlBl_Me-6q_JrT1Eii_GHqw
