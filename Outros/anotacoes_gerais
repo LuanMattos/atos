@@ -107,3 +107,18 @@ sudo chmod -R 755 /var/www
 
 Sofware para gestão dos containers
     https://www.portainer.io/installation/
+
+
+
+
+Problemas para iniciar socket no linux!!!!!!!!!!!!!!!!
+PHP >= 7.3
+instalar driver do mongo sobre php
+
+sudo apt install php7.3-fpm
+sudo apt-get install make
+sudo apt-get install php-dev
+sudo apt-get install php-pear
+sudo pecl install mongodb
+
+extension=mongodb.so > php.ini
