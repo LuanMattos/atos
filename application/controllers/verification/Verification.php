@@ -23,12 +23,12 @@ class Verification extends SI_Controller
 
         $session         = $this->session->get_userdata();
 
+
         $us_usuarios            = $this->mongodb->atos->us_usuarios;
         $us_usuarios_conta      = $this->mongodb->atos->us_usuarios_conta;
         $mongobulkwrite         = $this->mongobulkwrite;
 
-
-        $verify             = $us_usuarios->find(["email_hash"=>"{$session['email']}"])->toArray();
+        $verify             = $this->Us_usuarios_model->getWhereMongo(['email'=>$session['login']]);
         $codeUser           = "";
         foreach ($verify as $key=>$row){
             $codeUser = $row['_id'];

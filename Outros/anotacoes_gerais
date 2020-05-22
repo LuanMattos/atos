@@ -89,7 +89,8 @@ sudo ss -plnt sport eq :80
 Processos por aplicação
 ps aux | grep supervisor
 
-Para deixar um processo em background, basta rodar nohup php -f nome-do-arquivo.php & e para o código sempre rodar quando iniciar/reiniciar o servidor, basta criar um shell script em /etc/init.d
+Para deixar um processo em background, basta rodar
+    - nohup php -f nome-do-arquivo.php & e para o código sempre rodar quando iniciar/reiniciar o servidor, basta criar um shell script em /etc/init.d
 
 
 hacker - proxy
@@ -125,3 +126,14 @@ extension=mongodb.so > php.ini
 
 WebSocket Seguro
 https://translate.googleusercontent.com/translate_c?depth=1&hl=pt-BR&prev=search&rurl=translate.google.com&sl=en&sp=nmt4&u=http://socketo.me/docs/deploy&usg=ALkJrhjE7qABlBl_Me-6q_JrT1Eii_GHqw
+
+
+Instalação do temido SSL apache em container docker
+https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04-pt
+apt-get install certbot python3-certbot-apache (dentro do container)
+
+
+
+Ativar/desativar vhost apache
+a2ensite <site>
+a2dissite 000-default-le-ssl
