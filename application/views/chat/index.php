@@ -11,7 +11,7 @@
         <div class="chat-title">
              <div class="row">
                  <div class="col-1">
-                      <img v-bind:src="img_profile" class="crop-img-chat" />
+                      <img v-bind:src="img_profile?img_profile:path_img_profile_default" class="crop-img-chat" />
                  </div>
                  <div class="col-7">
                      <div style="margin-top: 10px">
@@ -41,7 +41,7 @@
                 <template v-for="message in messages" >
                    <div v-bind:class="message.recebendo?'message new':'message message-personal new'">
                        <figure class="avatar" v-if="message.recebendo">
-                               <img v-bind:src="message.img_profile ? message.img_profile : img_profile" />
+                               <img v-bind:src="message.img_profile ? message.img_profile : path_img_profile_default" />
                        </figure>
                        <span class="date" >{{ message.date }}</span>
                        <span class="text" >{{ message.text }}</span>

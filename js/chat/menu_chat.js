@@ -1,7 +1,9 @@
 var vue_instance_menu_chat = new Vue({
   el:"#hangout",
   data:{
-    amigos : []
+    amigos : [],
+    path_img_profile_default : location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
+
   },
   mounted : function(){
     this.get_amigos_chat();
