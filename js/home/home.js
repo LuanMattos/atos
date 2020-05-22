@@ -25,7 +25,8 @@ var vm = new Vue({
           inputData: '',
           focusIndex: '',
           inputFocus: false,
-          action_like:'fas fa-heart'
+          action_like:'fas fa-heart',
+          display_notification:'hide'
 
       },
       created () {

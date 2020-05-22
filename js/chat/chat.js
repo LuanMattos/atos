@@ -56,7 +56,7 @@ var vue_instance_chat = new Vue({
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-                self.ws = new WebSocket('ws://www.atos.click:8090?' + _id);
+                self.ws = new WebSocket('ws://localhost:8090?' + _id);
             }else{
                 console.debug("Usuário não possui identificação válida!");
                 return false;
@@ -107,6 +107,7 @@ var vue_instance_chat = new Vue({
         },
         addMessage: function(data) {
           var login_usuario_chat = this.data_user.usuario.login;
+          vm.display_notification = '';
 
           if(login_usuario_chat === data.from){
               this.messages.push(data);
@@ -119,7 +120,7 @@ var vue_instance_chat = new Vue({
         var login = this.data_user.usuario.login;
         var login_local = this.user_local.usuario.login;
         var self = this;
-        var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario.nome,to:this.data_user.usuario.login,from:login_local };
+        var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario.nome,to:this.data_user.usuario.login,from:login_local};
 
         if ( !this.text ) {
           return false;

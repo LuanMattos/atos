@@ -1,5 +1,13 @@
 <!--col-lg-12 col-md-12-->
+
 <div class="">
+    <div v-bind:class="display_notification" style="z-index: 1000;position:fixed;float:bottom;right:1%;bottom:10%" v-cloak>
+        <section>
+            <div class="tn-box tn-box-color-2">
+                <p>Você tem uma nova mensagem!</p>
+            </div>
+        </section>
+    </div>
     <div v-if="posts" v-cloak>
         <div class="col-sm-12" v-for="(post, index) in posts" style="margin-bottom: 30px">
             <div class="main-tabs ">

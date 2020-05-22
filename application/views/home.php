@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" >
 
     <!-- Stylesheets -->
+    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/notification.css" rel="stylesheet">
     <link href="<?= URL_RAIZ() ?>application/assets/libs/css/responsive.css" rel="stylesheet">
     <link href="<?= URL_RAIZ() ?>application/assets/libs/css/style.css" rel="stylesheet">
     <link href="<?= URL_RAIZ() ?>application/assets/libs/css/datepicker.min.css" rel="stylesheet">
