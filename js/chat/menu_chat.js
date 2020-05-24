@@ -3,6 +3,7 @@ var vue_instance_menu_chat = new Vue({
   data:{
     amigos : [],
     path_img_profile_default : location.origin + '/application/assets/libs/images/my-dashboard/my-dp.jpg',
+    chat:false
 
   },
   mounted : function(){
@@ -21,12 +22,13 @@ var vue_instance_menu_chat = new Vue({
       var self = this;
       var url  = App.url("dashboard_msg","Dashboard_msg","get_msg");
       const params = new URLSearchParams();
+      this.chat = true;
 
       params.append('login', login);
       axios({ method: 'post', url : url, data : params })
         .then(function( json ){
 
-          vue_instance_chat._data.data_user = json.data;
+            vue_instance_chat._data.data_user = json.data;
             vue_instance_chat._data.img_profile = json.data.usuario.img_profile;
             vue_instance_chat._data.messages = [];
 

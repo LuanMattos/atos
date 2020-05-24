@@ -26,7 +26,8 @@ var vm = new Vue({
           focusIndex: '',
           inputFocus: false,
           action_like:'fas fa-heart',
-          display_notification:'hide'
+          display_notification:'hide',
+          name_new_message:''
 
       },
       created () {
@@ -53,6 +54,9 @@ var vm = new Vue({
               //     var count = this.posts.length + i
               //     this.posts.push({count})
               // }
+          },
+          close_notify :function(){
+            this.display_notification = 'hide';
           },
           openfile: function () {
             $('#input-file-postagem').click();

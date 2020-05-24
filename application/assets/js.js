@@ -46,6 +46,7 @@ $(document).ready(function(){
     $(".content-open-menu-chat").on("click",function(){
         $(".content-menu-chat").toggleClass('hide-transition');
     })
+
 })
 
 Vue.filter('firstUpperCase', function (value) {
@@ -62,3 +63,4 @@ Vue.filter('firstUpperCase', function (value) {
     }
     return pri_mai(value)
 })
+

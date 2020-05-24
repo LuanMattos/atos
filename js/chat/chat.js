@@ -25,7 +25,6 @@ var vue_instance_chat = new Vue({
         user_local               : false
     },
     mounted : function(){
-
         var self_vue  = this;
 
         //dados usuario externo
@@ -56,7 +55,7 @@ var vue_instance_chat = new Vue({
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-                self.ws = new WebSocket('ws://www.atos.click:8090?' + _id);
+                self.ws = new WebSocket('ws://localhost:8090?' + _id);
             }else{
                 console.debug("Usuário não possui identificação válida!");
                 return false;
@@ -104,10 +103,20 @@ var vue_instance_chat = new Vue({
         },
         close:function(event){
             $(event.target).parent().parent().parent().parent().parent().addClass('hide');
+            vue_instance_menu_chat.chat = false;
         },
         addMessage: function(data) {
           var login_usuario_chat = this.data_user.usuario.login;
-          vm.display_notification = '';
+          vm.name_new_message = data.from_name;
+
+          if(!vue_instance_menu_chat.chat){
+                  vm.display_notification = false;
+              setTimeout(function(){
+                  vm.display_notification = 'hide';
+              },'5100')
+          }else{
+                  vm.display_notification = 'hide';
+          }
 
           if(login_usuario_chat === data.from){
               this.messages.push(data);
@@ -116,11 +125,19 @@ var vue_instance_chat = new Vue({
 
             //escuta
         },
+        //envia
         sendMessage: function() {
         var login = this.data_user.usuario.login;
         var login_local = this.user_local.usuario.login;
+        var data_from = this.user_local.usuario;
+
         var self = this;
-        var data_msg = { text : this.text,date : this.setDate(),user:this.data_user.usuario.nome,to:this.data_user.usuario.login,from:login_local};
+        var data_msg = { text : this.text,
+                         date : this.setDate(),
+                         user : this.data_user.usuario.nome,
+                         to : this.data_user.usuario.login,
+                         from : login_local
+            };
 
         if ( !this.text ) {
           return false;
@@ -147,6 +164,7 @@ var vue_instance_chat = new Vue({
           .then(function( json ){
             var channel = json.data.usuario.channel;
 
+
             self.ws.send(JSON.stringify({
               user        : self.data_user.usuario.nome,
               text        : self.text,
@@ -156,7 +174,8 @@ var vue_instance_chat = new Vue({
               command     : 'message',
               to          : self.data_user.usuario.login,
               recebendo   : true,
-              from        : login_local
+              from        : login_local,
+              from_name   : data_from.nome
             }));
 
             self.text = null;
@@ -187,3 +206,11 @@ var vue_instance_chat = new Vue({
         },
     },
 });
+
+
+
+
+
+
+
+

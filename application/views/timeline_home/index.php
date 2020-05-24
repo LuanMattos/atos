@@ -1,10 +1,12 @@
-<!--col-lg-12 col-md-12-->
-
-<div class="">
-    <div v-bind:class="display_notification" style="z-index: 1000;position:fixed;float:bottom;right:1%;bottom:10%" v-cloak>
-        <section>
+<div>
+<!--    v-bind:class="display_notification"-->
+    <div  v-bind:class="display_notification"   style="z-index: 1000;position:fixed;float:bottom;right:1%;bottom:10%" v-cloak>
+        <section @click="close_notify()">
             <div class="tn-box tn-box-color-2">
-                <p>Você tem uma nova mensagem!</p>
+                <p>
+                    {{name_new_message | firstUpperCase}} enviou uma nova mensagem
+                    &nbsp; <i class="fas fa-flag-checkered"></i>
+                </p>
             </div>
         </section>
     </div>
