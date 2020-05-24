@@ -10,29 +10,28 @@
 <!--        </div>-->
         <div class="chat-title">
              <div class="row">
-                 <div class="col-1">
-                      <img v-bind:src="img_profile?img_profile:path_img_profile_default" class="crop-img-chat" />
+                 <div class="col-6">
+<!--                      <img v-bind:src="img_profile?img_profile:path_img_profile_default" class="crop-img-chat" />-->
+                     <h1 v-if="data_user" v-cloak>{{data_user.usuario.nome}} {{data_user.usuario.sobrenome}}</h1>
+                         <template v-for="x in  status">
+                             <span v-bind:style="'color:' + x.color  + ';' + 'font-size:8px'" v-cloak>{{x.text}}</span>
+                         </template>
+
                  </div>
-                 <div class="col-7">
-                     <div style="margin-top: 10px">
-                         <h1 v-if="data_user" v-cloak>{{data_user.usuario.nome}}</h1>
-                         <h2 v-if="data_user" v-cloak>{{data_user.usuario.sobrenome}}</h2>
+                 <div class="col-3">
+                     <div>
+
                      </div>
                  </div>
-                 <div class="col-1">
 <!--                        <div class="ico-minimize-maximize" @click="minimize_maximize()">-->
 <!--                            <i v-bind:class="ico_minimize_maximise + ' cursor-pointer min-max'"></i>-->
 <!--                        </div>-->
-                 </div>
                  <div class="col-1">
                         <i class="fas fa-times cursor-pointer" @click="close($event)" style="margin-top: 7px"></i>
                     </div>
              </div>
-            <div class="row" style="margin-top: 10px">
+            <div class="row">
                 <div class="col">
-                    <template v-for="x in  status">
-                        <span v-bind:style="'color:' + x.color  + ';' + 'font-size:8px'" v-cloak>{{x.text}}</span>
-                    </template>
                 </div>
             </div>
         </div>
