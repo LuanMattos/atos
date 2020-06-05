@@ -41,6 +41,12 @@ var App = {}
     //     return $(form).serializeArray();
     // }
     }
+    App.production = function(){
+        if( window.location.host == 'localhost' ){
+            return true;
+        }
+        return false;
+    }
 
 $(document).ready(function(){
     $(".content-open-menu-chat").on("click",function(){
@@ -63,4 +69,3 @@ Vue.filter('firstUpperCase', function (value) {
     }
     return pri_mai(value)
 })
-

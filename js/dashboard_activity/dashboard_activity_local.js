@@ -13,7 +13,9 @@ var vue_instance_dashboard_activity_local = new Vue({
         posts   : [],
         amigos  : [],
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
-        action_like:'fas fa-heart'
+        action_like:'fas fa-heart',
+        display_notification:'hide',
+        name_new_message:''
     },
     mounted:function(){
         var self_vue  = this;
@@ -32,6 +34,9 @@ var vue_instance_dashboard_activity_local = new Vue({
 
     },
     methods:{
+        close_notify :function(){
+            this.display_notification = 'hide';
+        },
         excluir_postagem:function( id, posts ,$index){
 
             $.post(

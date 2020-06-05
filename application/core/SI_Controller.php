@@ -36,7 +36,7 @@ class SI_Controller extends CI_Controller{
     }
     /**
      * deixa apenas letras evitando SQL-inject 1
-    **/
+     **/
     public function clear_car($value){
         $value_a = preg_replace('/[^[:alpha:]_]/', '',$value);
         return addslashes($value_a);
@@ -77,7 +77,7 @@ class SI_Controller extends CI_Controller{
     }
     /**
      * Verifica se a senha corresponde a criptografia atos
-    */
+     */
     public function verify_pass($pass,$datadb){
         $pass = $this->md5Crazy($pass);
 
@@ -87,22 +87,23 @@ class SI_Controller extends CI_Controller{
 
     /**
      * Traz dados padrão do usuário logado
-    **/
+     **/
     public function data_user(){
         $data_s             = $this->session->get_userdata();
         $this->load->model('location/Us_location_user_model');
         $this->load->model('storage/img/Us_storage_img_cover_model');
         $this->load->model('storage/img/Us_storage_img_profile_model');
         $this->load->model('Us_usuarios_model');
+        $this->load->model('usuarios/Us_amigos_model');
 
-        if(!isset($data_s['logado'])){
+        if( !isset( $data_s['logado'] ) ){
             $this->session->sess_destroy();
             redirect();
         }else{
-            if(!empty($data_s)){
-                $dados      = $this->Us_usuarios_model->data_user_by_session($data_s);
+            if( !empty( $data_s ) ){
+                $dados      = $this->Us_usuarios_model->data_user_by_session( $data_s );
                 $dados['location'] = [];
-                if(!empty($dados)){
+                if( !empty( $dados ) ){
                     $dados['location']      = reset($this->Us_location_user_model->getWhereMongo(["_id"=>$dados['_id']]));
 
                     $find_img               = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$dados['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
@@ -111,8 +112,11 @@ class SI_Controller extends CI_Controller{
                     $find_img_cover         = reset($this->Us_storage_img_cover_model->getWhereMongo(['codusuario'=>$dados['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
                     $dados['img_cover']     = $find_img_cover['server_name'] . $find_img_cover['bucket'] . '/' . $find_img_cover['folder_user'] . '/' . $find_img_cover['name_file'];
 
+                    $dados['count_amigos']  = $this->Us_amigos_model->data_full_amigos($dados,[],false,true);
+
+
                 }
-               return $dados;
+                return $dados;
 
             }
         }
@@ -130,10 +134,10 @@ class SI_Controller extends CI_Controller{
         if($data_us_usuarios){
             $codigo = $data_us_usuarios[0]['verification_ok'];
         }
-         if (!$codigo || empty($codigo)):
-           $this->session->set_userdata(['email' => $emailhash]);
-           redirect("verification/Verification/index");
-         endif;
+        if (!$codigo || empty($codigo)):
+            $this->session->set_userdata(['email' => $emailhash]);
+            redirect("verification/Verification/index");
+        endif;
 
     }
 

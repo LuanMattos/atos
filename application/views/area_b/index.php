@@ -17,8 +17,10 @@
                 <ul class="right-details">
                     <li>
                         <div class="all-dis-evnt">
-                            <div class="dscun-txt">Amigos</div>
-                            <div class="dscun-numbr">22</div>
+                            <div class="dscun-txt">Conexões</div>
+                            <div class="dscun-numbr">
+                                <?= $data['count_amigos'] ?>
+                            </div>
                         </div>
                     </li>
                     <li>

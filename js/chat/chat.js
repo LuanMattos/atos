@@ -55,7 +55,12 @@ var vue_instance_chat = new Vue({
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-                self.ws = new WebSocket('ws://www.atos.click:8090?' + _id);
+              if( App.production() ){
+                self.ws = new WebSocket('ws://localhost:8090?' + _id);
+              }else{
+                self.ws = new WebSocket('ws://' + window.location.host + ':8090?' + _id);
+              }
+
             }else{
                 console.debug("Usuário não possui identificação válida!");
                 return false;
@@ -107,16 +112,31 @@ var vue_instance_chat = new Vue({
         },
         addMessage: function(data) {
           var login_usuario_chat = this.data_user.usuario.login;
-          vm.name_new_message = data.from_name;
+          if( typeof  vm !== 'undefined' ) {
+            vm.name_new_message = data.from_name;
 
-          if(!vue_instance_menu_chat.chat){
-                  vm.display_notification = false;
-              setTimeout(function(){
-                  vm.display_notification = 'hide';
-              },'5100')
-          }else{
-                  vm.display_notification = 'hide';
+            if (!vue_instance_menu_chat.chat) {
+              vm.display_notification = false;
+              setTimeout(function () {
+                vm.display_notification = 'hide';
+              }, '5100')
+            } else {
+              vm.display_notification = 'hide';
+            }
+          }else if( typeof  vue_instance_dashboard_activity_local !== 'undefined' ){
+            vue_instance_dashboard_activity_local.name_new_message = data.from_name;
+
+            if (!vue_instance_menu_chat.chat) {
+              vue_instance_dashboard_activity_local.display_notification = false;
+              setTimeout(function () {
+                vue_instance_dashboard_activity_local.display_notification = 'hide';
+              }, '5100')
+            } else {
+              vue_instance_dashboard_activity_local.display_notification = 'hide';
+            }
+
           }
+
 
           if(login_usuario_chat === data.from){
               this.messages.push(data);

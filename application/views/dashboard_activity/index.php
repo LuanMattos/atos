@@ -2,24 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <meta name="description" content="Gambolthemes">
-    <meta name="author" content="Gambolthemes">
-    <title>Atos</title>
-
-    <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="images/fav.png">
-
-    <!-- Stylesheets -->
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/responsive.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/style.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/datepicker.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <?= $this->load->view('head/css') ?>
 </head>
 <style>
     .desktop-closed-message-avatar{
@@ -33,6 +16,16 @@ else:
     $data = [];
 endif;
 ?>
+<div  v-bind:class="display_notification"   style="z-index: 1000;position:fixed;float:bottom;right:1%;bottom:10%" v-cloak>
+    <section @click="close_notify()">
+        <div class="tn-box tn-box-color-2">
+            <p>
+                {{name_new_message | firstUpperCase}} enviou uma nova mensagem
+                &nbsp; <i class="fas fa-flag-checkered"></i>
+            </p>
+        </div>
+    </section>
+</div>
 <main class="dashboard-mp">
 
     <?= $this->load->view("area_a/index",compact("data")); ?>

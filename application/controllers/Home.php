@@ -21,7 +21,8 @@ class Home extends Home_Controller
     }
 
     public function index(){
-        $datasession            = $this->session->get_userdata();
+        $datasession    = $this->session->get_userdata();
+        $data_user      = $this->data_user();
 
         if(isset($datasession['login'])){
             $data = $this->mongodb->atos->us_usuarios->find(['login'=>$datasession['login']]);
@@ -29,9 +30,10 @@ class Home extends Home_Controller
 
                  $address = $this->Us_location_user_model->data_location_by_id($row['_id']);
 
+                $row['count_amigos'] = $data_user->count_amigos;
 
                 if(!empty($address)):
-                    $row['address'] = $address['formatted_address_google_maps'];
+                    $row['address']      = $address['formatted_address_google_maps'];
                  endif;
                 $this->valida_login_code_confirmation($row);
 
@@ -51,7 +53,6 @@ class Home extends Home_Controller
 
                     }elseif($row['permanecer_logado'] === true){
                         if($row['logado']):
-
                             $this->load->view('home',compact('row'));
                         else:
                             $this->session->sess_destroy();
@@ -177,8 +178,6 @@ class Home extends Home_Controller
         }
 
         $argo_pass                  = password_hash($data->senhacadastro,PASSWORD_ARGON2I);
-
-
 
         $data = [
             "_id"                   => $this->Us_usuarios_model->object_id(),

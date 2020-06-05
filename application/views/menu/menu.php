@@ -76,11 +76,11 @@
                         </div>
 
                         <ul class="group-icons">
-                            <li>
-                                <a href="<?= site_url('Home/search') ?>" class="icon-set" title="Explorar">
-                                    <i class="fab fa-searchengin" style="font-size: 25px"></i>
-                                </a>
-                            </li>
+<!--                            <li>-->
+<!--                                <a href="--><?//= site_url('Home/search') ?><!--" class="icon-set" title="Explorar">-->
+<!--                                    <i class="fab fa-searchengin" style="font-size: 25px"></i>-->
+<!--                                </a>-->
+<!--                            </li>-->
                             <li class="dropdown">
                                 <a href="#" class="icon-set dropdown-toggle-no-caret" role="button"
                                    data-toggle="dropdown">
@@ -152,10 +152,9 @@
                                 </div>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="icon-set dropdown-toggle-no-caret" role="button"
-                                   data-toggle="dropdown">
-                                    <i class="fas fa-bell"></i>
-                                </a>
+<!--                                <a href="#" class="icon-set dropdown-toggle-no-caret" role="button" data-toggle="dropdown">-->
+<!--                                    <i class="fas fa-bell"></i>-->
+<!--                                </a>-->
                                 <div class="dropdown-menu notification-dropdown dropdown-menu-right">
                                     <div class="user-request-list">
                                         <div class="request-users">

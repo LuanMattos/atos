@@ -27,12 +27,14 @@ class Dashboard_activity extends SI_Controller{
     }
     public function local(){
         $data_s = $this->session->get_userdata();
+        $data_user = $this->data_user();
 
 
         if(!empty($data_s)){
             $dados            = $this->Us_usuarios_model->data_user_by_session($data_s);
             $location         = $this->Us_location_user_model->data_location_by_id($dados['_id']);
             $dados['address'] = $location['formatted_address_google_maps'];
+            $dados['count_amigos'] = $data_user->count_amigos;
         }
 
         $this->load->view("dashboard_activity/index",compact("dados"));

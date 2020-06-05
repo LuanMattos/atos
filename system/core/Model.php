@@ -155,7 +155,6 @@ class CI_Model {
         $this->config->load('database');
         $configmongo = (object)$this->config->item('mongodb');
 
-
         $find           = $this->mongodb->{$configmongo->database}->{$this->get_table()}->find(
             $where,$options
         );

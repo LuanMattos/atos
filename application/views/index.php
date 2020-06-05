@@ -2,25 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <meta name="socialnetwork" content="SocialNetWork">
-
-    <title> &nbsp</title>
-
-    <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="<?= URL_RAIZ() ?>application/assets/libs/images/home-title.svg">
-
-    <!-- Stylesheets -->
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/responsive.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/style.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/datepicker.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
-
+   <?= $this->load->view('head/css') ?>
 </head>
 
 <body class="body-bg">
@@ -81,14 +63,7 @@
     </div>
 </main>
 
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.nice-select.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/datepicker.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/i18n/datepicker.en.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
+<?= $this->load->view('head/js') ?>
 
 </body>
 

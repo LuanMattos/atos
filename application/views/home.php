@@ -2,30 +2,10 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <meta name="description" content="Atos - social network">
-    <meta name="author" content="Atos">
-    <title>Atos - Home</title>
-
-    <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" >
-
-    <!-- Stylesheets -->
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/notification.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/responsive.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/style.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/datepicker.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
-
+    <?= $this->load->view('head/css') ?>
 </head>
 
 <body>
-
 <?php
 if(isset($row)):
     $data = $row;
@@ -59,16 +39,16 @@ endif;
                                 <ul class="followers-dts">
                                     <li>
                                         <div class="followers-dt-sm">
-                                            <h4>Seguidores</h4>
-                                            <span>155</span>
+                                            <h4>Conexões</h4>
+                                            <span><?= $data['count_amigos'] ?></span>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="followers-dt-sm">
-                                            <h4>Seguindo</h4>
-                                            <span>355</span>
-                                        </div>
-                                    </li>
+<!--                                    <li>-->
+<!--                                        <div class="followers-dt-sm">-->
+<!--                                            <h4>Seguindo</h4>-->
+<!--                                            <span>355</span>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
                                 </ul>
                                 <div class="profile-link">
                                     <a href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Visualizar perfil</a>
@@ -76,22 +56,22 @@ endif;
                             </div>
                         </div>
                         <?= $this->load->view("pessoas/menu"); ?>
-                        <div class="user-data full-width">
-                            <div class="categories-left-heading">
-                                <h3>Categorias</h3>
-                            </div>
-                            <div class="categories-items">
-                                <a class="category-item" href="#"><i class="fas fa-music"></i>Músicas</a>
-                                <a class="category-item" href="#"><i class="fas fa-flag"></i>Festival</a>
-                                <a class="category-item" href="#"><i class="fas fa-pen-nib"></i>Arte</a>
-                                <a class="category-item" href="#"><i class="fas fa-microphone-alt"></i>Clube</a>
-                                <a class="category-item" href="#"><i class="fas fa-grin-squint-tears"></i>Comedia</a>
-                                <a class="category-item" href="#"><i class="far fa-futbol"></i>Esportes</a>
-                                <a class="category-item" href="#"><i class="fas fa-video"></i>Teatro</a>
-                                <a class="category-item" href="#"><i class="fas fa-bullhorn"></i>Promoções</a>
-                                <a class="category-item" href="#"><i class="fas fa-ellipsis-h"></i>Outros</a>
-                            </div>
-                        </div>
+<!--                        <div class="user-data full-width">-->
+<!--                            <div class="categories-left-heading">-->
+<!--                                <h3>Categorias</h3>-->
+<!--                            </div>-->
+<!--                            <div class="categories-items">-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-music"></i>Músicas</a>-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-flag"></i>Festival</a>-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-pen-nib"></i>Arte</a>-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-microphone-alt"></i>Clube</a>-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-grin-squint-tears"></i>Comedia</a>-->
+<!--                                <a class="category-item" href="#"><i class="far fa-futbol"></i>Esportes</a>-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-video"></i>Teatro</a>-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-bullhorn"></i>Promoções</a>-->
+<!--                                <a class="category-item" href="#"><i class="fas fa-ellipsis-h"></i>Outros</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
 

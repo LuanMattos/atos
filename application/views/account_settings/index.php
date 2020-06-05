@@ -2,28 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <meta name="description" content="Gambolthemes">
-    <meta name="author" content="Gambolthemes">
-    <title>Configurações da conta</title>
-
-    <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="images/fav.png">
-
-    <!-- Stylesheets -->
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/responsive.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/style.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/datepicker.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
-    <link href="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/assets/owl.theme.default.min.css"
-          rel="stylesheet">
-
-
-
+    <?= $this->load->view('head/css') ?>
 </head>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6bqIsYACsiTkx2B2-8dDaKcuvq3ArXC4&libraries=places"></script>
@@ -71,23 +50,12 @@ endif;
 </main>
 
 <?= $this->load->view("footer/footer"); ?>
-
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
+<!--JS-->
+<?= $this->load->view("head/js"); ?>
 <script src="<?= URL_RAIZ() ?>js/config/config.js"></script>
 <script src="<?= URL_RAIZ() ?>js/maps/maps_google_account_settings.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/jquery.mask.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/mascaras.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/datepicker.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/i18n/datepicker.en.js"></script>
-<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
-
 </body>
 
 </html>
