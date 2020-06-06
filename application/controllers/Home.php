@@ -22,7 +22,6 @@ class Home extends Home_Controller
 
     public function index(){
         $datasession    = $this->session->get_userdata();
-        $data_user      = $this->data_user();
 
         if(isset($datasession['login'])){
             $data = $this->mongodb->atos->us_usuarios->find(['login'=>$datasession['login']]);
@@ -30,6 +29,7 @@ class Home extends Home_Controller
 
                  $address = $this->Us_location_user_model->data_location_by_id($row['_id']);
 
+                $data_user      = $this->data_user();
                 $row['count_amigos'] = $data_user->count_amigos;
 
                 if(!empty($address)):
