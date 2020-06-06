@@ -34,7 +34,11 @@ $config['encryption_key']       = '$argon2i$v=19$m=65536,t=4,p=1$ek1lVDhZdUx2RUs
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = URL_RAIZ();
+if(ENVIRONMENT == 'production'){
+    $config['base_url'] = 'www.atos.click';
+}else{
+    $config['base_url'] = 'localhost';
+}
 
 /*
 |--------------------------------------------------------------------------
