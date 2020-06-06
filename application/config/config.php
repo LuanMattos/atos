@@ -35,7 +35,7 @@ $config['encryption_key']       = '$argon2i$v=19$m=65536,t=4,p=1$ek1lVDhZdUx2RUs
 |
 */
 if(ENVIRONMENT == 'production'){
-    $config['base_url'] = 'http://www.atos.click';
+    $config['base_url'] = 'http://www.atos.click/Login';
 }else{
     $config['base_url'] = 'localhost';
 }
