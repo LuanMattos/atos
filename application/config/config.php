@@ -46,7 +46,7 @@ $config['base_url'] = URL_RAIZ();
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'login';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
