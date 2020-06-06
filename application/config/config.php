@@ -34,7 +34,7 @@ $config['encryption_key']       = '$argon2i$v=19$m=65536,t=4,p=1$ek1lVDhZdUx2RUs
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = URL_RAIZ().'login';
+$config['base_url'] = URL_RAIZ();
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ $config['base_url'] = URL_RAIZ().'login';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'login';
 
 /*
 |--------------------------------------------------------------------------
