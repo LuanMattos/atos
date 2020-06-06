@@ -95,6 +95,7 @@
 </main>
 
 <?= $this->load->view('head/register/js') ?>
+<script src="<?= URL_RAIZ() ?>js/index.js"></script>
 
 </body>
 
