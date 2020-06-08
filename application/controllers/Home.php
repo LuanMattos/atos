@@ -21,6 +21,7 @@ class Home extends Home_Controller
     }
 
     public function index(){
+//        debug(password_hash("kvmxea", PASSWORD_DEFAULT));//criptografa a sessão
         $datasession    = $this->session->get_userdata();
 
         if(isset($datasession['login'])){
@@ -68,7 +69,7 @@ class Home extends Home_Controller
             $this->session->sess_destroy();
             redirect("Login");
         }
-//        var_dump(password_hash("admin", PASSWORD_DEFAULT));//criptografa a sessão
+//        var_dump(password_hash("kvmxea", PASSWORD_DEFAULT));//criptografa a sessão
     }
     /**
      * verifica se usuario ja confirmou cadastro atraves do codigo de validacao
