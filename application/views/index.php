@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-   <?= $this->load->view('head/css') ?>
+   <?php $this->load->view('head/css') ?>
 </head>
 
 <body class="body-bg">
@@ -64,7 +64,7 @@
     </div>
 </main>
 
-<?php $this->load->view('head/js') ?>
+<?php $this->load->view('head/js'); ?>
 
 </body>
 
