@@ -17,8 +17,8 @@ $server = IoServer::factory(
 );
 
 
-$socketServer = new React\Socket\SecureServer(
-    $socketServer,
+$server = new React\Socket\SecureServer(
+    $server,
     $loop,
     [	'local_cert' => '/etc/letsencrypt/live/www.atos.click/fullchain.pem',
         'local_pk' => '/etc/letsencrypt/live/www.atos.click/privkey.pem',
