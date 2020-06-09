@@ -16,16 +16,16 @@ $server = IoServer::factory(
     8090
 );
 
-$loop    = React\EventLoop\Factory::create();
-
-
-$servidor = new React\Socket\TcpServer(8090, $loop);
-new React\Socket\SecureServer($servidor, $loop, array(
-    'local_cert' => '/etc/letsencrypt/live/www.atos.click/fullchain.pem',
-    'local_pk' => '/etc/letsencrypt/live/www.atos.click/privkey.pem',
-    'allow_self_signed' => true,
-    'verify_peer' => false
-));
+//$loop    = React\EventLoop\Factory::create();
+//
+//
+//$servidor = new React\Socket\TcpServer(8090, $loop);
+//new React\Socket\SecureServer($servidor, $loop, array(
+//    'local_cert' => '/etc/letsencrypt/live/www.atos.click/fullchain.pem',
+//    'local_pk' => '/etc/letsencrypt/live/www.atos.click/privkey.pem',
+//    'allow_self_signed' => true,
+//    'verify_peer' => false
+//));
 
 
 
