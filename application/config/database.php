@@ -11,7 +11,7 @@ if(ENVIRONMENT === 'production'){
 }
 $db['default']  = [
 	'dsn'	        => '',
-	'hostname'      => 'www.atos.click',
+	'hostname'      => $hostname,
 	'username'      => 'postgres',
 	'port'          => '5432',
 	'password'      => 'eFdarksadfw4r54af4fd4a54h2fasfdg',
