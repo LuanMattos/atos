@@ -16,7 +16,7 @@ $server = IoServer::factory(
     8090
 );
 
-
+$loop    = React\EventLoop\Factory::create();
 $server = new React\Socket\SecureServer(
     $server,
     $loop,
