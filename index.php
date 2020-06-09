@@ -54,7 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 
-define('ENVIRONMENT', $_SERVER['HTTP_HOST'] === 'localhost'  ? 'development' : 'production');
+define('ENVIRONMENT', $_SERVER['HTTP_HOST'] === 'localhost'  ? 'production' : 'production');
 
 
 /*
@@ -68,8 +68,6 @@ define('ENVIRONMENT', $_SERVER['HTTP_HOST'] === 'localhost'  ? 'development' : '
 switch (ENVIRONMENT)
 {
 	case 'development':
-	    var_dump('teste');
-	    exit();
 		error_reporting(-1);
 		ini_set('display_errors', 1);
 	break;
