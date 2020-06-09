@@ -24,7 +24,7 @@ require dirname(__DIR__) . '/msg_socket/Chat.php';
 $loop = Factory::create();
 $connector = new Connector($loop);
 
-$connector->connect('tls://' . 'localhost' . ':443')->then(function (ConnectionInterface $connection) use ($host) {
+$connector->connect('tls://' . 'www.atos.click' . ':443')->then(function (ConnectionInterface $connection) use ($host) {
     $connection->on('data', function ($data) {
         echo $data;
     });
