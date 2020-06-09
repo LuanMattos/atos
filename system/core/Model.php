@@ -68,6 +68,7 @@ class CI_Model {
         $this->mongodb              = new MongoDB\Client("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
         $this->mongomanager         = new MongoDB\Driver\Manager("mongodb://".$configmongo->hostname . ":" . $configmongo->port,[],[]);
         $this->mongobulkwrite       =  new \MongoDB\Driver\BulkWrite();
+        debug($this->mongodb);
     }
     public function mongocollection($param,$options = []){
         return new MongoDB\Collection($this->mongomanager,$param['database'],$param['collection'],$options);
