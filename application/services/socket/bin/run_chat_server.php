@@ -16,4 +16,17 @@ $server = IoServer::factory(
     8090
 );
 
+
+$socketServer = new React\Socket\SecureServer(
+    $socketServer,
+    $loop,
+    [	'local_cert' => '/etc/letsencrypt/live/www.atos.click/fullchain.pem',
+        'local_pk' => '/etc/letsencrypt/live/www.atos.click/privkey.pem',
+        'allow_self_signed' => true,
+        'verify_peer' => false
+    ]
+);
+
+
+
 $server->run();
