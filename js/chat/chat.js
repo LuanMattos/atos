@@ -55,11 +55,11 @@ var vue_instance_chat = new Vue({
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-              if( App.production() ){
+              // if( App.production() ){
                 self.ws = new WebSocket('ws://localhost:8090?' + _id);
-              }else{
-                self.ws = new WebSocket('ws://' + window.location.host + ':8090?' + _id);
-              }
+              // }else{
+              //   self.ws = new WebSocket('ws://' + window.location.host + ':8090?' + _id);
+              // }
 
             }else{
                 console.debug("Usuário não possui identificação válida!");
