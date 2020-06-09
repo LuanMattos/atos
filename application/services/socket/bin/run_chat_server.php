@@ -19,7 +19,7 @@ $server = IoServer::factory(
 $loop    = React\EventLoop\Factory::create();
 
 
-$servidor = new React\Socket\TcpServer('localhost:8090', $loop);
+$servidor = new React\Socket\TcpServer(8090, $loop);
 new React\Socket\SecureServer($servidor, $loop, array(
     'local_cert' => '/etc/letsencrypt/live/www.atos.click/fullchain.pem',
     'local_pk' => '/etc/letsencrypt/live/www.atos.click/privkey.pem',
