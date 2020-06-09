@@ -113,6 +113,12 @@ Sofware para gestão dos containers
 
 
 Problemas para iniciar socket no linux!!!!!!!!!!!!!!!!
+Para funcionar tem que ser instalado a versão 1.6.1 (classes mudaram nas versões mais novas)
+
+sudo pecl install -f mongodb-1.6.1
+&&
+extension=mongodb.so > php.ini
+
 PHP >= 7.3
 instalar driver do mongo sobre php
 sudo apt install software-properties-common
