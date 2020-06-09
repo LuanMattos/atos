@@ -1,6 +1,4 @@
 <?php
-var_dump('tste');
-exit();
 /**
  * CodeIgniter
  *
