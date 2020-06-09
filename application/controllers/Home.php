@@ -152,6 +152,7 @@ class Home extends Home_Controller
         }
 
         $data_teste_email  = $this->mongodb->atos->us_usuarios->find(["login"=>$data->email]);
+        debug($this->mongodb);
 
         foreach($data_teste_email as $validate_login){
             $login = $validate_login['login'];

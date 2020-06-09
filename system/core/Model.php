@@ -236,7 +236,6 @@ class CI_Model {
     public function save_mongo($data = []){
         $this->config->load('database');
         $configmongo = (object)$this->config->item('mongodb');
-        debug(new \MongoDB\Driver\BulkWrite());
 
         if(array_key_exists($this->get_table_index(),$data)){
             $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();
