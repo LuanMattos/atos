@@ -1,38 +1,19 @@
-
 <?php
 
-// Simple secure HTTPS client example (for illustration purposes only).
-// This shows how a secure TLS connection is established to then send an
-// application level protocol message (HTTP).
-// Real applications should use react/http-client instead
-//
-// This simple example only accepts an optional host parameter to send the
-// request to. See also example #22 for proper URI parsing.
-//
-// $ php examples/12-https-client.php
-// $ php examples/12-https-client.php reactphp.org
-
-use React\EventLoop\Factory;
-use React\Socket\Connector;
-use React\Socket\ConnectionInterface;
-
-$host = isset($argv[1]) ? $argv[1] : 'www.google.com';
+use Ratchet\Http\HttpServer;
+use Ratchet\WebSocket\WsServer;
+use Ratchet\Server\IoServer;
 
 require '../../../../vendor/autoload.php';
 require dirname(__DIR__) . '/msg_socket/Chat.php';
 
-$loop = Factory::create();
-$connector = new Connector($loop);
+$server = IoServer::factory(
+    new HttpServer(
+        new WsServer(
+            new \Chat\Chat()
+        )
+    ),
+    8090
+);
 
-$connector->connect('tls://' . 'www.atos.click' . ':443')->then(function (ConnectionInterface $connection) use ($host) {
-    $connection->on('data', function ($data) {
-        echo $data;
-    });
-    $connection->on('close', function () {
-        echo '[CLOSED]' . PHP_EOL;
-    });
-
-    $connection->write("GET / HTTP/1.0\r\nHost: $host\r\n\r\n");
-}, 'printf');
-
-$loop->run();
+$server->run();
