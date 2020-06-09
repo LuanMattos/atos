@@ -64,7 +64,7 @@
     </div>
 </main>
 
-<?= $this->load->view('head/js') ?>
+<?php $this->load->view('head/js') ?>
 
 </body>
 
