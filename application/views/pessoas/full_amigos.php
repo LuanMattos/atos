@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <body>
@@ -13,9 +13,9 @@ else:
     $data = [];
 endif;
 ?>
-<?= $this->load->view("area_a/index"); ?>
-<?= $this->load->view("menu/menu", compact("data")); ?>
-<?= $this->load->view("area_b/index",compact("data")); ?>
+<?php $this->load->view("area_a/index"); ?>
+<?php $this->load->view("menu/menu", compact("data")); ?>
+<?php $this->load->view("area_b/index",compact("data")); ?>
 <main class="dashboard-mp" id="div-geral-amigos-full">
     <main class="Search-results">
         <div class="main-section">
@@ -110,8 +110,8 @@ endif;
         </div>
     </main>
 </main>
-<?= $this->load->view("footer/footer"); ?>
-<?= $this->load->view("head/js"); ?>
+<?php $this->load->view("footer/footer"); ?>
+<?php $this->load->view("head/js"); ?>
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/i18n/datepicker.en.js"></script>
 <script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
 <script src="<?= URL_RAIZ() ?>js/pessoas/amigos.js"></script>

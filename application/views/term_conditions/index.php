@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <body>
-<?= $this->load->view("menu/menu") ?>
+<?php $this->load->view("menu/menu") ?>
 <div class="title-bar">
     <div class="container">
         <div class="row">
@@ -95,8 +95,8 @@
         </div>
     </div>
 </main>
-<?= $this->load->view("footer/footer"); ?>
-<?= $this->load->view("head/js"); ?>
+<?php $this->load->view("footer/footer"); ?>
+<?php $this->load->view("head/js"); ?>
 </body>
 
 </html>

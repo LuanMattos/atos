@@ -69,7 +69,7 @@
 <!--            </div>-->
 <!--        </div>-->
     </div>
-    <?= $this->load->view("timeline_home/index"); ?>
+    <?php $this->load->view("timeline_home/index"); ?>
     <div class="main-loader mb-50">
         <div class="spinner">
             <div class="bounce1"></div>

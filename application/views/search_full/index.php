@@ -2,11 +2,11 @@
 <html lang="pt-br">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <body>
-<?= $this->load->view("menu/menu") ?>
+<?php $this->load->view("menu/menu") ?>
 <main class="Search-results">
     <div class="main-section">
         <div class="container">
@@ -133,8 +133,8 @@
         </div>
     </div>
 </main>
-<?= $this->load->view("footer/footer"); ?>
-<?= $this->load->view("head/js"); ?>
+<?php $this->load->view("footer/footer"); ?>
+<?php $this->load->view("head/js"); ?>
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
 </body>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6bqIsYACsiTkx2B2-8dDaKcuvq3ArXC4&libraries=places"></script>
@@ -17,7 +17,7 @@ else:
 endif;
 
 ?>
-<?= $this->load->view("menu/menu", compact("data")) ?>
+<?php $this->load->view("menu/menu", compact("data")) ?>
 <!-- Header End -->
 <!-- Body Start -->
 <main class="dashboard-mp" style="margin-top: 80px;" id="main-config-account-settings">
@@ -25,23 +25,23 @@ endif;
         <div class="container">
             <div class="setting-page mb-20">
                 <div class="row">
-                    <?= $this->load->view("menu_config/index"); ?>
+                    <?php $this->load->view("menu_config/index"); ?>
                     <!--                    #div-geral-config-informacoes-pessoais-index-->
-                    <?= $this->load->view("config_informacoes_pessoais/index",compact("data","location")); ?>
+                    <?php $this->load->view("config_informacoes_pessoais/index",compact("data","location")); ?>
                     <!--                    #div-geral-config-perfil-index-->
-                    <?= $this->load->view("config_perfil/index",compact("data")); ?>
+                    <?php $this->load->view("config_perfil/index",compact("data")); ?>
                     <!--                    #div-geral-config-requisicoes-amizades-->
-                    <?= $this->load->view("config_requisicoes_amizades/index",compact("data")); ?>
+                    <?php $this->load->view("config_requisicoes_amizades/index",compact("data")); ?>
                     <!--                    #div-geral-config-redes-sociais-->
-                    <?= $this->load->view("config_redes_sociais/index",compact("data")); ?>
+                    <?php $this->load->view("config_redes_sociais/index",compact("data")); ?>
                     <!--                    #div-geral-config-email-->
-                    <?= $this->load->view("config_email/index",compact("data")); ?>
+                    <?php $this->load->view("config_email/index",compact("data")); ?>
                     <!--                    #div-geral-config-notificacoes-->
-                    <?= $this->load->view("config_notificacoes/index",compact("data")); ?>
+                    <?php $this->load->view("config_notificacoes/index",compact("data")); ?>
                     <!--                    #div-geral-config-mudar-senha-->
-                    <?= $this->load->view("config_mudar_senha/index",compact("data")); ?>
+                    <?php $this->load->view("config_mudar_senha/index",compact("data")); ?>
                     <!--                    #div-geral-desativar-conta-->
-                    <?= $this->load->view("config_desativar_conta/index",compact("data")); ?>
+                    <?php $this->load->view("config_desativar_conta/index",compact("data")); ?>
                 </div>
             </div>
         </div>
@@ -49,9 +49,9 @@ endif;
 
 </main>
 
-<?= $this->load->view("footer/footer"); ?>
+<?php $this->load->view("footer/footer"); ?>
 <!--JS-->
-<?= $this->load->view("head/js"); ?>
+<?php $this->load->view("head/js"); ?>
 <script src="<?= URL_RAIZ() ?>js/config/config.js"></script>
 <script src="<?= URL_RAIZ() ?>js/maps/maps_google_account_settings.js"></script>
 <script src="<?= URL_RAIZ() ?>application/assets/js/libs/jquery.mask.js"></script>

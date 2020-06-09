@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <body>
@@ -13,7 +13,7 @@ else:
     $data = [];
 endif;
 ?>
-<?= $this->load->view("menu/menu",compact("data")); ?>
+<?php $this->load->view("menu/menu",compact("data")); ?>
 
 <main class="dashboard-mp " style="margin-top: 80px" id="div-geral-time-line">
 
@@ -55,7 +55,7 @@ endif;
                                 </div>
                             </div>
                         </div>
-                        <?= $this->load->view("pessoas/menu"); ?>
+                        <?php $this->load->view("pessoas/menu"); ?>
 <!--                        <div class="user-data full-width">-->
 <!--                            <div class="categories-left-heading">-->
 <!--                                <h3>Categorias</h3>-->
@@ -77,9 +77,9 @@ endif;
 
                 <div class="col-lg-6 col-md-7 mt-22">
 
-                    <?= $this->load->view("publicar/index"); ?>
+                    <?php $this->load->view("publicar/index"); ?>
 
-                    <?= $this->load->view("timeline_home/index"); ?>
+                    <?php $this->load->view("timeline_home/index"); ?>
                 </div>
 
 <!--                <div class="col-lg-3 mt-20">-->
@@ -247,26 +247,26 @@ endif;
 <!--    </div>-->
 </main>
 
-<?= $this->load->view("template/lightbox_image/index"); ?>
+<?php $this->load->view("template/lightbox_image/index"); ?>
 
 <div id="autocomplete-app"></div>
-<?= $this->load->view("footer/footer"); ?>
+<?php $this->load->view("footer/footer"); ?>
 
 <div id="content-chat">
-    <?= $this->load->view('chat/index'); ?>
+    <?php $this->load->view('chat/index'); ?>
 </div>
 <div class="content-open-menu-chat">
     <i class="fas fa-comments"></i>
 </div>
-<?= $this->load->view('chat/menu_chat'); ?>
+<?php $this->load->view('chat/menu_chat'); ?>
 <!-- Scripts js -->
-<?= $this->load->view("head/js"); ?>
-<?= $this->load->view("head/chat/assets"); ?>
-<?= $this->load->view("head/image_lightbox/assets"); ?>
+<?php $this->load->view("head/js"); ?>
+<?php $this->load->view("head/chat/assets"); ?>
+<?php $this->load->view("head/image_lightbox/assets"); ?>
 
 <script src="<?= URL_RAIZ() ?>js/home/home.js"></script>
 
-<?= $this->load->view("head/menu_chat/assets"); ?>
+<?php $this->load->view("head/menu_chat/assets"); ?>
 </body>
 
 </html>

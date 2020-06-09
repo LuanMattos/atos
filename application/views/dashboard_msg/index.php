@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <body>
@@ -12,15 +12,15 @@ else:
     $data = [];
 endif;
 ?>
-<?= $this->load->view("menu/menu",compact("data")) ?>
+<?php $this->load->view("menu/menu",compact("data")) ?>
 <main class="dashboard-mp">
 
-    <?= $this->load->view("area_b/index"); ?>
-    <?= $this->load->view("area_c_dashboard_msg/index"); ?>
+    <?php $this->load->view("area_b/index"); ?>
+    <?php $this->load->view("area_c_dashboard_msg/index"); ?>
 </main>
 <!-- Body End -->
 <!-- Footer Start -->
-<?= $this->load->view("footer/footer"); ?>
+<?php $this->load->view("footer/footer"); ?>
 <!-- Footer End -->
 <!-- Scripts js -->
 <script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>

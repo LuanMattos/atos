@@ -2,12 +2,12 @@
 <html lang="pt-br">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <body>
 <!-- Header Start -->
-<?= $this->load->view("menu/menu") ?>
+<?php $this->load->view("menu/menu") ?>
 <!-- Header End -->
 <!-- Title Bar Start -->
 <div class="title-bar">
@@ -211,8 +211,8 @@
         </div>
     </div>
 </main>
-<?= $this->load->view("footer/footer"); ?>
-<?= $this->load->view("head/js"); ?>
+<?php $this->load->view("footer/footer"); ?>
+<?php $this->load->view("head/js"); ?>
 </body>
 
 </html>

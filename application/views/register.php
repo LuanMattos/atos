@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <?= $this->load->view('head/css') ?>
+    <?php $this->load->view('head/css') ?>
 </head>
 
 <body class="body-bg">
@@ -94,7 +94,7 @@
     </div>
 </main>
 
-<?= $this->load->view('head/register/js') ?>
+<?php $this->load->view('head/register/js') ?>
 <script src="<?= URL_RAIZ() ?>js/index.js"></script>
 
 </body>
