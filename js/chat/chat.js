@@ -56,11 +56,7 @@ var vue_instance_chat = new Vue({
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
               // if( App.production() ){
-                self.ws = new WebSocket('wss://www.atos.click:8088?' + _id, {
-                  protocolVersion: 8,
-                  origin: 'https://www.atos.click:8088',
-                  rejectUnauthorized: false
-                });
+                self.ws = new WebSocket('wss://www.atos.click:8088?' + _id);
               // }else{
               //   self.ws = new WebSocket('ws://' + window.location.host + ':8090?' + _id);
               // }
@@ -79,6 +75,7 @@ var vue_instance_chat = new Vue({
             };
 
             self.ws.onerror = function(e) {
+              console.log(e)
                 self.addErrorNotification('Não foi possível conectar-se ao servidor');
             };
 
