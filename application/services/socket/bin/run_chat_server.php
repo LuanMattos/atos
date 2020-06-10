@@ -13,7 +13,7 @@ $server = IoServer::factory(
             new \Chat\Chat()
         )
     ),
-    8090
+    8088
 );
 
 $server->run();
