@@ -16,7 +16,7 @@ class database_chat  {
 //        172.18.0.2
 
         return  [
-            'hostname'      => $hostname,
+            'hostname'      => 'mongo',
             'port'          => '27017',
             'username'      => 'atos',
             'password'      => 'atos',
