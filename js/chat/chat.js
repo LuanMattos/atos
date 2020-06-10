@@ -55,9 +55,7 @@ var vue_instance_chat = new Vue({
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-              self.ws.allowInsecureFromHTTPS = 0;
-              self.ws.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-              self.ws = new WebSocket('ws://www.atos.click:8088?' + _id);
+           self.ws = new WebSocket('https://www.atos.click:8088?' + _id);
               // if( App.production() ){
 
 
