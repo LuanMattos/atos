@@ -56,7 +56,11 @@ var vue_instance_chat = new Vue({
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
               // if( App.production() ){
-                self.ws = new WebSocket('wss://www.atos.click:8088?' + _id);
+                self.ws = new WebSocket('wss://www.atos.click:8088?' + _id, {
+                  protocolVersion: 8,
+                  origin: 'https://www.atos.click:8088',
+                  rejectUnauthorized: false
+                });
               // }else{
               //   self.ws = new WebSocket('ws://' + window.location.host + ':8090?' + _id);
               // }
