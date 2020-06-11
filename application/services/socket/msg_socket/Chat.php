@@ -11,7 +11,7 @@ use Ratchet\Wamp\WampServerInterface;
 
 require_once '../../../../application/config/database_chat.php';
 
-class Chat  implements WampServerInterface {
+class Chat  implements MessageComponentInterface {
     protected $clients;
     private $subscriptions;
     private $users;
