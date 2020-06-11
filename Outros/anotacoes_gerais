@@ -175,7 +175,18 @@ Criar Alias apache2
     Não foi possível instalar o ssl sobre apache no docker, por enquanto usar apache sem container
 
 --Instalar ZQM PHP
-    sudo apt install php-zmq
+sudo apt-get -y install gcc make autoconf pkg-config
+sudo apt-get -y install libzmq-dev
+sudo apt-get -y install libzmq3-dev
+#sudo peclX.Y-sp install zmq-beta
+#sudo bash -c "echo extension=zmq.so > /etc/phpX.Y-sp/conf.d/zmq.ini"
+#phpX.Y-sp -i | grep zmq
+#/etc/phpX.Y-sp/conf.d/zmq.ini
+#zmq
+#libzmq version => 2.2.0
+#sudo rm /etc/phpX.Y-sp/conf.d/zmq.ini
+#sudo peclX.Y-sp uninstall zmq
 
+ sudo apt install php-zmq
 
 
