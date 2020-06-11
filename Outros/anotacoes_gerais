@@ -171,3 +171,11 @@ Criar Alias apache2
              Require all granted
         </Directory>
     chmod -R 777 /home/murilo/Projetos/web
+--SSL
+    Não foi possível instalar o ssl sobre apache no docker, por enquanto usar apache sem container
+
+--Instalar ZQM PHP
+    sudo apt install php-zmq
+
+
+

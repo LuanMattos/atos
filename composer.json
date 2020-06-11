@@ -3,7 +3,8 @@
         "mongodb/mongodb": "^1.5",
         "cboden/ratchet": "^0.4",
         "botman/botman": "^2.3",
-        "botman/driver-web": "^1.5"
+        "botman/driver-web": "^1.5",
+        "react/zmq": "0.2.*|0.3.*"
     },
     "autoload": {
         "psr-4": {

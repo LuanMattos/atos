@@ -7,9 +7,11 @@ use MongoDB\Driver\Manager;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 
+use Ratchet\Wamp\WampServerInterface;
+
 require_once '../../../../application/config/database_chat.php';
 
-class Chat  implements MessageComponentInterface {
+class Chat  implements WampServerInterface {
     protected $clients;
     private $subscriptions;
     private $users;
