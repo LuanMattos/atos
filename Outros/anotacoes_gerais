@@ -190,3 +190,9 @@ sudo apt-get -y install libzmq3-dev
  sudo apt install php-zmq
 
 
+-CONFIGURAR DNS DOCKER
+cat /etc/resolv.conf
+/etc/docker/daemon.json
+{
+  "dns": ["192.168.4.1", "8.8.8.8"]
+}
