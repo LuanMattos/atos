@@ -4,14 +4,14 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-dark1 justify-content-sm-start">
                     <a class="order-1 order-lg-0 ml-lg-0 ml-3 mr-auto " href="index.html">
-                        <a class="text-white padding-smal" href="<?= site_url('Home/index') ?>"></a>
+                        <a class="text-white padding-smal" href="<?= site_url('home') ?>"></a>
                         <button class="navbar-toggler align-self-start" type="button">
                             <i class="fas fa-bars " style="font-size:25px"></i>
                         </button>
 
                         <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-start bg-dark1 p-3 p-lg-0 mt1-5 mt-lg-0 mobileMenu">
                             <div class="open" id="navbarSupportedContent">
-                                <a class="text-white " href="<?= site_url('Home/index') ?>">
+                                <a class="text-white " href="<?= site_url('home') ?>">
                                     <b style="font-size: 25px">atos</b>
                                 </a>
                             </div>
@@ -83,11 +83,17 @@
 <!--                            </li>-->
                             <li class="dropdown">
                                 <a href="#" class="icon-set dropdown-toggle-no-caret" role="button"
-                                   data-toggle="dropdown">
-                                    <i class="fas fa-user-plus"></i>
+                                   data-toggle="dropdown"
+                                   @click='zerar_notificacoes(amigos)'
+                                >
+                                    <i class="fas fa-user-plus">
+                                    </i>
                                 </a>
+                                <template v-if="amigos.length">
+                                    <span class='count-notify'>{{count_solicitacoes_amizade?count_solicitacoes_amizade:''}}</span>
+                                </template>
 
-                                <div class="dropdown-menu user-request-dropdown dropdown-menu-right">
+                                <div class="dropdown-menu user-request-dropdown dropdown-menu-right" >
                                     <template v-if="amigos.length">
                                         <template v-for="(i,l) in amigos">
                                             <div class="user-request-list ">
@@ -211,7 +217,7 @@
                             </a>
                             <div class="dropdown-menu account-dropdown dropdown-menu-right">
                                 <a class="link-item" href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Perfil</a>
-                                <a class="link-item" href="<?= site_url('account_settings/Account_settings/index') ?>">Configurações da conta</a>
+                                <a class="link-item" href="<?= site_url('settings') ?>">Configurações da conta</a>
                                 <a class="link-item" href="<?= site_url('invite/Invite/index') ?>">Convite</a>
                                 <a class="link-item" href="<?= site_url('Home/logout') ?>">Sair</a>
                             </div>

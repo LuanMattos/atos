@@ -60,7 +60,7 @@ class Login extends Login_Controller{
                                 if(isset($line['login'])){
                                     $this->session->set_userdata(["logado"=>1,"login"=>$row['login']]);
 
-                                    redirect('Home/index');
+                                    redirect('home');
                                 }
                             }
                         }

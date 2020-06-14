@@ -20,7 +20,7 @@ class Dashboard_activity extends SI_Controller{
     public function index(){
         $id     = $this->input->post("id",TRUE);
         if(!$id){
-            redirect('dashboard_activity/Dashboard_activity/local');
+            redirect('mydashboard');
         }else{
             $this->response('success',compact("id"));
         }

@@ -144,7 +144,8 @@ var vue_instance_menu = new Vue({
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
         amigos      : [],
         result      : [],
-        msg_menu    : []
+        msg_menu    : [],
+        count_solicitacoes_amizade:0
     },
     components: {
         autocomplete: Autocomplete
@@ -156,13 +157,20 @@ var vue_instance_menu = new Vue({
         $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
         var url       = App.url("pessoas", "Amigos", "solicitacoes_by_usuario_limit");
         // ------------------profile-------------------
-        $.post(url, {}, function(response){self_vue.$data.amigos = response.data;},'json');
+        $.post(url, {}, function(response){
+            self_vue.$data.amigos = response.data;
+            _.map(response.data,function(i,e){
+                  if(!i.notified){
+                      self_vue.$data.count_solicitacoes_amizade ++;
+                  }
+              }
+            )
+            },'json');
         var url       = App.url("area_a", "Area_a", "data_user_local");
         // ------------------profile-------------------
-        $.post(url, {}, function(response){
-            self_vue.$data.data_user_local = response.data;
-            },'json');
+        $.post(url, {}, function(response){ self_vue.$data.data_user_local = response.data; },'json');
         this.get_msg();
+
     },
     methods:{
         redirect_user:function( id ){
@@ -181,6 +189,13 @@ var vue_instance_menu = new Vue({
             var url  = App.url("dashboard_msg","Dashboard_msg","get_msg_menu");
             axios({ method: 'post', url : url, data : false })
               .then(function( json ){self.msg_menu =  json.data.data.msg; });
+        },
+        zerar_notificacoes:function( amigos ){
+            $('.count-notify').text('');
+            var url  = App.url("","zerar_menu","");
+
+            $.post( url, { data : amigos },
+              function(json){ },'json')
         }
     }
 })

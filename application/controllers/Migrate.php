@@ -93,7 +93,8 @@ class Migrate extends CI_Controller{
 //        $this->db->query("ALTER TABLE  usuarios ADD COLUMN  IF NOT EXISTS create_folder_img boolean");
 
 
-        $this->db->query("insert into provider_sms values (default,'patrick.smsonline','q05gP1XZ13','zenvia');");
+        $this->db->query("delete  from provider_sms where codigo > 0");
+        $this->db->query("insert into provider_sms values (default,'luan1.smsonline','WHJM5B2EJj','zenvia');");
         $transaction = $this->db->trans_complete();
 
 

@@ -234,9 +234,11 @@ class Amigos extends Home_Controller
             $data_amigos                   = reset($this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']]));
             $path                          = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$data_amigos['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
             $data_amigos['img_profile']    = !empty($path['server_name'])?$path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file']:false;
+            $data_amigos['notified']       = $row['notified'];
 
             array_push($data,$data_amigos);
         }
+
         $this->response('sucess',compact('data'));
     }
 

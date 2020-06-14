@@ -120,5 +120,20 @@ class Area_a extends SI_Controller
             }
         }
     }
+    public function zerar_notificacoes_menu(){
+        $datapost = $this->input->post('data',TRUE);
+        $this->config->load('database');
+        $configmongo = (object)$this->config->item('mongodb');
+        $local = $this->data_user();
+
+        foreach($datapost as $row){
+            $data = [];
+            $data['notified'] = true;
+            $mongobulkwrite         = new \MongoDB\Driver\BulkWrite();
+            $mongobulkwrite->update(["codusuario"=>$row['_id'],'codamigo'=>$local['_id']],['$set' => $data], ['multi' => false, 'upsert' => false]);
+            $this->mongomanager->executeBulkWrite($configmongo->database . '.' . 'us_amigos_solicitacoes' ,$mongobulkwrite);
+        }
+
+    }
 
 }

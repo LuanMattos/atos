@@ -69,3 +69,7 @@ Vue.filter('firstUpperCase', function (value) {
     }
     return pri_mai(value)
 })
+Vue.filter('parseint', function (value) {
+    return parseInt(value);
+
+})

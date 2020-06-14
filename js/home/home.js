@@ -3,7 +3,7 @@ if ( window.history.replaceState ) {
 }
 var home = {
     Url: function (metodo, params) {
-        return App.url("", "Home", metodo, params);
+        return App.url("", "home", metodo, params);
     }
 
 };
@@ -130,14 +130,14 @@ var vm = new Vue({
 
           },
           redirect_user: function (id) {
-              var url = App.url("dashboard_activity", "Dashboard_activity", "index");
+              var url = App.url("", "dashboard", "");
               $.post(
                 url,
                 {
                     id: id
                 },
                 function (json) {
-                    window.location.href = App.url("dashboard_activity", "Dashboard_activity", "external/" + id);
+                    window.location.href = App.url("", "theirdashboard", "" + id);
                 }, 'json')
 
           },
