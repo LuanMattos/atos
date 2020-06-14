@@ -4,19 +4,23 @@ class database_chat  {
 
     public function config_mongo($shell = false){
         $hostname = "172.18.0.2";
-//        if(ENVIRONMENT === 'production'){
-//            $hostname = '172.18.0.2';
-//        }else{
-//            $hostname = 'mongo';
-//        }
 
         if($shell){
             $hostname = "localhost";
+        }else{
+            if(ENVIRONMENT === 'production'){
+                $hostname = '172.18.0.3';
+            }else{
+                $hostname = 'mongo';
+            }
         }
+
+
+
 //        172.18.0.2
 
         return  [
-            'hostname'      => '172.18.0.3',
+            'hostname'      => $hostname,
             'port'          => '27017',
             'username'      => 'atos',
             'password'      => 'atos',

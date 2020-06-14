@@ -155,7 +155,7 @@ Problema docker-compose
 
 
 Criar mais de um HOST VIRTUAL:
-    sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/exemplo.com.conf
+     sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/exemplo.com.conf
      sudo nano /etc/apache2/sites-available/exemplo.com.conf
      a2ensite site
      service apache2 reload
