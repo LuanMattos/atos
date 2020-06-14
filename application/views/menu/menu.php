@@ -144,7 +144,7 @@
                                                         <img v-bind:src="msg.img_profile"
                                                              class="crop-img-chat">
                                                         <div class="user-title1">{{msg.name}}</div>
-                                                        <span>{{msg.text}}</span>
+                                                        <span>{{msg.text | crop_string}}</span>
                                                     </a>
                                                 </div>
                                                 <div class="time4">{{msg.dias}}  atrás</div>
