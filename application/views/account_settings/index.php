@@ -10,13 +10,7 @@
 
 
 <body>
-<?php if (isset($dados)):
-    $data = $dados;
-else:
-    $data = [];
-endif;
 
-?>
 <?php $this->load->view("menu/menu", compact("data")) ?>
 <!-- Header End -->
 <!-- Body Start -->

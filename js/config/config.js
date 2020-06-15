@@ -27,6 +27,7 @@ $(function () {
         acao_salvar_informacoes_pessoais:function(){
                 const url = config.Url("acao_salvar_informacoes_pessoais");
                 const data = App.form_data("#form-informacoes-pessoais");
+                App.spinner_start();
 
                 $.ajax({
                     method:"POST",
@@ -35,6 +36,7 @@ $(function () {
                     data:data,
                     success:function(json){
                         if(!json.info){
+                            App.spinner_stop();
                             vue_instance.informacoes_pessoais.error = json
                                 }
                         if(json.msg){

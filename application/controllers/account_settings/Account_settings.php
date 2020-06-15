@@ -22,7 +22,7 @@ class Account_settings extends Account_settings_Controller {
         }else{
             $data       = $this->Us_usuarios_model->data_user_by_session($data_s);
             $location   = $this->Us_location_user_model->data_location_by_id($data['_id']);
-            $this->load->view("account_settings/index",compact("dados","location"));
+            $this->load->view("account_settings/index",compact("data","location"));
         }
 
     }
@@ -77,21 +77,12 @@ class Account_settings extends Account_settings_Controller {
         }
 
         $usuario            = $this->session->get_userdata();
-        $data_user          = reset($this->Us_usuarios_model->getWhere(["login"=>$usuario['login']]));
-        $new_data           = array_merge($data,["codigo"=>$data_user['codigo']]);
+        $data_user          = reset($this->Us_usuarios_model->getWhereMongo(["login"=>$usuario['login']]));
+        $new_data           = array_merge($data,["_id"=>$data_user['_id']]);
 
-        $save = $this->Us_usuarios_model->save($new_data);
-
-
-        if(!$save){
-            $error['errors'] = "Houve um erro ao salvar os dados, tente novamente mais tarde!";
-            $this->response("error",$error);
-        }
-
+        $this->Us_usuarios_model->save_mongo($new_data);
 
         $this->response("success",["msg"=>"Alterações salvas!"]);
-
-
 
     }
 
