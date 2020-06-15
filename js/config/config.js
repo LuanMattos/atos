@@ -22,9 +22,29 @@ $(function () {
                 error:false,
                 success:""
             },
+            success_save:""
         },
         methods: {
-        acao_salvar_informacoes_pessoais:function(){
+            acao_salvar_perfil:function(){
+                const url = config.Url("acao_salvar_perfil");
+                const data = App.form_data("#form-geral-config-perfil");
+                App.spinner_start();
+
+                $.ajax({
+                      method:"POST",
+                      dataType:"json",
+                      url,
+                      data:data,
+                      success:function(json){
+                          if(json.msg){
+                              vue_instance.success_save = json.msg;
+                              App.spinner_stop();
+                          }
+                      }
+                  }
+                );
+            },
+            acao_salvar_informacoes_pessoais:function(){
                 const url = config.Url("acao_salvar_informacoes_pessoais");
                 const data = App.form_data("#form-informacoes-pessoais");
                 App.spinner_start();
@@ -35,8 +55,8 @@ $(function () {
                     url,
                     data:data,
                     success:function(json){
+                        App.spinner_stop();
                         if(!json.info){
-                            App.spinner_stop();
                             vue_instance.informacoes_pessoais.error = json
                                 }
                         if(json.msg){

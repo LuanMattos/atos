@@ -86,5 +86,19 @@ class Account_settings extends Account_settings_Controller {
 
     }
 
+    public function acao_salvar_perfil(){
+        $session    = $this->session->get_userdata();
+        $datapost = $this->input->post(NULL,true);
+        if(empty($session['login'])){
+            $this->session->sess_destroy();
+            redirect();
+        }
+
+        $data_user          = $this->Us_usuarios_model->data_user_by_session(['login'=>$session['login']]);
+        $datapost['_id'] = $data_user['_id'];
+        $this->Us_usuarios_model->save_mongo($datapost);
+        $this->response("success",["msg"=>"Alterações salvas!"]);
+    }
+
 
 }
