@@ -10,7 +10,7 @@ if(ENVIRONMENT === 'production'){
     $hostname = '54.237.142.136';
 }
 $db['default']  = [
-	'dsn'	        => '',
+	'dsn'	        => 'postgres',
 	'hostname'      => $hostname,
 	'username'      => 'postgres',
 	'port'          => '5432',
