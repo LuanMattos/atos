@@ -47,6 +47,13 @@ var App = {}
         }
         return false;
     }
+    App.spinner_start = function(){
+        var html = "<div class='spinner-atos'><div class='loader'></div></div>";
+        $('body').append(html);
+    }
+    App.spinner_stop = function(){
+        $('.spinner-atos').remove();
+    }
 
 $(document).ready(function(){
     $(".content-open-menu-chat").on("click",function(){

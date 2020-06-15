@@ -218,7 +218,7 @@
                             <div class="dropdown-menu account-dropdown dropdown-menu-right">
                                 <a class="link-item" href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Perfil</a>
                                 <a class="link-item" href="<?= site_url('settings') ?>">Configurações da conta</a>
-                                <a class="link-item" href="<?= site_url('invite/Invite/index') ?>">Convite</a>
+                                <a class="link-item" href="<?= site_url('invite') ?>">Convite</a>
                                 <a class="link-item" href="<?= site_url('Home/logout') ?>">Sair</a>
                             </div>
                         </div>

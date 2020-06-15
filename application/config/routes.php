@@ -11,6 +11,8 @@ $route['dashboard'] = 'dashboard_activity/Dashboard_activity/index';
 $route['theirdashboard/(:any)'] = 'dashboard_activity/Dashboard_activity/external/$1';
 $route['zerar_menu'] = 'area_a/Area_a/zerar_notificacoes_menu';
 $route['data_menu'] = 'area_a/Area_a/data_menu';
+$route['invite'] = 'invite/Invite/index';
+$route['invitesend'] = 'invite/Invite/enviar';
 
 
 $route['404_override'] = 'Home/error_404';

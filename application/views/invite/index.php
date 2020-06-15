@@ -8,8 +8,6 @@
 <body>
 <!-- Header Start -->
 <?php $this->load->view("menu/menu") ?>
-<!-- Header End -->
-<!-- Title Bar Start -->
 <div class="title-bar">
     <div class="container">
         <div class="row">
@@ -44,10 +42,14 @@
                         <div class="Share-today">
                             <h4>Basta inserir um telefone celular ou E-mail</h4>
                             <div class="copylink">
-                                <input type="text" class="copy-link-input" placeholder="Número de telefone ou E-mail">
-                                <button class="copy-link-btn"><i class="far fa-copy"></i> Enviar</button>
+                                    <input type="text" class="copy-link-input" placeholder="Número de telefone ou E-mail" name="email_telefone">
+                                    <button class="copy-link-btn"><i class="far fa-copy"></i> Enviar</button>
+                            </div>
+                            <div class="error-success">
+
                             </div>
                         </div>
+
                         <div class="Share--links">
                             <div class="social-acc1 text-center">
                                 <div class="signup-scl-scc">
@@ -126,6 +128,8 @@
         </div>
     </div>
 </main>
+
+
 <?php $this->load->view("footer/footer"); ?>
 <?php $this->load->view("head/js"); ?>
 
@@ -133,3 +137,25 @@
 </body>
 
 </html>
+<script>
+    $(".copy-link-btn").on('click',function(){
+      App.spinner_start();
+      $.post(App.url('','invitesend',''),{
+        email_telefone:$("input[name='email_telefone']").val()
+      },function(json){
+                    if(json){
+                      App.spinner_stop();
+
+                      if(json.error){
+                              $(".error-success").text(json.error.msg).css('color','red');
+
+                        }
+                            if(json.msg){
+                              $(".error-success").text(json.msg).css('color','blue');
+                        }
+                    }
+                },'json'
+            )
+        }
+    )
+</script>

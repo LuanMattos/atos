@@ -17,7 +17,6 @@ class Home extends Home_Controller
         $this->output->enable_profiler(FALSE);
         $this->load->library('email/mail');
 
-
     }
 
     public function index(){

@@ -29,7 +29,6 @@ if ( ! function_exists('validate_telcel_br'))
 
         if(strlen($numer) != 13){
             return false;
-            exit();
         }
         return $numer;
 	}
