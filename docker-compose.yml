@@ -6,13 +6,13 @@ services:
     ports:
       - "27017:27017"
 
-  php_apache:
-    container_name: php_apache
-    image: luanmattos/atos:php-apache
-    ports:
-      - "80:80"
-    volumes:
-      - .:/var/www/html
+#  php_apache:
+#    container_name: php_apache
+#    image: luanmattos/atos:php-apache
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - .:/var/www/html
 
   postgres:
     container_name: postgres
