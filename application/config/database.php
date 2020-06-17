@@ -4,14 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group   = 'default';
 $query_builder  = TRUE;
 
-if(ENVIRONMENT === 'production'){
-    $hostname = 'www.atos.click';
-}else{
+//if(ENVIRONMENT === 'production'){
+//    $hostname = 'www.atos.click';
+//}else{
     $hostname = '54.237.142.136';
-}
+//}
 $db['default']  = [
 	'dsn'	        => '',
-	'hostname'      => $hostname,
+	'hostname'      => 'localhost',
 	'username'      => 'postgres',
 	'port'          => '5432',
 	'password'      => 'eFdarksadfw4r54af4fd4a54h2fasfdg',
