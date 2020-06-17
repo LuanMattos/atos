@@ -11,7 +11,7 @@ $query_builder  = TRUE;
 //}
 $db['default']  = [
 	'dsn'	        => '',
-	'hostname'      => 'localhost',
+	'hostname'      => $hostname,
 	'username'      => 'postgres',
 	'port'          => '5432',
 	'password'      => 'eFdarksadfw4r54af4fd4a54h2fasfdg',
