@@ -196,3 +196,11 @@ cat /etc/resolv.conf
 {
   "dns": ["192.168.4.1", "8.8.8.8"]
 }
+
+
+PROCEDIMENTOS PARA O TEMIDO HTTPS SOBRE WEBSOCKET (WSS)
+     Será usado mongo para abrir a comunicação WebSocket através de uma API (já que RatChet e ReactPhp não funcionaram)
+
+Ativar o apache os seguintes itens
+     sudo a2enmod proxy proxy_balancer proxy_wstunnel proxy_http
+     Em /etc/apache2/sites-enabled/000-default-le-ssl.conf inserir ProxyPass "/ws/"  "ws://domain.com:5001/"

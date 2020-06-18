@@ -56,7 +56,7 @@ var vue_instance_chat = new Vue({
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
 
-              self.ws = new WebSocket('ws://' + window.location.host + ':1337');
+              self.ws = new WebSocket('ws://' + window.location.host + ':8090');
 
 
             }else{
