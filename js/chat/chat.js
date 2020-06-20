@@ -55,9 +55,8 @@ var vue_instance_chat = new Vue({
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-
-              self.ws = new WebSocket('wss://' + window.location.host + ':8090');
-
+              // window.location.host
+              self.ws = new WebSocket('wss://' + 'www.taskme.click' + ':8090');
 
             }else{
                 console.debug("Usuário não possui identificação válida!");
@@ -65,7 +64,6 @@ var vue_instance_chat = new Vue({
             }
 
             self.ws.onopen = function(e) {
-
                 self.addSuccessNotification('Online');
                 if (onOpen) {
                     onOpen();
@@ -73,12 +71,11 @@ var vue_instance_chat = new Vue({
             };
 
             self.ws.onerror = function(e) {
-              console.log(e)
                 self.addErrorNotification('Não foi possível conectar-se ao servidor');
             };
 
             self.ws.onmessage = function(e) {
-                self.addMessage(JSON.parse(e.data));
+                self.addMessage(e.data);
             };
 
         },
