@@ -32,14 +32,13 @@ var vue_instance_menu_chat = new Vue({
             vue_instance_chat._data.img_profile = json.data.usuario.img_profile;
             vue_instance_chat._data.messages = [];
 
-          if(!_.isUndefined(json.data.data)) {
-              json.data.data.map(function (el,index ) {
+
+          if(!_.isUndefined(json.data.data.msg)) {
+              json.data.data.msg.map(function (el,index ) {
                 el.img_profile = json.data.usuario.img_profile;
               })
-              vue_instance_chat._data.messages = json.data.data;
+              vue_instance_chat._data.messages = json.data.data.msg;
           }
-
-
         });
       var chat = $(".chat-content");
 

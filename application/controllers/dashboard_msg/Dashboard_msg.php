@@ -39,6 +39,7 @@ class Dashboard_msg extends Home_Controller
         $login_post      = $this->input->post("login",true);
         $login           = $usuario_session['login'];
 
+
         if( $login_post ){
             $login = $login_post;
         }
@@ -51,10 +52,7 @@ class Dashboard_msg extends Home_Controller
         }
 
 //        $rows = $col->find(array('nome' => array ('$all' => array(new MongoRegex('/Ubuntu/')))));
-
-        $msg =  $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id']], "_id",  -1, NULL, NULL,true);
-
-        $data = [];
+        $data =  $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id']], "_id",  -1, NULL, NULL,true);
 
         $resourceId = $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id'] ], "_id",  -1, NULL, NULL,true );
 
@@ -69,7 +67,6 @@ class Dashboard_msg extends Home_Controller
             'login' => $usuario['login'],
             'channel' => $resourceId['resourceId']
         ];
-        debug($data);
         $this->response('success',compact('data','usuario'));
     }
     public function get_msg_menu(){
