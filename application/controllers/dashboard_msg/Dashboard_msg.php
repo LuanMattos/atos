@@ -42,28 +42,25 @@ class Dashboard_msg extends Home_Controller
         if( $login_post ){
             $login = $login_post;
         }
-        $usuario    = reset($this->Us_usuarios_model->getWhereMongo( ['login' =>  $login] ) );
-        $usuario_local    = reset($this->Us_usuarios_model->getWhereMongo( ['login' =>  $usuario_session['login']] ) );
+        $usuario    = $this->Us_usuarios_model->getWhereMongo( ['login' =>  $login], "_id",  -1, NULL, NULL,true ) ;
+        $usuario_local    = $this->Us_usuarios_model->getWhereMongo( ['login' =>  $usuario_session['login']], "_id",  -1, NULL, NULL,true );
 
         //vai cair por terra, no geral, todos que forem external, terão na URL apenas o email por motivos de segurança
         if( $external ){
-            $usuario = reset($this->Us_usuarios_model->getWhereMongo( ['_id' => $id ] ) );
+            $usuario = $this->Us_usuarios_model->getWhereMongo( ['_id' => $id ], "_id",  -1, NULL, NULL,true ) ;
         }
 
 //        $rows = $col->find(array('nome' => array ('$all' => array(new MongoRegex('/Ubuntu/')))));
 
-        $msg_usuario_local    =  reset($this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario_local['_id']]));
-        $data = [];
-        //mensagens
-        foreach ($msg_usuario_local['msg'] as $key=>$msg){
-            if(reset($msg['codusuario']) === $usuario['_id']){
-                array_push($data,$msg);
-            }
-        }
-        $resourceId = reset($this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id'] ] ));
+        $msg =  $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id']], "_id",  -1, NULL, NULL,true);
 
-        $find_img      =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$usuario['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+        $data = [];
+
+        $resourceId = $this->Msg_usuarios_model->getWhereMongo( ['codusuario'=>$usuario['_id'] ], "_id",  -1, NULL, NULL,true );
+
+        $find_img      =  $this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$usuario['_id']], "created_at", -1, NULL, NULL,TRUE);
         $img_profile   =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
+
         $usuario = [
             'id'=>$usuario['_id'],
             'nome' => $usuario['nome'],
@@ -72,6 +69,7 @@ class Dashboard_msg extends Home_Controller
             'login' => $usuario['login'],
             'channel' => $resourceId['resourceId']
         ];
+        debug($data);
         $this->response('success',compact('data','usuario'));
     }
     public function get_msg_menu(){

@@ -134,11 +134,17 @@ class CI_Model {
      * @getWhereMongo
      * Where = []
      **/
-    public function getWhereMongo($where = [],$orderby = "_id",$direction =  -1,$limit = NULL,$offset = NULL){
+    public function getWhereMongo($where = [],$orderby = "_id",$direction =  -1,$limit = NULL,$offset = NULL,$row = false){
         $this->config->load('database');
         $configmongo = (object)$this->config->item('mongodb');
 
 
+        if( $row ){
+            $find           = $this->mongodb->{$configmongo->database}->{$this->get_table()}->findOne(
+                $where,['limit'=>$limit, 'skip'=>(integer)$offset,'sort'=>[$orderby=>$direction]]
+            );
+            return $find;
+        }
         $find           = $this->mongodb->{$configmongo->database}->{$this->get_table()}->find(
             $where,['limit'=>$limit, 'skip'=>(integer)$offset,'sort'=>[$orderby=>$direction]]
         );
