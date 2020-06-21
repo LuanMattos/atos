@@ -57,7 +57,7 @@ var vue_instance_chat = new Vue({
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
               // window.location.host
-              self.ws = new WebSocket('wss://' + 'www.taskme.click' + ':8090');
+              self.ws = new WebSocket('wss://' + 'www.taskme.click' + ':8090?' + this._data.user_local.usuario.login);
 
             }else{
                 console.debug("Usuário não possui identificação válida!");
@@ -107,8 +107,13 @@ var vue_instance_chat = new Vue({
             $(event.target).parent().parent().parent().parent().parent().addClass('hide');
             vue_instance_menu_chat.chat = false;
         },
-        addMessage: function(data) {
+        addMessage: function(param) {
+          var data = param;
+          if( param.length ){
+            data = JSON.parse(param);
+          }
           var login_usuario_chat = this.data_user.usuario.login;
+
           if( typeof  vm !== 'undefined' ) {
             vm.name_new_message = data.from_name;
 
@@ -179,15 +184,14 @@ var vue_instance_chat = new Vue({
         params.append('login', login);
         axios({ method: 'post', url : url, data : params })
           .then(function( json ){
-            var channel = json.data.usuario.channel;
-
+            var idchat = json.data.usuario.idchat;
 
             self.ws.send(JSON.stringify({
               user        : self.data_user.usuario.nome,
               text        : self.text,
               img_profile : self.user_local.usuario.img_profile,
               class_text  : 'msg-local-here',
-              channel     : channel,
+              idchatTo    : idchat,
               command     : 'message',
               to          : self.data_user.usuario.login,
               recebendo   : true,
