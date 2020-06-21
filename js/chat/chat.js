@@ -108,44 +108,44 @@ var vue_instance_chat = new Vue({
             vue_instance_menu_chat.chat = false;
         },
         addMessage: function(param) {
-          var data = param;
-          if( param.length ){
-            data = JSON.parse(param);
-          }
-          var login_usuario_chat = this.data_user.usuario.login;
 
-          if( typeof  vm !== 'undefined' ) {
-            vm.name_new_message = data.from_name;
+          if( param.length ) {
+            var data = JSON.parse(param);
 
-            if (!vue_instance_menu_chat.chat) {
-              vm.display_notification = false;
-              setTimeout(function () {
+            var login_usuario_chat = this.data_user.usuario.login;
+
+            if (typeof vm !== 'undefined') {
+              vm.name_new_message = data.from_name;
+
+              if (!vue_instance_menu_chat.chat) {
+                vm.display_notification = false;
+                setTimeout(function () {
+                  vm.display_notification = 'hide';
+                }, '5100')
+              } else {
                 vm.display_notification = 'hide';
-              }, '5100')
-            } else {
-              vm.display_notification = 'hide';
-            }
-          }else if( typeof  vue_instance_dashboard_activity_local !== 'undefined' ){
-            vue_instance_dashboard_activity_local.name_new_message = data.from_name;
+              }
+            } else if (typeof vue_instance_dashboard_activity_local !== 'undefined') {
+              vue_instance_dashboard_activity_local.name_new_message = data.from_name;
 
-            if (!vue_instance_menu_chat.chat) {
-              vue_instance_dashboard_activity_local.display_notification = false;
-              setTimeout(function () {
+              if (!vue_instance_menu_chat.chat) {
+                vue_instance_dashboard_activity_local.display_notification = false;
+                setTimeout(function () {
+                  vue_instance_dashboard_activity_local.display_notification = 'hide';
+                }, '5100')
+              } else {
                 vue_instance_dashboard_activity_local.display_notification = 'hide';
-              }, '5100')
-            } else {
-              vue_instance_dashboard_activity_local.display_notification = 'hide';
+              }
+
             }
 
-          }
-
-
-          if(login_usuario_chat === data.from){
+            if (login_usuario_chat === data.from) {
               this.messages.push(data);
-          }
+            }
             this.scrollDown();
 
             //escuta
+          }
         },
         //envia
         sendMessage: function() {
@@ -154,6 +154,7 @@ var vue_instance_chat = new Vue({
         var data_from = this.user_local.usuario;
 
         var self = this;
+        if(!_.isEmpty(this.text))
         var data_msg = { text : this.text,
                          date : this.setDate(),
                          user : this.data_user.usuario.nome,
