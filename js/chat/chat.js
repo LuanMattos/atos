@@ -15,7 +15,7 @@ var vue_instance_chat = new Vue({
         Fake                     : [],
         ico_minimize_maximise    : 'fas fa-window-minimize',
         minimize_class           : '',
-        user                     : 'Anônimo',
+        user                     : '',
         text                     : null,
         messages                 : [],
         ws                       : null,
@@ -25,6 +25,7 @@ var vue_instance_chat = new Vue({
         user_local               : false
     },
     mounted : function(){
+
         var self_vue  = this;
 
         //dados usuario externo

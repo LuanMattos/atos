@@ -54,6 +54,13 @@ var App = {}
     App.spinner_stop = function(){
         $('.spinner-atos').remove();
     }
+   App.spinner_chat_start = function(){
+        var html = "<div class='spinner-atos-chat'><div class='loader'></div></div>";
+        $('#content-chat').find('.chat-content').append(html);
+    }
+    App.spinner_chat_stop = function(){
+        $('.spinner-atos-chat').remove();
+    }
 
 $(document).ready(function(){
     $(".content-open-menu-chat").on("click",function(){

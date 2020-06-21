@@ -14,8 +14,9 @@ var vue_instance_menu_chat = new Vue({
       var self = this;
       var url = App.url("pessoas","Amigos","full_amigos_chat");
 
+      App.spinner_start();
       axios({ method: 'post', url : url, data : {} })
-        .then(function( json ){ self.amigos = json.data.data;});
+        .then(function( json ){ self.amigos = json.data.data; App.spinner_stop();});
     },
     open_chat:function( data ){
       var login = data.login;
@@ -23,6 +24,8 @@ var vue_instance_menu_chat = new Vue({
       var url  = App.url("dashboard_msg","Dashboard_msg","get_msg");
       const params = new URLSearchParams();
       this.chat = true;
+      vue_instance_chat._data.messages = [];
+      App.spinner_chat_start();
 
       params.append('login', login);
       axios({ method: 'post', url : url, data : params })
@@ -30,15 +33,15 @@ var vue_instance_menu_chat = new Vue({
 
             vue_instance_chat._data.data_user = json.data;
             vue_instance_chat._data.img_profile = json.data.usuario.img_profile;
-            vue_instance_chat._data.messages = [];
 
 
-          if(!_.isUndefined(json.data.data.msg)) {
+            if(json.data.data) {
               json.data.data.msg.map(function (el,index ) {
                 el.img_profile = json.data.usuario.img_profile;
               })
               vue_instance_chat._data.messages = json.data.data.msg;
           }
+          App.spinner_chat_stop();
         });
       var chat = $(".chat-content");
 

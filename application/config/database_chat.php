@@ -20,7 +20,7 @@ class database_chat  {
 //        172.18.0.2
 
         return  [
-            'hostname'      => 'mongo',
+            'hostname'      => 'www.taskme.click',
             'port'          => '27017',
             'username'      => 'atos',
             'password'      => 'atos',
