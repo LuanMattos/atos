@@ -22,7 +22,10 @@ $(function () {
                 error:false,
                 success:""
             },
-            success_save:""
+            requisicoes_amizade:'',
+            success_save:"",
+            email_conta:'',
+            nova_senha:''
         },
         methods: {
             acao_salvar_perfil:function(){
@@ -65,7 +68,69 @@ $(function () {
                             }
                         }
                     );
-        },MenuconfigClick: function (id) {
+        },
+        acao_salvar_solicitacoes_amizades:function(){
+            const url = config.Url("acao_salvar_requisicoes_amizade");
+            const data = App.form_data("#form-geral-config-requisicoes-amizade");
+            App.spinner_start();
+
+            $.ajax({
+                  method:"POST",
+                  dataType:"json",
+                  url,
+                  data:data,
+                  success:function(json){
+                      App.spinner_stop();
+                      if(!json.info){
+                          vue_instance.requisicoes_amizade.error = json
+                      }
+                      if(json.msg){
+                          vue_instance.requisicoes_amizade.success = json.msg
+                      }
+                  }
+               }
+            )
+        },
+        acao_salvar_email_conta:function(){
+                const url = config.Url("acao_salvar_email_conta");
+                const data = App.form_data("#form-geral-config-email-conta");
+                App.spinner_start();
+
+                $.ajax({
+                      method:"POST",
+                      dataType:"json",
+                      url,
+                      data:data,
+                      success:function(json){
+                          App.spinner_stop();
+                          if(json){
+                              vue_instance.email_conta = json
+                          }
+                      }
+                  }
+                )
+            },
+        acao_salvar_nova_senha:function(){
+            const url = config.Url("acao_salvar_nova_senha");
+            const data = App.form_data("#form-mudar-senha");
+            App.spinner_start();
+
+            $.ajax({
+                method:"POST",
+                dataType:"json",
+                url,
+                data:data,
+                success:function(json){
+                  App.spinner_stop();
+                  if(json){
+                    vue_instance.nova_senha = json
+                  }
+                }
+              }
+            )
+          },
+
+        MenuconfigClick: function (id) {
                 $(".config-itens").slideUp();
 
                 this.informacoes_pessoais.error = "";

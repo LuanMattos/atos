@@ -169,6 +169,18 @@
 </head>
 <body>
 <form id="msform">
+    <?php if(isset($alteracao_email)): ?>
+        <fieldset>
+            <h2 class="fs-title">Atenção! Recebemos um pedido de alteração E-mail diretamente de sua conta!</h2>
+            <h2 class="fs-title">Não divulgue este código com ningúem, guarde-o, ele pode ser solicitado!</h2>
+            <h3 class="fs-subtitle">Seu código é <?= set_val( $codigo_confirmacao )  ?></h3>
+            <!--		<input type="text" name="fname" placeholder="First Name" />-->
+            <!--		<input type="text" name="lname" placeholder="Last Name" />-->
+            <!--		<input type="text" name="phone" placeholder="Phone" />-->
+            <!--		<textarea name="address" placeholder="Address"></textarea>-->
+            <!--            <input type="button" name="previous" class="previous action-button" value="Não fui eu!"/>-->
+        </fieldset>
+    <?php else: ?>
 
     <ul id="progressbar" style="<?= isset( $cadastro ) ?'':'display:none' ?>">
         <li class="active">Cadastro</li>
@@ -194,6 +206,8 @@
             <input type="submit" name="submit" class="submit action-button" value="Redefinir"/>
         </fieldset>
     <?php endif; ?>
+    <?php endif; ?>
+
 </form>
 </body>
 </html>

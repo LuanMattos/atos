@@ -25,13 +25,13 @@
                     <!--                    #div-geral-config-perfil-index-->
                     <?php $this->load->view("config_perfil/index",compact("data")); ?>
                     <!--                    #div-geral-config-requisicoes-amizades-->
-                    <?php $this->load->view("config_requisicoes_amizades/index",compact("data")); ?>
+<!--                    --><?php //$this->load->view("config_requisicoes_amizades/index",compact("data")); ?>
                     <!--                    #div-geral-config-redes-sociais-->
-                    <?php $this->load->view("config_redes_sociais/index",compact("data")); ?>
+<!--                    --><?php //$this->load->view("config_redes_sociais/index",compact("data")); ?>
                     <!--                    #div-geral-config-email-->
                     <?php $this->load->view("config_email/index",compact("data")); ?>
                     <!--                    #div-geral-config-notificacoes-->
-                    <?php $this->load->view("config_notificacoes/index",compact("data")); ?>
+<!--                    --><?php //$this->load->view("config_notificacoes/index",compact("data")); ?>
                     <!--                    #div-geral-config-mudar-senha-->
                     <?php $this->load->view("config_mudar_senha/index",compact("data")); ?>
                     <!--                    #div-geral-desativar-conta-->

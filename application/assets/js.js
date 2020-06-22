@@ -42,7 +42,7 @@ var App = {}
     // }
     }
     App.production = function(){
-        if( window.location.host == 'localhost' ){
+        if( window.location.host !== 'localhost' ){
             return true;
         }
         return false;
@@ -90,3 +90,20 @@ Vue.filter('parseint', function (value) {
 Vue.filter('crop_string', function (string) {
     return string.substring(0, 30) + "...";
 })
+$(document).ready(function(){
+    if(App.production()){
+        $(document).keydown(function (event) {
+                    if (event.keyCode == 123) {
+                                return false;
+                            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                                return false;
+                        }
+                    }
+                )
+                $(document).on("contextmenu", function (e) {
+                  e.preventDefault();
+               }
+            )
+        }
+    }
+)
