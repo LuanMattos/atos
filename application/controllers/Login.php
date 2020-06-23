@@ -110,7 +110,9 @@ class Login extends Login_Controller{
         $param['assunto']           = 'Redefinição de senha!';
         $data['alteracao_senha']    = true;
         $data['codigo_confirmacao'] = $codigo_verificacao;
-        $data['link']               = "https://www.atos.click" . $link;
+        $data['link']               = "https://www.atos.click/" . $link;
+
+        $data['link']               = "https://www.atos.click/" . $link;
 
         if(ENVIRONMENT == 'development'){
             $data['link']               = "http://localhost/" . $link;
