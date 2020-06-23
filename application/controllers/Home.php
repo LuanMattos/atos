@@ -48,7 +48,7 @@ class Home extends Home_Controller
                             $this->load->view('home',compact('row'));
                         else:
                             $this->session->sess_destroy();
-                            redirect("Login");
+                            redirect("go");
                         endif;
 
                     }elseif($row['permanecer_logado'] === true){
@@ -56,17 +56,17 @@ class Home extends Home_Controller
                             $this->load->view('home',compact('row'));
                         else:
                             $this->session->sess_destroy();
-                            redirect("Login");
+                            redirect("go");
                         endif;
 
                     }else{
-                        redirect('Login');
+                        redirect('go');
                     }
                 endif;
             }
         }else{
             $this->session->sess_destroy();
-            redirect("Login");
+            redirect("go");
         }
 //        var_dump(password_hash("kvmxea", PASSWORD_DEFAULT));//criptografa a sessão
     }
@@ -267,7 +267,7 @@ class Home extends Home_Controller
         }
 
         $this->session->sess_destroy();
-        redirect('Login');
+        redirect('go');
 
     }
     public function compute_like(){

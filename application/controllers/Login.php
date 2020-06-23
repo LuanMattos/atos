@@ -7,8 +7,6 @@ class Login extends Login_Controller{
         parent::__construct();
         $this->output->enable_profiler(FALSE);
         $this->load->helper("cookie");
-
-
     }
 
     public function index(){
@@ -71,6 +69,10 @@ class Login extends Login_Controller{
         }
         $this->session->sess_destroy();
         redirect("Login");
+    }
+    public function renew_senha(){
+        $datapost = $this->input->post(NULL,TRUE);
+        $this->load->view('redefinir_senha');
 
     }
 

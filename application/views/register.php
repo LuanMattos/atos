@@ -80,7 +80,7 @@
                                                 Antes de concluir o cadastro leia os <a href="#">Termos</a>, <a href="#">a politica de dados</a> e a <a href="#">política de Cookies</a>. Quando você confirmar o cadastro, receberá um sms/email para confirmação de conta.
                                             </div>
                                             <button class="login-btn" type="submit">Registrar agora</button>
-                                            <div class="login-link">Já possui conta? <a href="<?= site_url('Login/index') ?>">Logar Agora</a></div>
+                                            <div class="login-link">Já possui conta? <a href="<?= site_url('go') ?>">Logar Agora</a></div>
                                         </form>
 
                                     </div>

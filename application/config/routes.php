@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
+$route['go'] = 'Login/index';
 $route['sign/up'] = 'Home/register';
 $route['settings'] = 'account_settings/Account_settings/index';
 $route['home'] = 'Home/index';
@@ -13,6 +14,7 @@ $route['zerar_menu'] = 'area_a/Area_a/zerar_notificacoes_menu';
 $route['data_menu'] = 'area_a/Area_a/data_menu';
 $route['invite'] = 'invite/Invite/index';
 $route['invitesend'] = 'invite/Invite/enviar';
+$route['passrecovery'] = 'Login/renew_senha';
 
 
 $route['404_override'] = 'Home/error_404';
