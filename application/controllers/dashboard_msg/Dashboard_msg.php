@@ -71,12 +71,14 @@ class Dashboard_msg extends Home_Controller
     }
     public function get_msg_menu(){
         $user = (object)$this->data_user();
-        $data  =  reset( $this->mongodb->atos->msg_usuarios->find( ['codusuario'=>$user->_id],['projection'=>['msg'=>['$slice'=>-3]]])->toArray() );
+        //consulta com limit no subdocumento
+        $data  =   $this->mongodb->atos->msg_usuarios->findOne( ['from'=>$user->_id],['projection'=>['msg'=>['$slice'=>-3]]]);
+
         if( $data ){
             foreach($data['msg'] as $row){
-                $user                   = reset( $this->Us_usuarios_model->getWhereMongo(['_id'=>reset($row['codusuario'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL) );
+                $user                   = $this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']],"created_at",-1,NULL, NULL,TRUE) ;
                 $row['name']            = ucfirst( $user['nome'] ) . " " . ucfirst( $user['sobrenome'] );
-                $path                   = reset( $this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>reset($row['codusuario'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+                $path                   = $this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['codusuario']],"created_at",-1,NULL,NULL,TRUE);
                 $row['img_profile']     = !empty( $path['server_name'])?$path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file']:false;
 
                 $dias = 0;

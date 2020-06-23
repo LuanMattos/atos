@@ -136,25 +136,38 @@
                                     <i class="fas fa-comment-dots"></i>
                                 </a>
                                 <div class="dropdown-menu message-dropdown dropdown-menu-right">
-                                    <template v-for="msg in msg_menu">
-                                        <div class="user-request-list">
-                                            <div class="request-users">
-                                                <div class="user-request-dt">
-                                                    <a href="#">
-                                                        <img v-bind:src="msg.img_profile"
-                                                             class="crop-img-chat">
-                                                        <div class="user-title1">{{msg.name}}</div>
-                                                        <span>{{msg.text | crop_string}}</span>
-                                                    </a>
+                                    <template v-if="msg_menu.length">
+                                        <template v-for="msg in msg_menu">
+                                            <div class="user-request-list">
+                                                <div class="request-users">
+                                                    <div class="user-request-dt">
+                                                        <a href="#">
+                                                            <img v-bind:src="msg.img_profile?msg.img_profile:path_img_time_line_default"
+                                                                 class="crop-img-chat">
+                                                            <div class="user-title1">{{msg.name}}</div>
+                                                            <span>{{msg.text | crop_string}}</span>
+                                                        </a>
+                                                        <div class="time4">{{msg.dias}}  atrás</div>
+                                                    </div>
                                                 </div>
-                                                <div class="time4">{{msg.dias}}  atrás</div>
                                             </div>
+                                        </template>
+                                        <div class="user-request-list">
+                                            <a href="<?= site_url('dashboard_msg/Dashboard_msg/index') ?>" class="view-all">Visualizar todas mensagens</a>
                                         </div>
                                     </template>
-                                    <div class="user-request-list">
-                                        <a href="<?= site_url('dashboard_msg/Dashboard_msg/index') ?>" class="view-all">Visualizar
-                                            todas mensagens</a>
-                                    </div>
+                                    <template v-else>
+                                        <div class="user-request-list " style="background-color: #dfe8e3">
+                                            <div class="request-users card-list-solicitacao">
+                                                <div class="user-request-dt " style="font-size: 32px;margin-left:40%">
+                                                    <i class="far fa-frown"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="div-sem-solicitacoes">
+                                            <a class="content-sem-solicitacoes">Sem mensagens</a>
+                                        </div>
+                                    </template>
                                 </div>
                             </li>
                             <li class="dropdown">

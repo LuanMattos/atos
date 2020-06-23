@@ -1,6 +1,6 @@
 <div class="user-data full-width" >
     <div class="categories-left-heading">
-        <h6><a href="<?= site_url("pessoas/Pessoas/index")?>">Sugestões </a></h6>
+        <h6>Sugestões</h6>
     </div>
     <template v-for="(i,l) in users_menu">
         <div class="sugguest-user">
