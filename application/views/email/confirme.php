@@ -181,31 +181,26 @@
             <!--            <input type="button" name="previous" class="previous action-button" value="Não fui eu!"/>-->
         </fieldset>
     <?php else: ?>
+        <ul id="progressbar" style="<?= isset( $cadastro ) ?'':'display:none' ?>">
+            <li class="active">Cadastro</li>
+            <li class="active">Verificação</li>
+            <li>Configuração</li>
+        </ul>
 
-    <ul id="progressbar" style="<?= isset( $cadastro ) ?'':'display:none' ?>">
-        <li class="active">Cadastro</li>
-        <li class="active">Verificação</li>
-        <li>Configuração</li>
-    </ul>
-
-    <fieldset>
-        <h2 class="fs-title">Parabéns <?= set_val( $nome ) . " " . set_val( $sobrenome ) ?> estamos quase lá</h2>
-        <h3 class="fs-subtitle">Código de confirmação</h3>
-        <h3 class="codigo-confirmacao"><?= set_val( $codigo_confirmacao )  ?></h3>
-    </fieldset>
-    <br>
-    <?php if(isset($alteracao_senha)): ?>
         <fieldset>
-            <h2 class="fs-title">Atenção! Recebemos um pedido de alteração de senha!</h2>
-            <h3 class="fs-subtitle">Se não foi você, click em "não fui eu", se foi clique em <b>Redefinir</b></h3>
-            <!--		<input type="text" name="fname" placeholder="First Name" />-->
-            <!--		<input type="text" name="lname" placeholder="Last Name" />-->
-            <!--		<input type="text" name="phone" placeholder="Phone" />-->
-            <!--		<textarea name="address" placeholder="Address"></textarea>-->
-            <input type="button" name="previous" class="previous action-button" value="Não fui eu!"/>
-            <input type="submit" name="submit" class="submit action-button" value="Redefinir"/>
+            <h2 class="fs-title">Parabéns <?= set_val( $nome ) . " " . set_val( $sobrenome ) ?> estamos quase lá</h2>
+            <h3 class="fs-subtitle">Código de confirmação</h3>
+            <h3 class="codigo-confirmacao"><?= set_val( $codigo_confirmacao )  ?></h3>
         </fieldset>
-    <?php endif; ?>
+        <br>
+        <?php if(isset($alteracao_senha)): ?>
+            <fieldset>
+                <h1 class="fs-title">Atenção! Recebemos um pedido de alteração de senha!</h1>
+                <h2 class="fs-title">Seu código de verificação é <?= set_val( $codigo_confirmacao )  ?></h2>
+                <h3 class="fs-subtitle">Clique aqui <a href="<?= isset($link)?$link:'' ?>" target="_blank">para redefinir</a></b></h3>
+<!--                <a href="--><?//= isset($link_nao_fui_eu)?$link_nao_fui_eu:'' ?><!--" name="previous" class="previous action-button" value="Não fui eu!"/>-->
+            </fieldset>
+        <?php endif; ?>
     <?php endif; ?>
 
 </form>

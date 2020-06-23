@@ -39,6 +39,15 @@ class RestoreAccount extends GeneralService {
         return false;
 
     }
+    public function generate_link_pass( $hostoff = false ){
+        $host = '';
+        if( !$hostoff ){
+            $host = site_url();
+        }
+       $uniq =  uniqid();
+       $link = $host . 'john34Gsiremailcom' . "/" . $uniq;
+       return $link;
+    }
 
 
 }

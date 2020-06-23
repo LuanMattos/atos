@@ -15,7 +15,9 @@ $route['data_menu'] = 'area_a/Area_a/data_menu';
 $route['invite'] = 'invite/Invite/index';
 $route['invitesend'] = 'invite/Invite/enviar';
 $route['passrecovery'] = 'Login/renew_senha';
-
+$route['linkrenew'] = 'Login/send_link_renew_pass';
+$route['john34Gsiremailcom/(:any)'] = 'Login/verify_pass_index';
+$route['confirm_password'] = 'Login/save_pass';
 
 $route['404_override'] = 'Home/error_404';
 
