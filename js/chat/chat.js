@@ -57,7 +57,7 @@ var vue_instance_chat = new Vue({
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
               // window.location.host
-              self.ws = new WebSocket('wss://' + 'www.taskme.click' + ':8090?' + this._data.user_local.usuario.login);
+              self.ws = new WebSocket('wss://' + window.location.host + ':8090?' + this._data.user_local.usuario.login);
 
             }else{
                 console.debug("Usuário não possui identificação válida!");
