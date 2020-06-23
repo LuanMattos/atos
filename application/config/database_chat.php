@@ -3,13 +3,13 @@ class database_chat  {
 
 
     public function config_mongo($shell = false){
-        $hostname = "172.20.0.3";
+        $hostname = "172.20.0.2";
 
         if($shell){
             $hostname = "localhost";
         }else{
             if(ENVIRONMENT === 'production'){
-                $hostname = '172.20.0.3';
+                $hostname = '172.20.0.2';
             }else{
                 $hostname = 'mongo';
             }
