@@ -261,4 +261,9 @@ INSTALAÇÃO NODE E WEBSOCKET
     -sudo apt install npm
     -npm install ws
      -sudo docker cp php_apache:/etc/letsencrypt/live/www.atos.click/fullchain.pem /public_html/atosnode
+     -npm install pm2 -g (deploy e execucao segundo plano)
+     - pm2 start server.js --name monitor
+
+
+Ver sobre kubernates
 

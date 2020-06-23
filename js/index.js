@@ -20,14 +20,16 @@ var index = {
                 erro_envio_email:"Erro ao enviar e-mail de confirmação! Tente novamente"
 
             }
-        }
+        },
     });
 
     var bg = $(".body-bg");
 
     bg.find(".login-btn").on("click", function (event) {
+        App.spinner_start();
         event.preventDefault();
         event.stopPropagation();
+
         vue_instance.form.telcel = $("input[name='telcel']").val();
         vue_instance.form.datanasc = $("input[name='datanasc']").val();
         $.post(
@@ -42,7 +44,7 @@ var index = {
                 if(j.info){
                     window.location.href = App.url("verification","Verification","index");
                 }
-
+                App.spinner_stop();
             }, 'json');
 
 
