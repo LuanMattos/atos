@@ -188,7 +188,11 @@ var vue_instance_menu = new Vue({
             var self = this;
             var url  = App.url("dashboard_msg","Dashboard_msg","get_msg_menu");
             axios({ method: 'post', url : url, data : false })
-              .then(function( json ){self.msg_menu =  json.data.data.msg; });
+              .then(function( json ){
+                  if(json.data.data){
+                      self.msg_menu =  json.data.data.msg;
+                  }
+              });
         },
         zerar_notificacoes:function( amigos ){
             $('.count-notify').text('');

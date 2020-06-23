@@ -38,11 +38,13 @@ var vue_instance_menu_chat = new Vue({
             if(json.data.data) {
               json.data.data.msg.map(function (el,index ) {
                 el.img_profile = json.data.usuario.img_profile;
-              })
+                }
+              )
               vue_instance_chat._data.messages = json.data.data.msg;
+            }
+            App.spinner_chat_stop();
           }
-          App.spinner_chat_stop();
-        });
+        );
       var chat = $(".chat-content");
 
       if( chat.is(":visible") ){

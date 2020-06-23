@@ -85,6 +85,7 @@ var vm = new Vue({
               } else {
                   vm.error_text_area = false;
               }
+              App.spinner_start();
               $.ajax({
                     url: url,
                     data: data,
@@ -96,12 +97,14 @@ var vm = new Vue({
                         var text_area = $('#text-area-postagem').val();
                         if (response) {
                             var data = {
-                                'text': text_area,
+                                'text': response.text_timeline,
                                 'path': response.path,
-                                '_id': response.id
+                                '_id': response.id,
+                              'img_profile':response.img_profile
                             };
                             vm.posts.unshift(data);
                         }
+                      App.spinner_stop();
                     }
                 }
               );

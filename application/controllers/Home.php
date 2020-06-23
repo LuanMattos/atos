@@ -337,7 +337,6 @@ class Home extends Home_Controller
             $hash         = uniqid(rand()).date("Y-m-d H:i:so");
             $data_user    = $this->session->get_userdata();
             $get_usuarios  = $this->mongodb->atos->us_usuarios->find(['login'=>$data_user['login']]);
-
             foreach($get_usuarios as $get_usuario) {
 
                 $search         = ["(", ")", ".", "-", " ", "X", "*", "!", "@", "'", "´", ",", "+", ":"];
@@ -362,11 +361,14 @@ class Home extends Home_Controller
                         'codusuario'     => $get_usuario['_id'],
                         'created_at'     => date('Y-m-d H:i:s'),
                         'updated_at'     => date('Y-m-d H:i:s'),
-                        'like'           => []
+                        'like'           => [],
                     ]);
                     $id   = reset($id->getInsertedId());
                     $path = 'https://s3.amazonaws.com/' . $bucket_name . '/' . $name_folder_user . '/' . $name_file;
-                    $this->response('success', compact('path','id'));
+//                    $return = [];
+//                    $return['text_timeline'] = $text_timeline;
+                    $img_profile = $this->data_user()['img_profile'];
+                    $this->response('success', compact('path','id','text_timeline','img_profile'));
 
                 } else {
                     $this->response('error', ['msg' => 'Erro ao baixar a imagem para o servidor!']);
