@@ -82,6 +82,7 @@ die('This file is used for development purposes only.');
  * @property Us_usuarios_conta_model            $Us_usuarios_conta_model                Model responsavel pelo relacionamento dos usuarios em relacao de solicitacoes (mongo)
  * @property Msg_usuarios_model            $Msg_usuarios_model                Model de troca de mensagens do usuario
  * @property Controll_acess_external_model            $Controll_acess_external_model                Model de troca de mensagens do usuario
+ * @property Access_login_model            $Access_login_model                Model de troca de mensagens do usuario
 
 
 

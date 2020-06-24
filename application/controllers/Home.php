@@ -22,6 +22,17 @@ class Home extends Home_Controller
     public function index(){
 //        debug(password_hash("kvmxea", PASSWORD_DEFAULT));//criptografa a sessão
         $datasession    = $this->session->get_userdata();
+        $sec = [];
+        $sec['HTTP_CLIENT_IP'] = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : '';
+        $sec['HTTP_CLIENT_IP'] = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : '';
+        $sec['HTTP_X_FORWARDED_FOR'] = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : '';
+        $sec['REMOTE_ADDR'] = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+        $externalContent = file_get_contents('http://checkip.dyndns.com/');
+        $cleanIp = strip_tags($externalContent);
+        $ip_externo_clear = preg_replace("/[^0-9]/", "", $cleanIp);
+        $sec['ip_external_1'] = $ip_externo_clear;
+        $this->load->model('security/Access_login_model');
+        $this->Access_login_model->save_mongo($sec);
 
         if(isset($datasession['login'])){
             $data = $this->mongodb->atos->us_usuarios->find(['login'=>$datasession['login']]);
