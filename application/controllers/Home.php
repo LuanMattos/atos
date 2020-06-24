@@ -379,7 +379,7 @@ class Home extends Home_Controller
     /**
      * Retorna postagens
     **/
-    public function get_storage_img($timeline = false){
+    public function get_storage_img($timeline = false,$limit = false,$offset = "0"){
         $id_external    = $this->input->post("id",true);
         $user_logado    = $this->data_user();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
@@ -394,6 +394,7 @@ class Home extends Home_Controller
         }
 
         if( $timeline ){
+            $limit = (integer)$limit;
             $amigos = reset( $this->Us_amigos_model->getWhereMongo( ['_id'=>$user_logado['_id']] ) );
             if( $amigos ){
                 foreach ( $amigos['amigos'] as $row_amizades ) {
@@ -405,15 +406,17 @@ class Home extends Home_Controller
 
         foreach ($get_usuario as $row_usuarios) {
             $us_storage_img     = $this->mongodb->atos->us_storage_img;
-            $options            = ["sort" => ["created_at" => -1]];
+            $options            = ["sort" => ["created_at" => -1],'limit'=>$limit, 'skip'=>(integer)$offset];
             $data_time_line     = $us_storage_img->find(['codusuario'=>['$in'=>$ids]], $options);
+
 
             $data               = [];
             $row['img_profile'] = false;
 
             foreach ($data_time_line->toArray() as $row) {
 
-                $find_img   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['codusuario']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+                $find_img   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['codusuario']],"created_at",-1 ,1 ,NULL));
+
                 $imgprofile = !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
                 $url        = !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
                 $text       = $row['text_timeline'];

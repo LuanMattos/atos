@@ -27,7 +27,8 @@ var vm = new Vue({
           inputFocus: false,
           action_like:'fas fa-heart',
           display_notification:'hide',
-          name_new_message:''
+          name_new_message:'',
+          offset:0
 
       },
       created () {
@@ -50,10 +51,15 @@ var vm = new Vue({
       },
       methods: {
           getPosts () {
-              // for (var i = 0; i < 5; i++) {
-              //     var count = this.posts.length + i
-              //     this.posts.push({count})
-              // }
+            this.offset ++;
+            $.post( home.Url("get_storage_img/" + true + "/" + 2 + "/" + this.offset), {}, function(json){
+              if(json.data.length){
+                vm.$data.posts.unshift(json.data[0]);
+              }else{
+                this.loading = true;
+              }
+              },'json');
+
           },
           close_notify :function(){
             this.display_notification = 'hide';
@@ -171,4 +177,4 @@ var vm = new Vue({
       }
   }
 );
-$.post( home.Url("get_storage_img/" + true), {}, function(json){vm.$data.posts = json.data},'json');
+

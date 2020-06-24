@@ -91,7 +91,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="like-comments">
+                                <div class="like-comments ">
                                     <div class="left-comments">
                                        <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
                                           <i v-bind:class="action_like  + ' ' + (post.liked ? 'text-like':'')" ></i>
@@ -114,16 +114,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
-<!--        <mugen-scroll :handler="getPosts" :should-handle="!loading">-->
-<!--            <div class="container">-->
-<!--                <div class="spinner">-->
-<!--                    <div class="bounce1"></div>-->
-<!--                    <div class="bounce2"></div>-->
-<!--                    <div class="bounce3"></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </mugen-scroll>-->
+        <mugen-scroll :handler="getPosts" :should-handle="!loading">
+            <div class="container">
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+        </mugen-scroll>
     </div>
 </div>
+
