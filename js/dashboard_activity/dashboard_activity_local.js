@@ -15,25 +15,57 @@ var vue_instance_dashboard_activity_local = new Vue({
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
         action_like:'fas fa-heart',
         display_notification:'hide',
-        name_new_message:''
+        name_new_message:'',
+        offset:0,
+        loading:true
+    },
+    created () {
+        window.addEventListener('scroll', this.handleScroll);
+        this.getPosts()
     },
     mounted:function(){
         var self_vue  = this;
         // -------------------------------------------
         var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
         $.post(url, {}, function(response){ self_vue.$data.amigos = response.data.amigos; },'json');
-        $.post(App.url("","Home","get_storage_img"), {}, function(json){ vue_instance_dashboard_activity_local.$data.posts = json.data },'json')
+        // $.post(App.url("","Home","get_storage_img"), {}, function(json){ vue_instance_dashboard_activity_local.$data.posts = json.data },'json')
         // ------------------profile-------------------
         var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
         $.post(url, {}, function(response){ self_vue.$data.amigos = response.data.amigos; },'json');
         // --------------------------------------------
         var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
         $.post(url, {}, function(response){ self_vue.$data.amigos = response.data.amigos; },'json');
-
-
-
     },
     methods:{
+        getPosts () {
+            var self_data = this.$data;
+            $.post( App.url("","home","get_storage_img/" + true + "/" + 1 + "/" + this.offset), {}, function(json){
+                if( json.data.length ){
+                    var values = self_data.posts.filter(function (){
+                        return json.data[0]._id;
+                        }
+                    )
+                    if( values ){
+                        self_data.posts.push( json.data[0] );
+                    }
+                }
+            },'json');
+
+            self_data.loading = false;
+            this.offset ++;
+        },
+        handleScroll() {
+            let scrollHeight = window.scrollY
+            let maxHeight = window.document.body.scrollHeight - window.document.documentElement.clientHeight
+
+            if (scrollHeight >= maxHeight - 200) {
+                this.getPosts()
+            }
+        },
+        smartTrim(string, maxLength) {
+            var trimmedString = string.substr(0, maxLength);
+            return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
+        },
         close_notify :function(){
             this.display_notification = 'hide';
         },

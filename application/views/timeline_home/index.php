@@ -115,9 +115,11 @@
                 </div>
             </div>
         </div>
-        <div class="scrollpane">
-            <ul id="results" />
-        </div>
+        <template v-if="loading">
+            <div class="scrollpane">
+                <ul id="results" />
+            </div>
+        </template>
     </div>
 </div>
 

@@ -18,7 +18,7 @@ var vm = new Vue({
           path_img_cover_default: location.origin + '/application/assets/libs/images/event-view/my-bg.jpg',
           path_img_time_line_default: location.origin + '/application/assets/libs/images/event-view/user-1.jpg',
           posts: [],
-          loading: false,
+          loading: true,
           error_input_file: false,
           error_text_area: false,
           acData: [],
@@ -33,7 +33,7 @@ var vm = new Vue({
       },
       created () {
         window.addEventListener('scroll', this.handleScroll);
-        this.getPosts()
+        // this.getPosts()
       },
       mounted: function () {
 
@@ -52,14 +52,22 @@ var vm = new Vue({
       },
       methods: {
           getPosts () {
-            this.offset ++;
+            var self_data = this.$data;
+
             $.post( home.Url("get_storage_img/" + true + "/" + 1 + "/" + this.offset), {}, function(json){
-              if(json.data.length){
-                vm.$data.posts.push(json.data[0]);
-              }else{
-                this.loading = true;
-              }
+              if( json.data.length ){
+                var values = self_data.posts.filter(function (){
+                    return json.data[0]._id;
+                    }
+                  )
+                  if( values ){
+                    self_data.posts.push( json.data[0] );
+                    }
+                  }
               },'json');
+
+            self_data.loading = false;
+            this.offset ++;
 
           },
           handleScroll() {

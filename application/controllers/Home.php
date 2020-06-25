@@ -393,7 +393,7 @@ class Home extends Home_Controller
     /**
      * Retorna postagens
     **/
-    public function get_storage_img($timeline = false,$limit = false,$offset = "0"){
+    public function get_storage_img($timeline = false,$limit = 10,$offset = 0){
         $id_external    = $this->input->post("id",true);
         $user_logado    = $this->data_user();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
