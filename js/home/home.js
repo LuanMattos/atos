@@ -33,7 +33,7 @@ var vm = new Vue({
       },
       created () {
         window.addEventListener('scroll', this.handleScroll);
-        // this.getPosts()
+        this.getPosts()
       },
       mounted: function () {
 
@@ -60,10 +60,10 @@ var vm = new Vue({
               offset:this.offset
             }, function(json){
               if( json.data.length ){
-                var values = self_data.posts.filter(function (){
-                    return json.data[0]._id;
-                    }
-                  )
+                    var values = self_data.posts.filter(function (){
+                        return json.data[0]._id;
+                        }
+                      )
                   if( values ){
                     self_data.posts.push( json.data[0] );
                     }

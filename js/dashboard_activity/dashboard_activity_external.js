@@ -13,7 +13,9 @@ var vue_instance_dashboard_activity_external = new Vue({
         posts   : [],
         amigos  : [],
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
-        action_like:'fas fa-heart'
+        action_like:'fas fa-heart',
+        display_notification:'hide',
+
 
     },
     mounted:function(){

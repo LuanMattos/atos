@@ -21,7 +21,7 @@ var vue_instance_dashboard_activity_local = new Vue({
     },
     created () {
         window.addEventListener('scroll', this.handleScroll);
-        this.getPosts()
+        this.getPosts(5)
     },
     mounted:function(){
         var self_vue  = this;
@@ -44,10 +44,10 @@ var vue_instance_dashboard_activity_local = new Vue({
                 offset:this.offset
             }, function(json){
                 if( json.data.length ){
-                    var values = self_data.posts.filter(function (){
-                        return json.data[0]._id;
-                        }
-                    )
+                        var values = self_data.posts.filter(function (){
+                            return json.data[0]._id;
+                            }
+                        )
                     if( values ){
                         self_data.posts.push( json.data[0] );
                     }
