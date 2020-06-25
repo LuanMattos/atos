@@ -39,7 +39,10 @@ var vue_instance_dashboard_activity_local = new Vue({
     methods:{
         getPosts () {
             var self_data = this.$data;
-            $.post( App.url("","home","get_storage_img/" + true + "/" + 1 + "/" + this.offset), {}, function(json){
+            $.post( App.url("","home","get_storage_img/"), {
+                limit:1,
+                offset:this.offset
+            }, function(json){
                 if( json.data.length ){
                     var values = self_data.posts.filter(function (){
                         return json.data[0]._id;

@@ -54,7 +54,11 @@ var vm = new Vue({
           getPosts () {
             var self_data = this.$data;
 
-            $.post( home.Url("get_storage_img/" + true + "/" + 1 + "/" + this.offset), {}, function(json){
+            $.post( home.Url("get_storage_img/"), {
+              timeline:true,
+              limit:1,
+              offset:this.offset
+            }, function(json){
               if( json.data.length ){
                 var values = self_data.posts.filter(function (){
                     return json.data[0]._id;

@@ -154,8 +154,8 @@ class Home extends Home_Controller
                 $error['repsenha'] = "Senha com no mínimo 8 caracteres!";
             }
         }
-        $pre_snome = preg_match('/[^[:alpha:]_]/', $data->sobrenome);
-        if(empty($data->sobrenome) || empty($data->nome) || !empty($pre_snome)){
+        $data->sobrenome = addslashes($data->sobrenome);
+        if(empty($data->sobrenome) || empty($data->nome) || is_numeric($data->sobrenome)){
             $error['sobrenome'] = "Nome e/ou sobrenome inválido(s)!";
         }
 
@@ -393,7 +393,13 @@ class Home extends Home_Controller
     /**
      * Retorna postagens
     **/
-    public function get_storage_img($timeline = false,$limit = 10,$offset = 0){
+    public function get_storage_img(){
+        $timeline       = $this->input->post('timeline',true);
+        $lim            = $this->input->post('limit',true);
+        $limit          = $lim?(integer)$lim:10;
+        $off            = $this->input->post('offset',true);
+        $offset         = $off?$off:0;
+
         $id_external    = $this->input->post("id",true);
         $user_logado    = $this->data_user();
         $get_usuario    = $this->mongodb->atos->us_usuarios->find(['login'=>$user_logado['login']]);
