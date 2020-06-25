@@ -32,7 +32,8 @@ var vm = new Vue({
 
       },
       created () {
-          this.getPosts()
+        window.addEventListener('scroll', this.handleScroll);
+        this.getPosts()
       },
       mounted: function () {
 
@@ -52,14 +53,26 @@ var vm = new Vue({
       methods: {
           getPosts () {
             this.offset ++;
-            $.post( home.Url("get_storage_img/" + true + "/" + 2 + "/" + this.offset), {}, function(json){
+            $.post( home.Url("get_storage_img/" + true + "/" + 1 + "/" + this.offset), {}, function(json){
               if(json.data.length){
-                vm.$data.posts.unshift(json.data[0]);
+                vm.$data.posts.push(json.data[0]);
               }else{
                 this.loading = true;
               }
               },'json');
 
+          },
+          handleScroll() {
+            let scrollHeight = window.scrollY
+            let maxHeight = window.document.body.scrollHeight - window.document.documentElement.clientHeight
+
+            if (scrollHeight >= maxHeight - 200) {
+              this.getPosts()
+            }
+          },
+          smartTrim(string, maxLength) {
+            var trimmedString = string.substr(0, maxLength);
+            return trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
           },
           close_notify :function(){
             this.display_notification = 'hide';

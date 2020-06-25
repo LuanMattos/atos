@@ -22,17 +22,20 @@ class Home extends Home_Controller
     public function index(){
 //        debug(password_hash("kvmxea", PASSWORD_DEFAULT));//criptografa a sessão
         $datasession    = $this->session->get_userdata();
-        $sec = [];
-        $sec['HTTP_CLIENT_IP'] = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : '';
-        $sec['HTTP_CLIENT_IP'] = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : '';
-        $sec['HTTP_X_FORWARDED_FOR'] = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : '';
-        $sec['REMOTE_ADDR'] = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-        $externalContent = file_get_contents('http://checkip.dyndns.com/');
-        $cleanIp = strip_tags($externalContent);
-        $ip_externo_clear = preg_replace("/[^0-9]/", "", $cleanIp);
-        $sec['ip_external_1'] = $ip_externo_clear;
-        $this->load->model('security/Access_login_model');
-        $this->Access_login_model->save_mongo($sec);
+
+        if( ENVIRONMENT === 'production' ){
+            $sec = [];
+            $sec['HTTP_CLIENT_IP'] = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : '';
+            $sec['HTTP_CLIENT_IP'] = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : '';
+            $sec['HTTP_X_FORWARDED_FOR'] = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : '';
+            $sec['REMOTE_ADDR'] = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+            $externalContent = file_get_contents('http://checkip.dyndns.com/');
+            $cleanIp = strip_tags($externalContent);
+            $ip_externo_clear = preg_replace("/[^0-9]/", "", $cleanIp);
+            $sec['ip_external_1'] = $ip_externo_clear;
+            $this->load->model('security/Access_login_model');
+            $this->Access_login_model->save_mongo($sec);
+        }
 
         if(isset($datasession['login'])){
             $data = $this->mongodb->atos->us_usuarios->find(['login'=>$datasession['login']]);
@@ -406,7 +409,8 @@ class Home extends Home_Controller
 
         if( $timeline ){
             $limit = (integer)$limit;
-            $amigos = reset( $this->Us_amigos_model->getWhereMongo( ['_id'=>$user_logado['_id']] ) );
+            $amigos =  $this->Us_amigos_model->getWhereMongo( ['_id'=>$user_logado['_id']],"_id",-1,NULL,NULL,TRUE );
+
             if( $amigos ){
                 foreach ( $amigos['amigos'] as $row_amizades ) {
                     array_push($ids,reset($row_amizades['_id']));
@@ -420,20 +424,18 @@ class Home extends Home_Controller
             $options            = ["sort" => ["created_at" => -1],'limit'=>$limit, 'skip'=>(integer)$offset];
             $data_time_line     = $us_storage_img->find(['codusuario'=>['$in'=>$ids]], $options);
 
-
             $data               = [];
             $row['img_profile'] = false;
 
             foreach ($data_time_line->toArray() as $row) {
 
-                $find_img   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['codusuario']],"created_at",-1 ,1 ,NULL));
+                $find_img   = $this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$row['codusuario']],"created_at",-1 ,1 ,NULL,TRUE);
 
                 $imgprofile = !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
                 $url        = !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
                 $text       = $row['text_timeline'];
-                $name_user  = reset($this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']]));
+                $name_user  = $this->Us_usuarios_model->getWhereMongo(['_id'=>$row['codusuario']],"created_at",-1 ,1 ,NULL,TRUE);
                 $liked      = false;
-
                 foreach($row['like'] as $line){
                     if(reset($line['_id']) === $user_logado['_id']){
                         $liked = true;

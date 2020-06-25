@@ -7,7 +7,7 @@ $query_builder  = TRUE;
 if(ENVIRONMENT === 'production'){
     $hostname = 'www.atos.click';
 }else{
-    $hostname = '54.237.142.136';
+    $hostname = 'localhost';
 }
 $db['default']  = [
 	'dsn'	        => '',

@@ -115,15 +115,9 @@
                 </div>
             </div>
         </div>
-        <mugen-scroll :handler="getPosts" :should-handle="!loading">
-            <div class="container">
-                <div class="spinner">
-                    <div class="bounce1"></div>
-                    <div class="bounce2"></div>
-                    <div class="bounce3"></div>
-                </div>
-            </div>
-        </mugen-scroll>
+        <div class="scrollpane">
+            <ul id="results" />
+        </div>
     </div>
 </div>
 
