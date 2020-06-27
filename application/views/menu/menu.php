@@ -10,8 +10,8 @@
                         </button>
 
                         <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-start bg-dark1 p-3 p-lg-0 mt1-5 mt-lg-0 mobileMenu">
-                            <div class="open" id="navbarSupportedContent">
-                                <a class="text-white " href="<?= site_url('home') ?>">
+                            <div class="open " id="navbarSupportedContent">
+                                <a class="text-white hover-default" href="<?= site_url('home') ?>">
                                     <b style="font-size: 25px">atos</b>
                                 </a>
                             </div>
@@ -153,7 +153,7 @@
                                             </div>
                                         </template>
                                         <div class="user-request-list">
-                                            <a href="<?= site_url('dashboard_msg/Dashboard_msg/index') ?>" class="view-all">Visualizar todas mensagens</a>
+                                            <a href="<?= site_url('view_full_messages') ?>" class="view-all">Visualizar todas mensagens</a>
                                         </div>
                                     </template>
                                     <template v-else>
@@ -167,6 +167,13 @@
                                         <div class="div-sem-solicitacoes">
                                             <a class="content-sem-solicitacoes">Sem mensagens</a>
                                         </div>
+
+<!--                                        Apenas para teste-->
+                                        <div class="user-request-list">
+                                            <a href="<?= site_url('view_full_messages') ?>" class="view-all">Visualizar todas mensagens</a>
+                                        </div>
+
+
                                     </template>
                                 </div>
                             </li>

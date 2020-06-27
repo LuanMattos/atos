@@ -18,6 +18,7 @@ $route['passrecovery'] = 'Login/renew_senha';
 $route['linkrenew'] = 'Login/send_link_renew_pass';
 $route['john34Gsiremailcom/(:any)'] = 'Login/verify_pass_index';
 $route['confirm_password'] = 'Login/save_pass';
+$route['view_full_messages'] = 'dashboard_msg/Dashboard_msg/index';
 
 $route['404_override'] = 'Home/error_404';
 

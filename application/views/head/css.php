@@ -1,8 +1,9 @@
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, shrink-to-fit=9">
 <meta name="description" content="Atos - social network">
-<meta name="author" content="Atos">
+<meta name="description" content="Atos - Rede Social">
+<meta name="Patrick Luan de Mattos - Atos" content="Atos">
 <title>Atos</title>
 
 <!-- Favicon Icon -->

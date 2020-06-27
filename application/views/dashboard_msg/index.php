@@ -1,56 +1,255 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <?php $this->load->view('head/css') ?>
-</head>
+    <link href="<?= URL_RAIZ() ?>application/assets/libs/css/modules/msg_usuarios/dashboard/style.scss"
+          rel="stylesheet">
 
+</head>
 <body>
-<?php  if(isset($dados)):
+
+<?php if (isset($dados)):
     $data = $dados;
 else:
     $data = [];
 endif;
 ?>
-<?php $this->load->view("menu/menu",compact("data")) ?>
+<div v-bind:class="display_notification" style="z-index: 1000;position:fixed;float:bottom;right:1%;bottom:10%" v-cloak>
+    <section @click="close_notify()">
+        <div class="tn-box tn-box-color-2">
+            <p>
+                {{name_new_message | firstUpperCase}} enviou uma nova mensagem
+                &nbsp; <i class="fas fa-flag-checkered"></i>
+            </p>
+        </div>
+    </section>
+</div>
 <main class="dashboard-mp">
-
-    <?php $this->load->view("area_b/index"); ?>
-    <?php $this->load->view("area_c_dashboard_msg/index"); ?>
+    <?php $this->load->view("menu/menu", compact("data")); ?>
 </main>
-<!-- Body End -->
-<!-- Footer Start -->
+<div class="container-msg-container">
+    <div class="wrapper-dashboard-msg">
+        <div class="container-dashboard-msg">
+            <div class="left">
+                <div class="top">
+                    <input type="text" class="title-discussion-input"/>
+                </div>
+                <ul class="people">
+                    <li class="person" data-chat="person1">
+                        <img src="https://s13.postimg.org/ih41k9tqr/img1.jpg" alt=""/>
+                        <span class="name">Thomas Bangalter</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">I was wondering...</span>
+                    </li>
+                    <li class="person" data-chat="person2">
+                        <img src="https://s3.postimg.org/yf86x7z1r/img2.jpg" alt=""/>
+                        <span class="name">Dog Woofson</span>
+                        <span class="time">1:44 PM</span>
+                        <span class="preview">I've forgotten how it felt before</span>
+                    </li>
+                    <li class="person" data-chat="person3">
+                        <img src="https://s3.postimg.org/h9q4sm433/img3.jpg" alt=""/>
+                        <span class="name">Louis CK</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">But we’re probably gonna need a new carpet.</span>
+                    </li>
+                    <li class="person" data-chat="person4">
+                        <img src="https://s3.postimg.org/quect8isv/img4.jpg" alt=""/>
+                        <span class="name">Bo Jackson</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">It’s not that bad...</span>
+                    </li>
+                    <li class="person" data-chat="person5">
+                        <img src="https://s16.postimg.org/ete1l89z5/img5.jpg" alt=""/>
+                        <span class="name">Michael Jordan</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">Wasup for the third time like is you bling bitch</span>
+                    </li>
+                    <li class="person" data-chat="person6">
+                        <img src="https://s30.postimg.org/kwi7e42rh/img6.jpg" alt=""/>
+                        <span class="name">Drake</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">howdoyoudoaspace</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="top">
+                    <i class="fas fa-caret-left"></i>
+                    <span>To: <span class="name">Dog Woofson</span></span>
+                </div>
+                <div class="chat" data-chat="person1">
+                    <div class="conversation-start">
+                        <span>Today, 6:48 AM</span>
+                    </div>
+                    <div class="bubble you">
+                        Hello,
+                    </div>
+                    <div class="bubble you">
+                        it's me.
+                    </div>
+                    <div class="bubble you">
+                        I was wondering...
+                    </div>
+                </div>
+                <div class="chat" data-chat="person2">
+                    <div class="conversation-start">
+                        <span>Today, 5:38 PM</span>
+                    </div>
+                    <div class="bubble you">
+                        Hello, can you hear me?
+                    </div>
+                    <div class="bubble you">
+                        I'm in California dreaming
+                    </div>
+                    <div class="bubble me">
+                        ... about who we used to be.
+                    </div>
+                    <div class="bubble me">
+                        Are you serious?
+                    </div>
+                    <div class="bubble you">
+                        When we were younger and free...
+                    </div>
+                    <div class="bubble you">
+                        I've forgotten how it felt before
+                    </div>
+                </div>
+                <div class="chat" data-chat="person3">
+                    <div class="conversation-start">
+                        <span>Today, 3:38 AM</span>
+                    </div>
+                    <div class="bubble you">
+                        Hey human!
+                    </div>
+                    <div class="bubble you">
+                        Umm... Someone took a shit in the hallway.
+                    </div>
+                    <div class="bubble me">
+                        ... what.
+                    </div>
+                    <div class="bubble me">
+                        Are you serious?
+                    </div>
+                    <div class="bubble you">
+                        I mean...
+                    </div>
+                    <div class="bubble you">
+                        It’s not that bad...
+                    </div>
+                    <div class="bubble you">
+                        But we’re probably gonna need a new carpet.
+                    </div>
+                </div>
+                <div class="chat" data-chat="person4">
+                    <div class="conversation-start">
+                        <span>Yesterday, 4:20 PM</span>
+                    </div>
+                    <div class="bubble me">
+                        Hey human!
+                    </div>
+                    <div class="bubble me">
+                        Umm... Someone took a shit in the hallway.
+                    </div>
+                    <div class="bubble you">
+                        ... what.
+                    </div>
+                    <div class="bubble you">
+                        Are you serious?
+                    </div>
+                    <div class="bubble me">
+                        I mean...
+                    </div>
+                    <div class="bubble me">
+                        It’s not that bad...
+                    </div>
+                </div>
+                <div class="chat" data-chat="person5">
+                    <div class="conversation-start">
+                        <span>Today, 6:28 AM</span>
+                    </div>
+                    <div class="bubble you">
+                        Wasup
+                    </div>
+                    <div class="bubble you">
+                        Wasup
+                    </div>
+                    <div class="bubble you">
+                        Wasup for the third time like is <br/>you bling bitch
+                    </div>
+
+                </div>
+                <div class="chat" data-chat="person6">
+                    <div class="conversation-start">
+                        <span>Monday, 1:27 PM</span>
+                    </div>
+                    <div class="bubble you">
+                        So, how's your new phone?
+                    </div>
+                    <div class="bubble you">
+                        You finally have a smartphone :D
+                    </div>
+                    <div class="bubble me">
+                        Drake?
+                    </div>
+                    <div class="bubble me">
+                        Why aren't you answering?
+                    </div>
+                    <div class="bubble you">
+                        howdoyoudoaspace
+                    </div>
+                </div>
+                <div class="write">
+                    <a href="javascript:;" class="write-link attach"></a>
+                    <input type="text" class="title-discussion-input"/>
+                    <a href="javascript:;" class="write-link smiley"></a>
+                    <a href="javascript:;" class="write-link send"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php $this->load->view("footer/footer"); ?>
-<!-- Footer End -->
+
 <!-- Scripts js -->
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/skills-search.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.nice-select.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/datepicker.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/i18n/datepicker.en.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/vendor/OwlCarousel/owl.carousel.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js/libs/vue-mugen-scroll/vue-mugen-scroll.min.js"></script>
+<?php $this->load->view("head/js"); ?>
+<script>
+  $('.chat[data-chat=person2]').addClass('active-chat')
+  $('.person[data-chat=person2]').addClass('active')
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/jquery.mCustomScrollbar.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/Scrollbar.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/libs/js/custom1.js"></script>
-<script src="<?= URL_RAIZ() ?>application/assets/js.js"></script>
-<script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>
-<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
-<script src="<?= URL_RAIZ() ?>js/menu.js"></script>
+  $('.left .person').mousedown(function () {
+    if ($(this).hasClass('.active')) {
+      return false
+    } else {
+      var findChat = $(this).attr('data-chat')
+      var personName = $(this).find('.name').text()
+      $('.right .top .name').html(personName)
+      var width = $(window).width()
+      if(width <= 600 ){
+        $('.right').css('display','block').css('width','100%')
+        $('.left').css('display','none')
+      }
 
+      $('.chat').removeClass('active-chat')
+      $('.left .person').removeClass('active')
+      $(this).addClass('active')
+      $('.chat[data-chat = ' + findChat + ']').addClass('active-chat')
+    }
+  })
+  var width = $(window).width()
+  // if(width <= 600 ){
+  //   $('.top').find('.fa-caret-left').show();
+  //   }
 
-<?php if(isset($dados['externo'])): ?>
-    <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_external.js"></script>
-<?php else: ?>
-    <script src="<?= URL_RAIZ() ?>js/dashboard_activity/dashboard_activity_local.js"></script>
-<?php endif ?>
+    $('.top').find('.fa-caret-left').on('click',function(){
+      var width = $(window).width()
+          if(width <= 600 ){
 
-
+          }
+        }
+    )
+</script>
 </body>
 
 </html>

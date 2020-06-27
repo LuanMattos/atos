@@ -21,6 +21,10 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+//font padrão de toda rede
+*{
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
+}
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -39,6 +43,15 @@ footer, header, hgroup, menu, nav, section {
 /*-------------------------------------------------------ADICIONAIS--------------------------------------------------*/
 [v-cloak] {
   display: none;
+}
+.hover-default{
+  color:#f4f4f4 !important;
+  transition: .8s;
+  -moz-transition: .8s;
+  -webkit-transition: .8s;
+}
+.hover-default :hover{
+  color: #4284cf !important;
 }
 .hide{
   display: none;
@@ -274,7 +287,6 @@ footer, header, hgroup, menu, nav, section {
 
 /*-----------Autocompriti-------------*/
 .app-autocomplete {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -777,7 +789,6 @@ ul.autocomplete-results-empty-result-class{
 
 body {
   line-height: 1;
-  font-family: "Roboto" !important;
   overflow-x: hidden;
   font-weight: 400 !important;
   background: #f1f1f1 !important;
@@ -1087,7 +1098,6 @@ input[type="password"]::-ms-input-placeholder { /* Microsoft Edge */
   cursor: pointer;
   display: block;
   float: left;
-  font-family: inherit;
   font-size: 13px;
   font-weight: 400;
   height: 40px;
@@ -1401,6 +1411,9 @@ header {
   background-color: transparent;
   border: 0;
   float: left;
+  transition: .6s;
+  -webkit-transition: .6s;
+  -moz-transition: .6s;
 }
 
 .link-item:hover {
@@ -2005,7 +2018,6 @@ main {
   background:transparent;
   color:#313131;
   font-weight:400;
-  font-family: "Roboto";
   font-size: 14px;
   line-height:24px;
   padding: 0 0 10px !important;
@@ -2741,7 +2753,6 @@ footer {
   text-decoration: none;
   background-color: transparent;
   font-size: 16px;
-  font-family: "Roboto";
   font-weight: 400;
 }
 
@@ -2752,7 +2763,6 @@ footer {
 .title-bar-text .breadcrumb-item.active {
   color: white;
   font-size: 16px;
-  font-family: "Roboto";
   font-weight: 400;
 }
 
@@ -2873,7 +2883,6 @@ footer {
 .cate-right:after {
   content: '\f105';
   font-size: 14px;
-  font-family: "FontAwesome";
   float: right;
   margin-left: 30px;
   color: #a7a8aa;
@@ -2975,7 +2984,6 @@ footer {
   line-height: 15px;
   color: #313131;
   background-color: #fff;
-  font-family: "Roboto";
   font-size: 14px;
   font-weight: 400;
   border: 1px solid #e1e1e1;
@@ -4906,7 +4914,6 @@ footer {
   box-shadow: 0 4px 12px rgba(0,0,0,.15);
   border-radius: 3px !important;
   box-sizing: content-box;
-  font-family: "Roboto" !important;
   font-size: 14px;
   font-weight: 400;
   color: #313131 !important;
@@ -7920,7 +7927,6 @@ footer {
   text-align: center;
   color: #847577;
   font-size: 14px;
-  font-family: "Roboto";
   font-weight: 400;
   line-height: 24px;
   margin-right: 20px;

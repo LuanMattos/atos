@@ -1,3 +1,7 @@
+* {
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
+}
+
 canvas {
   cursor: crosshair;
 }
