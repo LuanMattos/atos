@@ -26,230 +26,253 @@ endif;
 </div>
 <main class="dashboard-mp">
     <?php $this->load->view("menu/menu", compact("data")); ?>
-</main>
-<div class="container-msg-container">
-    <div class="wrapper-dashboard-msg">
-        <div class="container-dashboard-msg">
-            <div class="left">
-                <div class="top">
-                    <input type="text" class="title-discussion-input"/>
-                </div>
-                <ul class="people">
-                    <li class="person" data-chat="person1">
-                        <img src="https://s13.postimg.org/ih41k9tqr/img1.jpg" alt=""/>
-                        <span class="name">Thomas Bangalter</span>
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">I was wondering...</span>
-                    </li>
-                    <li class="person" data-chat="person2">
-                        <img src="https://s3.postimg.org/yf86x7z1r/img2.jpg" alt=""/>
-                        <span class="name">Dog Woofson</span>
-                        <span class="time">1:44 PM</span>
-                        <span class="preview">I've forgotten how it felt before</span>
-                    </li>
-                    <li class="person" data-chat="person3">
-                        <img src="https://s3.postimg.org/h9q4sm433/img3.jpg" alt=""/>
-                        <span class="name">Louis CK</span>
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">But we’re probably gonna need a new carpet.</span>
-                    </li>
-                    <li class="person" data-chat="person4">
-                        <img src="https://s3.postimg.org/quect8isv/img4.jpg" alt=""/>
-                        <span class="name">Bo Jackson</span>
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">It’s not that bad...</span>
-                    </li>
-                    <li class="person" data-chat="person5">
-                        <img src="https://s16.postimg.org/ete1l89z5/img5.jpg" alt=""/>
-                        <span class="name">Michael Jordan</span>
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">Wasup for the third time like is you bling bitch</span>
-                    </li>
-                    <li class="person" data-chat="person6">
-                        <img src="https://s30.postimg.org/kwi7e42rh/img6.jpg" alt=""/>
-                        <span class="name">Drake</span>
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">howdoyoudoaspace</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="right">
-                <div class="top">
-                    <i class="fas fa-caret-left"></i>
-                    <span>To: <span class="name">Dog Woofson</span></span>
-                </div>
-                <div class="chat" data-chat="person1">
-                    <div class="conversation-start">
-                        <span>Today, 6:48 AM</span>
-                    </div>
-                    <div class="bubble you">
-                        Hello,
-                    </div>
-                    <div class="bubble you">
-                        it's me.
-                    </div>
-                    <div class="bubble you">
-                        I was wondering...
-                    </div>
-                </div>
-                <div class="chat" data-chat="person2">
-                    <div class="conversation-start">
-                        <span>Today, 5:38 PM</span>
-                    </div>
-                    <div class="bubble you">
-                        Hello, can you hear me?
-                    </div>
-                    <div class="bubble you">
-                        I'm in California dreaming
-                    </div>
-                    <div class="bubble me">
-                        ... about who we used to be.
-                    </div>
-                    <div class="bubble me">
-                        Are you serious?
-                    </div>
-                    <div class="bubble you">
-                        When we were younger and free...
-                    </div>
-                    <div class="bubble you">
-                        I've forgotten how it felt before
-                    </div>
-                </div>
-                <div class="chat" data-chat="person3">
-                    <div class="conversation-start">
-                        <span>Today, 3:38 AM</span>
-                    </div>
-                    <div class="bubble you">
-                        Hey human!
-                    </div>
-                    <div class="bubble you">
-                        Umm... Someone took a shit in the hallway.
-                    </div>
-                    <div class="bubble me">
-                        ... what.
-                    </div>
-                    <div class="bubble me">
-                        Are you serious?
-                    </div>
-                    <div class="bubble you">
-                        I mean...
-                    </div>
-                    <div class="bubble you">
-                        It’s not that bad...
-                    </div>
-                    <div class="bubble you">
-                        But we’re probably gonna need a new carpet.
-                    </div>
-                </div>
-                <div class="chat" data-chat="person4">
-                    <div class="conversation-start">
-                        <span>Yesterday, 4:20 PM</span>
-                    </div>
-                    <div class="bubble me">
-                        Hey human!
-                    </div>
-                    <div class="bubble me">
-                        Umm... Someone took a shit in the hallway.
-                    </div>
-                    <div class="bubble you">
-                        ... what.
-                    </div>
-                    <div class="bubble you">
-                        Are you serious?
-                    </div>
-                    <div class="bubble me">
-                        I mean...
-                    </div>
-                    <div class="bubble me">
-                        It’s not that bad...
-                    </div>
-                </div>
-                <div class="chat" data-chat="person5">
-                    <div class="conversation-start">
-                        <span>Today, 6:28 AM</span>
-                    </div>
-                    <div class="bubble you">
-                        Wasup
-                    </div>
-                    <div class="bubble you">
-                        Wasup
-                    </div>
-                    <div class="bubble you">
-                        Wasup for the third time like is <br/>you bling bitch
-                    </div>
+    <div class="div-geral-dashboard">
+        <div class='c-app'>
+            <aside class='c-sidepanel'>
+                <nav class='c-sidepanel__nav'>
+                    <ul>
+                        <li class='c-sidepanel__nav__li'><a class='c-sidepanel__nav__link' href='javascript:void(0)' title='' @click="anotacoes()"><i data-feather="inbox"></i>Inbox <span class='c-notification c-notification--nav'>404</span></a></li>
+                        <li class='c-sidepanel__nav__li'><a class='c-sidepanel__nav__link' href='javascript:void(0)' title='' @click="inbox()"><i data-feather="edit"></i>Anotações</a></li>
+<!--                        <li class='c-sidepanel__nav__li'><a class='c-sidepanel__nav__link' href='' title=''><i data-feather="send"></i>Enviados</a></li>-->
+<!--                        <li class='c-sidepanel__nav__li'><a class='c-sidepanel__nav__link' href='' title=''><i data-feather="star"></i>Favourites</a></li>-->
+                    </ul>
+                </nav>
 
+<!--                <nav class='c-sidepanel__nav c-sidepanel__nav--spacer'>-->
+<!--                    <ul>-->
+<!--                        <li class='c-sidepanel__nav__li'><a class='c-sidepanel__nav__link c-sidepanel__nav__link--success' href='' title=''><i data-feather="check-circle"></i>Paid</a></li>-->
+<!--                        <li class='c-sidepanel__nav__li'><a class='c-sidepanel__nav__link c-sidepanel__nav__link--pending' href='' title=''><i data-feather="clock"></i>Pending</a></li>-->
+<!--                        <li class='c-sidepanel__nav__li'><a class='c-sidepanel__nav__link c-sidepanel__nav__link--warning' href='' title=''><i data-feather="trash"></i>Denied</a></li>-->
+<!--                    </ul>-->
+<!--                </nav>-->
+
+                <nav class='c-sidepanel__nav c-sidepanel__nav--spacer c-friends'>
+                    <div class='c-sidepanel__header'>
+                        <h2>Amigos<span></span></h2>
+<!--                        <button>See All</button>-->
+                    </div>
+                </nav>
+            </aside>
+            <section class='c-chats inbox'>
+                <div class='c-chats__header'>
+                    <div>
+                        <label aria-label=''><i data-feather='search'></i></label>
+                        <input type='text' placeholder='Buscar'>
+                    </div>
                 </div>
-                <div class="chat" data-chat="person6">
-                    <div class="conversation-start">
-                        <span>Monday, 1:27 PM</span>
+            </section>
+            <section class='c-openchat inbox'>
+                <div class='c-openchat__box'>
+                    <div class='c-openchat__box__header'>
+                        <img class='c-openchat__box__pp' src='' alt=''>
+                        <p class='c-openchat__box__name'>Aaron McGuire</p>
+                        <span class='c-openchat__box__status'></span>
                     </div>
-                    <div class="bubble you">
-                        So, how's your new phone?
-                    </div>
-                    <div class="bubble you">
-                        You finally have a smartphone :D
-                    </div>
-                    <div class="bubble me">
-                        Drake?
-                    </div>
-                    <div class="bubble me">
-                        Why aren't you answering?
-                    </div>
-                    <div class="bubble you">
-                        howdoyoudoaspace
+                    <div class='c-openchat__box__info'></div>
+                </div>
+            </section>
+            <section class='c-chats anotacoes hide'>
+                <div class='c-chats__header'>
+                    <div>
+                        <label aria-label='Search your active chats.'><i data-feather='search'></i></label>
+                        <input type='text' placeholder='Buscar anotações'>
                     </div>
                 </div>
-                <div class="write">
-                    <a href="javascript:;" class="write-link attach"></a>
-                    <input type="text" class="title-discussion-input"/>
-                    <a href="javascript:;" class="write-link smiley"></a>
-                    <a href="javascript:;" class="write-link send"></a>
+            </section>
+            <section class='c-openchat anotacoes hide cards-content'>
+                <div class="row-card ">
+                    <template v-for="i in data">
+                        <div class="column-card">
+                            <div class="card-anotacao">
+                                <h6>{{i.title}} <i class="fas fa-edit cursor-pointer" @click="edit_cart()"></i></h6>
+                                <p class="content-find">{{i.text}}</p>
+                                <textarea class="area-content hide" cols='60' rows='8'>{{i.text}}</textarea>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="column-card">
+                        <div class="card-anotacao">
+                            <h6>
+                                <input type="text" placeholder="Título" class="title-discussion-input title-add">
+                            </h6>
+                            <textarea class="replt-comnt area-content-add"></textarea>
+                            <i class="fas fa-plus cursor-pointer" @click="add_item()"></i>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-</div>
+</main>
 
 <?php $this->load->view("footer/footer"); ?>
-
 <!-- Scripts js -->
 <?php $this->load->view("head/js"); ?>
+<script type="text/javascript" src="<?= URL_RAIZ() ?>application/assets/js/libs/dashboard_msg/index.js"></script>
 <script>
-  $('.chat[data-chat=person2]').addClass('active-chat')
-  $('.person[data-chat=person2]').addClass('active')
+  var vue_instance_dashboard_msg = new Vue({
+    el: ".div-geral-dashboard",
+    data: {
+      width:$(window).width(),
+      data:''
+    },
+    mounted:function(){
+      var url = "get_anotacoes"
+      $.post(url,{},function(json){vue_instance_dashboard_msg.data = json.data;},'json')
+    },
+    methods:{
+          inbox:function(){
+            $(".inbox").hide();
+            $(".anotacoes").slideDown();
+          },
+          anotacoes:function(){
+            $(".inbox").slideDown();
+            $(".anotacoes").hide();
+          },
+          search_hide_show:function(){
+            if(this.width <= 600){
+              $(".c-chats.inbox").hide()
+            }else{
+              $(".c-chats.inbox").show()
+            }
+          },
+          edit_cart:function(i){
 
-  $('.left .person').mousedown(function () {
-    if ($(this).hasClass('.active')) {
-      return false
-    } else {
-      var findChat = $(this).attr('data-chat')
-      var personName = $(this).find('.name').text()
-      $('.right .top .name').html(personName)
-      var width = $(window).width()
-      if(width <= 600 ){
-        $('.right').css('display','block').css('width','100%')
-        $('.left').css('display','none')
-      }
+            $('.area-content:eq(' + i +')').show()
+            // var value_html = $(".content-find:eq(" + i +")").text()
+            // $('.area-content:eq(' + i +')').val( value_html )
 
-      $('.chat').removeClass('active-chat')
-      $('.left .person').removeClass('active')
-      $(this).addClass('active')
-      $('.chat[data-chat = ' + findChat + ']').addClass('active-chat')
-    }
-  })
-  var width = $(window).width()
-  // if(width <= 600 ){
-  //   $('.top').find('.fa-caret-left').show();
-  //   }
-
-    $('.top').find('.fa-caret-left').on('click',function(){
-      var width = $(window).width()
-          if(width <= 600 ){
-
+          },
+          add_item:function(){
+            var text = $(".area-content-add").val()
+            var title = $(".title-add").val()
+            var url = "salvar_notas";
+            $.post(url,{
+              text:text,
+              title:title
+            },function(json){
+                if(json.info){
+                  vue_instance_dashboard_msg.data.push(json.data)
+                }
+              },'json'
+            )
           }
         }
-    )
+    }
+  );
+
+
+
+  feather.replace();
+
+  let app = {
+    currentUserID: 59284,
+    friends: [
+      {
+        id: 78845,
+        name: "Daniel Bookton",
+        pp: "https://s.cdpn.io/profiles/user/739421/80.jpg?1557442808",
+        lastActive: `${Math.floor(Math.random() * Math.floor(60))} mins`
+      },
+
+    ],
+    chats: [
+      {
+        chatID: "D-09182",
+        users: [59284, 78845],
+        chatTitle: "Website Quote",
+        msgs: [
+          {
+            user: 78845,
+            message: "I want you to design something for me",
+            timeStamp: "2020-08-20 15:30:00"
+          },
+          {
+            user: 59284,
+            message: "Cool, what did you have in mind?",
+            timeStamp: "2020-08-20 15:32:00"
+          }
+        ]
+      }
+    ],
+    renderFriends: function () {
+      if (this.friends) {
+        document.querySelector(
+          ".c-friends .c-sidepanel__header h2 span"
+        ).innerHTML = ` (${this.friends.length})`;
+        let friendContainer = document.createElement("ul");
+        this.friends.forEach((friend) => {
+          let friendTemplate = `<li class='c-friends__list'><a class='c-friends__link' href='' title=''><img class='c-friends__image' src='${friend.pp}' alt=''> ${friend.name}<span class='c-friends__active'>${friend.lastActive}</span></a></li>`;
+          friendContainer.innerHTML += friendTemplate;
+        });
+
+        document.querySelector(".c-friends").append(friendContainer);
+      } else {
+        console.warn("You've got no friends 😔");
+      }
+    },
+    renderActiveChats: function () {
+      // Check we actually have chats available
+      if (this.chats) {
+        let openChatContainer = document.createElement("ul");
+        this.chats.forEach((chat) => {
+          chat.users.forEach((id) => {
+            let user = id;
+            /* loop through friends to check if the id of the current chat matches that user. In this POC the first id in the object is the current user */
+            this.friends.forEach((friend) => {
+              if (user === friend.id && user !== this.currentUserID) {
+                let chatTemplate = `<li class='c-chats__list'><a data-id='${
+                  chat.chatID
+                }' class='c-chats__link' href='' title=''><div class='c-chats__image-container'><img src='${
+                  friend.pp
+                }' alt=''></div><div class='c-chats__info'><p class='c-chats__title'>${
+                  chat.chatTitle ? chat.chatTitle : friend.name
+                }</p><span>${
+                  chat.msgs[chat.msgs.length - 1].timeStamp
+                }</span><p class='c-chats__excerpt'>${
+                  chat.msgs[chat.msgs.length - 1].message
+                }</p></div></a></li>`;
+                openChatContainer.innerHTML += chatTemplate;
+              }
+            });
+          });
+          document.querySelector(".c-chats").append(openChatContainer);
+        });
+      } else {
+      }
+    },
+    handleChatOptions: function () {
+      var activeChats = document.querySelectorAll('.c-chats__list');
+      if(activeChats.length > 0 ) {
+        let newestChat = activeChats[0].childNodes[0].dataset.id;
+
+        this.chats.forEach((chat) => {
+          if(newestChat === chat.chatID) {
+            var chatBubbleContainer = document.createElement("ul");
+            chat.msgs.forEach((message) => {
+              let bubbleTemplate = `<li class='c-bubble'><img class='c-bubble__image' src='' alt=''> <p class='c-bubble__msg'>${message.message}<span class='c-bubble__timestamp'>${message.timeStamp}</span></p></li>`;
+
+              chatBubbleContainer.innerHTML += bubbleTemplate;
+              console.log(chatBubbleContainer);
+            });
+            document.querySelector('.c-openchat__box__info').append(chatBubbleContainer);
+          }
+
+        })
+      }
+    },
+    init: function () {
+      this.renderFriends();
+      this.renderActiveChats();
+      this.handleChatOptions();
+    }
+  };
+  console.clear();
+  app.init();
+
+
 </script>
+
 </body>
 
 </html>

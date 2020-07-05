@@ -8,6 +8,7 @@ class Dashboard_msg extends Home_Controller
         parent::__construct();
         $this->load->model("Us_usuarios_model");
         $this->load->model("dashboard_msg/Msg_usuarios_model");
+        $this->load->model("dashboard_msg/Anotacoes_usuarios_model");
         $this->load->model("account/Us_usuarios_conta_model");
         $this->load->model("location/Us_location_user_model");
         $this->output->enable_profiler(FALSE);
@@ -97,5 +98,24 @@ class Dashboard_msg extends Home_Controller
 
         $this->response('success',compact('data'));
     }
+    public function get_anotacoes_by_user(){
+        $user = (object)$this->data_user();
+        $data = $this->Anotacoes_usuarios_model->getWhereMongo(['codusuario'=>$user->_id]);
+
+        $this->response('success',compact('data'));
+    }
+     public function salvar_anotacoes(){
+         $user = (object)$this->data_user();
+         $datapost = (object)$this->input->post(NULL,TRUE);
+
+        if( $datapost->title )
+          $data = [];
+          $data['codusuario'] = $user->_id;
+          $data['text'] = $datapost->text;
+          $data['title'] = $datapost->title;
+        $this->Anotacoes_usuarios_model->save_mongo( $data );
+        $this->response('success',compact('data') );
+
+     }
 
 }

@@ -83,6 +83,7 @@ die('This file is used for development purposes only.');
  * @property Msg_usuarios_model            $Msg_usuarios_model                Model de troca de mensagens do usuario
  * @property Controll_acess_external_model            $Controll_acess_external_model                Model de troca de mensagens do usuario
  * @property Access_login_model            $Access_login_model                Model de troca de mensagens do usuario
+ * @property Anotacoes_usuarios_model            $Anotacoes_usuarios_model                Model de troca de mensagens do usuario
 
 
 
