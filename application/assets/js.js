@@ -87,7 +87,10 @@ Vue.filter('parseint', function (value) {
     return parseInt(value);
 
 })
-Vue.filter('crop_string', function (string) {
+Vue.filter('crop_string', function (string,size) {
+    if(size){
+        return string.substring(0, size) + "...";
+    }
     return string.substring(0, 30) + "...";
 })
 $(document).ready(function(){

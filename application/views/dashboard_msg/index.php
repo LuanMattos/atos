@@ -84,7 +84,7 @@ endif;
                         <template v-for="(i,l) in data">
                             <div class="column-card">
                                 <div class="card-anotacao">
-                                    <h6>{{i.title}}
+                                    <h6>{{i.title | crop_string(10)}}
                                         <i class="fas fa-trash cursor-pointer" @click="delete_cart(i._id,l)"></i>
                                         <i class="fas fa-edit cursor-pointer" @click="edit_cart(l)"></i>
                                         <i class="fas fa-check cursor-pointer" @click="confirm_edit(i._id,l)"></i>
