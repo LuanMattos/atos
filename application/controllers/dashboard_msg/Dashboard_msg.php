@@ -108,14 +108,20 @@ class Dashboard_msg extends Home_Controller
          $user = (object)$this->data_user();
          $datapost = (object)$this->input->post(NULL,TRUE);
 
-        if( $datapost->title )
-          $data = [];
-          $data['codusuario'] = $user->_id;
-          $data['text'] = $datapost->text;
-          $data['title'] = $datapost->title;
-        $this->Anotacoes_usuarios_model->save_mongo( $data );
-        $this->response('success',compact('data') );
-
+        if( $datapost->title && !empty($datapost->text)) {
+            $data = [];
+            $data['codusuario'] = $user->_id;
+            $data['text'] = $datapost->text;
+            $data['title'] = $datapost->title;
+            $_id = $this->Anotacoes_usuarios_model->save_mongo($data);
+            $data['_id'] = reset($_id);
+            $this->response('success', compact('data'));
+        }
+     }
+     public function excluir_anotacao(){
+        $id = $this->input->post("id",TRUE);
+        $this->Anotacoes_usuarios_model->deleteWhereMongo(['_id'=>new \MongoDB\BSON\ObjectId($id[0])]);
+        $this->response('success');
      }
 
 }

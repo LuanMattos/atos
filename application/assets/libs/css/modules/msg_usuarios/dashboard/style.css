@@ -416,6 +416,34 @@
   font-size: 12px;
 }
 
+.card-anotacao:hover h6 i.fas {
+  visibility: visible;
+  color: #737475;
+  float: right;
+  padding-right: 3.6px;
+  right: 1px;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+}
+
+.card-anotacao h6 i.fas:hover {
+  color: #4284cf;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+}
+
+.card-anotacao h6 i.fas {
+  visibility: hidden;
+  color: #737475;
+  font-size: 24px;
+}
+
+.card-anotacao h6 i.fa-check {
+  display: none;
+}
+
 .column-card {
   float: left;
   width: 250px;

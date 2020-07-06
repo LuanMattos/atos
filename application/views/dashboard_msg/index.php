@@ -80,17 +80,21 @@ endif;
                 </div>
             </section>
             <section class='c-openchat anotacoes hide cards-content'>
-                <div class="row-card ">
-                    <template v-for="i in data">
-                        <div class="column-card">
-                            <div class="card-anotacao">
-                                <h6>{{i.title}} <i class="fas fa-edit cursor-pointer" @click="edit_cart()"></i></h6>
-                                <p class="content-find">{{i.text}}</p>
-                                <textarea class="area-content hide" cols='60' rows='8'>{{i.text}}</textarea>
+                <div class="row-card row-card-first">
+                        <template v-for="(i,l) in data">
+                            <div class="column-card">
+                                <div class="card-anotacao">
+                                    <h6>{{i.title}}
+                                        <i class="fas fa-trash cursor-pointer" @click="delete_cart(i._id,l)"></i>
+                                        <i class="fas fa-edit cursor-pointer" @click="edit_cart(l)"></i>
+                                        <i class="fas fa-check cursor-pointer" @click="confirm_edit(i._id,l)"></i>
+                                    </h6>
+                                    <p class="content-find">{{i.text}}</p>
+                                    <textarea class="replt-comnt  area-content-edit hide">{{i.text}}</textarea>
+                                </div>
                             </div>
-                        </div>
-                    </template>
-                    <div class="column-card">
+                        </template>
+                    <div class="column-card card-add">
                         <div class="card-anotacao">
                             <h6>
                                 <input type="text" placeholder="Título" class="title-discussion-input title-add">
@@ -136,24 +140,49 @@ endif;
               $(".c-chats.inbox").show()
             }
           },
-          edit_cart:function(i){
-
-            $('.area-content:eq(' + i +')').show()
-            // var value_html = $(".content-find:eq(" + i +")").text()
-            // $('.area-content:eq(' + i +')').val( value_html )
+          delete_cart:function( id,i ){
+            var url = "excluir_nota";
+            $.post(url,{
+                id : id
+              },function( json ){
+                if( json.info ){
+                  $(".column-card:eq("+i+")").not('.card-add').remove();
+                }
+              },'json'
+            )
 
           },
+          confirm_edit:function(id,i){
+            $('.area-content-edit:eq(' + i +')').hide()
+            $('.content-find:eq(' + i +')').show()
+            $('.fa-edit:eq(' + i +')').show()
+            $('.fa-check:eq(' + i +')').hide()
+          },
+          edit_cart:function(i){
+
+            $('.area-content-edit:eq(' + i +')').show()
+            $('.content-find:eq(' + i +')').hide()
+            $('.fa-edit:eq(' + i +')').hide()
+            $('.fa-check:eq(' + i +')').show()
+          },
+
           add_item:function(){
             var text = $(".area-content-add").val()
-            var title = $(".title-add").val()
+            var title = $(".title-add").val();
+            var self = this;
+
+            if(_.isEmpty(text) && _.isEmpty(title)){
+              $(".area-content-add").css('border-color','red');
+              $(".title-add").css('border-color','orange');
+              return false
+            }
+
             var url = "salvar_notas";
             $.post(url,{
-              text:text,
-              title:title
-            },function(json){
-                if(json.info){
+              text  : text,
+              title : title
+            },function( json ){
                   vue_instance_dashboard_msg.data.push(json.data)
-                }
               },'json'
             )
           }

@@ -249,7 +249,8 @@ class CI_Model {
             $this->mongomanager->executeBulkWrite($configmongo->database . '.' . $this->get_table() ,$mongobulkwrite);
         }else{
 //            $cimongo = new Cimongo();
-            $this->mongodb->{$configmongo->database}->{$this->get_table()}->insertOne($data);
+            $bosta = $this->mongodb->{$configmongo->database}->{$this->get_table()}->insertOne($data);
+            return $bosta->getInsertedId();
         }
     }
     /**

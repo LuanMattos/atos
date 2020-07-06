@@ -21,6 +21,7 @@ $route['confirm_password'] = 'Login/save_pass';
 $route['view_full_messages'] = 'dashboard_msg/Dashboard_msg/index';
 $route['get_anotacoes'] = 'dashboard_msg/Dashboard_msg/get_anotacoes_by_user';
 $route['salvar_notas'] = 'dashboard_msg/Dashboard_msg/salvar_anotacoes';
+$route['excluir_nota'] = 'dashboard_msg/Dashboard_msg/excluir_anotacao';
 
 $route['404_override'] = 'Home/error_404';
 
