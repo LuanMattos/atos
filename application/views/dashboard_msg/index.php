@@ -100,7 +100,7 @@ endif;
                                 <input type="text" placeholder="Título" class="title-discussion-input title-add">
                             </h6>
                             <textarea class="replt-comnt area-content-add"></textarea>
-                            <i class="fas fa-plus cursor-pointer" @click="add_item()"></i>
+                            <i class="fas fa-plus cursor-pointer" @click="add_item()" style="font-size:24px"></i>
                         </div>
                     </div>
                 </div>
@@ -141,16 +141,15 @@ endif;
             }
           },
           delete_cart:function( id,i ){
+            console.log(id)
             var url = "excluir_nota";
-            $.post(url,{
-                id : id
-              },function( json ){
-                if( json.info ){
-                  $(".column-card:eq("+i+")").not('.card-add').remove();
+            if(this.data[i]._id.$oid === id.$oid) {
+              this.data.splice(id.$oid, 1);
+              $.post(url,{
+                  id : id
                 }
-              },'json'
-            )
-
+              )
+            }
           },
           confirm_edit:function(id,i){
             $('.area-content-edit:eq(' + i +')').hide()

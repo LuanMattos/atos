@@ -167,13 +167,6 @@
                                         <div class="div-sem-solicitacoes">
                                             <a class="content-sem-solicitacoes">Sem mensagens</a>
                                         </div>
-
-<!--                                        Apenas para teste-->
-                                        <div class="user-request-list">
-                                            <a href="<?= site_url('view_full_messages') ?>" class="view-all">Visualizar todas mensagens</a>
-                                        </div>
-
-
                                     </template>
                                 </div>
                             </li>
@@ -239,6 +232,7 @@
                                 <a class="link-item" href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Perfil</a>
                                 <a class="link-item" href="<?= site_url('settings') ?>">Configurações da conta</a>
                                 <a class="link-item" href="<?= site_url('invite') ?>">Convite</a>
+                                <a class="link-item" href="<?= site_url('view_full_messages') ?>"><i class="fas fa-tachometer-alt"></i>&nbsp MyDash</a>
                                 <a class="link-item" href="<?= site_url('Home/logout') ?>">Sair</a>
                             </div>
                         </div>

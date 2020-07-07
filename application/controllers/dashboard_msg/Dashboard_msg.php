@@ -108,13 +108,17 @@ class Dashboard_msg extends Home_Controller
          $user = (object)$this->data_user();
          $datapost = (object)$this->input->post(NULL,TRUE);
 
-        if( $datapost->title && !empty($datapost->text)) {
+        if( $datapost->title && !empty( $datapost->text ) ) {
+            $register = [];
+            $register['codusuario'] = $user->_id;
+            $register['text']       = $datapost->text;
+            $register['title']      = $datapost->title;
+            $_id = $this->Anotacoes_usuarios_model->save_mongo( $register );
+
             $data = [];
-            $data['codusuario'] = $user->_id;
+            $data['_id'] = $_id;
             $data['text'] = $datapost->text;
             $data['title'] = $datapost->title;
-            $_id = $this->Anotacoes_usuarios_model->save_mongo($data);
-            $data['_id'] = reset($_id);
             $this->response('success', compact('data'));
         }
      }
