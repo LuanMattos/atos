@@ -264,6 +264,12 @@ INSTALAÇÃO NODE E WEBSOCKET
      -npm install pm2 -g (deploy e execucao segundo plano)
      - pm2 start server.js --name monitor
 
+          * version = 0.31.0
+            archive_dir = /etc/letsencrypt/archive/www.atos.click
+            cert = /etc/letsencrypt/live/www.atos.click/cert.pem
+            privkey = /etc/letsencrypt/live/www.atos.click/privkey.pem
+            chain = /etc/letsencrypt/live/www.atos.click/chain.pem
+            fullchain = /etc/letsencrypt/live/www.atos.click/fullchain.pem
 
 Ver sobre kubernates
 
