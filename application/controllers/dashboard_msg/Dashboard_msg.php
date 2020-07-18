@@ -124,6 +124,7 @@ class Dashboard_msg extends Home_Controller
      }
      public function excluir_anotacao(){
         $id = $this->input->post("id",TRUE);
+        var_dump($id);
         $this->Anotacoes_usuarios_model->deleteWhereMongo(['_id'=>new \MongoDB\BSON\ObjectId($id[0])]);
         $this->response('success');
      }

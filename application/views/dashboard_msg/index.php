@@ -81,13 +81,13 @@ endif;
             </section>
             <section class='c-openchat anotacoes hide cards-content'>
                 <div class="row-card row-card-first">
-                        <template v-for="(i,l) in data">
+                        <template v-for="i in data">
                             <div class="column-card">
                                 <div class="card-anotacao">
                                     <h6>{{i.title | crop_string(10)}}
-                                        <i class="fas fa-trash cursor-pointer" @click="delete_cart(i._id,l)"></i>
+                                        <i class="fas fa-trash cursor-pointer" @click="delete_cart(i._id)"></i>
                                         <i class="fas fa-edit cursor-pointer" @click="edit_cart(l)"></i>
-                                        <i class="fas fa-check cursor-pointer" @click="confirm_edit(i._id,l)"></i>
+                                        <i class="fas fa-check cursor-pointer" @click="confirm_edit(i._id)"></i>
                                     </h6>
                                     <p class="content-find">{{i.text}}</p>
                                     <textarea class="replt-comnt  area-content-edit hide">{{i.text}}</textarea>
@@ -118,7 +118,7 @@ endif;
     el: ".div-geral-dashboard",
     data: {
       width:$(window).width(),
-      data:''
+      data:[]
     },
     mounted:function(){
       var url = "get_anotacoes"
@@ -140,16 +140,14 @@ endif;
               $(".c-chats.inbox").show()
             }
           },
-          delete_cart:function( id,i ){
-            console.log(id)
+          delete_cart:function( id ){
             var url = "excluir_nota";
-            if(this.data[i]._id.$oid === id.$oid) {
+            console.log(id)
               this.data.splice(id.$oid, 1);
               $.post(url,{
                   id : id
                 }
               )
-            }
           },
           confirm_edit:function(id,i){
             $('.area-content-edit:eq(' + i +')').hide()
@@ -182,6 +180,7 @@ endif;
               title : title
             },function( json ){
                   vue_instance_dashboard_msg.data.push(json.data)
+
               },'json'
             )
           }

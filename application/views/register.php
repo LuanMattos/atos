@@ -49,17 +49,19 @@
                                                 {{error.email}}
                                                 {{error.erro_envio_email}}
                                             </div>
-                                            <div class="form-group">
-                                                <input class="date title-discussion-input  datepicker-here " type="text" placeholder="Data de nascimento"  data-language="pt-BR" name="datanasc" autocomplete="off" >
-                                            </div>
+<!--                                            <div class="form-group">-->
+<!--                                                <input class="date title-discussion-input  datepicker-here " type="text" placeholder="Data de nascimento"  data-language="pt-BR" name="datanasc" autocomplete="off" >-->
+<!--                                            </div>-->
                                             <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.datanasc}}
                                             </div>
-                                            <div class="form-group" >
+                                            <div class="form-group hide" >
                                                 <select name="telcodpais" >
                                                     <option value="55">Brasil (55)</option>
                                                 </select>
-                                                <input class="title-discussion-input phone_br"  type="text" placeholder="Tel. Cel" name="telcel" autocomplete="off" >
+                                            </div>
+                                            <div class="form-group" >
+                                                <input class="title-discussion-input phone_br"  type="text" placeholder="Tel. Cel. Apenas telefone BR (55)" name="telcel" autocomplete="off" >
                                             </div>
                                             <div class="text-left" style="color:red;font-size:12px;font-family: Roboto;" v-cloak>
                                                 {{error.telcel}}

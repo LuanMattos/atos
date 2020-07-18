@@ -130,11 +130,11 @@ class Home extends Home_Controller
         if(empty($data->repsenha)){
             $error['repsenha'] = "Preencha o campo senha!";
         }
-        if(empty($data->datanasc) || (strlen($data->datanasc) != 10)){
-            $error['datanasc'] = "Data de nascimento inválida!";
-        }else{
-            $data->datanasc = date_to_us($data->datanasc);
-        }
+//        if(empty($data->datanasc) || (strlen($data->datanasc) != 10)){
+//            $error['datanasc'] = "Data de nascimento inválida!";
+//        }else{
+//            $data->datanasc = date_to_us($data->datanasc);
+//        }
         if(empty($data->telcel)){
             $error['telcel'] = "Preencha o campo  telefone!";
         }
@@ -154,7 +154,6 @@ class Home extends Home_Controller
                 $error['repsenha'] = "Senha com no mínimo 8 caracteres!";
             }
         }
-        $data->sobrenome = addslashes($data->sobrenome);
         if(empty($data->sobrenome) || empty($data->nome) || is_numeric($data->sobrenome)){
             $error['sobrenome'] = "Nome e/ou sobrenome inválido(s)!";
         }
