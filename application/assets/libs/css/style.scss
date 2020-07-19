@@ -44,6 +44,9 @@ footer, header, hgroup, menu, nav, section {
 [v-cloak] {
   display: none;
 }
+.flex-end {
+  align-self: flex-end;
+}
 .hover-default{
   color:#f4f4f4 !important;
   transition: .8s;

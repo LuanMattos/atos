@@ -46,7 +46,7 @@ var vue_instance_chat = new Vue({
         //dados usuario local
         var url = App.url("dashboard_msg","Dashboard_msg","get_msg" );
         axios({ method: 'post', url : url, data : null })
-          .then(function( json ){ self_vue.user_local = json.data;self_vue.connect();
+          .then(function( json ){ console.log(json.data); self_vue.user_local = json.data;self_vue.connect();
           });
 
     },
@@ -56,8 +56,11 @@ var vue_instance_chat = new Vue({
             var _id = this._data.user_local.usuario.id;
 
             if(!_.isUndefined(_id) && !_.isEmpty(_id)){
-              // window.location.host
-              self.ws = new WebSocket('wss://' + window.location.host + ':8090?' + this._data.user_local.usuario.login);
+              if (window.location.host == 'localhost' ){
+                self.ws = new WebSocket('wss://localhost:8090?' + this._data.user_local.usuario.login);
+              }else{
+                self.ws = new WebSocket('wss://' + window.location.host + ':8090?' + this._data.user_local.usuario.login);
+              }
 
             }else{
                 console.debug("Usuário não possui identificação válida!");

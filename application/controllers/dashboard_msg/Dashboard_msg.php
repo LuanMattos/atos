@@ -46,7 +46,8 @@ class Dashboard_msg extends Home_Controller
         if( $login_post ){
             $login = $login_post;
         }
-        $usuario    = $this->Us_usuarios_model->getWhereMongo( ['login' =>  $login], "_id",  -1, NULL, NULL,true ) ;
+        $usuario    = $this->Us_usuarios_model->getWhereMongo( ['login' =>  $login], "_id",  -1, NULL, NULL,true );
+
 //        $usuario_local    = $this->Us_usuarios_model->getWhereMongo( ['login' =>  $usuario_session['login']], "_id",  -1, NULL, NULL,true );
 
         //vai cair por terra, no geral, todos que forem external, terão na URL apenas o email por motivos de segurança
@@ -56,7 +57,6 @@ class Dashboard_msg extends Home_Controller
 
 //        $rows = $col->find(array('nome' => array ('$all' => array(new MongoRegex('/Ubuntu/')))));
         $data =  $this->Msg_usuarios_model->getWhereMongo( ['from'=>$usuario['_id'],'to'=>$usuario_session['_id']], "_id",  -1, NULL, NULL,true);
-
         $find_img      =  $this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$usuario['_id']], "created_at", -1, NULL, NULL,TRUE);
         $img_profile   =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
 
