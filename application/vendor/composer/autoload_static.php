@@ -9,7 +9,8 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
-            'Service\\' => 8,
+            'Services\\Modules\\Area_a\\' => 24,
+            'Services\\' => 9,
             'ServiceZenvia\\' => 14,
             'ServiceSms\\' => 11,
         ),
@@ -26,6 +27,7 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         array (
             'Luthier\\Auth\\' => 13,
             'Luthier\\' => 8,
+            'Libraries\\Amazon\\' => 17,
         ),
         'D' => 
         array (
@@ -35,7 +37,11 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
     );
 
     public static $prefixDirsPsr4 = array (
-        'Service\\' => 
+        'Services\\Modules\\Area_a\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/services/modules/area_a',
+        ),
+        'Services\\' => 
         array (
             0 => __DIR__ . '/../..' . '/services',
         ),
@@ -66,6 +72,10 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         'Luthier\\' => 
         array (
             0 => __DIR__ . '/../..' . '/services/routes/src',
+        ),
+        'Libraries\\Amazon\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/libraries/amazon',
         ),
         'DebugBar\\DataCollector\\' => 
         array (

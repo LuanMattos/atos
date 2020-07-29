@@ -1,7 +1,8 @@
 <?php
+namespace Libraries\Amazon;
+
 require_once 'S3Request.php';
 require_once 'S3Exception.php';
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class S3{
@@ -356,12 +357,12 @@ class S3{
      */
     public static function putBucket($bucket, $acl = self::ACL_PRIVATE, $location = false)
     {
-        $rest = new S3Request('PUT', $bucket, '', self::$endpoint);
+        $rest = new \S3Request('PUT', $bucket, '', self::$endpoint);
         $rest->setAmzHeader('x-amz-acl', $acl);
 
         if ($location !== false)
         {
-            $dom                        = new DOMDocument;
+            $dom                        = new \DOMDocument();
             $createBucketConfiguration  = $dom->createElement('CreateBucketConfiguration');
             $locationConstraint         = $dom->createElement('LocationConstraint', $location);
             $createBucketConfiguration->appendChild($locationConstraint);
@@ -393,7 +394,7 @@ class S3{
      */
     public static function deleteBucket($bucket)
     {
-        $rest = new S3Request('DELETE', $bucket, '', self::$endpoint);
+        $rest = new \S3Request('DELETE', $bucket, '', self::$endpoint);
         $rest = $rest->getResponse();
         if ($rest->error === false && $rest->code !== 204)
             $rest->error = array('code' => $rest->code, 'message' => 'Unexpected HTTP status');
@@ -462,7 +463,7 @@ class S3{
     public static function putObject($input, $bucket, $uri, $acl = self::ACL_PRIVATE, $metaHeaders = array(), $requestHeaders = array(), $storageClass = self::STORAGE_CLASS_STANDARD)
     {
         if ($input === false) return false;
-        $rest = new S3Request('PUT', $bucket, $uri, self::$endpoint);
+        $rest = new \S3Request('PUT', $bucket, $uri, self::$endpoint);
 
         if (!is_array($input)) $input = array(
             'data'      => $input,
@@ -576,7 +577,7 @@ class S3{
      */
     public static function getObject($bucket, $uri, $saveTo = false)
     {
-        $rest = new S3Request('GET', $bucket, $uri, self::$endpoint);
+        $rest = new \S3Request('GET', $bucket, $uri, self::$endpoint);
         if ($saveTo !== false)
         {
             if (is_resource($saveTo))
@@ -611,7 +612,7 @@ class S3{
      */
     public static function getObjectInfo($bucket, $uri, $returnInfo = true)
     {
-        $rest = new S3Request('HEAD', $bucket, $uri, self::$endpoint);
+        $rest = new \S3Request('HEAD', $bucket, $uri, self::$endpoint);
         $rest = $rest->getResponse();
         if ($rest->error === false && ($rest->code !== 200 && $rest->code !== 404))
             $rest->error = array('code' => $rest->code, 'message' => 'Unexpected HTTP status');
@@ -640,7 +641,7 @@ class S3{
      */
     public static function copyObject($srcBucket, $srcUri, $bucket, $uri, $acl = self::ACL_PRIVATE, $metaHeaders = array(), $requestHeaders = array(), $storageClass = self::STORAGE_CLASS_STANDARD)
     {
-        $rest = new S3Request('PUT', $bucket, $uri, self::$endpoint);
+        $rest = new \S3Request('PUT', $bucket, $uri, self::$endpoint);
         $rest->setHeader('Content-Length', 0);
         foreach ($requestHeaders as $h => $v) $rest->setHeader($h, $v);
         foreach ($metaHeaders as $h => $v) $rest->setAmzHeader('x-amz-meta-'.$h, $v);
@@ -716,7 +717,7 @@ class S3{
         }
         $dom->appendChild($bucketLoggingStatus);
 
-        $rest           = new S3Request('PUT', $bucket, '', self::$endpoint);
+        $rest           = new \S3Request('PUT', $bucket, '', self::$endpoint);
         $rest->setParameter('logging', null);
         $rest->data     = $dom->saveXML();
         $rest->size     = strlen($rest->data);
@@ -747,7 +748,7 @@ class S3{
      */
     public static function getBucketLogging($bucket)
     {
-        $rest = new S3Request('GET', $bucket, '', self::$endpoint);
+        $rest = new \S3Request('GET', $bucket, '', self::$endpoint);
 
         $rest->setParameter('logging', null);
 
@@ -789,7 +790,7 @@ class S3{
      */
     public static function getBucketLocation($bucket)
     {
-        $rest = new S3Request('GET', $bucket, '', self::$endpoint);
+        $rest = new \S3Request('GET', $bucket, '', self::$endpoint);
 
         $rest->setParameter('location', null);
 
@@ -856,7 +857,7 @@ class S3{
         $accessControlPolicy->appendChild($accessControlList);
         $dom->appendChild($accessControlPolicy);
 
-        $rest       = new S3Request('PUT', $bucket, $uri, self::$endpoint);
+        $rest       = new \S3Request('PUT', $bucket, $uri, self::$endpoint);
 
         $rest->setParameter('acl', null);
 
@@ -888,7 +889,7 @@ class S3{
      */
     public static function getAccessControlPolicy($bucket, $uri = '')
     {
-        $rest = new S3Request('GET', $bucket, $uri, self::$endpoint);
+        $rest = new \S3Request('GET', $bucket, $uri, self::$endpoint);
 
         $rest->setParameter('acl', null);
 
@@ -952,7 +953,7 @@ class S3{
      */
     public static function deleteObject($bucket, $uri)
     {
-        $rest = new S3Request('DELETE', $bucket, $uri, self::$endpoint);
+        $rest = new \S3Request('DELETE', $bucket, $uri, self::$endpoint);
         $rest = $rest->getResponse();
         if ($rest->error === false && $rest->code !== 204)
             $rest->error = array('code' => $rest->code, 'message' => 'Unexpected HTTP status');
@@ -1121,7 +1122,7 @@ class S3{
         $useSSL = self::$useSSL;
 
         self::$useSSL   = true; // CloudFront requires SSL
-        $rest           = new S3Request('POST', '', '2010-11-01/distribution', 'cloudfront.amazonaws.com');
+        $rest           = new \S3Request('POST', '', '2010-11-01/distribution', 'cloudfront.amazonaws.com');
         $rest->data     = self::__getCloudFrontDistributionConfigXML(
             $bucket.'.s3.amazonaws.com',
             $enabled,
@@ -1171,7 +1172,7 @@ class S3{
         $useSSL = self::$useSSL;
 
         self::$useSSL   = true; // CloudFront requires SSL
-        $rest           = new S3Request('GET', '', '2010-11-01/distribution/'.$distributionId, 'cloudfront.amazonaws.com');
+        $rest           = new \S3Request('GET', '', '2010-11-01/distribution/'.$distributionId, 'cloudfront.amazonaws.com');
         $rest           = self::__getCloudFrontResponse($rest);
 
         self::$useSSL = $useSSL;
@@ -1213,7 +1214,7 @@ class S3{
         $useSSL = self::$useSSL;
 
         self::$useSSL = true; // CloudFront requires SSL
-        $rest = new S3Request('PUT', '', '2010-11-01/distribution/'.$dist['id'].'/config', 'cloudfront.amazonaws.com');
+        $rest = new \S3Request('PUT', '', '2010-11-01/distribution/'.$dist['id'].'/config', 'cloudfront.amazonaws.com');
         $rest->data = self::__getCloudFrontDistributionConfigXML(
             $dist['origin'],
             $dist['enabled'],
@@ -1267,7 +1268,7 @@ class S3{
         $useSSL = self::$useSSL;
 
         self::$useSSL   = true; // CloudFront requires SSL
-        $rest           = new S3Request('DELETE', '', '2008-06-30/distribution/'.$dist['id'], 'cloudfront.amazonaws.com');
+        $rest           = new \S3Request('DELETE', '', '2008-06-30/distribution/'.$dist['id'], 'cloudfront.amazonaws.com');
         $rest->setHeader('If-Match', $dist['hash']);
         $rest           = self::__getCloudFrontResponse($rest);
 
@@ -1303,7 +1304,7 @@ class S3{
 
         $useSSL         = self::$useSSL;
         self::$useSSL   = true; // CloudFront requires SSL
-        $rest           = new S3Request('GET', '', '2010-11-01/distribution', 'cloudfront.amazonaws.com');
+        $rest           = new \S3Request('GET', '', '2010-11-01/distribution', 'cloudfront.amazonaws.com');
         $rest           = self::__getCloudFrontResponse($rest);
         self::$useSSL   = $useSSL;
 
@@ -1347,7 +1348,7 @@ class S3{
         }
 
         self::$useSSL   = true; // CloudFront requires SSL
-        $rest           = new S3Request('GET', '', '2010-11-01/origin-access-identity/cloudfront', 'cloudfront.amazonaws.com');
+        $rest           = new \S3Request('GET', '', '2010-11-01/origin-access-identity/cloudfront', 'cloudfront.amazonaws.com');
         $rest           = self::__getCloudFrontResponse($rest);
         $useSSL         = self::$useSSL;
 
@@ -1392,7 +1393,7 @@ class S3{
 
         $useSSL         = self::$useSSL;
         self::$useSSL   = true; // CloudFront requires SSL
-        $rest           = new S3Request('POST', '', '2010-08-01/distribution/'.$distributionId.'/invalidation', 'cloudfront.amazonaws.com');
+        $rest           = new \S3Request('POST', '', '2010-08-01/distribution/'.$distributionId.'/invalidation', 'cloudfront.amazonaws.com');
         $rest->data     = self::__getCloudFrontInvalidationBatchXML($paths, (string)microtime(true));
         $rest->size     = strlen($rest->data);
         $rest           = self::__getCloudFrontResponse($rest);
@@ -1457,7 +1458,7 @@ class S3{
 
         $useSSL         = self::$useSSL;
         self::$useSSL   = true; // CloudFront requires SSL
-        $rest           = new S3Request('GET', '', '2010-11-01/distribution/'.$distributionId.'/invalidation', 'cloudfront.amazonaws.com');
+        $rest           = new \S3Request('GET', '', '2010-11-01/distribution/'.$distributionId.'/invalidation', 'cloudfront.amazonaws.com');
         $rest           = self::__getCloudFrontResponse($rest);
         self::$useSSL   = $useSSL;
 

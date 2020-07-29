@@ -6,7 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Service\\' => array($baseDir . '/services'),
+    'Services\\Modules\\Area_a\\' => array($baseDir . '/services/modules/area_a'),
+    'Services\\' => array($baseDir . '/services'),
     'ServiceZenvia\\' => array($baseDir . '/services'),
     'ServiceSms\\' => array($baseDir . '/services'),
     'PHPMailer\\PHPMailer\\' => array($baseDir . '/libraries/email/vendor/phpmailer/phpmailer/src'),
@@ -14,6 +15,7 @@ return array(
     'Modules\\Account\\RestoreAccount\\' => array($baseDir . '/services/modules/account'),
     'Luthier\\Auth\\' => array($baseDir . '/services/routes/src/Auth'),
     'Luthier\\' => array($baseDir . '/services/routes/src'),
+    'Libraries\\Amazon\\' => array($baseDir . '/libraries/amazon'),
     'DebugBar\\DataCollector\\' => array($baseDir . '/services/routes/vendor/maximebf/debugbar/src/DebugBar/DataCollector'),
     'DebugBar\\' => array($baseDir . '/services/routes/vendor/maximebf/debugbar/src/DebugBar'),
 );
