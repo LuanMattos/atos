@@ -26,20 +26,13 @@ var vue_instance_dashboard_activity_local = new Vue({
     mounted:function(){
         var self_vue  = this;
         // -------------------------------------------
-        var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
-        $.post(url, {}, function(response){ self_vue.$data.amigos = response.data.amigos; },'json');
-        // $.post(App.url("","Home","get_storage_img"), {}, function(json){ vue_instance_dashboard_activity_local.$data.posts = json.data },'json')
-        // ------------------profile-------------------
-        var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
-        $.post(url, {}, function(response){ self_vue.$data.amigos = response.data.amigos; },'json');
-        // --------------------------------------------
-        var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
+        var url       = "abul";
         $.post(url, {}, function(response){ self_vue.$data.amigos = response.data.amigos; },'json');
     },
     methods:{
         getPosts () {
             var self_data = this.$data;
-            $.post( App.url("","home","get_storage_img/"), {
+            $.post( "gsi", {
                 limit:1,
                 offset:this.offset
             }, function(json){
@@ -75,7 +68,7 @@ var vue_instance_dashboard_activity_local = new Vue({
         excluir_postagem:function( id, posts ,$index){
 
             $.post(
-                App.url("","Home","delete_time_line"),
+                "dt",
                 {
                     id:id
                 },
@@ -89,14 +82,14 @@ var vue_instance_dashboard_activity_local = new Vue({
                 },'json')
         },
         redirect_user:function(id){
-            var url = App.url("dashboard_activity","Dashboard_activity","index");
+            var url = App.url("","dashboard","");
             $.post(
                 url,
                 {
                     id:id
                 },
                 function(json){
-                    window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id[0]);
+                    window.location.href = App.url("","external","" + json.id[0]);
                 },'json')
         },
 
@@ -112,7 +105,7 @@ var vue_instance_dashboard_activity_local = new Vue({
         },
         compute_like: function (data,index) {
             var self = this;
-            var url = App.url("", "Home", "compute_like");
+            var url = "cl";
             var qtd = this.posts[index].count_like;
 
             const params = new URLSearchParams();

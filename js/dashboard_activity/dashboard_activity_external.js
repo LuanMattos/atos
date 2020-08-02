@@ -19,10 +19,10 @@ var vue_instance_dashboard_activity_external = new Vue({
 
     },
     mounted:function(){
-        var id = window.location.href.split(App.url("dashboard_activity", "Dashboard_activity", "external/"))[1];
+        var id = window.location.href.split(App.url("", "external", ""))[1];
 
         var self_vue  = this;
-        var url       = App.url("pessoas", "Amigos", "amigos_by_usuario_limit");
+        var url       = "abul";
         // ------------------profile-------------------
         $.post(url, {
             id : id
@@ -30,7 +30,7 @@ var vue_instance_dashboard_activity_external = new Vue({
             self_vue.$data.amigos = response.data.amigos;
             },'json');
         $.post(
-            App.url("","Home","get_storage_img"),
+            "gsi",
             {
                 id:id
             },
@@ -40,14 +40,14 @@ var vue_instance_dashboard_activity_external = new Vue({
         },
     methods:{
         redirect_user:function(id){
-            var url = App.url("dashboard_activity","Dashboard_activity","index");
+            var url = "dashboard";
             $.post(
                 url,
                 {
                     id:id
                 },
                 function(json){
-                    window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id[0]);
+                    window.location.href = App.url("","external","" + json.id[0]);
                 },'json')
         },
         open_chat : function(external){
@@ -57,7 +57,7 @@ var vue_instance_dashboard_activity_external = new Vue({
         },
         compute_like: function (data,index) {
             var self = this;
-            var url = App.url("", "Home", "compute_like");
+            var url = "cl";
             var qtd = this.posts[index].count_like;
 
             const params = new URLSearchParams();

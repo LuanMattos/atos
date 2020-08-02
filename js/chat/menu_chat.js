@@ -12,7 +12,7 @@ var vue_instance_menu_chat = new Vue({
   methods:{
     get_amigos_chat:function(){
       var self = this;
-      var url = App.url("pessoas","Amigos","full_amigos_chat");
+      var url = "friendchat";
 
       App.spinner_start();
       axios({ method: 'post', url : url, data : {} })
@@ -21,7 +21,7 @@ var vue_instance_menu_chat = new Vue({
     open_chat:function( data ){
       var login = data.login;
       var self = this;
-      var url  = App.url("dashboard_msg","Dashboard_msg","get_msg");
+      var url  = "getmsg";
       const params = new URLSearchParams();
       this.chat = true;
       vue_instance_chat._data.messages = [];

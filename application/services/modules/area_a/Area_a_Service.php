@@ -6,42 +6,36 @@ use Libraries\Amazon as Amazon;
 class Area_a_Service extends GeneralService
 {
 
+    private $us_storage_img_cover;
+
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('storage/img/us_storage_img_cover_model');
+        $this->load->model('storage/img/us_storage_img_profile_model');
+        $this->load->model('us_usuarios_model');
     }
 
     public function get_img( $type,$id_user ){
         $data_user      = $this->session->get_userdata();
 
-        $find_usuario   = $this->mongodb->atos->us_usuarios->find(['login' => $data_user['login']]);
+        $find_usuario   = $this->us_usuarios_model->getWhereMongo(['login' => $data_user['login']]);
 
-        foreach($find_usuario as $get_usuario):
+        foreach( $find_usuario as $get_usuario ):
 
-            switch($type){
+            switch( $type ){
                 case "profile":
-                    $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
-                    $options                = ['sort' => ["_id"=>1]];
-                    $path_return            = $us_storage_img_profile->find(['codusuario'=>$get_usuario['_id']],$options);
-                    $path                   = [];
+                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$get_usuario['_id']],"_id",1,1,NULL,TRUE);
                     break;
                 case "cover":
-                    $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
-                    $options                = ['sort' => ["_id"=>1]];
-                    $path_return            = $us_storage_img_cover->find(['codusuario'=>$get_usuario['_id']],$options);
-                    $path                   = [];
+                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$get_usuario['_id']],"_id",1,1,NULL,TRUE);
+
                     break;
                 case "where":
-                    $us_storage_img_profile = $this->mongodb->atos->us_storage_img_profile;
-                    $options                = ['sort' => ["_id"=>1]];
-                    $path_return            = $us_storage_img_profile->find(['codusuario'=>$id_user],$options);
-                    $path                   = [];
+                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$id_user],"_id",1,1,NULL,TRUE);
                     break;
                 case "where_cover":
-                    $us_storage_img_cover   = $this->mongodb->atos->us_storage_img_cover;
-                    $options                = ['sort' => ["_id"=>1]];
-                    $path_return            = $us_storage_img_cover->find(['codusuario'=>$id_user],$options);
-                    $path                   = [];
+                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$id_user],"_id",1,1,NULL,TRUE);
                     break;
                 default:
                     if(empty($type)):
@@ -50,10 +44,7 @@ class Area_a_Service extends GeneralService
                     endif;
             }
 
-
-            foreach($path_return as $row){
-                $path    =  !empty($row['server_name'])?$row['server_name'] . $row['bucket'] . '/' . $row['folder_user'] . '/' . $row['name_file']:false;
-            }
+           $path    =  !empty($path_return['server_name'])?$path_return['server_name'] . $path_return['bucket'] . '/' . $path_return['folder_user'] . '/' . $path_return['name_file']:false;
 
             GeneralService::Success(compact('path'));
         endforeach;

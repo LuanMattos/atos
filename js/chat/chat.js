@@ -30,8 +30,8 @@ var vue_instance_chat = new Vue({
 
         //dados usuario externo
 
-        var id  = window.location.href.split(App.url("dashboard_activity", "Dashboard_activity", "external/"))[1];
-        var url = App.url("dashboard_msg","Dashboard_msg","get_msg/" + true);
+        var id  = window.location.href.split(App.url("", "external", "/"))[1];
+        var url = App.url("","getmsg","/" + true);
         const params = new URLSearchParams();
 
         params.append('id', id);
@@ -39,12 +39,12 @@ var vue_instance_chat = new Vue({
         .then(function( json ){ self_vue.data_user = json.data;});
 
         // ------------------profile-------------------
-        var url  = chat.Url("get_img");
+        var url  = "getimage";
         $.post(url, {type : "where",id : id}, function(response){self_vue.$data.img_profile = response.path;},'json');
         // ------------------cover------------------
 
         //dados usuario local
-        var url = App.url("dashboard_msg","Dashboard_msg","get_msg" );
+        var url = "getmsg";
         axios({ method: 'post', url : url, data : null })
           .then(function( json ){ console.log(json.data); self_vue.user_local = json.data;self_vue.connect();
           });
@@ -183,7 +183,7 @@ var vue_instance_chat = new Vue({
           return;
         }
 
-        var url = App.url("dashboard_msg","Dashboard_msg","get_msg");
+        var url = "getmsg";
         const params = new URLSearchParams();
         params.append('login', login);
         axios({ method: 'post', url : url, data : params })

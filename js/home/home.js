@@ -38,13 +38,12 @@ var vm = new Vue({
       mounted: function () {
 
           var self_vue = this;
-          var url = App.url("area_a", "Area_a", "get_img");
+          var url = "getimage";
           // ------------------profile-------------------
           $.post(url, { type: "profile" }, function (response) {self_vue.$data.img_profile = response.path;}, 'json');
           // -------------------cover-------------------
-          var url = App.url("area_a", "Area_a", "get_img");
           $.post(url, { type: "cover" }, function (response) {self_vue.$data.img_cover = response.path;}, 'json');
-          var url = App.url("pessoas", "Pessoas", "get_img_menu_pessoas");
+          var url = "getimgmenu";
           // ------------------menu-pessoas-------------------
           $.post(url, {}, function (response) {
               self_vue.$data.users_menu = response.data.all_users;
@@ -54,7 +53,7 @@ var vm = new Vue({
           getPosts () {
             var self_data = this.$data;
 
-            $.post( home.Url("get_storage_img/"), {
+            $.post( "getstorageimg", {
               timeline:true,
               limit:1,
               offset:this.offset
@@ -93,7 +92,7 @@ var vm = new Vue({
             $('#input-file-postagem').click();
           },
           excluir_postagem: function (id, posts, $index) {
-            var url = App.url("", "Home", "delete_time_line");
+            var url = "deletetimeline";
               $.post( url, { id: id },
                 function (json) { if (json) { vm.posts.splice($index, 1)} }, 'json')
           },
@@ -102,7 +101,7 @@ var vm = new Vue({
               var data = new FormData();
               data.append('fileimagem', $('#input-file-postagem')[0].files[0]);
               data.append('text', $('#text-area-postagem').val());
-              var url = home.Url("add_time_line");
+              var url = "addtimeline";
 
               if ($('#input-file-postagem').val() == "") {
                   vm.error_input_file = true;
@@ -145,7 +144,7 @@ var vm = new Vue({
           },
           add_person: function (id, l) {
               $.post(
-                App.url("pessoas", "Amigos", "add_person"),
+                "add",
                 {
                     id: id
                 },
@@ -177,7 +176,7 @@ var vm = new Vue({
           },
           compute_like: function (data,index) {
               var self = this;
-              var url = App.url("", "Home", "compute_like");
+              var url = "computelike";
               var qtd = this.posts[index].count_like;
 
               const params = new URLSearchParams();

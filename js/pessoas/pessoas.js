@@ -23,7 +23,7 @@ var vue_instance_pessoas = new Vue({
 
 
             $.post(
-                    pessoas.Url("data_full_user"),
+                    "dfu",
                     {
                         limit   : limit,
                         offset  : offset
@@ -40,7 +40,7 @@ var vue_instance_pessoas = new Vue({
         },
         add_person:function(id,l){
             $.post(
-                App.url("pessoas","Amigos","add_person"),
+                "add",
                 {
                     id:id
                 },
@@ -66,7 +66,7 @@ var vue_instance_pessoas = new Vue({
 
         },delete_amizade:function(id,l){
             $.post(
-                App.url("pessoas","Amigos","delete_amizade"),
+                "da",
                 {
                     id:id
                 },
@@ -86,7 +86,7 @@ var vue_instance_pessoas = new Vue({
         },
         aceitar_pessoa:function(id,l){
             $.post(
-                App.url("pessoas","Amigos","aceitar_pessoa"),
+                "accept",
                 {
                     id:id
                 },
@@ -100,14 +100,14 @@ var vue_instance_pessoas = new Vue({
                 },'json')
         },
         redirect_user:function (id) {
-            var url = App.url("dashboard_activity","Dashboard_activity","index");
+            var url = "dashboard";
             $.post(
                 url,
                 {
                     id:id
                 },
                 function(json){
-                    window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + id);
+                    window.location.href = App.url("","external","" + id);
                 },'json')
 
         }
@@ -118,7 +118,7 @@ var vue_instance_pessoas = new Vue({
 
 
 $.post(
-    pessoas.Url("data_full_user"),
+    "dfu",
     {
         offset:0
     },

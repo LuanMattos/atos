@@ -41,7 +41,7 @@ const Autocomplete = {
 
     methods: {
         onChange() {
-            var url = App.url("","Home","buscar");
+            var url = "search";
             var self = this;
             var data = this.search;
 
@@ -152,10 +152,10 @@ var vue_instance_menu = new Vue({
     },
     mounted:function(){
         var self_vue  = this;
-        var url       = App.url("area_a", "Area_a", "get_img");
+        var url       = "getimage";
         // ------------------profile-------------------
         $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
-        var url       = App.url("pessoas", "Amigos", "solicitacoes_by_usuario_limit");
+        var url       = "requestsuserlimit";
         // ------------------profile-------------------
         $.post(url, {}, function(response){
             self_vue.$data.amigos = response.data;
@@ -166,7 +166,7 @@ var vue_instance_menu = new Vue({
               }
             )
             },'json');
-        var url       = App.url("area_a", "Area_a", "data_user_local");
+        var url       = "datauserl";
         // ------------------profile-------------------
         $.post(url, {}, function(response){ self_vue.$data.data_user_local = response.data; },'json');
         this.get_msg();
@@ -174,19 +174,19 @@ var vue_instance_menu = new Vue({
     },
     methods:{
         redirect_user:function( id ){
-            var url = App.url("dashboard_activity","Dashboard_activity","index");
+            var url = App.url("","dashboard","");
             $.post( url, { id : id },
-            function(json){ window.location.href = App.url("dashboard_activity","Dashboard_activity","external/" + json.id); },'json')
+            function(json){ window.location.href = App.url("","external/","" + json.id); },'json')
         },
         aceitar_pessoa:function(id,l){
-            var url = App.url("pessoas","Amigos","aceitar_pessoa");
+            var url = "accept";
 
             $.post( url, { id : id },
                 function(json){ if(json.info){ $(".card-list-solicitacao:eq("+l+")").remove(); } },'json')
         },
         get_msg : function(){
             var self = this;
-            var url  = App.url("dashboard_msg","Dashboard_msg","get_msg_menu");
+            var url  = "msgmenu";
             axios({ method: 'post', url : url, data : false })
               .then(function( json ){
                   if(json.data.data){

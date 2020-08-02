@@ -22,7 +22,7 @@ $(function() {
 
         if(data.formatted_address_google_maps !== ""){
             $.post(
-                config.Url("acao_salvar_localizacao"),
+                "asl",
                 {
                     data:data
                 },function(){
