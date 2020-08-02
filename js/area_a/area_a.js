@@ -30,7 +30,6 @@ var vue_instance_area_a = new Vue({
         if( !_.isUndefined( id ) ){ type = 'where_cover'; }
 
         $.post(url, {type:type,id : id }, function(response){self_vue.$data.img_cover = response.path;},'json');
-
     },
     methods:{
         openfile:function(){

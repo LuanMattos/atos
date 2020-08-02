@@ -15,6 +15,8 @@ var vue_instance_dashboard_activity_external = new Vue({
         path_img_time_line_default : location.origin + '/application/assets/libs/images/dp.jpg',
         action_like:'fas fa-heart',
         display_notification:'hide',
+        name_new_message:'',
+        loading:false
 
 
     },
@@ -35,12 +37,12 @@ var vue_instance_dashboard_activity_external = new Vue({
                 id:id
             },
             function(json){
-                vue_instance_dashboard_activity_external.$data.posts = json.data
+                vue_instance_dashboard_activity_external.$data.posts = json.data;
             },'json')
         },
     methods:{
         redirect_user:function(id){
-            var url = "dashboard";
+            var url = App.url("","dashboard","");
             $.post(
                 url,
                 {

@@ -23,6 +23,7 @@ $route['friendchat'] = "pessoas/Amigos/full_amigos_chat";
 $route['abul'] = "pessoas/Amigos/amigos_by_usuario_limit";
 $route['ff'] = "pessoas/Amigos/full_amigos";
 $route['da'] = "pessoas/Amigos/delete_amizade";
+$route['friends'] = "pessoas/Amigos/index";
 
 //home
 $route['getstorageimg'] = 'Home/get_storage_img';
@@ -40,6 +41,7 @@ $route['sign/up'] = 'Home/register';
 $route['dashboard'] = 'dashboard_activity/Dashboard_activity/index';
 $route['mydashboard'] = 'dashboard_activity/Dashboard_activity/local';
 $route['external'] = 'dashboard_activity/Dashboard_activity/external';
+$route['external/(:any)'] = 'dashboard_activity/Dashboard_activity/external/$1';
 $route['theirdashboard/(:any)'] = 'dashboard_activity/Dashboard_activity/external/$1';
 $route['uip'] = "dashboard_activity/Dashboard_activity/update_img_profile";
 $route['uic'] = "dashboard_activity/Dashboard_activity/update_img_cover";
