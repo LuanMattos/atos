@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Account\RestoreAccount;
 
-use Service\GeneralService;
+use Services\GeneralService;
 
 class RestoreAccount extends GeneralService {
 
