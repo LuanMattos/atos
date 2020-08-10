@@ -130,7 +130,7 @@
 
                                 </div>
                             </li>
-                            <li class="dropdown">
+                            <!--<li class="dropdown">
                                 <a href="#" class="icon-set dropdown-toggle-no-caret" role="button"
                                    data-toggle="dropdown">
                                     <i class="fas fa-comment-dots"></i>
@@ -153,7 +153,7 @@
                                             </div>
                                         </template>
                                         <div class="user-request-list">
-                                            <a href="<?= site_url('view_full_messages') ?>" class="view-all">Visualizar todas mensagens</a>
+                                            <a href="<?/*= site_url('view_full_messages') */?>" class="view-all">Visualizar todas mensagens</a>
                                         </div>
                                     </template>
                                     <template v-else>
@@ -169,7 +169,7 @@
                                         </div>
                                     </template>
                                 </div>
-                            </li>
+                            </li>-->
                             <li class="dropdown">
 <!--                                <a href="#" class="icon-set dropdown-toggle-no-caret" role="button" data-toggle="dropdown">-->
 <!--                                    <i class="fas fa-bell"></i>-->
@@ -232,7 +232,7 @@
                                 <a class="link-item" href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Perfil</a>
                                 <a class="link-item" href="<?= site_url('settings') ?>">Configurações da conta</a>
                                 <a class="link-item" href="<?= site_url('invite') ?>">Convite</a>
-                                <a class="link-item" href="<?= site_url('view_full_messages') ?>"><i class="fas fa-tachometer-alt"></i>&nbsp MyDash</a>
+                                <!--<a class="link-item" href="<?/*= site_url('view_full_messages') */?>"><i class="fas fa-tachometer-alt"></i>&nbsp MyDash</a>-->
                                 <a class="link-item" href="<?= site_url('Home/logout') ?>">Sair</a>
                             </div>
                         </div>

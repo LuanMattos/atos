@@ -25,21 +25,21 @@
                     </li>
                     <li>
                         <div class="my-all-evnts" title="Vocês são amigos">
-                            <i class="fas fa-user-check"></i>
+<!--                            <i class="fas fa-user-check"></i>-->
                         </div>
                     </li>
                     <?php if(isset($data['externo']) && $data['externo']): ?>
-                        <li>
+                        <!--<li>
                             <div class="content-ico-msg" title="Mandar uma mensagem">
                                 <i class="far fa-comments" @click="open_chat(true)"></i>
                             </div>
-                        </li>
+                        </li>-->
                     <?php else: ?>
-                        <li>
+                        <!--<li>
                             <div class="content-ico-msg" title="Mandar uma mensagem">
                                 <i class="far fa-comments" @click="open_chat()"></i>
                             </div>
-                        </li>
+                        </li>-->
                     <?php endif; ?>
                 </ul>
             </div>

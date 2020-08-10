@@ -5,8 +5,8 @@
                 <div class="footer-left">
                     <ul>
                         <li><a href="<?= site_url('privacy_policy/Privacy_policy/index') ?>">Privacidade</a></li>
-                        <li><a href="<?= site_url('term_conditions/Term_conditions/index') ?>">Termos e condições</a></li>
-                        <li><a href="<?= site_url('about/About/index') ?>">Sobre</a></li>
+                        <!--<li><a href="<?/*= site_url('term_conditions/Term_conditions/index') */?>">Termos e condições</a></li>
+                        <li><a href="<?/*= site_url('about/About/index') */?>">Sobre</a></li>-->
                     </ul>
                 </div>
             </div>
