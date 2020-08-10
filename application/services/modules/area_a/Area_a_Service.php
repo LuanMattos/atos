@@ -25,17 +25,17 @@ class Area_a_Service extends GeneralService
 
             switch( $type ){
                 case "profile":
-                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$get_usuario['_id']],"_id",1,1,NULL,TRUE);
+                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$get_usuario['_id']],"_id",-1,1,NULL,TRUE);
                     break;
                 case "cover":
-                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$get_usuario['_id']],"_id",1,1,NULL,TRUE);
+                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$get_usuario['_id']],"_id",-1,1,NULL,TRUE);
 
                     break;
                 case "where":
-                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$id_user],"_id",1,1,NULL,TRUE);
+                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$id_user],"_id",-1,1,NULL,TRUE);
                     break;
                 case "where_cover":
-                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$id_user],"_id",1,1,NULL,TRUE);
+                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$id_user],"_id",-1,1,NULL,TRUE);
                     break;
                 default:
                     if(empty($type)):

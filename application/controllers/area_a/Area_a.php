@@ -24,7 +24,6 @@ class Area_a extends SI_Controller
     public function get_img()
     {
         $datapost = (object)$this->input->post(null, TRUE);
-
         $this->Area_a_Service->get_img($datapost->type, $datapost->id);
     }
 

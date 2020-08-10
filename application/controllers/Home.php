@@ -284,6 +284,7 @@ class Home extends Home_Controller
         redirect('go');
 
     }
+
     public function compute_like(){
         $id = $this->input->post('id',true);
         $user = (object)$this->data_user();
@@ -309,6 +310,7 @@ class Home extends Home_Controller
             $this->response('success','like');
         }
     }
+
     public function delete_time_line(){
         $id = $this->input->post("id",true);
         $user_local = $this->data_user();
@@ -474,6 +476,7 @@ class Home extends Home_Controller
         $this->response('success',compact('data'));
 
     }
+
     /**
      * Postagens do usuário logado e seus amigos(se tiver)
      **/
@@ -509,6 +512,7 @@ class Home extends Home_Controller
         $this->response('success',compact('data'));
 
     }
+
     public function buscar(){
         $data_session   = $this->data_user();
         $datapost       = $this->input->post('search',true);
@@ -538,9 +542,9 @@ class Home extends Home_Controller
         $this->response('success',compact( 'data' ) );
 
     }
+
     public function error_404(){
         $this->load->view('errors/404');
     }
-
 
 }
