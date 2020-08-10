@@ -63,7 +63,7 @@
                                         <img class="crop-img-center cursor-pointer" :src="post.path" @click="showImg(post.path)">
                                     </div>
                                 </div>
-                                <div class="event-city-dt p-2">
+                                <!--<div class="event-city-dt p-2">
                                     <ul class="city-dt-list">
                                         <li>
                                             <div class="it-items">
@@ -90,24 +90,24 @@
                                             </div>
                                         </li>
                                     </ul>
-                                </div>
+                                </div>-->
                                 <div class="like-comments ">
                                     <div class="left-comments">
                                        <a href="javascript:void(0)" class="like-item" title="Curtida" @click="compute_like(post,index)">
                                           <i v-bind:class="action_like  + ' ' + (post.liked ? 'text-like':'')" ></i>
                                           <span>{{post.count_like}}</span>
                                        </a>
-                                       <a href="#" class="like-item lc-left" title="Comment">
-                                            <i class="fas fa-comment-alt"></i>
-                                            <span> 10</span>
-                                       </a>
+<!--                                       <a href="#" class="like-item lc-left" title="Comment">-->
+<!--                                            <i class="fas fa-comment-alt"></i>-->
+<!--                                            <span> 10</span>-->
+<!--                                       </a>-->
                                     </div>
-                                    <div class="right-comments">
-                                        <a href="#" class="like-item" title="Share">
-                                            <i class="fas fa-share-alt"></i>
-                                            <span> 21</span>
-                                        </a>
-                                    </div>
+<!--                                    <div class="right-comments">-->
+<!--                                        <a href="#" class="like-item" title="Share">-->
+<!--                                            <i class="fas fa-share-alt"></i>-->
+<!--                                            <span> 21</span>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
