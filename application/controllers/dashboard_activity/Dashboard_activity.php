@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-use BotMan\BotMan\BotMan;
-use BotMan\BotMan\BotManFactory;
-use BotMan\BotMan\Drivers\DriverManager;
+use Libraries\Amazon;
 
 class Dashboard_activity extends SI_Controller{
 
@@ -59,7 +57,7 @@ class Dashboard_activity extends SI_Controller{
 
 
     public function update_img_profile()
-    {   $this->load->library('amazon/S3');
+    {
         $data_file = $_FILES['fileimagemprofile'];
 
 
@@ -72,7 +70,7 @@ class Dashboard_activity extends SI_Controller{
                 exit();
             }
             $bucket_name    = 'atos.click';
-            $s3             = new S3();
+            $s3             = new Amazon\S3();
             $hash           = uniqid(rand()) . date("Y-m-d H:i:so");
             $data_user      = $this->session->get_userdata();
             $find_usuario   = $this->mongodb->atos->us_usuarios->find(['login' => $data_user['login']]);
@@ -86,7 +84,7 @@ class Dashboard_activity extends SI_Controller{
 
             $s3->putBucket($bucket_name);
             $name_folder_user = $get_usuario['nome'] . md5($get_usuario['login']);
-            if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user . '/' . $name_file, S3::ACL_PUBLIC_READ)) {
+            if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user . '/' . $name_file, Amazon\S3::ACL_PUBLIC_READ)) {
 
                 $us_storage_img = $this->mongodb->atos->us_storage_img_profile;
                 $us_storage_img->insertOne([

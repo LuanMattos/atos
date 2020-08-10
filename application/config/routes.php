@@ -28,12 +28,12 @@ $route['friends'] = "pessoas/Amigos/index";
 //home
 $route['getstorageimg'] = 'Home/get_storage_img';
 $route['gsi'] = 'Home/get_storage_img';
-$route['deletetimeline'] = 'home/Home/delete_time_line';
-$route['dt'] = 'home/Home/delete_time_line';
-$route['addtimeline'] = 'home/Home/add_time_line';
-$route['computelike'] = 'home/Home/compute_like';
-$route['cl'] = 'home/Home/compute_like';
-$route['search'] = 'home/Home/buscar';
+$route['deletetimeline'] = 'Home/delete_time_line';
+$route['dt'] = 'Home/delete_time_line';
+$route['addtimeline'] = 'Home/add_time_line';
+$route['computelike'] = 'Home/compute_like';
+$route['cl'] = 'Home/compute_like';
+$route['search'] = 'Home/buscar';
 $route['home'] = 'Home/index';
 $route['sign/up'] = 'Home/register';
 
@@ -44,7 +44,6 @@ $route['external'] = 'dashboard_activity/Dashboard_activity/external';
 $route['external/(:any)'] = 'dashboard_activity/Dashboard_activity/external/$1';
 $route['theirdashboard/(:any)'] = 'dashboard_activity/Dashboard_activity/external/$1';
 $route['uip'] = "dashboard_activity/Dashboard_activity/update_img_profile";
-$route['uic'] = "dashboard_activity/Dashboard_activity/update_img_cover";
 
 //dashboard_msg
 $route['view_full_messages'] = 'dashboard_msg/Dashboard_msg/index';
@@ -59,6 +58,8 @@ $route['getmsg/(:any)'] = "dashboard_msg/Dashboard_msg/get_msg/$1";
 $route['zerar_menu'] = 'area_a/Area_a/zerar_notificacoes_menu';
 $route['data_menu'] = 'area_a/Area_a/data_menu';
 $route['datauserl'] = 'area_a/Area_a/data_user_local';
+$route['uic'] = "area_a/Area_a/update_img_cover";
+
 
 //invite
 $route['invite'] = 'invite/Invite/index';

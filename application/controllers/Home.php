@@ -1,5 +1,6 @@
 <?php
 use Modules\Account\RestoreAccount\RestoreAccount as RestoreAccount;
+use Libraries\Amazon;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -328,7 +329,6 @@ class Home extends Home_Controller
      * Adiciona as imagens ao bucket da Amazon
     **/
     public function add_time_line(){
-        $this->load->library('amazon/S3');
         $data_file    = $_FILES['fileimagem'];
         $text         = $this->input->post('text',TRUE);
 
@@ -346,7 +346,7 @@ class Home extends Home_Controller
                 exit();
             }
             $bucket_name  = 'atos.click';
-            $s3           = new S3();
+            $s3           = new Amazon\S3();
             $hash         = uniqid(rand()).date("Y-m-d H:i:so");
             $data_user    = $this->session->get_userdata();
             $get_usuarios  = $this->mongodb->atos->us_usuarios->find(['login'=>$data_user['login']]);
@@ -361,7 +361,7 @@ class Home extends Home_Controller
                 $s3->putBucket($bucket_name);
                 $name_folder_user = $get_usuario['nome'] . md5($get_usuario['login']);
 
-                if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user . '/' . $name_file, S3::ACL_PUBLIC_READ)) {
+                if ($s3->putObjectFile($data_file['tmp_name'], $bucket_name, $name_folder_user . '/' . $name_file, Amazon\S3::ACL_PUBLIC_READ)) {
 
 //                        $us_storage     = $this->mongodb->atos->us_storage;
                     $us_storage_img = $this->mongodb->atos->us_storage_img;
