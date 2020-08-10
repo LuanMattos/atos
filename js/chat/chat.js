@@ -213,7 +213,7 @@ var vue_instance_chat = new Vue({
 
         },
         addMessageNotification:function(data){
-            this.status.push(data);
+            this.status = data;
         },
         // Método responsável por adicionar uma notificação de sucesso
         addSuccessNotification: function(text) {
