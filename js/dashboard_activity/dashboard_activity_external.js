@@ -24,12 +24,15 @@ var vue_instance_dashboard_activity_external = new Vue({
         var id = window.location.href.split("external/")[1];
         var self_vue  = this;
         // ------------------profile-------------------
+
+
+
         $.post(App.url("","abul",""), { id : id }, function(response){ self_vue.$data.amigos = response.data.amigos;},'json');
         $.post( "gsi", { id : id }, function(json){ vue_instance_dashboard_activity_external.$data.posts = json.data; },'json')
         },
     methods:{
         redirect_user:function(id){
-            $.post("dashboard", { id:id }, function(json){ window.location.href = App.url("","external","" + json.login); },'json')
+            $.post(App.url("","dashboard",""), { id:id }, function(json){ window.location.href = App.url("","external/","" + json.login); },'json')
         },
         open_chat : function(external){
             if(external){

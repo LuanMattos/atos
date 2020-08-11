@@ -21,7 +21,6 @@ class Dashboard_activity extends SI_Controller{
     */
     public function index(){
         $login     = $this->input->post("login",TRUE);
-
         if(!$login){
             redirect('mydashboard');
         }else{

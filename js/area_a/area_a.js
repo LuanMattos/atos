@@ -17,13 +17,13 @@ var vue_instance_area_a = new Vue({
     },
     mounted:function(){
         var self_vue  = this;
-        var id        = window.location.href.split(App.url("", "external", ""))[1];
+        var id        = window.location.href.split("external/")[1];
         var type      = "profile";
 
         if( !_.isUndefined( id ) ){ type = 'where'; }
 
         // ------------------profile-------------------
-        var url  = "getimage";
+        var url  = App.url("","getimage","");
         $.post(url, { type:type,id : id}, function(response){self_vue.$data.img_profile = response.path;},'json');
         // ------------------cover------------------
         type      = "cover";
@@ -40,7 +40,7 @@ var vue_instance_area_a = new Vue({
         },
         update_img_profile:function()  {
             var self_vue  = this;
-            var url       = "uip";
+            var url       = App.url("","uip","");
             var data      = new FormData();
             data.append('fileimagemprofile', $('#input-file-img-profile')[0].files[0]);
             vue_lightbox._data.visible = false
@@ -60,7 +60,7 @@ var vue_instance_area_a = new Vue({
         },
         update_img_cover:function()  {
             var self_vue  = this;
-            var url       = "uic";
+            var url       = App.url("","uic","");
             var data      = new FormData();
             data.append('fileimagemcover', $('#input-file-img-cover')[0].files[0]);
 

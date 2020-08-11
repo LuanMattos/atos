@@ -16,11 +16,11 @@ class Area_a_Service extends GeneralService
         $this->load->model('us_usuarios_model');
     }
 
-    public function get_img( $type,$id_user ){
+    public function get_img( $type,$identificador ){
         $data_user      = $this->session->get_userdata();
 
         $find_usuario   = $this->us_usuarios_model->getWhereMongo(['login' => $data_user['login']]);
-
+        $id = $this->us_usuarios_model->getWhereMongo(['login_atos'=>$identificador],"_id",-1,1,NULL,TRUE);
         foreach( $find_usuario as $get_usuario ):
 
             switch( $type ){
@@ -32,10 +32,10 @@ class Area_a_Service extends GeneralService
 
                     break;
                 case "where":
-                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$id_user],"_id",-1,1,NULL,TRUE);
+                    $path_return = $this->us_storage_img_profile_model->getWhereMongo(['codusuario'=>$id->_id],"_id",-1,1,NULL,TRUE);
                     break;
                 case "where_cover":
-                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$id_user],"_id",-1,1,NULL,TRUE);
+                    $path_return = $this->us_storage_img_cover_model->getWhereMongo(['codusuario'=>$id->_id],"_id",-1,1,NULL,TRUE);
                     break;
                 default:
                     if(empty($type)):

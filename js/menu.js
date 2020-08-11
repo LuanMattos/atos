@@ -152,10 +152,10 @@ var vue_instance_menu = new Vue({
     },
     mounted:function(){
         var self_vue  = this;
-        var url       = "getimage";
+        var url       = App.url("","getimage","");
         // ------------------profile-------------------
         $.post(url, {type:"profile"}, function(response){self_vue.$data.img_profile = response.path;},'json');
-        var url       = "requestsuserlimit";
+        url = App.url("","requestsuserlimit","");
         // ------------------profile-------------------
         $.post(url, {}, function(response){
             self_vue.$data.amigos = response.data;
@@ -166,7 +166,7 @@ var vue_instance_menu = new Vue({
               }
             )
             },'json');
-        var url       = "datauserl";
+        url = App.url("","datauserl","");
         // ------------------profile-------------------
         $.post(url, {}, function(response){ self_vue.$data.data_user_local = response.data; },'json');
         this.get_msg();
@@ -179,14 +179,14 @@ var vue_instance_menu = new Vue({
             function(json){ window.location.href = App.url("","external/","" + json.id); },'json')
         },
         aceitar_pessoa:function(id,l){
-            var url = "accept";
+            var url = App.url("","accept","");
 
             $.post( url, { id : id },
                 function(json){ if(json.info){ $(".card-list-solicitacao:eq("+l+")").remove(); } },'json')
         },
         get_msg : function(){
             var self = this;
-            var url  = "msgmenu";
+            var url  = App.url("","msgmenu","");
             axios({ method: 'post', url : url, data : false })
               .then(function( json ){
                   if(json.data.data){
