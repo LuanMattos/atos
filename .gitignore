@@ -44,6 +44,7 @@ cmake-build-*/
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
+application/config/database_chat.php
 
 # File-based project format
 *.iws
