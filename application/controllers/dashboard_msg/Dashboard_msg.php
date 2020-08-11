@@ -35,6 +35,7 @@ class Dashboard_msg extends Home_Controller
 
     }
     public function get_msg( $external = false){
+
         $usuario_session = $this->data_user();
         $id         = $this->input->post("id",true);
         $login_post      = $this->input->post("login",true);

@@ -40,16 +40,16 @@ endif;
 <?php $this->load->view("template/lightbox_image/index"); ?>
 <?php $this->load->view("footer/footer"); ?>
 
-<div id="content-chat">
-    <?php $this->load->view("chat/index"); ?>
-</div>
-<div class="content-open-menu-chat">
-    <i class="fas fa-comments"></i>
-</div>
+<!--<div id="content-chat">-->
+<!--    --><?php //$this->load->view("chat/index"); ?>
+<!--</div>-->
+<!--<div class="content-open-menu-chat">-->
+<!--    <i class="fas fa-comments"></i>-->
+<!--</div>-->
 <?php $this->load->view('chat/menu_chat'); ?>
 <!-- Scripts js -->
 <?php $this->load->view("head/js"); ?>
-<?php $this->load->view("head/chat/assets"); ?>
+<?php //$this->load->view("head/chat/assets"); ?>
 <?php $this->load->view("head/image_lightbox/assets"); ?>
 
 <script src="<?= URL_RAIZ() ?>js/area_a/area_a.js"></script>

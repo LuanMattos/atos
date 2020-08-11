@@ -26,28 +26,22 @@ var vue_instance_chat = new Vue({
     },
     mounted : function(){
 
-        var self_vue  = this;
+      var self_vue  = this;
 
-        //dados usuario externo
+      //dados usuario externo
 
-        var id  = window.location.href.split(App.url("", "external", "/"))[1];
-        var url = App.url("","getmsg","/" + true);
-        const params = new URLSearchParams();
+      var id  = window.location.href.split("external/")[1];
+      const params = new URLSearchParams();
 
-        params.append('id', id);
-        axios({ method: 'post', url : url, data : params })
-        .then(function( json ){ self_vue.data_user = json.data;});
-
-        // ------------------profile-------------------
-        var url  = "getimage";
-        $.post(url, {type : "where",id : id}, function(response){self_vue.$data.img_profile = response.path;},'json');
-        // ------------------cover------------------
-
-        //dados usuario local
-        var url = "getmsg";
-        axios({ method: 'post', url : url, data : null })
-          .then(function( json ){ console.log(json.data); self_vue.user_local = json.data;self_vue.connect();
-          });
+      params.append('id', id);
+      axios({ method: 'post', url : "getmsg/" + true, data : params }).then(function( json ){ self_vue.data_user = json.data;});
+      // ------------------profile-------------------
+      $.post("getimage", {type : "where",id : id}, function(response){self_vue.$data.img_profile = response.path;},'json');
+      // ------------------cover------------------
+      //dados usuario local
+      axios({ method: 'post', url : App.url("dashboard_msg","Dashboard_msg","get_msg",""), data : null })
+        .then(function( json ){ console.log(json.data); self_vue.user_local = json.data;self_vue.connect();
+        });
 
     },
     methods:{

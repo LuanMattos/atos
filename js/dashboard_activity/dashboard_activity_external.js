@@ -21,36 +21,15 @@ var vue_instance_dashboard_activity_external = new Vue({
 
     },
     mounted:function(){
-        var id = window.location.href.split(App.url("", "external", ""))[1];
-
+        var id = window.location.href.split("external/")[1];
         var self_vue  = this;
-        var url       = "abul";
         // ------------------profile-------------------
-        $.post(url, {
-            id : id
-        }, function(response){
-            self_vue.$data.amigos = response.data.amigos;
-            },'json');
-        $.post(
-            "gsi",
-            {
-                id:id
-            },
-            function(json){
-                vue_instance_dashboard_activity_external.$data.posts = json.data;
-            },'json')
+        $.post("abul", { id : id }, function(response){ self_vue.$data.amigos = response.data.amigos;},'json');
+        $.post( "gsi", { id : id }, function(json){ vue_instance_dashboard_activity_external.$data.posts = json.data; },'json')
         },
     methods:{
         redirect_user:function(id){
-            var url = App.url("","dashboard","");
-            $.post(
-                url,
-                {
-                    id:id
-                },
-                function(json){
-                    window.location.href = App.url("","external","" + json.id[0]);
-                },'json')
+            $.post("dashboard", { id:id }, function(json){ window.location.href = App.url("","external","" + json.id[0]); },'json')
         },
         open_chat : function(external){
             if(external){
