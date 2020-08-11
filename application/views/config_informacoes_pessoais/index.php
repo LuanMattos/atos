@@ -33,7 +33,7 @@
                         <div class="col-lg-4 col-md-12">
                             <div class="form-group">
                                 <label>Data de nascimento<span style="color:red">{{informacoes_pessoais.error.nome}}</span></label>
-                                <input class="payment-input datepicker-here"
+                                <input class="payment-input datepicker-here date"
                                        data-language="en"
                                        type="text"
                                        placeholder="08/29/1991"

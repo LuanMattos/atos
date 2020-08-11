@@ -97,18 +97,20 @@ class ServiceSms extends  Services\GeneralService {
         }
 
         $Provider_sms_model = $this->Provider_sms_model;
-        $provider           = $Provider_sms_model->getWhere(['provedor '=>$provedor]);
+        $provider           = $this->db->select("*")->from("provider_sms");
+        if($provider->get()) {
+            $provedorN = $provider->get()->result_array();
+            if (count($provedorN)) {
+                $provedorN = (object)reset($provedorN);
+            }
+            $configs = array(
+                'alias' => $provedorN->conta,
+                'password' => $provedorN->senha,
+                'webServiceUrl' => $this->urlApi
+            );
 
-        if(count($provider)){
-            $provider = (object)reset($provider);
+            $this->provider = $configs;
         }
-        $configs = array(
-            'alias'         => $provider->conta,
-            'password'      => $provider->senha,
-            'webServiceUrl' => $this->urlApi
-        );
-
-        $this->provider= $configs;
     }
 
 
