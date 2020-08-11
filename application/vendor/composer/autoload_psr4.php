@@ -12,6 +12,7 @@ return array(
     'ServiceSms\\' => array($baseDir . '/services'),
     'PHPMailer\\PHPMailer\\' => array($baseDir . '/libraries/email/vendor/phpmailer/phpmailer/src'),
     'Modules\\Storage\\Create_folder_user\\' => array($baseDir . '/services/modules/storage'),
+    'Modules\\Register\\RegisterMeService\\' => array($baseDir . '/services/modules/register'),
     'Modules\\Account\\RestoreAccount\\' => array($baseDir . '/services/modules/account'),
     'Luthier\\Auth\\' => array($baseDir . '/services/routes/src/Auth'),
     'Luthier\\' => array($baseDir . '/services/routes/src'),

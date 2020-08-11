@@ -108,10 +108,10 @@
                                                 </div>
                                             </div>
                                         </template>
-                                        <div class="user-request-list">
-                                            <a href="<?= site_url('my_dashboard_all_requests/My_dashboard_all_requests/index') ?>"
-                                               class="view-all">Visualizar todos convites</a>
-                                        </div>
+<!--                                        <div class="user-request-list">-->
+<!--                                            <a href="--><?//= site_url('my_dashboard_all_requests/My_dashboard_all_requests/index') ?><!--"-->
+<!--                                               class="view-all">Visualizar todos convites</a>-->
+<!--                                        </div>-->
                                     </template>
                                     <template v-else>
 
@@ -214,10 +214,10 @@
                                             <div class="time5">10 min ago</div>
                                         </div>
                                     </div>
-                                    <div class="user-request-list">
-                                        <a href="<?= site_url('my_dashboard_all_notifications/My_dashboard_all_notifications/index') ?>"
-                                           class="view-all">Visualizar todas notificações</a>
-                                    </div>
+<!--                                    <div class="user-request-list">-->
+<!--                                        <a href="--><?//= site_url('my_dashboard_all_notifications/My_dashboard_all_notifications/index') ?><!--"-->
+<!--                                           class="view-all">Visualizar todas notificações</a>-->
+<!--                                    </div>-->
                                 </div>
                             </li>
                         </ul>
@@ -229,11 +229,11 @@
                                 <i class="fas fa-angle-down"></i>
                             </a>
                             <div class="dropdown-menu account-dropdown dropdown-menu-right">
-                                <a class="link-item" href="<?= site_url('dashboard_activity/Dashboard_activity') ?>">Perfil</a>
+                                <a class="link-item" href="<?= site_url('dashboard') ?>">Perfil</a>
                                 <a class="link-item" href="<?= site_url('settings') ?>">Configurações da conta</a>
                                 <a class="link-item" href="<?= site_url('invite') ?>">Convite</a>
                                 <!--<a class="link-item" href="<?/*= site_url('view_full_messages') */?>"><i class="fas fa-tachometer-alt"></i>&nbsp MyDash</a>-->
-                                <a class="link-item" href="<?= site_url('Home/logout') ?>">Sair</a>
+                                <a class="link-item" href="<?= site_url('close') ?>">Sair</a>
                             </div>
                         </div>
                 </nav>

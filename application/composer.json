@@ -17,7 +17,8 @@
       "DebugBar\\DataCollector\\": "services/routes/vendor/maximebf/debugbar/src/DebugBar/DataCollector",
       "PHPMailer\\PHPMailer\\": "libraries/email/vendor/phpmailer/phpmailer/src",
       "Services\\Modules\\Area_a\\": "services/modules/area_a",
-      "Libraries\\Amazon\\": "libraries/amazon"
+      "Libraries\\Amazon\\": "libraries/amazon",
+      "Modules\\Register\\RegisterMeService\\": "services/modules/register"
     }
   }
 }

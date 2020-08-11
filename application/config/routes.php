@@ -70,6 +70,9 @@ $route['settings'] = 'account_settings/Account_settings/index';
 $route['asl'] = 'account_settings/Account_settings/acao_salvar_localizacao';
 
 
+$route['close'] = 'Home/logout';
+
+
 $route['404_override'] = 'Home/error_404';
 
 $route['default_controller'] = 'Home';

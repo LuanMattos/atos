@@ -1,5 +1,6 @@
 <?php
 use Modules\Account\RestoreAccount\RestoreAccount as RestoreAccount;
+use Modules\Register\RegisterMeService;
 use Libraries\Amazon;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -255,7 +256,14 @@ class Home extends Home_Controller
         $send = $mail->send( $param );
 
         if( $send ){
-            $this->Us_usuarios_conta_model->save_mongo($data_conta);
+            $this->Us_usuarios_conta_model->save_mongo( $data_conta );
+
+            try{
+                new RegisterMeService\RegisterMeService( $data['email'] );
+            }catch ( Exception $e ){
+                $e->getMessage();
+            }
+
             $this->response("success");
         }else{
             $error['erro_envio_email'] = "E-mail inválido, para criar uma conta, digite um E-mail válido!";

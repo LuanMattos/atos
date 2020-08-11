@@ -21,6 +21,7 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         'M' => 
         array (
             'Modules\\Storage\\Create_folder_user\\' => 35,
+            'Modules\\Register\\RegisterMeService\\' => 35,
             'Modules\\Account\\RestoreAccount\\' => 31,
         ),
         'L' => 
@@ -60,6 +61,10 @@ class ComposerStaticInitb943c46219488dafaf89f7e969c8c84e
         'Modules\\Storage\\Create_folder_user\\' => 
         array (
             0 => __DIR__ . '/../..' . '/services/modules/storage',
+        ),
+        'Modules\\Register\\RegisterMeService\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/services/modules/register',
         ),
         'Modules\\Account\\RestoreAccount\\' => 
         array (
