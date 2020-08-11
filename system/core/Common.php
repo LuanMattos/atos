@@ -100,6 +100,14 @@ if ( ! function_exists('set_val')) {
         return false;
     }
 }
+//todas letras de um frase em uppercase
+if ( ! function_exists('upper_phrase')) {
+    function upper_phrase($c)
+    {
+       return  mb_convert_case( $c, MB_CASE_TITLE, 'UTF-8' );
+
+    }
+}
 
 // ------------------------------------------------------------------------
 

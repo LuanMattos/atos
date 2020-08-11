@@ -1,7 +1,7 @@
 <?php
 namespace ServiceZenvia;
 
-use Service\GeneralService;
+use Services\GeneralService;
 use Zenvia\Model\SmsFacade;
 
 class ServiceZenvia extends GeneralService {

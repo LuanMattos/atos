@@ -30,7 +30,7 @@ endif;
                                     </div>
                                 </div>
                                 <div class="user-main-details">
-                                    <h4><?= isset($data['nome'])?$data['nome']:""; ?></h4>
+                                    <h4><?= isset($data['nome'])?ucfirst($data['nome']):""; ?></h4>
                                     <span>
                                         <i class="fas fa-map-marker-alt"></i>
                                         <?= set_val($data['address']) ?>

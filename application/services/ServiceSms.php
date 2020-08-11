@@ -1,9 +1,9 @@
 <?php
 namespace ServiceSms;
 use ServiceZenvia;
-use Service\GeneralService;
+use Services;
 
-class ServiceSms extends  GeneralService{
+class ServiceSms extends  Services\GeneralService {
 
     protected   $provider;
     protected   $urlApi = 'https://api-rest.zenvia.com/services/send-sms-multiple';

@@ -4,10 +4,10 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="event-title">
                     <div class="my-dash-dt">
-                        <h3><?= isset($data['nome'])?$data['nome']:"" ?></h3>
-                        <span><?= isset($data['sobrenome'])?$data['sobrenome']:"" ?></span>
+                        <h3><?= isset($data['nome'])?ucfirst($data['nome']):"" ?></h3>
+                        <span><?= isset($data['sobrenome'])?upper_phrase($data['sobrenome']):"" ?></span>
                         <span><i class="fas fa-map-marker-alt"></i>
-                            <?= set_val($data['address']) ?>
+                            <?= set_val( upper_phrase($data['address'] ) ) ?>
                         </span>
                     </div>
 
