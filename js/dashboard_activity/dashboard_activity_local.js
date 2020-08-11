@@ -81,15 +81,16 @@ var vue_instance_dashboard_activity_local = new Vue({
 
                 },'json')
         },
-        redirect_user:function(id){
+        redirect_user:function(login){
             var url = App.url("","dashboard","");
+
             $.post(
                 url,
                 {
-                    id:id
+                    login:login
                 },
                 function(json){
-                    window.location.href = App.url("","external","" + json.id[0]);
+                    window.location.href = App.url("","external","" + json.login);
                 },'json')
         },
 

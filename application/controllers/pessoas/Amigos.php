@@ -216,12 +216,12 @@ class Amigos extends Home_Controller
 
         foreach($data['amigos'] as $row){
 
-            $path                   = reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>reset($row['_id'])],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
+            $path                   = $this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>reset($row['_id'])],$orderby = "created_at",-1,NULL,NULL,TRUE);
             $row['img_profile']     =  !empty($path['server_name'])?$path['server_name'] . $path['bucket'] . '/' . $path['folder_user'] . '/' . $path['name_file']:false;
             $row['id_user_local']   = $data_user['_id'];
+            $row['login_atos']      = $data_user['login_atos'];
 
         }
-
         $this->response("success",compact("data"));
 
     }

@@ -16,11 +16,12 @@ class Dashboard_activity extends SI_Controller{
 
     }
     public function index(){
-        $id     = $this->input->post("id",TRUE);
-        if(!$id){
+        $login     = $this->input->post("login",TRUE);
+
+        if(!$login){
             redirect('mydashboard');
         }else{
-            $this->response('success',compact("id"));
+            $this->response('success',compact("login"));
         }
     }
     public function local(){
@@ -37,8 +38,8 @@ class Dashboard_activity extends SI_Controller{
 
         $this->load->view("dashboard_activity/index",compact("dados"));
     }
-    public function external( $id = null ){
-        $dados                  = reset($this->Us_usuarios_model->getWhereMongo(['_id' => $id]));
+    public function external( $identificador = null ){
+        $dados                  = reset($this->Us_usuarios_model->getWhereMongo(['login_atos' => $identificador]));
         $dados['externo']       = true;
         $find_img               =  reset($this->Us_storage_img_profile_model->getWhereMongo(['codusuario'=>$dados['_id']],$orderby = "created_at",$direction =  -1,$limit = NULL,$offset = NULL));
         $dados['img_profile']   =  !empty($find_img['server_name'])?$find_img['server_name'] . $find_img['bucket'] . '/' . $find_img['folder_user'] . '/' . $find_img['name_file']:false;
