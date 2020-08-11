@@ -37,6 +37,7 @@ $route['cl'] = 'Home/compute_like';
 $route['search'] = 'Home/buscar';
 $route['home'] = 'Home/index';
 $route['sign/up'] = 'Home/register';
+$route['du'] = 'Home/data_user_local';
 
 //dashboard_activity
 $route['dashboard'] = 'dashboard_activity/Dashboard_activity/index';

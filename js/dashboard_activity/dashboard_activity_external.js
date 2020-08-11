@@ -16,7 +16,8 @@ var vue_instance_dashboard_activity_external = new Vue({
         action_like:'fas fa-heart',
         display_notification:'hide',
         name_new_message:'',
-        loading:false
+        loading:false,
+        data_user_local:false
 
 
     },
@@ -25,10 +26,9 @@ var vue_instance_dashboard_activity_external = new Vue({
         var self_vue  = this;
         // ------------------profile-------------------
 
-
-
         $.post(App.url("","abul",""), { id : id }, function(response){ self_vue.$data.amigos = response.data.amigos;},'json');
-        $.post( "gsi", { id : id }, function(json){ vue_instance_dashboard_activity_external.$data.posts = json.data; },'json')
+        $.post( App.url("","gsi",""), { id : id }, function(json){ vue_instance_dashboard_activity_external.$data.posts = json.data; },'json')
+        $.post( App.url("","du",""), {}, function(json){ vue_instance_dashboard_activity_external.$data.data_user_local = json.data; },'json')
         },
     methods:{
         redirect_user:function(id){

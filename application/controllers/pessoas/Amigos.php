@@ -212,7 +212,7 @@ class Amigos extends Home_Controller
             $_id = $id['_id'];
         }
 
-        $data                   = reset($this->Us_amigos_model->getWhereMongo(['_id'=>$_id],$orderby = "_id",$direction =  -1,$limit = 6,$offset = NULL));
+        $data                   = $this->Us_amigos_model->getWhereMongo(['_id'=>$_id],$orderby = "_id",$direction =  -1,$limit = 6,$offset = NULL,TRUE);
         $row['img_profile']     = [];
         foreach($data['amigos'] as $row){
 

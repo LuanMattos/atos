@@ -556,4 +556,10 @@ class Home extends Home_Controller
         $this->load->view('errors/404');
     }
 
+    public function data_user_local()
+    {
+        $data = $this->data_user();
+        $this->response('success',compact('data'));
+    }
+
 }

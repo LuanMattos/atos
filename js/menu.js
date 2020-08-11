@@ -76,7 +76,7 @@ const Autocomplete = {
         setResult(result) {
             this.search = result.nome;
             this.isOpen = false;
-            vue_instance_menu.redirect_user( result._id );
+            vue_instance_menu.redirect_user( result.login_atos );
         },
         onArrowDown(evt) {
 
@@ -174,9 +174,7 @@ var vue_instance_menu = new Vue({
     },
     methods:{
         redirect_user:function( id ){
-            var url = App.url("","dashboard","");
-            $.post( url, { id : id },
-            function(json){ window.location.href = App.url("","external/","" + json.id); },'json')
+            window.location.href = App.url("","external","" + id)
         },
         aceitar_pessoa:function(id,l){
             var url = App.url("","accept","");
