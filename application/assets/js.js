@@ -61,6 +61,37 @@ var App = {}
     App.spinner_chat_stop = function(){
         $('.spinner-atos-chat').remove();
     }
+    App.now = function(format = 'br'){
+        var value   = false;
+        var d       = new Date();
+        var day     = ( parseInt( d.getDay() )   < 10 ? '0' + d.getDay().toString()   : d.getDay()   );
+        var month   = ( parseInt( d.getMonth() ) < 10 ? '0' + d.getMonth().toString() : d.getMonth() );
+        var time    = ( parseInt( d.getHours() ) < 10 ? '0' + d.getHours().toString() : d.getHours() )
+                        + ':'  +
+          ( parseInt( d.getMinutes() ) < 10 ? '0' + d.getMinutes().toString() : d.getMinutes() )
+                        + ':'  +
+          ( parseInt( d.getSeconds() ) < 10 ? '0' + d.getSeconds().toString() : d.getSeconds() );
+
+        switch ( format ) {
+            case 'time':
+                value =  time.toString();
+            break;
+            case 'br':
+                value = day + "/" + month + "/" + d.getFullYear();
+            break;
+            case 'us':
+                value =  day + "-" + month + "-" + d.getFullYear();
+            break;
+            case 'timestamp':
+                value = d.getFullYear() + '-' + month + '-' + day;
+            break;
+        }
+        !value ? console.warn('Format date is invalid!'):'';
+
+        format != 'time' ? value += " " + time:'';
+
+        return value.toString();
+    }
 
 $(document).ready(function(){
     $(".content-open-menu-chat").on("click",function(){

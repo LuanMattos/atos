@@ -463,7 +463,8 @@ class Home extends Home_Controller
                     'id_local'    => $user_logado['_id'],
                     'count_like'  => count($row['like']),
                     'liked'       => $liked,
-                    'delete'      => $delete
+                    'delete'      => $delete,
+                    'created_at'  => $find_img['created_at']
 
                 ];
 

@@ -101,6 +101,8 @@ var vm = new Vue({
               var data = new FormData();
               data.append('fileimagem', $('#input-file-postagem')[0].files[0]);
               data.append('text', $('#text-area-postagem').val());
+
+
               var url = "addtimeline";
 
               if ($('#input-file-postagem').val() == "") {
@@ -130,7 +132,8 @@ var vm = new Vue({
                                 'text': response.text_timeline,
                                 'path': response.path,
                                 '_id': response.id,
-                              'img_profile':response.img_profile
+                              'img_profile':response.img_profile,
+                              'created_at' : App.now('br')
                             };
                             vm.posts.unshift(data);
                         }

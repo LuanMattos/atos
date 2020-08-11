@@ -31,6 +31,7 @@
                                                         <a href="#" >
                                                             <span class="name-user-post">{{post.nome}}</span>
                                                             <div class="title-post">{{post.text}}</div>
+                                                            <div class="date-post">{{post.created_at}}</div>
                                                         </a>
                                                     </td>
                                                     <td>
