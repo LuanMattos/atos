@@ -15,6 +15,10 @@ class Dashboard_activity extends SI_Controller{
         $this->verifica_sessao();
 
     }
+    /**
+     * Redireciona, se tiver login será um visitante
+     * login -> Camuflagem para hackers, é na verdade apenas um id da rede para acessar uma determinada conta
+    */
     public function index(){
         $login     = $this->input->post("login",TRUE);
 

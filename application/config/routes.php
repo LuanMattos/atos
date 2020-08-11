@@ -21,6 +21,7 @@ $route['accept'] = "pessoas/Amigos/aceitar_pessoa";
 $route['requestsuserlimit'] = "pessoas/Amigos/solicitacoes_by_usuario_limit";
 $route['friendchat'] = "pessoas/Amigos/full_amigos_chat";
 $route['abul'] = "pessoas/Amigos/amigos_by_usuario_limit";
+$route['abul/(:any)'] = "pessoas/Amigos/amigos_by_usuario_limit/$1";
 $route['ff'] = "pessoas/Amigos/full_amigos";
 $route['da'] = "pessoas/Amigos/delete_amizade";
 $route['friends'] = "pessoas/Amigos/index";
