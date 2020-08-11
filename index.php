@@ -53,8 +53,9 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-
-define('ENVIRONMENT', $_SERVER['HTTP_HOST'] === 'localhost'  ? 'development' : 'production');
+//por algum motivo esse diabo da pau se ficar em production
+//define('ENVIRONMENT', $_SERVER['HTTP_HOST'] === 'localhost'  ? 'development' : 'production');
+define('ENVIRONMENT','development' );
 
 
 /*
