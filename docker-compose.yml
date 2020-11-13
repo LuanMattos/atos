@@ -20,9 +20,9 @@ services:
     image:  luanmattos/atos:postgresql
     environment:
         POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: eFdarksadfw4r54af4fd4a54h2fasfdg
+        POSTGRES_PASSWORD: postgres
         PGDATA: /data/postgres
-        POSTGRES_DB: atos
+        POSTGRES_DB: postgres
     volumes:
         - "./data/postgres:/var/lib/postgresql/data"
     ports:
