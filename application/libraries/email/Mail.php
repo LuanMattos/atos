@@ -17,7 +17,7 @@ class Mail{
             $mail->Host       = 'smtp.mail.us-east-1.awsapps.com';      // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
             $mail->Username   = 'account@atos.click';                   // SMTP username
-            $mail->Password   = 'K2l9g3v1';                             // SMTP password
+            $mail->Password   = 'AEFA3d@f&h8fD3';                             // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
             $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
